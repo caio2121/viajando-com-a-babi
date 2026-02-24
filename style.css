@@ -294,17 +294,13 @@ ul  { list-style: none; }
 }
 
 .hero__logo {
-  width: 260px;
-  height: 260px;
-  object-fit: contain;
-  /* White circular backing so the teal logo contrasts on dark background */
-  background: rgba(255,255,255,0.96);
-  border-radius: 50%;
-  padding: 20px;
-  box-shadow:
-    0 0 0 6px rgba(255,255,255,0.18),
-    0 0 0 14px rgba(255,255,255,0.06),
-    0 12px 48px rgba(0,0,0,0.35);
+  width: 230px;
+  height: auto;
+  /* Glow branco+teal: torna o logo legível no fundo escuro sem círculo sólido */
+  filter:
+    drop-shadow(0 0 28px rgba(255,255,255,0.40))
+    drop-shadow(0 0  8px rgba(255,255,255,0.60))
+    drop-shadow(0 6px 24px rgba(0,0,0,0.55));
   animation: logoFloat 4s ease-in-out infinite;
 }
 
@@ -924,15 +920,15 @@ ul  { list-style: none; }
 }
 
 .modal__img {
+  /* Natural size: 271×191px — nunca ampliar acima do tamanho original */
   width: 100%;
-  max-width: 420px;
+  max-width: 271px;
+  height: auto;
   display: block;
   margin: 0 auto;
   border-radius: var(--radius-sm);
   border: 1px solid var(--clr-primary-l);
-  /* Preserve sharpness — no upscaling beyond natural size */
-  image-rendering: -webkit-optimize-contrast;
-  image-rendering: crisp-edges;
+  image-rendering: auto;
 }
 
 .modal__info {
