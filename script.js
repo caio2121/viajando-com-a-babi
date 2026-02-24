@@ -160,6 +160,104 @@
 })();
 
 /* ──────────────────────────────────────────────────
+   LIGHTBOX — visualização de imagens dos cards
+────────────────────────────────────────────────── */
+(function initLightbox() {
+  const overlay  = document.getElementById('lightbox');
+  const closeBtn = document.getElementById('lightboxClose');
+  const img      = document.getElementById('lightboxImg');
+  const triggers = document.querySelectorAll('.card__img-wrap img[data-lightbox]');
+
+  if (!overlay || !img) return;
+
+  function openLightbox(src, alt) {
+    img.src = src;
+    img.alt = alt || '';
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+    img.src = '';
+  }
+
+  triggers.forEach(t => {
+    t.addEventListener('click', () => openLightbox(t.src, t.alt));
+  });
+
+  closeBtn && closeBtn.addEventListener('click', closeLightbox);
+
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay) closeLightbox();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && overlay.classList.contains('open')) closeLightbox();
+  });
+})();
+
+/* ──────────────────────────────────────────────────
+   MODAL FORMULÁRIO DE VIAGEM
+────────────────────────────────────────────────── */
+(function initFormularioModal() {
+  const modal    = document.getElementById('modalFormulario');
+  const closeBtn = document.getElementById('modalFormClose');
+  const form     = document.getElementById('formViagem');
+  const trigger  = document.getElementById('btnFormularioLink');
+
+  if (!modal) return;
+
+  function openModal() {
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    modal.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  trigger && trigger.addEventListener('click', openModal);
+  closeBtn && closeBtn.addEventListener('click', closeModal);
+
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) closeModal();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('open')) closeModal();
+  });
+
+  form && form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const destino   = document.getElementById('fDestino').value.trim();
+    const datas     = document.getElementById('fDatas').value.trim();
+    const adultos   = document.getElementById('fAdultos').value.trim();
+    const criancas  = document.getElementById('fCriancas').value.trim() || 'Sem crianças';
+    const saida     = document.getElementById('fSaida').value.trim();
+    const orcamento = document.getElementById('fOrcamento').value.trim();
+
+    const msg =
+      `Olá Babi! Quero planejar minha viagem. Aqui estão meus dados:\n\n` +
+      `✈️ Destino: ${destino}\n` +
+      `📅 Datas: ${datas}\n` +
+      `👥 Adultos: ${adultos}\n` +
+      `👶 Crianças: ${criancas}\n` +
+      `🏙️ Saída de: ${saida}\n` +
+      `💰 Orçamento: ${orcamento}`;
+
+    window.open(
+      'https://wa.me/5521920064617?text=' + encodeURIComponent(msg),
+      '_blank',
+      'noopener,noreferrer'
+    );
+    closeModal();
+  });
+})();
+
+/* ──────────────────────────────────────────────────
    ACTIVE NAV LINK on scroll (highlight)
 ────────────────────────────────────────────────── */
 (function initActiveNav() {

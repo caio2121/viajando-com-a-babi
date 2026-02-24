@@ -180,10 +180,10 @@ ul  { list-style: none; }
 }
 
 .navbar__logo img {
-  height: 56px;
+  height: 62px;
+  max-height: calc(var(--navbar-h) - 8px);
   width: auto;
   object-fit: contain;
-  /* preserve original teal colors — no filter */
 }
 
 .navbar__links {
@@ -248,33 +248,12 @@ ul  { list-style: none; }
   align-items: center;
   justify-content: center;
   text-align: center;
-  background:
-    linear-gradient(160deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+  background: linear-gradient(135deg, #f0fcfb 0%, #c9efed 55%, #e8faf9 100%);
   overflow: hidden;
   padding-top: var(--navbar-h);
 }
 
-/* Animated wave background */
-.hero::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(ellipse at 20% 80%, rgba(58,175,169,0.35) 0%, transparent 55%),
-    radial-gradient(ellipse at 80% 20%, rgba(43,122,120,0.25) 0%, transparent 50%);
-  animation: heroGlow 8s ease-in-out infinite alternate;
-}
-
-@keyframes heroGlow {
-  from { opacity: 0.7; transform: scale(1); }
-  to   { opacity: 1;   transform: scale(1.05); }
-}
-
-.hero__overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(15,32,39,0.3);
-}
+.hero__overlay { display: none; }
 
 .hero__content {
   position: relative;
@@ -294,13 +273,9 @@ ul  { list-style: none; }
 }
 
 .hero__logo {
-  width: 230px;
+  width: 300px;
   height: auto;
-  /* Glow branco+teal: torna o logo legível no fundo escuro sem círculo sólido */
-  filter:
-    drop-shadow(0 0 28px rgba(255,255,255,0.40))
-    drop-shadow(0 0  8px rgba(255,255,255,0.60))
-    drop-shadow(0 6px 24px rgba(0,0,0,0.55));
+  filter: drop-shadow(0 4px 16px rgba(58,175,169,0.20));
   animation: logoFloat 4s ease-in-out infinite;
 }
 
@@ -312,9 +287,8 @@ ul  { list-style: none; }
 .hero__tagline {
   font-family: var(--ff-accent);
   font-size: clamp(2rem, 6vw, 3.5rem);
-  color: var(--clr-white);
+  color: var(--clr-dark);
   line-height: 1.2;
-  text-shadow: 0 2px 16px rgba(0,0,0,0.4);
 }
 .hero__tagline span {
   color: var(--clr-primary);
@@ -323,7 +297,7 @@ ul  { list-style: none; }
 
 .hero__sub {
   font-size: clamp(0.95rem, 2.5vw, 1.1rem);
-  color: rgba(255,255,255,0.8);
+  color: var(--clr-muted);
   max-width: 440px;
 }
 
@@ -340,13 +314,13 @@ ul  { list-style: none; }
   bottom: 28px;
   left: 50%;
   transform: translateX(-50%);
-  color: rgba(255,255,255,0.6);
+  color: var(--clr-primary);
   font-size: 1.5rem;
   animation: bounce 2s ease-in-out infinite;
   z-index: 2;
   transition: color var(--transition);
 }
-.hero__scroll:hover { color: var(--clr-primary); }
+.hero__scroll:hover { color: var(--clr-primary-d); }
 
 @keyframes bounce {
   0%, 100% { transform: translateX(-50%) translateY(0); }
@@ -514,6 +488,13 @@ ul  { list-style: none; }
   width: 14px;
 }
 
+.card__footer {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
 .card__preco {
   border-top: 1px solid var(--clr-primary-l);
   padding-top: 12px;
@@ -590,6 +571,7 @@ ul  { list-style: none; }
   display: flex;
   align-items: center;
   gap: 12px;
+  margin-top: auto;
 }
 .depoimento__avatar {
   width: 44px; height: 44px;
@@ -1009,6 +991,105 @@ ul  { list-style: none; }
   text-align: center;
   margin-top: 40px;
 }
+
+/* ──────────────────────────────────────────────────
+   LIGHTBOX
+────────────────────────────────────────────────── */
+.lightbox-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1200;
+  background: rgba(0,0,0,0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.lightbox-overlay.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.lightbox__close {
+  position: fixed;
+  top: 16px;
+  right: 20px;
+  background: rgba(255,255,255,0.15);
+  border: none;
+  color: #fff;
+  font-size: 1.8rem;
+  line-height: 1;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background var(--transition);
+  z-index: 1201;
+}
+.lightbox__close:hover { background: rgba(255,255,255,0.30); }
+
+.lightbox__img {
+  max-width: 90vw;
+  max-height: 88vh;
+  object-fit: contain;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-lg);
+}
+
+.card__img-wrap img[data-lightbox] { cursor: zoom-in; }
+
+/* ──────────────────────────────────────────────────
+   MODAL FORMULÁRIO DE VIAGEM
+────────────────────────────────────────────────── */
+.modal__form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.form__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.form__group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.form__group label {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--clr-dark);
+}
+
+.form__group input {
+  padding: 10px 14px;
+  border: 1.5px solid var(--clr-primary-l);
+  border-radius: var(--radius-sm);
+  font-family: var(--ff-body);
+  font-size: 0.95rem;
+  color: var(--clr-text);
+  background: var(--clr-bg);
+  transition: border-color var(--transition);
+}
+.form__group input:focus {
+  outline: none;
+  border-color: var(--clr-primary);
+}
+
+/* ──────────────────────────────────────────────────
+   WHATSAPP ICON CONSISTENCY
+────────────────────────────────────────────────── */
+.btn .fab.fa-whatsapp { font-size: 1.1em; }
 
 /* ──────────────────────────────────────────────────
    SCROLL REVEAL ANIMATION
