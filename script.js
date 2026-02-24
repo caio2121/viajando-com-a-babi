@@ -113,6 +113,53 @@
 })();
 
 /* ──────────────────────────────────────────────────
+   MODAL CADASTUR
+────────────────────────────────────────────────── */
+(function initCadasturModal() {
+  const modal      = document.getElementById('modalCadastur');
+  const closeBtn   = document.getElementById('modalClose');
+  const triggerIds = ['btnCadasturNav', 'btnCadasturLink', 'btnCadasturFooter'];
+
+  if (!modal) return;
+
+  function openModal() {
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+
+    // Close mobile nav if open
+    const navLinks  = document.getElementById('navLinks');
+    const hamburger = document.getElementById('hamburger');
+    if (navLinks && navLinks.classList.contains('open')) {
+      navLinks.classList.remove('open');
+      hamburger && hamburger.classList.remove('open');
+      hamburger && hamburger.setAttribute('aria-expanded', 'false');
+    }
+  }
+
+  function closeModal() {
+    modal.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  triggerIds.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener('click', openModal);
+  });
+
+  closeBtn && closeBtn.addEventListener('click', closeModal);
+
+  // Close on overlay click
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) closeModal();
+  });
+
+  // Close on Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('open')) closeModal();
+  });
+})();
+
+/* ──────────────────────────────────────────────────
    ACTIVE NAV LINK on scroll (highlight)
 ────────────────────────────────────────────────── */
 (function initActiveNav() {

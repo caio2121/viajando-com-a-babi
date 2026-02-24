@@ -57,8 +57,13 @@
       <nav class="navbar__links" id="navLinks">
         <a href="#sobre">Sobre</a>
         <a href="#pacotes">Pacotes</a>
+        <a href="#links">Links</a>
         <a href="#depoimentos">Depoimentos</a>
         <a href="#contato">Contato</a>
+        <button class="btn-cadastur-nav" id="btnCadasturNav" aria-label="Ver Certificado Cadastur">
+          <img src="assets/cadastur.png" alt="Cadastur" class="cadastur-badge-img" />
+          Certificado Cadastur
+        </button>
       </nav>
 
       <a href="https://wa.me/5521992036717?text=Ol%C3%A1%20Babi!%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20os%20pacotes%20de%20viagem"
@@ -113,15 +118,16 @@
         </div>
         <div class="sobre__texto">
           <span class="label">Quem é a Babi?</span>
-          <h2>Uma apaixonada por viagens que transforma sonhos em roteiros reais</h2>
+          <h2>Transformamos sonhos em experiências únicas</h2>
           <p>
-            Sou a Babi, agente de viagens especializada em <strong>roteiros personalizados</strong>
-            para casais, famílias e grupos. Já viajei por dezenas de destinos e uso toda essa
-            experiência para criar pacotes que combinam com o seu estilo de vida e o seu bolso.
+            Sou a Babi — agente de viagens apaixonada por criar <strong>roteiros personalizados</strong>
+            que cuidam de cada detalhe da sua jornada: destino, passeios, reservas e dicas especiais.
+            Mais do que organizar viagens, entrego dedicação, carinho e comprometimento para que sua
+            experiência seja leve, segura e inesquecível.
           </p>
           <p>
-            Do planejamento ao embarque — cuido de tudo: aéreo, hospedagem, transfers, passeios
-            e seguro viagem. Você só precisa fazer as malas e aproveitar.
+            Seja para relaxar, explorar, celebrar ou se reinventar — estou pronta para ajudar você a
+            <strong>viver o mundo do seu jeito</strong>.
           </p>
           <div class="sobre__destaques">
             <div class="destaque">
@@ -392,12 +398,73 @@
   </section>
 
   <!-- ═══════════════════════════════════════
+       LINKS ÚTEIS
+  ═══════════════════════════════════════ -->
+  <section id="links" class="links-uteis">
+    <div class="container">
+      <span class="label label--center">Links úteis</span>
+      <h2 class="section-title">Tudo que você precisa em um só lugar</h2>
+      <div class="links-uteis__grid">
+
+        <a href="https://wa.me/5521992036717?text=Ol%C3%A1%20Babi!%20Quero%20fazer%20um%20or%C3%A7amento%20de%20viagem"
+           target="_blank" rel="noopener noreferrer" class="link-card reveal">
+          <div class="link-card__icon link-card__icon--wa">
+            <i class="fab fa-whatsapp"></i>
+          </div>
+          <div class="link-card__text">
+            <strong>Fazer orçamento agora</strong>
+            <span>Fale direto com a Babi pelo WhatsApp</span>
+          </div>
+          <i class="fas fa-chevron-right link-card__arrow"></i>
+        </a>
+
+        <a href="https://viajandocomababi.genitravel.com/bio/4424"
+           target="_blank" rel="noopener noreferrer" class="link-card reveal">
+          <div class="link-card__icon link-card__icon--form">
+            <i class="fas fa-clipboard-list"></i>
+          </div>
+          <div class="link-card__text">
+            <strong>Formulário para viagem personalizada</strong>
+            <span>Preencha e receba um roteiro exclusivo com roteiro</span>
+          </div>
+          <i class="fas fa-chevron-right link-card__arrow"></i>
+        </a>
+
+        <a href="https://assist-365.com/br/?voucher=VIAJANDOCOMBABI"
+           target="_blank" rel="noopener noreferrer" class="link-card reveal">
+          <div class="link-card__icon link-card__icon--seguro">
+            <i class="fas fa-shield-heart"></i>
+          </div>
+          <div class="link-card__text">
+            <strong>Cupom Seguro Saúde — Assist 365</strong>
+            <span>Use o cupom <em>VIAJANDOCOMBABI</em> e ganhe desconto</span>
+          </div>
+          <i class="fas fa-chevron-right link-card__arrow"></i>
+        </a>
+
+        <button class="link-card link-card--btn reveal" id="btnCadasturLink">
+          <div class="link-card__icon link-card__icon--cadastur">
+            <i class="fas fa-certificate"></i>
+          </div>
+          <div class="link-card__text">
+            <strong>Certificado Cadastur</strong>
+            <span>Agência de turismo regularizada pelo Ministério do Turismo</span>
+          </div>
+          <i class="fas fa-chevron-right link-card__arrow"></i>
+        </button>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
        DEPOIMENTOS
   ═══════════════════════════════════════ -->
   <section id="depoimentos" class="depoimentos">
     <div class="container">
-      <span class="label label--center">O que dizem nossos clientes</span>
-      <h2 class="section-title">Experiências reais, memórias para sempre</h2>
+      <span class="label label--center">Avaliações reais no Google</span>
+      <h2 class="section-title">O que dizem quem já viajou com a Babi</h2>
+      <p class="section-sub">Mais de 50 avaliações 5 estrelas de clientes reais. Veja por que eles nunca mais viajam sem ela.</p>
 
       <div class="depoimentos__grid">
 
@@ -407,13 +474,13 @@
             <i class="fas fa-star"></i><i class="fas fa-star"></i>
           </div>
           <blockquote>
-            "A Babi organizou tudo com tanto carinho! Nossa viagem para a Itália foi perfeita do início ao fim. Cada detalhe foi pensado com muito cuidado. Já estou planejando a próxima com ela!"
+            Confiamos a viagem mais importante das nossas vidas nas mãos da Babi: nossa primeira viagem juntos + primeira viagem internacional + destino dos sonhos desde a adolescência + viagem de LUA DE MEL!!! A Babi nos deu uma atenção fenomenal e cuidou de cada detalhe pra que nossa experiência fosse incrível. Nosso sonho se tornou realidade e hoje deixa gostinho de saudade!!
           </blockquote>
           <div class="depoimento__autor">
             <div class="depoimento__avatar"><i class="fas fa-user"></i></div>
             <div>
-              <strong>Ana Paula S.</strong>
-              <span>Itália, 2025</span>
+              <strong>Keyla Gomes</strong>
+              <span>Lua de mel — Itália</span>
             </div>
           </div>
         </div>
@@ -424,13 +491,13 @@
             <i class="fas fa-star"></i><i class="fas fa-star"></i>
           </div>
           <blockquote>
-            "Nunca pensei que viajar para a Patagônia seria tão acessível! A Babi encontrou os melhores preços e nos deu todo o suporte durante a viagem. Recomendo demais!"
+            Desde que conheci essa empresa, nunca mais viajei sem o apoio deles. Organizaram a minha tão sonhada lua de mel em Paris e Amsterdã, além de outras quatro viagens nacionais, sempre com um atendimento impecável. A atenção aos detalhes, o cuidado em cada etapa e a prontidão para responder dúvidas tornaram cada experiência ainda mais especial. Confio de olhos fechados!
           </blockquote>
           <div class="depoimento__autor">
             <div class="depoimento__avatar"><i class="fas fa-user"></i></div>
             <div>
-              <strong>Ricardo M.</strong>
-              <span>Patagônia, 2025</span>
+              <strong>Caio Abreu</strong>
+              <span>Local Guide · Lua de mel em Paris &amp; Amsterdã</span>
             </div>
           </div>
         </div>
@@ -441,18 +508,77 @@
             <i class="fas fa-star"></i><i class="fas fa-star"></i>
           </div>
           <blockquote>
-            "O pacote de Porto de Galinhas foi incrível! Tudo incluso, resort maravilhoso e um atendimento super personalizado. A Babi está sempre disponível para tirar qualquer dúvida."
+            Fiz a minha viagem dos sonhos para Itália com a Babi e simplesmente nunca mais viajo sem essa mulher, foi tudo perfeito e milimetricamente pensado.
           </blockquote>
           <div class="depoimento__autor">
             <div class="depoimento__avatar"><i class="fas fa-user"></i></div>
             <div>
-              <strong>Fernanda C.</strong>
-              <span>Porto de Galinhas, 2026</span>
+              <strong>Thiago Vianna</strong>
+              <span>Itália</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="depoimento reveal">
+          <div class="depoimento__estrelas">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+            <i class="fas fa-star"></i><i class="fas fa-star"></i>
+          </div>
+          <blockquote>
+            A Babi é simplesmente incrível! Sempre disponível, responde rápido e organiza roteiros impecáveis. Fizemos uma viagem sensacional em família, tudo perfeitamente planejado. Já estamos fazendo novas cotações para 2026. Empresa séria, responsável e totalmente confiável.
+          </blockquote>
+          <div class="depoimento__autor">
+            <div class="depoimento__avatar"><i class="fas fa-user"></i></div>
+            <div>
+              <strong>Claudio Rocha</strong>
+              <span>Viagem em família</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="depoimento reveal">
+          <div class="depoimento__estrelas">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+            <i class="fas fa-star"></i><i class="fas fa-star"></i>
+          </div>
+          <blockquote>
+            Minha primeira viagem internacional foi para o Panamá, e quem organizou tudo foi a Babi! O resort era maravilhoso, com comidas deliciosas incluídas e uma estrutura perfeita para relaxar. A Babi cuidou de cada detalhe com tanto carinho que eu só precisei chegar e curtir.
+          </blockquote>
+          <div class="depoimento__autor">
+            <div class="depoimento__avatar"><i class="fas fa-user"></i></div>
+            <div>
+              <strong>Larissa Lima</strong>
+              <span>Panamá — Primeira viagem internacional</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="depoimento reveal">
+          <div class="depoimento__estrelas">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+            <i class="fas fa-star"></i><i class="fas fa-star"></i>
+          </div>
+          <blockquote>
+            Babi como sempre incrível, atendimento nota mil, e as viagens que ela organiza sempre têm o melhor custo benefício! Amo os roteiros, sempre nos faz aproveitar o melhor de cada destino. Fechem sem medo, ela arrasa!
+          </blockquote>
+          <div class="depoimento__autor">
+            <div class="depoimento__avatar"><i class="fas fa-user"></i></div>
+            <div>
+              <strong>Decafranca Silva</strong>
+              <span>Múltiplas viagens</span>
             </div>
           </div>
         </div>
 
       </div><!-- /.depoimentos__grid -->
+
+      <div class="depoimentos__cta">
+        <a href="https://wa.me/5521992036717?text=Ol%C3%A1%20Babi!%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20os%20pacotes%20de%20viagem"
+           target="_blank" rel="noopener noreferrer"
+           class="btn btn--whatsapp btn--md">
+          <i class="fab fa-whatsapp"></i> Quero ser o próximo a viajar!
+        </a>
+      </div>
     </div>
   </section>
 
@@ -475,7 +601,13 @@
             <li><a href="#hero">Início</a></li>
             <li><a href="#sobre">Sobre a Babi</a></li>
             <li><a href="#pacotes">Pacotes</a></li>
+            <li><a href="#links">Links úteis</a></li>
             <li><a href="#depoimentos">Depoimentos</a></li>
+            <li>
+              <button class="footer__cadastur-btn" id="btnCadasturFooter">
+                <i class="fas fa-certificate"></i> Certificado Cadastur
+              </button>
+            </li>
           </ul>
         </div>
 
@@ -515,6 +647,39 @@
       </div>
     </div>
   </footer>
+
+  <!-- ═══════════════════════════════════════
+       MODAL CADASTUR
+  ═══════════════════════════════════════ -->
+  <div class="modal-overlay" id="modalCadastur" role="dialog" aria-modal="true" aria-label="Certificado Cadastur">
+    <div class="modal">
+      <button class="modal__close" id="modalClose" aria-label="Fechar">
+        <i class="fas fa-times"></i>
+      </button>
+      <div class="modal__header">
+        <i class="fas fa-certificate"></i>
+        <div>
+          <h3>Certificado Cadastur</h3>
+          <p>Agência de turismo regularizada pelo Ministério do Turismo</p>
+        </div>
+      </div>
+      <img src="assets/cadastur.png" alt="Certificado Cadastur — Viajando com a Babi" class="modal__img" />
+      <div class="modal__info">
+        <div class="modal__info-item">
+          <span>Cadastrado</span>
+          <strong>Bárbara Cristina Machado Valente Costa de Abreu</strong>
+        </div>
+        <div class="modal__info-item">
+          <span>Nº de Cadastro</span>
+          <strong>60.539.280/001-89</strong>
+        </div>
+        <div class="modal__info-item">
+          <span>Validade</span>
+          <strong>22/04/2025 a 15/04/2027</strong>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- ═══════════════════════════════════════
        FAB WHATSAPP (FIXO)
