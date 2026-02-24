@@ -180,9 +180,10 @@ ul  { list-style: none; }
 }
 
 .navbar__logo img {
-  height: 48px;
+  height: 56px;
   width: auto;
   object-fit: contain;
+  /* preserve original teal colors — no filter */
 }
 
 .navbar__links {
@@ -293,9 +294,17 @@ ul  { list-style: none; }
 }
 
 .hero__logo {
-  width: 180px;
-  height: auto;
-  filter: drop-shadow(0 8px 24px rgba(0,0,0,0.4));
+  width: 260px;
+  height: 260px;
+  object-fit: contain;
+  /* White circular backing so the teal logo contrasts on dark background */
+  background: rgba(255,255,255,0.96);
+  border-radius: 50%;
+  padding: 20px;
+  box-shadow:
+    0 0 0 6px rgba(255,255,255,0.18),
+    0 0 0 14px rgba(255,255,255,0.06),
+    0 12px 48px rgba(0,0,0,0.35);
   animation: logoFloat 4s ease-in-out infinite;
 }
 
@@ -622,11 +631,14 @@ ul  { list-style: none; }
 }
 
 .footer__logo {
-  height: 80px;
+  height: 110px;
   width: auto;
   margin-bottom: 16px;
-  filter: brightness(0) invert(1);
-  opacity: 0.9;
+  /* White pill background so the teal logo is legible on dark footer */
+  background: rgba(255,255,255,0.96);
+  border-radius: 16px;
+  padding: 10px 16px;
+  object-fit: contain;
 }
 
 .footer__brand p {
@@ -795,10 +807,10 @@ ul  { list-style: none; }
   font-size: 1.4rem;
   flex-shrink: 0;
 }
-.link-card__icon--wa       { background: rgba(37,211,102,0.2);  color: var(--clr-wa); }
-.link-card__icon--form     { background: rgba(58,175,169,0.2);  color: var(--clr-primary); }
-.link-card__icon--seguro   { background: rgba(52,152,219,0.2);  color: #3498db; }
-.link-card__icon--cadastur { background: rgba(241,196,15,0.2);  color: #f1c40f; }
+.link-card__icon--wa       { background: #25D366; color: #ffffff; }
+.link-card__icon--form     { background: #3AAFA9; color: #ffffff; }
+.link-card__icon--seguro   { background: #2980b9; color: #ffffff; }
+.link-card__icon--cadastur { background: #d4a017; color: #ffffff; }
 
 .link-card__text {
   flex: 1;
@@ -913,8 +925,14 @@ ul  { list-style: none; }
 
 .modal__img {
   width: 100%;
+  max-width: 420px;
+  display: block;
+  margin: 0 auto;
   border-radius: var(--radius-sm);
   border: 1px solid var(--clr-primary-l);
+  /* Preserve sharpness — no upscaling beyond natural size */
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
 }
 
 .modal__info {
