@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#3AAFA9" />
+
+  <!-- SEO -->
+  <title>Viajando com a Babi — Roteiros Personalizados</title>
+  <meta name="description" content="Realize o sonho de viajar com roteiros personalizados para destinos nacionais e internacionais. Pacotes com aéreo, hospedagem e muito mais — fale direto com a Babi!" />
+  <meta name="keywords" content="viagem, pacotes de viagem, roteiros personalizados, agência de viagens, itália, patagônia, porto de galinhas, punta cana, santiago, curaçao, fortaleza, porto seguro" />
+  <meta name="author" content="Viajando com a Babi" />
+  <link rel="canonical" href="https://caio2121.github.io/viajando-com-a-babi/" />
+
+  <!-- Open Graph / WhatsApp / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://caio2121.github.io/viajando-com-a-babi/" />
+  <meta property="og:title" content="Viajando com a Babi — Roteiros Personalizados" />
+  <meta property="og:description" content="Realize o sonho de viajar com pacotes personalizados para destinos incríveis. Fale com a Babi e monte o roteiro dos seus sonhos!" />
+  <meta property="og:image" content="https://caio2121.github.io/viajando-com-a-babi/assets/Logo%20viajando%20com%20a%20Babi%20-%20fundo%20transparente.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:site_name" content="Viajando com a Babi" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Viajando com a Babi — Roteiros Personalizados" />
+  <meta name="twitter:description" content="Realize o sonho de viajar com pacotes personalizados para destinos incríveis. Fale com a Babi!" />
+  <meta name="twitter:image" content="https://caio2121.github.io/viajando-com-a-babi/assets/Logo%20viajando%20com%20a%20Babi%20-%20fundo%20transparente.png" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/Logo viajando com a Babi - fundo transparente.png" />
+  <link rel="apple-touch-icon" href="assets/Logo viajando com a Babi - fundo transparente.png" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════
+       NAVBAR
+  ═══════════════════════════════════════ -->
+  <header class="navbar" id="navbar">
+    <div class="navbar__container">
+      <a href="#hero" class="navbar__logo">
+        <img src="assets/Logo viajando com a Babi - fundo transparente.png" alt="Viajando com a Babi" />
+      </a>
+
+      <nav class="navbar__links" id="navLinks">
+        <a href="#sobre">Sobre</a>
+        <a href="#pacotes">Pacotes</a>
+        <a href="#depoimentos">Depoimentos</a>
+        <a href="#contato">Contato</a>
+      </nav>
+
+      <a href="https://wa.me/5521992036717?text=Ol%C3%A1%20Babi!%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20os%20pacotes%20de%20viagem"
+         target="_blank" rel="noopener noreferrer"
+         class="btn btn--whatsapp btn--sm navbar__cta">
+        <i class="fab fa-whatsapp"></i> WhatsApp
+      </a>
+
+      <button class="navbar__hamburger" id="hamburger" aria-label="Abrir menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ═══════════════════════════════════════
+       HERO
+  ═══════════════════════════════════════ -->
+  <section id="hero" class="hero">
+    <div class="hero__overlay"></div>
+    <div class="hero__content">
+      <img src="assets/Logo viajando com a Babi - fundo transparente.png"
+           alt="Viajando com a Babi" class="hero__logo" />
+      <p class="hero__tagline">O mundo te espera.<br><span>Vamos juntos?</span></p>
+      <p class="hero__sub">Roteiros personalizados para destinos que você sempre sonhou.</p>
+      <div class="hero__ctas">
+        <a href="https://wa.me/5521992036717?text=Ol%C3%A1%20Babi!%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20os%20pacotes%20de%20viagem"
+           target="_blank" rel="noopener noreferrer"
+           class="btn btn--whatsapp btn--lg">
+          <i class="fab fa-whatsapp"></i> Falar no WhatsApp
+        </a>
+        <a href="https://www.instagram.com/viajandocomababi_/"
+           target="_blank" rel="noopener noreferrer"
+           class="btn btn--instagram btn--lg">
+          <i class="fab fa-instagram"></i> Ver no Instagram
+        </a>
+      </div>
+    </div>
+    <a href="#sobre" class="hero__scroll" aria-label="Rolar para baixo">
+      <i class="fas fa-chevron-down"></i>
+    </a>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       SOBRE
+  ═══════════════════════════════════════ -->
+  <section id="sobre" class="sobre">
+    <div class="container">
+      <div class="sobre__grid">
+        <div class="sobre__foto">
+          <img src="fotos/WhatsApp Image 2026-02-23 at 21.49.58.jpeg"
+               alt="Babi em Paris, em frente à Torre Eiffel" loading="lazy" />
+        </div>
+        <div class="sobre__texto">
+          <span class="label">Quem é a Babi?</span>
+          <h2>Uma apaixonada por viagens que transforma sonhos em roteiros reais</h2>
+          <p>
+            Sou a Babi, agente de viagens especializada em <strong>roteiros personalizados</strong>
+            para casais, famílias e grupos. Já viajei por dezenas de destinos e uso toda essa
+            experiência para criar pacotes que combinam com o seu estilo de vida e o seu bolso.
+          </p>
+          <p>
+            Do planejamento ao embarque — cuido de tudo: aéreo, hospedagem, transfers, passeios
+            e seguro viagem. Você só precisa fazer as malas e aproveitar.
+          </p>
+          <div class="sobre__destaques">
+            <div class="destaque">
+              <i class="fas fa-map-marked-alt"></i>
+              <strong>Roteiros 100% personalizados</strong>
+            </div>
+            <div class="destaque">
+              <i class="fas fa-headset"></i>
+              <strong>Atendimento próximo e humano</strong>
+            </div>
+            <div class="destaque">
+              <i class="fas fa-tags"></i>
+              <strong>Melhores preços do mercado</strong>
+            </div>
+            <div class="destaque">
+              <i class="fas fa-shield-alt"></i>
+              <strong>Seguro viagem incluso</strong>
+            </div>
+          </div>
+          <a href="https://wa.me/5521992036717?text=Ol%C3%A1%20Babi!%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20os%20pacotes%20de%20viagem"
+             target="_blank" rel="noopener noreferrer"
+             class="btn btn--whatsapp btn--md">
+            <i class="fab fa-whatsapp"></i> Vamos conversar!
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       PACOTES
+  ═══════════════════════════════════════ -->
+  <section id="pacotes" class="pacotes">
+    <div class="container">
+      <span class="label label--center">Pacotes disponíveis</span>
+      <h2 class="section-title">Destinos que vão te apaixonar</h2>
+      <p class="section-sub">Escolha o destino dos seus sonhos e clique para falar comigo — monto um roteiro exclusivo para você!</p>
+
+      <div class="pacotes__grid">
+
+        <!-- Card 1: Porto Seguro -->
+        <article class="card reveal" data-destino="Porto Seguro - BA">
+          <div class="card__img-wrap">
+            <img src="pacotes/WhatsApp Image 2026-02-17 at 08.42.24.jpeg"
+                 alt="Porto Seguro - BA" loading="lazy" />
+            <span class="card__badge">20 a 27/mar</span>
+          </div>
+          <div class="card__body">
+            <h3 class="card__title">Porto Seguro <span>— BA</span></h3>
+            <ul class="card__features">
+              <li><i class="fas fa-plane"></i> Aéreo LATAM saindo do Rio</li>
+              <li><i class="fas fa-hotel"></i> Hospedagem com café da manhã</li>
+              <li><i class="fas fa-shuttle-van"></i> Transfers + City Tour</li>
+              <li><i class="fas fa-umbrella-beach"></i> Praias de Trancoso e Arraial D'Ajuda</li>
+            </ul>
+            <div class="card__preco">
+              <span class="card__parcela">10x de <strong>R$&nbsp;208</strong></span>
+              <span class="card__total">Total: R$ 2.000 + taxas</span>
+            </div>
+            <a href="https://wa.me/5521992036717?text=Ol%C3%A1%20Babi!%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20o%20pacote%20de%20Porto%20Seguro%20-%20BA"
+               target="_blank" rel="noopener noreferrer"
+               class="btn btn--whatsapp btn--full">
+              <i class="fab fa-whatsapp"></i> Quero esse pacote!
+            </a>
+          </div>
+        </article>
+
+        <!-- Card 2: Itália Econômica -->
+        <article class="card reveal" data-destino="Itália Econômica">
+          <div class="card__img-wrap">
+            <img src="pacotes/WhatsApp Image 2026-02-11 at 16.41.06.jpeg"
+                 alt="Itália Econômica" loading="lazy" />
+            <span class="card__badge">03 a 10/abr</span>
+          </div>
+          <div class="card__body">
+            <h3 class="card__title">Itália <span>Econômica</span></h3>
+            <ul class="card__features">
+              <li><i class="fas fa-plane"></i> Aéreo ITA Airways saindo de SP</li>
+              <li><i class="fas fa-hotel"></i> Hospedagem + Transfers</li>
+              <li><i class="fas fa-map"></i> Roma, Florença, Pisa, Veneza e mais</li>
+              <li><i class="fas fa-user-tie"></i> Guia local incluso</li>
+            </ul>
+            <div class="card__preco">
+              <span class="card__parcela">10x de <strong>R$&nbsp;1.381</strong></span>
+              <span class="card__total">Total: R$ 13.810 + taxas R$ 747</span>
+            </div>
+            <a href="https://wa.me/5521992036717?text=Ol%C3%A1%20Babi!%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20o%20pacote%20de%20It%C3%A1lia%20Econ%C3%B4mica"
+               target="_blank" rel="noopener noreferrer"
+               class="btn btn--whatsapp btn--full">
+              <i class="fab fa-whatsapp"></i> Quero esse pacote!
+            </a>
+          </div>
+        </article>
+
+        <!-- Card 3: Enotel Porto de Galinhas -->
+        <article class="card reveal" data-destino="Porto de Galinhas All Inclusive">
+          <div class="card__img-wrap">
+            <img src="pacotes/WhatsApp Image 2026-02-17 at 08.40.13.jpeg"
+                 alt="Enotel Resort Porto de Galinhas" loading="lazy" />
+            <span class="card__badge">20 a 24/mai</span>
+          </div>
+          <div class="card__body">
+            <h3 class="card__title">Porto de Galinhas <span>All Inclusive</span></h3>
+            <ul class="card__features">
+              <li><i class="fas fa-hotel"></i> Enotel Resort All Inclusive</li>
+              <li><i class="fas fa-utensils"></i> Todas as refeições inclusas</li>
+              <li><i class="fas fa-swimming-pool"></i> Piscinas e lazer completo</li>
+              <li><i class="fas fa-umbrella-beach"></i> Uma das praias mais bonitas do Brasil</li>
+            </ul>
+            <div class="card__preco">
+              <span class="card__parcela">10x de <strong>R$&nbsp;494</strong></span>
+              <span class="card__total">Total: R$ 4.941 + taxas R$ 199</span>
+            </div>
+            <a href="https://wa.me/5521992036717?text=Ol%C3%A1%20Babi!%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20o%20pacote%20de%20Porto%20de%20Galinhas%20All%20Inclusive"
+               target="_blank" rel="noopener noreferrer"
+               class="btn btn--whatsapp btn--full">
+              <i class="fab fa-whatsapp"></i> Quero esse pacote!
+            </a>
+          </div>
+        </article>
+
+        <!-- Card 4: Fortaleza -->
+        <article class="card reveal" data-destino="Fortaleza - CE">
+          <div class="card__img-wrap">
+            <img src="pacotes/WhatsApp Image 2026-02-17 at 08.41.25.jpeg"
+                 alt="Fortaleza - CE" loading="lazy" />
+            <span class="card__badge">16 a 21/mai</span>
+          </div>
+          <div class="card__body">
+            <h3 class="card__title">Fortaleza <span>— CE</span></h3>
+            <ul class="card__features">
+              <li><i class="fas fa-plane"></i> Aéreo com preço imperdível</li>
+              <li><i class="fas fa-tags"></i> De R$ 907 por R$ 708</li>
+              <li><i class="fas fa-umbrella-beach"></i> Praias paradisíacas do Ceará</li>
+              <li><i class="fas fa-percent"></i> 7% OFF à vista</li>
+            </ul>
+            <div class="card__preco">
+              <span class="card__parcela">Aéreo a partir de <strong>R$&nbsp;708</strong></span>
+              <span class="card__total">Consulte pacote completo</span>
+            </div>
+            <a href="https://wa.me/5521992036717?text=Ol%C3%A1%20Babi!%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20o%20pacote%20de%20Fortaleza%20-%20CE"
+               target="_blank" rel="noopener noreferrer"
+               class="btn btn--whatsapp btn--full">
+              <i class="fab fa-whatsapp"></i> Quero esse pacote!
+            </a>
+          </div>
+        </article>
+
+        <!-- Card 5: Patagônia -->
+        <article class="card reveal" data-destino="Patagônia - El Calafate e Ushuaia">
+          <div class="card__img-wrap">
+            <img src="pacotes/WhatsApp Image 2026-02-13 at 16.18.19.jpeg"
+                 alt="Patagônia: El Calafate e Ushuaia" loading="lazy" />
+            <span class="card__badge">10 a 16/jun</span>
+          </div>
+          <div class="card__body">
+            <h3 class="card__title">Patagônia <span>El Calafate &amp; Ushuaia</span></h3>
+            <ul class="card__features">
+              <li><i class="fas fa-plane"></i> Aerolíneas Argentinas saindo do Rio</li>
+              <li><i class="fas fa-hotel"></i> 3 noites em cada cidade</li>
+              <li><i class="fas fa-mountain"></i> Glaciar Perito Moreno incluso</li>
+              <li><i class="fas fa-shield-alt"></i> Protect Travel até R$ 10 mil</li>
+            </ul>
+            <div class="card__preco">
+              <span class="card__parcela">10x de <strong>R$&nbsp;591</strong></span>
+              <span class="card__total">Total: R$ 5.910 + taxas R$ 609</span>
+            </div>
+            <a href="https://wa.me/5521992036717?text=Ol%C3%A1%20Babi!%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20o%20pacote%20da%20Pating%C3%B4nia%20-%20El%20Calafate%20e%20Ushuaia"
+               target="_blank" rel="noopener noreferrer"
+               class="btn btn--whatsapp btn--full">
+              <i class="fab fa-whatsapp"></i> Quero esse pacote!
+            </a>
+          </div>
+        </article>
+
+        <!-- Card 6: Santiago -->
+        <article class="card reveal" data-destino="Santiago - Essencial">
+          <div class="card__img-wrap">
+            <img src="pacotes/WhatsApp Image 2026-02-18 at 20.58.12.jpeg"
+                 alt="Santiago - Essencial" loading="lazy" />
+            <span class="card__badge">24 a 29/jul</span>
+          </div>
+          <div class="card__body">
+            <h3 class="card__title">Santiago <span>— Essencial</span></h3>
+            <ul class="card__features">
+              <li><i class="fas fa-plane"></i> Bloqueio Aéreo SKY saindo do Rio</li>
+              <li><i class="fas fa-hotel"></i> Hub Providencia</li>
+              <li><i class="fas fa-bus"></i> Transfers + City Tour</li>
+              <li><i class="fas fa-shield-alt"></i> Protect Travel até R$ 4 mil</li>
+            </ul>
+            <div class="card__preco">
+              <span class="card__parcela">10x de <strong>R$&nbsp;394</strong></span>
+              <span class="card__total">Total: R$ 3.940 + taxas R$ 377</span>
+            </div>
+            <a href="https://wa.me/5521992036717?text=Ol%C3%A1%20Babi!%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20o%20pacote%20de%20Santiago%20-%20Essencial"
+               target="_blank" rel="noopener noreferrer"
+               class="btn btn--whatsapp btn--full">
+              <i class="fab fa-whatsapp"></i> Quero esse pacote!
+            </a>
+          </div>
+        </article>
+
+        <!-- Card 7: Curaçao -->
+        <article class="card reveal" data-destino="Curaçao - Essencial">
+          <div class="card__img-wrap">
+            <img src="pacotes/WhatsApp Image 2026-02-19 at 17.08.53.jpeg"
+                 alt="Curaçao - Essencial" loading="lazy" />
+            <span class="card__badge">10 a 15/ago</span>
+          </div>
+          <div class="card__body">
+            <h3 class="card__title">Curaçao <span>— Essencial</span></h3>
+            <ul class="card__features">
+              <li><i class="fas fa-plane"></i> Copa Airlines saindo do Rio</li>
+              <li><i class="fas fa-hotel"></i> Courtyard by Marriott Curaçao</li>
+              <li><i class="fas fa-shuttle-van"></i> Transfers incluso</li>
+              <li><i class="fas fa-shield-alt"></i> Protect Travel até R$ 10 mil</li>
+            </ul>
+            <div class="card__preco">
+              <span class="card__parcela">10x de <strong>R$&nbsp;682</strong></span>
+              <span class="card__total">Total: R$ 6.820 + taxas R$ 708</span>
+            </div>
+            <a href="https://wa.me/5521992036717?text=Ol%C3%A1%20Babi!%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20o%20pacote%20de%20Cura%C3%A7ao%20-%20Essencial"
+               target="_blank" rel="noopener noreferrer"
+               class="btn btn--whatsapp btn--full">
+              <i class="fab fa-whatsapp"></i> Quero esse pacote!
+            </a>
+          </div>
+        </article>
+
+        <!-- Card 8: Punta Cana -->
+        <article class="card reveal" data-destino="Punta Cana - Essencial">
+          <div class="card__img-wrap">
+            <img src="pacotes/WhatsApp Image 2026-02-18 at 20.57.16.jpeg"
+                 alt="Punta Cana - Essencial" loading="lazy" />
+            <span class="card__badge">21 a 28/set</span>
+          </div>
+          <div class="card__body">
+            <h3 class="card__title">Punta Cana <span>— Essencial</span></h3>
+            <ul class="card__features">
+              <li><i class="fas fa-plane"></i> Bloqueio GOL saindo do Rio</li>
+              <li><i class="fas fa-hotel"></i> Impressive Punta Cana All Inclusive</li>
+              <li><i class="fas fa-fish"></i> Nado com golfinhos incluso</li>
+              <li><i class="fas fa-shield-alt"></i> Seguro viagem incluso</li>
+            </ul>
+            <div class="card__preco">
+              <span class="card__parcela">10x de <strong>R$&nbsp;846</strong></span>
+              <span class="card__total">Total: R$ 8.460 — taxas inclusas</span>
+            </div>
+            <a href="https://wa.me/5521992036717?text=Ol%C3%A1%20Babi!%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20o%20pacote%20de%20Punta%20Cana%20-%20Essencial"
+               target="_blank" rel="noopener noreferrer"
+               class="btn btn--whatsapp btn--full">
+              <i class="fab fa-whatsapp"></i> Quero esse pacote!
+            </a>
+          </div>
+        </article>
+
+      </div><!-- /.pacotes__grid -->
+
+      <div class="pacotes__cta-extra">
+        <p>Não encontrou o destino que procura?</p>
+        <a href="https://wa.me/5521992036717?text=Ol%C3%A1%20Babi!%20Vim%20pelo%20site%20e%20quero%20montar%20um%20roteiro%20personalizado"
+           target="_blank" rel="noopener noreferrer"
+           class="btn btn--outline btn--md">
+          <i class="fab fa-whatsapp"></i> Montar roteiro personalizado
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       DEPOIMENTOS
+  ═══════════════════════════════════════ -->
+  <section id="depoimentos" class="depoimentos">
+    <div class="container">
+      <span class="label label--center">O que dizem nossos clientes</span>
+      <h2 class="section-title">Experiências reais, memórias para sempre</h2>
+
+      <div class="depoimentos__grid">
+
+        <div class="depoimento reveal">
+          <div class="depoimento__estrelas">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+            <i class="fas fa-star"></i><i class="fas fa-star"></i>
+          </div>
+          <blockquote>
+            "A Babi organizou tudo com tanto carinho! Nossa viagem para a Itália foi perfeita do início ao fim. Cada detalhe foi pensado com muito cuidado. Já estou planejando a próxima com ela!"
+          </blockquote>
+          <div class="depoimento__autor">
+            <div class="depoimento__avatar"><i class="fas fa-user"></i></div>
+            <div>
+              <strong>Ana Paula S.</strong>
+              <span>Itália, 2025</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="depoimento reveal">
+          <div class="depoimento__estrelas">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+            <i class="fas fa-star"></i><i class="fas fa-star"></i>
+          </div>
+          <blockquote>
+            "Nunca pensei que viajar para a Patagônia seria tão acessível! A Babi encontrou os melhores preços e nos deu todo o suporte durante a viagem. Recomendo demais!"
+          </blockquote>
+          <div class="depoimento__autor">
+            <div class="depoimento__avatar"><i class="fas fa-user"></i></div>
+            <div>
+              <strong>Ricardo M.</strong>
+              <span>Patagônia, 2025</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="depoimento reveal">
+          <div class="depoimento__estrelas">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+            <i class="fas fa-star"></i><i class="fas fa-star"></i>
+          </div>
+          <blockquote>
+            "O pacote de Porto de Galinhas foi incrível! Tudo incluso, resort maravilhoso e um atendimento super personalizado. A Babi está sempre disponível para tirar qualquer dúvida."
+          </blockquote>
+          <div class="depoimento__autor">
+            <div class="depoimento__avatar"><i class="fas fa-user"></i></div>
+            <div>
+              <strong>Fernanda C.</strong>
+              <span>Porto de Galinhas, 2026</span>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /.depoimentos__grid -->
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       CONTATO / FOOTER
+  ═══════════════════════════════════════ -->
+  <footer id="contato" class="footer">
+    <div class="container">
+      <div class="footer__grid">
+
+        <div class="footer__brand">
+          <img src="assets/Logo viajando com a Babi - fundo transparente.png"
+               alt="Viajando com a Babi" class="footer__logo" />
+          <p>Roteiros personalizados para destinos que você sempre sonhou. Do planejamento ao embarque, cuidamos de tudo por você.</p>
+        </div>
+
+        <div class="footer__links">
+          <h4>Navegação</h4>
+          <ul>
+            <li><a href="#hero">Início</a></li>
+            <li><a href="#sobre">Sobre a Babi</a></li>
+            <li><a href="#pacotes">Pacotes</a></li>
+            <li><a href="#depoimentos">Depoimentos</a></li>
+          </ul>
+        </div>
+
+        <div class="footer__contato">
+          <h4>Fale comigo</h4>
+          <a href="https://wa.me/5521992036717?text=Ol%C3%A1%20Babi!%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20os%20pacotes%20de%20viagem"
+             target="_blank" rel="noopener noreferrer"
+             class="footer__social-link footer__social-link--wa">
+            <i class="fab fa-whatsapp"></i>
+            <span>+55 21 99203-6717</span>
+          </a>
+          <a href="https://www.instagram.com/viajandocomababi_/"
+             target="_blank" rel="noopener noreferrer"
+             class="footer__social-link footer__social-link--ig">
+            <i class="fab fa-instagram"></i>
+            <span>@viajandocomababi_</span>
+          </a>
+          <div class="footer__ctas">
+            <a href="https://wa.me/5521992036717?text=Ol%C3%A1%20Babi!%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20os%20pacotes%20de%20viagem"
+               target="_blank" rel="noopener noreferrer"
+               class="btn btn--whatsapp btn--md">
+              <i class="fab fa-whatsapp"></i> WhatsApp
+            </a>
+            <a href="https://www.instagram.com/viajandocomababi_/"
+               target="_blank" rel="noopener noreferrer"
+               class="btn btn--instagram btn--md">
+              <i class="fab fa-instagram"></i> Instagram
+            </a>
+          </div>
+        </div>
+
+      </div><!-- /.footer__grid -->
+
+      <div class="footer__bottom">
+        <p>&copy; <span id="year"></span> Viajando com a Babi — Todos os direitos reservados.</p>
+        <p>Feito com <i class="fas fa-heart" style="color:#e74c3c"></i> para quem ama viajar.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ═══════════════════════════════════════
+       FAB WHATSAPP (FIXO)
+  ═══════════════════════════════════════ -->
+  <a href="https://wa.me/5521992036717?text=Ol%C3%A1%20Babi!%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20os%20pacotes%20de%20viagem"
+     target="_blank" rel="noopener noreferrer"
+     class="fab-whatsapp" aria-label="Falar no WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+    <span class="fab-whatsapp__tooltip">Falar no WhatsApp</span>
+  </a>
+
+  <script src="script.js"></script>
+</body>
+</html>
