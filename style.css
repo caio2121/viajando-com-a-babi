@@ -613,11 +613,13 @@ ul  { list-style: none; }
   width: auto;
   max-width: 280px;
   margin-bottom: 16px;
+  box-sizing: border-box;
   /* White pill background so the teal logo is legible on dark footer */
   background: rgba(255,255,255,0.96);
   border-radius: 16px;
-  padding: 14px 20px;
+  padding: 6px 10px;
   object-fit: contain;
+  object-position: center;
 }
 
 .footer__brand p {
