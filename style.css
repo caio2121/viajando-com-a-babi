@@ -609,13 +609,14 @@ ul  { list-style: none; }
 }
 
 .footer__logo {
-  height: 110px;
+  height: 150px;
   width: auto;
+  max-width: 280px;
   margin-bottom: 16px;
   /* White pill background so the teal logo is legible on dark footer */
   background: rgba(255,255,255,0.96);
   border-radius: 16px;
-  padding: 10px 16px;
+  padding: 14px 20px;
   object-fit: contain;
 }
 
@@ -902,15 +903,14 @@ ul  { list-style: none; }
 }
 
 .modal__img {
-  /* Natural size: 271×191px — nunca ampliar acima do tamanho original */
   width: 100%;
-  max-width: 271px;
+  max-width: 480px;
   height: auto;
   display: block;
   margin: 0 auto;
   border-radius: var(--radius-sm);
   border: 1px solid var(--clr-primary-l);
-  image-rendering: auto;
+  object-fit: contain;
 }
 
 .modal__info {
