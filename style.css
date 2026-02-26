@@ -671,6 +671,7 @@ ul  { list-style: none; }
 .footer__social-link i { font-size: 1.3rem; }
 .footer__social-link--wa:hover  { color: var(--clr-wa); }
 .footer__social-link--ig:hover  { color: #e1306c; }
+.footer__social-link--email:hover { color: var(--clr-primary); }
 
 .footer__ctas {
   display: flex;
@@ -688,6 +689,11 @@ ul  { list-style: none; }
   flex-direction: column;
   gap: 4px;
 }
+.footer__bottom a {
+  color: rgba(255,255,255,0.6);
+  transition: color var(--transition);
+}
+.footer__bottom a:hover { color: var(--clr-primary); }
 
 /* ──────────────────────────────────────────────────
    FAB WHATSAPP
