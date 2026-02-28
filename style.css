@@ -273,7 +273,7 @@ ul  { list-style: none; }
 }
 
 .hero__logo {
-  width: 300px;
+  width: 405px;
   height: auto;
   filter: drop-shadow(0 4px 16px rgba(58,175,169,0.20));
   animation: logoFloat 4s ease-in-out infinite;
