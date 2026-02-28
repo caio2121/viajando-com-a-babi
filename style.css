@@ -621,10 +621,6 @@ ul  { list-style: none; }
   width: auto;
   max-width: 280px;
   margin-bottom: 16px;
-  box-sizing: border-box;
-  /* Logo 6 (branco) — legível diretamente no fundo escuro, sem pill */
-  border-radius: 16px;
-  padding: 6px 10px;
   object-fit: contain;
   object-position: center;
 }
