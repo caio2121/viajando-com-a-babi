@@ -832,6 +832,103 @@ ul  { list-style: none; }
 .link-card:hover .link-card__arrow { color: var(--clr-primary); }
 
 /* ──────────────────────────────────────────────────
+   FORMAS DE PAGAMENTO
+────────────────────────────────────────────────── */
+.pagamento {
+  padding: 72px 0;
+  background: var(--clr-bg);
+}
+
+.pagamento__card {
+  max-width: 720px;
+  margin: 0 auto;
+  background: var(--clr-white);
+  border: 1px solid rgba(58, 175, 169, 0.22);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  padding: 32px 28px 36px;
+  text-align: center;
+}
+
+.pagamento__badge {
+  margin-bottom: 14px;
+}
+
+.pagamento__title {
+  margin-bottom: 14px;
+}
+
+.pagamento__lead {
+  font-size: 1.02rem;
+  color: var(--clr-text);
+  line-height: 1.65;
+  max-width: 560px;
+  margin: 0 auto 24px;
+}
+
+.pagamento__pontos {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  text-align: left;
+  margin: 0 0 20px;
+  padding: 0;
+}
+
+.pagamento__pontos li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 0.95rem;
+  color: var(--clr-text);
+  line-height: 1.5;
+}
+
+.pagamento__icone {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-sm);
+  background: var(--clr-primary-l);
+  color: var(--clr-primary-d);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+}
+
+.pagamento__pontos strong {
+  color: var(--clr-dark);
+}
+
+.pagamento__nota {
+  font-size: 0.82rem;
+  color: var(--clr-muted);
+  line-height: 1.5;
+  max-width: 520px;
+  margin: 0 auto 8px;
+}
+
+.pagamento__cta {
+  margin-top: 8px;
+}
+
+.pagamento__btn {
+  max-width: 380px;
+  margin: 0 auto;
+}
+
+@media (max-width: 639px) {
+  .pagamento {
+    padding: 56px 0;
+  }
+  .pagamento__card {
+    padding: 24px 18px 28px;
+  }
+}
+
+/* ──────────────────────────────────────────────────
    MODAL CADASTUR
 ────────────────────────────────────────────────── */
 .modal-overlay {
