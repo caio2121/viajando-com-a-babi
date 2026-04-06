@@ -8,7 +8,7 @@
   <!-- SEO -->
   <title>Viajando com a Babi — Pacotes e Roteiros personalizados</title>
   <meta name="description" content="Realize o sonho de viajar com Pacotes e Roteiros personalizados para destinos nacionais e internacionais. Pacotes com aéreo, hospedagem e muito mais — fale direto com a Babi!" />
-  <meta name="keywords" content="viagem, pacotes de viagem, Pacotes e Roteiros personalizados, agência de viagens, itália, patagônia, porto de galinhas, punta cana, santiago, curaçao, fortaleza, porto seguro" />
+  <meta name="keywords" content="viagem, pacotes de viagem, Pacotes e Roteiros personalizados, agência de viagens, Bariloche, Londres, Paris, Maceió, cruzeiro MSC Divina, Circuito Italiano, Mendoza, Santiago, Jericoacoara, Salvador, África do Sul, Ushuaia, Orlando, Disney, Universal" />
   <meta name="author" content="Viajando com a Babi" />
   <link rel="canonical" href="https://viajandocomababi.com.br/" />
 
@@ -41,7 +41,7 @@
   <!-- Font Awesome (sem integrity para evitar bloqueio SRI em GitHub Pages) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-  <link rel="stylesheet" href="style.css?v=7" />
+  <link rel="stylesheet" href="style.css?v=8" />
 </head>
 <body>
 
@@ -172,31 +172,33 @@
     <div class="container">
       <span class="label label--center">Pacotes disponíveis</span>
       <h2 class="section-title">Destinos que vão te apaixonar</h2>
-      <p class="section-sub">Destinos promocionais da semana!</p>
+      <p class="section-sub">Organizados por tipo: grupos com guia, pacotes completos com aéreo e opções sem aéreo.</p>
 
-      <div class="pacotes__grid">
+      <div class="pacotes__category" id="pacotes-grupos-guia">
+        <h3 class="pacotes__subhead"><i class="fas fa-user-friends" aria-hidden="true"></i> Grupos com Guia</h3>
+        <p class="pacotes__category-desc">Roteiros em grupo com guia acompanhante desde o Brasil.</p>
+        <div class="pacotes__grid">
 
-        <!-- Card 1: Travessia dos lagos -->
-        <article class="card reveal" data-destino="Travessia dos lagos - Bariloche, Puerto Varas, Santiago">
+        <article class="card reveal" data-destino="Circuito Italiano" data-categoria="grupo-guia">
           <div class="card__img-wrap">
-            <img src="pacotes/WhatsApp Image 2026-03-04 at 11.16.34.jpeg"
-                 alt="Travessia dos lagos - Bariloche, Puerto Varas, Santiago" loading="lazy" data-lightbox />
-            <span class="card__badge">01 a 09/ago</span>
+            <img src="pacotes/pacote-circuito-italiano.jpeg"
+                 alt="Circuito Italiano — grupo com guia desde o Brasil" loading="lazy" data-lightbox />
+            <span class="card__badge">09 a 24/09 · 16 dias</span>
           </div>
           <div class="card__body">
-            <h3 class="card__title">Travessia dos lagos <span>Bariloche · Chile</span></h3>
+            <h3 class="card__title">Circuito Italiano <span>Grupo 50+ · guia do Brasil</span></h3>
             <ul class="card__features">
-              <li><i class="fas fa-plane"></i> Aéreo JetSMART saindo do Rio (GIG)</li>
-              <li><i class="fas fa-hotel"></i> 3 noites Bariloche, 2 Puerto Varas, 3 Santiago</li>
-              <li><i class="fas fa-ship"></i> Cruce Andino + City tour Puerto Varas e Santiago</li>
-              <li><i class="fas fa-shield-alt"></i> Protect Travel até R$ 12 mil</li>
+              <li><i class="fas fa-plane"></i> Bloqueio LATAM saindo de São Paulo (GRU)</li>
+              <li><i class="fas fa-hotel"></i> Hospedagem com café · transfers e passeios icônicos</li>
+              <li><i class="fas fa-ship"></i> Barcos em Capri, Veneza e Lago de Garda</li>
+              <li><i class="fas fa-ticket-alt"></i> Pompéia, Vaticano e Capela Sistina · Protect até R$ 30 mil</li>
             </ul>
             <div class="card__footer">
               <div class="card__preco">
-                <span class="card__parcela">12x de <strong>R$&nbsp;668</strong></span>
-                <span class="card__total">Total: R$ 8.016 + taxas R$ 494</span>
+                <span class="card__parcela">10x a partir de <strong>R$&nbsp;3.279</strong></span>
+                <span class="card__total">Total a partir de R$ 32.790 · taxas inclusas · 7% à vista</span>
               </div>
-              <a href="https://wa.me/5521920064617?text=Ol%C3%A1%20Babi!%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20o%20pacote%20Travessia%20dos%20lagos%20-%20Bariloche%2C%20Puerto%20Varas%2C%20Santiago"
+              <a href="https://wa.me/5521920064617?text=Ol%C3%A1%20Babi!%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20o%20pacote%20Circuito%20Italiano"
                  target="_blank" rel="noopener noreferrer"
                  class="btn btn--whatsapp btn--full">
                 <i class="fab fa-whatsapp"></i> Quero esse pacote!
@@ -205,27 +207,26 @@
           </div>
         </article>
 
-        <!-- Card 2: Porto de Galinhas -->
-        <article class="card reveal" data-destino="Porto de Galinhas">
+        <article class="card reveal" data-destino="Essências da África Austral" data-categoria="grupo-guia">
           <div class="card__img-wrap">
-            <img src="pacotes/WhatsApp Image 2026-03-04 at 11.16.34 (1).jpeg"
-                 alt="Porto de Galinhas" loading="lazy" data-lightbox />
-            <span class="card__badge">16 a 23/jun</span>
+            <img src="pacotes/pacote-africa-austral.jpeg"
+                 alt="Essências da África Austral — Zimbábue e África do Sul" loading="lazy" data-lightbox />
+            <span class="card__badge">23/07 a 03/08 · 12 dias</span>
           </div>
           <div class="card__body">
-            <h3 class="card__title">Porto de Galinhas <span>— PE</span></h3>
+            <h3 class="card__title">Essências da África Austral <span>Zimbábue e África do Sul</span></h3>
             <ul class="card__features">
-              <li><i class="fas fa-plane"></i> Bloqueio Aéreo Azul saindo do Rio (GIG)</li>
-              <li><i class="fas fa-hotel"></i> Hospedagem com café da manhã</li>
-              <li><i class="fas fa-shuttle-van"></i> Transfers + Protect Travel até R$ 5 mil</li>
-              <li><i class="fas fa-umbrella-beach"></i> Opções: Armação Resort, Village, Kembali</li>
+              <li><i class="fas fa-plane"></i> Bloqueio South African Airways · São Paulo (GRU)</li>
+              <li><i class="fas fa-flag"></i> Guia acompanhante desde o Brasil · Roteiros 50+</li>
+              <li><i class="fas fa-binoculars"></i> Safáris Pilanesberg e Chobe · Cataratas Vitória</li>
+              <li><i class="fas fa-shield-alt"></i> Vinhedos, Lesedi Village · Protect até R$ 35 mil</li>
             </ul>
             <div class="card__footer">
               <div class="card__preco">
-                <span class="card__parcela">12x a partir de <strong>R$&nbsp;344</strong></span>
-                <span class="card__total">Total a partir de R$ 4.128 + taxas R$ 199</span>
+                <span class="card__parcela">10x a partir de <strong>R$&nbsp;2.924</strong></span>
+                <span class="card__total">Total a partir de R$ 29.240 · taxas inclusas · 7% à vista</span>
               </div>
-              <a href="https://wa.me/5521920064617?text=Ol%C3%A1%20Babi!%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20o%20pacote%20de%20Porto%20de%20Galinhas"
+              <a href="https://wa.me/5521920064617?text=Ol%C3%A1%20Babi!%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20o%20pacote%20Ess%C3%AAncias%20da%20%C3%81frica%20Austral"
                  target="_blank" rel="noopener noreferrer"
                  class="btn btn--whatsapp btn--full">
                 <i class="fab fa-whatsapp"></i> Quero esse pacote!
@@ -234,307 +235,277 @@
           </div>
         </article>
 
-        <!-- Card 3: Natal com Praia da Pipa -->
-        <article class="card reveal" data-destino="Natal com Praia da Pipa">
-          <div class="card__img-wrap">
-            <img src="pacotes/WhatsApp Image 2026-03-04 at 11.16.35.jpeg"
-                 alt="Natal com Praia da Pipa" loading="lazy" data-lightbox />
-            <span class="card__badge">09 a 14/jun</span>
-          </div>
-          <div class="card__body">
-            <h3 class="card__title">Natal <span>com Praia da Pipa</span></h3>
-            <ul class="card__features">
-              <li><i class="fas fa-plane"></i> Bloqueio Aéreo GOL saindo do Rio (GIG)</li>
-              <li><i class="fas fa-hotel"></i> Hospedagem + City tour Praia do Camurupim</li>
-              <li><i class="fas fa-umbrella-beach"></i> Passeio à Praia de Pipa + Transfers</li>
-              <li><i class="fas fa-shield-alt"></i> Protect Travel até R$ 4 mil</li>
-            </ul>
-            <div class="card__footer">
-              <div class="card__preco">
-                <span class="card__parcela">12x a partir de <strong>R$&nbsp;161</strong></span>
-                <span class="card__total">Total a partir de R$ 1.932 + taxas R$ 199</span>
-              </div>
-              <a href="https://wa.me/5521920064617?text=Ol%C3%A1%20Babi!%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20o%20pacote%20Natal%20com%20Praia%20da%20Pipa"
-                 target="_blank" rel="noopener noreferrer"
-                 class="btn btn--whatsapp btn--full">
-                <i class="fab fa-whatsapp"></i> Quero esse pacote!
-              </a>
-            </div>
-          </div>
-        </article>
-
-        <!-- Card 4: Oktoberfest Blumenau -->
-        <article class="card reveal" data-destino="Oktoberfest 2026 Blumenau">
-          <div class="card__img-wrap">
-            <img src="pacotes/WhatsApp Image 2026-03-04 at 11.16.35 (1).jpeg"
-                 alt="Oktoberfest 2026 Blumenau - SC" loading="lazy" data-lightbox />
-            <span class="card__badge">17 a 21/out</span>
-          </div>
-          <div class="card__body">
-            <h3 class="card__title">Oktoberfest 2026 <span>Blumenau — SC</span></h3>
-            <ul class="card__features">
-              <li><i class="fas fa-plane"></i> Bloqueio Aéreo GOL via NVT, saindo do Rio (GIG)</li>
-              <li><i class="fas fa-hotel"></i> Hospedagem em Balneário Camboriú + café da manhã</li>
-              <li><i class="fas fa-beer"></i> Ingresso Oktoberfest 1 dia + transfer Vila Germânica</li>
-              <li><i class="fas fa-shield-alt"></i> Protect Travel até R$ 4 mil</li>
-            </ul>
-            <div class="card__footer">
-              <div class="card__preco">
-                <span class="card__parcela">12x a partir de <strong>R$&nbsp;145</strong></span>
-                <span class="card__total">Total a partir de R$ 1.740 + taxas R$ 220</span>
-              </div>
-              <a href="https://wa.me/5521920064617?text=Ol%C3%A1%20Babi!%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20o%20pacote%20Oktoberfest%202026%20Blumenau"
-                 target="_blank" rel="noopener noreferrer"
-                 class="btn btn--whatsapp btn--full">
-                <i class="fab fa-whatsapp"></i> Quero esse pacote!
-              </a>
-            </div>
-          </div>
-        </article>
-
-        <!-- Card 5: Beto Carrero -->
-        <article class="card reveal" data-destino="Beto Carrero World">
-          <div class="card__img-wrap">
-            <img src="pacotes/WhatsApp Image 2026-03-04 at 11.16.35 (2).jpeg"
-                 alt="Beto Carrero World" loading="lazy" data-lightbox />
-            <span class="card__badge">16 a 20/mai</span>
-          </div>
-          <div class="card__body">
-            <h3 class="card__title">Beto Carrero <span>World</span></h3>
-            <ul class="card__features">
-              <li><i class="fas fa-plane"></i> Bloqueio Aéreo GOL via NVT, saindo do Rio (GIG)</li>
-              <li><i class="fas fa-hotel"></i> Hospedagem com café da manhã</li>
-              <li><i class="fas fa-ticket-alt"></i> Ingresso Beto Carrero 1 dia + Excalibur com almoço grátis</li>
-              <li><i class="fas fa-shield-alt"></i> Transfer para o parque + Protect Travel R$ 4 mil</li>
-            </ul>
-            <div class="card__footer">
-              <div class="card__preco">
-                <span class="card__parcela">12x a partir de <strong>R$&nbsp;121</strong></span>
-                <span class="card__total">Total a partir de R$ 1.452 + taxas R$ 218</span>
-              </div>
-              <a href="https://wa.me/5521920064617?text=Ol%C3%A1%20Babi!%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20o%20pacote%20Beto%20Carrero%20World"
-                 target="_blank" rel="noopener noreferrer"
-                 class="btn btn--whatsapp btn--full">
-                <i class="fab fa-whatsapp"></i> Quero esse pacote!
-              </a>
-            </div>
-          </div>
-        </article>
-
-        <!-- Card 6: Cancún -->
-        <article class="card reveal" data-destino="Cancún - Sol, Mar e Magia">
-          <div class="card__img-wrap">
-            <img src="pacotes/WhatsApp Image 2026-03-04 at 11.16.36.jpeg"
-                 alt="Cancún - Sol, Mar e Magia" loading="lazy" data-lightbox />
-            <span class="card__badge">05 a 10/jun</span>
-          </div>
-          <div class="card__body">
-            <h3 class="card__title">Cancún <span>Sol, Mar e Magia</span></h3>
-            <ul class="card__features">
-              <li><i class="fas fa-plane"></i> Aéreo Copa Airlines saindo do Rio (GIG)</li>
-              <li><i class="fas fa-hotel"></i> Hospedagem All Inclusive</li>
-              <li><i class="fas fa-shuttle-van"></i> Transfer de chegada e saída</li>
-              <li><i class="fas fa-shield-alt"></i> Protect Travel até R$ 12 mil</li>
-            </ul>
-            <div class="card__footer">
-              <div class="card__preco">
-                <span class="card__parcela">12x a partir de <strong>R$&nbsp;613</strong></span>
-                <span class="card__total">Total a partir de R$ 7.356 — taxas inclusas</span>
-              </div>
-              <a href="https://wa.me/5521920064617?text=Ol%C3%A1%20Babi!%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20o%20pacote%20Canc%C3%BAn%20-%20Sol%2C%20Mar%20e%20Magia"
-                 target="_blank" rel="noopener noreferrer"
-                 class="btn btn--whatsapp btn--full">
-                <i class="fab fa-whatsapp"></i> Quero esse pacote!
-              </a>
-            </div>
-          </div>
-        </article>
-
-        <!-- Card 7: Pratagy Beach All Inclusive -->
-        <article class="card reveal" data-destino="Pratagy Beach All Inclusive Resort">
-          <div class="card__img-wrap">
-            <img src="pacotes/WhatsApp Image 2026-03-04 at 11.16.36 (1).jpeg"
-                 alt="Pratagy Beach All Inclusive Resort" loading="lazy" data-lightbox />
-            <span class="card__badge">16 a 23/mai</span>
-          </div>
-          <div class="card__body">
-            <h3 class="card__title">Pratagy Beach <span>All Inclusive Resort</span></h3>
-            <ul class="card__features">
-              <li><i class="fas fa-plane"></i> Bloqueio Aéreo GOL saindo do Rio (GIG)</li>
-              <li><i class="fas fa-utensils"></i> Hospedagem All Inclusive</li>
-              <li><i class="fas fa-child"></i> Grátis 2 crianças até 15 anos*</li>
-              <li><i class="fas fa-shield-alt"></i> Transfers + Protect Travel até R$ 8 mil</li>
-            </ul>
-            <div class="card__footer">
-              <div class="card__preco">
-                <span class="card__parcela">12x de <strong>R$&nbsp;729</strong></span>
-                <span class="card__total">Total: R$ 8.748 + taxas R$ 212</span>
-              </div>
-              <a href="https://wa.me/5521920064617?text=Ol%C3%A1%20Babi!%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20o%20pacote%20Pratagy%20Beach%20All%20Inclusive"
-                 target="_blank" rel="noopener noreferrer"
-                 class="btn btn--whatsapp btn--full">
-                <i class="fab fa-whatsapp"></i> Quero esse pacote!
-              </a>
-            </div>
-          </div>
-        </article>
-
-        <!-- Card 8: Santiago Temporada de Neve -->
-        <article class="card reveal" data-destino="Santiago Temporada de Neve">
-          <div class="card__img-wrap">
-            <img src="pacotes/WhatsApp Image 2026-03-04 at 18.15.19.jpeg"
-                 alt="Santiago Temporada de Neve - Férias de Julho" loading="lazy" data-lightbox />
-            <span class="card__badge">01 a 08/jul</span>
-          </div>
-          <div class="card__body">
-            <h3 class="card__title">Santiago <span>Temporada de Neve</span></h3>
-            <ul class="card__features">
-              <li><i class="fas fa-plane"></i> Bloqueio Aéreo LATAM saindo do Rio (GIG)</li>
-              <li><i class="fas fa-hotel"></i> Hospedagem Hub Providencia + Transfers</li>
-              <li><i class="fas fa-skiing"></i> Ticket El Colorado + equipamento Ski/Snowboard + aulas</li>
-              <li><i class="fas fa-shield-alt"></i> City Tour Santiago + Protect Travel até R$ 6 mil</li>
-            </ul>
-            <div class="card__footer">
-              <div class="card__preco">
-                <span class="card__parcela">12x de <strong>R$&nbsp;467</strong></span>
-                <span class="card__total">Total: R$ 5.604 + taxas R$ 457</span>
-              </div>
-              <a href="https://wa.me/5521920064617?text=Ol%C3%A1%20Babi!%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20o%20pacote%20Santiago%20Temporada%20de%20Neve"
-                 target="_blank" rel="noopener noreferrer"
-                 class="btn btn--whatsapp btn--full">
-                <i class="fab fa-whatsapp"></i> Quero esse pacote!
-              </a>
-            </div>
-          </div>
-        </article>
-
-        <!-- Card 9: Gramado com Fondue + Olivas -->
-        <article class="card reveal" data-destino="Gramado com Fondue e Olivas">
-          <div class="card__img-wrap">
-            <img src="pacotes/WhatsApp Image 2026-03-04 at 18.15.20.jpeg"
-                 alt="Gramado com Fondue e Olivas" loading="lazy" data-lightbox />
-            <span class="card__badge">25 a 29/jun</span>
-          </div>
-          <div class="card__body">
-            <h3 class="card__title">Gramado <span>Fondue + Olivas</span></h3>
-            <ul class="card__features">
-              <li><i class="fas fa-plane"></i> Bloqueio Aéreo GOL saindo do Rio (GIG)</li>
-              <li><i class="fas fa-hotel"></i> Hospedagem com café da manhã</li>
-              <li><i class="fas fa-ticket-alt"></i> Ingresso Olivas de Gramado grátis + 1 dia Bustour</li>
-              <li><i class="fas fa-utensils"></i> Sequência de Fondue + Transfers + Protect R$ 4 mil</li>
-            </ul>
-            <div class="card__footer">
-              <div class="card__preco">
-                <span class="card__parcela">12x a partir de <strong>R$&nbsp;164</strong></span>
-                <span class="card__total">Total a partir de R$ 1.968 + taxas R$ 218</span>
-              </div>
-              <a href="https://wa.me/5521920064617?text=Ol%C3%A1%20Babi!%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20o%20pacote%20Gramado%20Fondue%20%2B%20Olivas"
-                 target="_blank" rel="noopener noreferrer"
-                 class="btn btn--whatsapp btn--full">
-                <i class="fab fa-whatsapp"></i> Quero esse pacote!
-              </a>
-            </div>
-          </div>
-        </article>
-
-        <!-- Card 10: Fortaleza com Canoa Quebrada e Lagoinha -->
-        <article class="card reveal" data-destino="Fortaleza com Canoa Quebrada e Lagoinha">
-          <div class="card__img-wrap">
-            <img src="pacotes/WhatsApp Image 2026-03-04 at 18.15.20 (1).jpeg"
-                 alt="Fortaleza com Canoa Quebrada e Lagoinha" loading="lazy" data-lightbox />
-            <span class="card__badge">14 a 21/mai</span>
-          </div>
-          <div class="card__body">
-            <h3 class="card__title">Fortaleza <span>Canoa Quebrada e Lagoinha</span></h3>
-            <ul class="card__features">
-              <li><i class="fas fa-plane"></i> Bloqueio Aéreo GOL saindo do Rio (GIG)</li>
-              <li><i class="fas fa-hotel"></i> Hospedagem com café da manhã</li>
-              <li><i class="fas fa-umbrella-beach"></i> City tour Cumbuco + Canoa Quebrada + Lagoinha</li>
-              <li><i class="fas fa-shield-alt"></i> Transfers + Protect Travel até R$ 4 mil</li>
-            </ul>
-            <div class="card__footer">
-              <div class="card__preco">
-                <span class="card__parcela">12x a partir de <strong>R$&nbsp;191</strong></span>
-                <span class="card__total">Total a partir de R$ 2.292 + taxas R$ 286</span>
-              </div>
-              <a href="https://wa.me/5521920064617?text=Ol%C3%A1%20Babi!%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20o%20pacote%20Fortaleza%20com%20Canoa%20Quebrada%20e%20Lagoinha"
-                 target="_blank" rel="noopener noreferrer"
-                 class="btn btn--whatsapp btn--full">
-                <i class="fab fa-whatsapp"></i> Quero esse pacote!
-              </a>
-            </div>
-          </div>
-        </article>
-
-        <!-- Card 11: Jericoacoara com Lado Leste -->
-        <article class="card reveal" data-destino="Jericoacoara com Lado Leste">
-          <div class="card__img-wrap">
-            <img src="pacotes/WhatsApp Image 2026-03-07 at 10.59.45.jpeg"
-                 alt="Jericoacoara com Lado Leste" loading="lazy" data-lightbox />
-            <span class="card__badge">02 a 09/mai</span>
-          </div>
-          <div class="card__body">
-            <h3 class="card__title">Jericoacoara <span>com Lado Leste</span></h3>
-            <ul class="card__features">
-              <li><i class="fas fa-plane"></i> Bloqueio Aéreo GOL saindo do Rio (GIG)</li>
-              <li><i class="fas fa-hotel"></i> Hospedagem com café da manhã</li>
-              <li><i class="fas fa-umbrella-beach"></i> Passeio de dia inteiro ao Lado Leste</li>
-              <li><i class="fas fa-shield-alt"></i> Transfers + Protect Travel até R$ 4 mil</li>
-            </ul>
-            <div class="card__footer">
-              <div class="card__preco">
-                <span class="card__parcela">12x a partir de <strong>R$&nbsp;253</strong></span>
-                <span class="card__total">Total a partir de R$ 3.036 + taxas R$ 199</span>
-              </div>
-              <a href="https://wa.me/5521920064617?text=Ol%C3%A1%20Babi!%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20o%20pacote%20Jericoacoara%20com%20Lado%20Leste"
-                 target="_blank" rel="noopener noreferrer"
-                 class="btn btn--whatsapp btn--full">
-                <i class="fab fa-whatsapp"></i> Quero esse pacote!
-              </a>
-            </div>
-          </div>
-        </article>
-
-        <!-- Card 12: Ushuaia Temporada de Neve -->
-        <article class="card reveal" data-destino="Ushuaia Temporada de Neve">
-          <div class="card__img-wrap">
-            <img src="pacotes/WhatsApp Image 2026-03-07 at 10.59.45 (1).jpeg"
-                 alt="Ushuaia Temporada de Neve - Férias de Julho" loading="lazy" data-lightbox />
-            <span class="card__badge">08 a 13/jul</span>
-          </div>
-          <div class="card__body">
-            <h3 class="card__title">Ushuaia <span>Temporada de Neve</span></h3>
-            <ul class="card__features">
-              <li><i class="fas fa-plane"></i> Aéreo Aerolíneas Argentinas saindo do Rio (GIG)</li>
-              <li><i class="fas fa-hotel"></i> Hospedagem Patagonia Austral Apartamentos</li>
-              <li><i class="fas fa-mountain"></i> Tour Parque Nacional Tierra del Fuego + Parque Husky com almoço</li>
-              <li><i class="fas fa-shield-alt"></i> Transfers + Protect Travel até R$ 8 mil</li>
-            </ul>
-            <div class="card__footer">
-              <div class="card__preco">
-                <span class="card__parcela">12x de <strong>R$&nbsp;523</strong></span>
-                <span class="card__total">Total: R$ 6.276 + taxas R$ 563</span>
-              </div>
-              <a href="https://wa.me/5521920064617?text=Ol%C3%A1%20Babi!%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20o%20pacote%20Ushuaia%20Temporada%20de%20Neve"
-                 target="_blank" rel="noopener noreferrer"
-                 class="btn btn--whatsapp btn--full">
-                <i class="fab fa-whatsapp"></i> Quero esse pacote!
-              </a>
-            </div>
-          </div>
-        </article>
-
-      </div><!-- /.pacotes__grid -->
-
-      <div class="pacotes__cta-extra">
-        <p>Não encontrou o destino que procura?</p>
-        <a href="https://wa.me/5521920064617?text=Ol%C3%A1%20Babi!%20Vim%20pelo%20site%20e%20quero%20montar%20um%20roteiro%20personalizado"
-           target="_blank" rel="noopener noreferrer"
-           class="btn btn--outline btn--md">
-          <i class="fab fa-whatsapp"></i> Montar roteiro personalizado
-        </a>
+        </div>
       </div>
-    </div>
+
+      <div class="pacotes__category" id="pacotes-completos">
+        <h3 class="pacotes__subhead"><i class="fas fa-plane-departure" aria-hidden="true"></i> Pacote completo</h3>
+        <p class="pacotes__category-desc">Aéreo (ou bloqueio), hospedagem e serviços principais inclusos.</p>
+        <div class="pacotes__grid">
+
+        <article class="card reveal" data-destino="Bariloche Essencial" data-categoria="completo">
+          <div class="card__img-wrap">
+            <img src="pacotes/pacote-bariloche.jpeg"
+                 alt="Bariloche Essencial — neve e Patagônia argentina" loading="lazy" data-lightbox />
+            <span class="card__badge">01 a 06/07</span>
+          </div>
+          <div class="card__body">
+            <h3 class="card__title">Bariloche Essencial <span>Patagônia · Argentina</span></h3>
+            <ul class="card__features">
+              <li><i class="fas fa-plane"></i> Aéreo Aerolíneas Argentinas · Rio (GIG)</li>
+              <li><i class="fas fa-hotel"></i> Huinid Pioneros · café da manhã · transfers</li>
+              <li><i class="fas fa-mountain"></i> Cerro Catedral e Circuito Chico (ingressos não inclusos)</li>
+              <li><i class="fas fa-shield-alt"></i> Seguro viagem · Protect até R$ 8 mil</li>
+            </ul>
+            <div class="card__footer">
+              <div class="card__preco">
+                <span class="card__parcela">10x a partir de <strong>R$&nbsp;534</strong></span>
+                <span class="card__total">Total a partir de R$ 5.340 + taxas R$ 564 · 7% à vista</span>
+              </div>
+              <a href="https://wa.me/5521920064617?text=Ol%C3%A1%20Babi!%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20o%20pacote%20Bariloche%20Essencial"
+                 target="_blank" rel="noopener noreferrer"
+                 class="btn btn--whatsapp btn--full">
+                <i class="fab fa-whatsapp"></i> Quero esse pacote!
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card reveal" data-destino="Londres e Paris de trem" data-categoria="completo">
+          <div class="card__img-wrap">
+            <img src="pacotes/pacote-londres-paris.jpeg"
+                 alt="Londres e Paris de trem" loading="lazy" data-lightbox />
+            <span class="card__badge">15 a 21/jun</span>
+          </div>
+          <div class="card__body">
+            <h3 class="card__title">Londres e Paris <span>de trem · 7 dias</span></h3>
+            <ul class="card__features">
+              <li><i class="fas fa-plane"></i> Aéreo LATAM saindo de São Paulo (GRU)</li>
+              <li><i class="fas fa-hotel"></i> Hospedagens · transfers + guia local</li>
+              <li><i class="fas fa-train"></i> Ônibus turístico em Londres · Torre Eiffel · trem para Paris</li>
+              <li><i class="fas fa-shield-alt"></i> Protect Travel até R$ 12 mil · 7% à vista</li>
+            </ul>
+            <div class="card__footer">
+              <div class="card__preco">
+                <span class="card__parcela">10x a partir de <strong>R$&nbsp;1.712</strong></span>
+                <span class="card__total">Total a partir de R$ 17.120 + taxas R$ 860</span>
+              </div>
+              <a href="https://wa.me/5521920064617?text=Ol%C3%A1%20Babi!%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20o%20pacote%20Londres%20e%20Paris%20de%20trem"
+                 target="_blank" rel="noopener noreferrer"
+                 class="btn btn--whatsapp btn--full">
+                <i class="fab fa-whatsapp"></i> Quero esse pacote!
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card reveal" data-destino="Maceió com Roda Gigante" data-categoria="completo">
+          <div class="card__img-wrap">
+            <img src="pacotes/pacote-maceio.jpeg"
+                 alt="Maceió com roda gigante e praias" loading="lazy" data-lightbox />
+            <span class="card__badge">08 a 15/05</span>
+          </div>
+          <div class="card__body">
+            <h3 class="card__title">Maceió <span>Roda gigante FREE</span></h3>
+            <ul class="card__features">
+              <li><i class="fas fa-plane"></i> Bloqueio GOL · Rio (GIG) · aéreo promocional</li>
+              <li><i class="fas fa-hotel"></i> Hotel à escolha · café da manhã · transfer</li>
+              <li><i class="fas fa-umbrella-beach"></i> City tour Francês · Gunga e Maragogi · ingresso roda grátis</li>
+              <li><i class="fas fa-shield-alt"></i> Protect até R$ 5 mil · 7% à vista</li>
+            </ul>
+            <div class="card__footer">
+              <div class="card__preco">
+                <span class="card__parcela">10x a partir de <strong>R$&nbsp;219</strong></span>
+                <span class="card__total">Total a partir de R$ 2.190 + taxas · outras saídas: 22/05, 06/06, 08/08</span>
+              </div>
+              <a href="https://wa.me/5521920064617?text=Ol%C3%A1%20Babi!%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20o%20pacote%20Macei%C3%B3%20com%20Roda%20Gigante"
+                 target="_blank" rel="noopener noreferrer"
+                 class="btn btn--whatsapp btn--full">
+                <i class="fab fa-whatsapp"></i> Quero esse pacote!
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card reveal" data-destino="Mendoza com Santiago do Chile" data-categoria="completo">
+          <div class="card__img-wrap">
+            <img src="pacotes/pacote-mendoza-santiago.jpeg"
+                 alt="Mendoza e Santiago do Chile" loading="lazy" data-lightbox />
+            <span class="card__badge">14 a 20/07</span>
+          </div>
+          <div class="card__body">
+            <h3 class="card__title">Mendoza e Santiago <span>Vinho e Andes</span></h3>
+            <ul class="card__features">
+              <li><i class="fas fa-plane"></i> Aéreo saindo do Rio de Janeiro (GIG)</li>
+              <li><i class="fas fa-hotel"></i> 3 noites Mendoza + 3 noites Santiago · café da manhã</li>
+              <li><i class="fas fa-map-marked-alt"></i> City tours em Mendoza e Santiago · transfers</li>
+              <li><i class="fas fa-shield-alt"></i> Protect Travel · 7% à vista</li>
+            </ul>
+            <div class="card__footer">
+              <div class="card__preco">
+                <span class="card__parcela">10x a partir de <strong>R$&nbsp;629</strong></span>
+                <span class="card__total">Total a partir de R$ 6.290 + taxas R$ 511 por pessoa</span>
+              </div>
+              <a href="https://wa.me/5521920064617?text=Ol%C3%A1%20Babi!%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20o%20pacote%20Mendoza%20com%20Santiago%20do%20Chile"
+                 target="_blank" rel="noopener noreferrer"
+                 class="btn btn--whatsapp btn--full">
+                <i class="fab fa-whatsapp"></i> Quero esse pacote!
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card reveal" data-destino="Jericoacoara" data-categoria="completo">
+          <div class="card__img-wrap">
+            <img src="pacotes/pacote-jericoacoara.jpeg"
+                 alt="Jericoacoara — dunas e praias" loading="lazy" data-lightbox />
+            <span class="card__badge">02 a 09/05</span>
+          </div>
+          <div class="card__body">
+            <h3 class="card__title">Jericoacoara <span>CE · dunas e pôr do sol</span></h3>
+            <ul class="card__features">
+              <li><i class="fas fa-plane"></i> Bloqueio aéreo Rio (GIG)</li>
+              <li><i class="fas fa-hotel"></i> Pousada à escolha · café da manhã · transfer</li>
+              <li><i class="fas fa-shield-alt"></i> Protect Travel · 7% à vista</li>
+              <li><i class="fas fa-info-circle"></i> Outras saídas: 06/05 · condições até 30/04</li>
+            </ul>
+            <div class="card__footer">
+              <div class="card__preco">
+                <span class="card__parcela">10x a partir de <strong>R$&nbsp;264</strong></span>
+                <span class="card__total">Total a partir de R$ 2.640 + taxas R$ 199 (Numei) · consulte outras pousadas</span>
+              </div>
+              <a href="https://wa.me/5521920064617?text=Ol%C3%A1%20Babi!%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20o%20pacote%20Jericoacoara"
+                 target="_blank" rel="noopener noreferrer"
+                 class="btn btn--whatsapp btn--full">
+                <i class="fab fa-whatsapp"></i> Quero esse pacote!
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card reveal" data-destino="Salvador Tivoli EcoResort" data-categoria="completo">
+          <div class="card__img-wrap">
+            <img src="pacotes/pacote-salvador-tivoli.jpeg"
+                 alt="Salvador Tivoli EcoResort — meia pensão" loading="lazy" data-lightbox />
+            <span class="card__badge">12 a 17/06</span>
+          </div>
+          <div class="card__body">
+            <h3 class="card__title">Salvador <span>Tivoli EcoResort</span></h3>
+            <ul class="card__features">
+              <li><i class="fas fa-plane"></i> Bloqueio aéreo Rio (GIG) · promo 2º passageiro</li>
+              <li><i class="fas fa-utensils"></i> Meia pensão · transfer</li>
+              <li><i class="fas fa-shield-alt"></i> Protect Travel · 7% à vista</li>
+              <li><i class="fas fa-calendar-alt"></i> Outras saídas: 15/05, 19/06, 04/11 e 25/11</li>
+            </ul>
+            <div class="card__footer">
+              <div class="card__preco">
+                <span class="card__parcela">10x a partir de <strong>R$&nbsp;652</strong></span>
+                <span class="card__total">Total a partir de R$ 6.520 + taxas R$ 199 · condições até 30/04</span>
+              </div>
+              <a href="https://wa.me/5521920064617?text=Ol%C3%A1%20Babi!%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20o%20pacote%20Salvador%20Tivoli%20EcoResort"
+                 target="_blank" rel="noopener noreferrer"
+                 class="btn btn--whatsapp btn--full">
+                <i class="fab fa-whatsapp"></i> Quero esse pacote!
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card reveal" data-destino="Ushuaia temporada de neve" data-categoria="completo">
+          <div class="card__img-wrap">
+            <img src="pacotes/pacote-ushuaia.jpeg"
+                 alt="Ushuaia temporada de neve com ski" loading="lazy" data-lightbox />
+            <span class="card__badge">13 a 18/ago</span>
+          </div>
+          <div class="card__body">
+            <h3 class="card__title">Ushuaia <span>Neve · ski no Cerro Castor</span></h3>
+            <ul class="card__features">
+              <li><i class="fas fa-plane"></i> Aéreo Aerolíneas Argentinas · Rio (GIG)</li>
+              <li><i class="fas fa-hotel"></i> Hotel Austral Ushuaia · café da manhã · transfers</li>
+              <li><i class="fas fa-tree"></i> Parque Tierra del Fuego · 1 dia ski Castor (ingresso incluso)</li>
+              <li><i class="fas fa-shield-alt"></i> Seguro viagem · Protect até R$ 8 mil</li>
+            </ul>
+            <div class="card__footer">
+              <div class="card__preco">
+                <span class="card__parcela">10x a partir de <strong>R$&nbsp;752</strong></span>
+                <span class="card__total">Total a partir de R$ 7.520 + taxas R$ 537 · 7% à vista</span>
+              </div>
+              <a href="https://wa.me/5521920064617?text=Ol%C3%A1%20Babi!%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20o%20pacote%20Ushuaia%20temporada%20de%20neve"
+                 target="_blank" rel="noopener noreferrer"
+                 class="btn btn--whatsapp btn--full">
+                <i class="fab fa-whatsapp"></i> Quero esse pacote!
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card reveal" data-destino="Orlando Disney e Universal" data-categoria="completo">
+          <div class="card__img-wrap">
+            <img src="pacotes/pacote-orlando.jpeg"
+                 alt="Orlando — Disney e Universal com Epic Universe" loading="lazy" data-lightbox />
+            <span class="card__badge">15 a 26/07</span>
+          </div>
+          <div class="card__body">
+            <h3 class="card__title">Orlando <span>Disney + Universal + Epic</span></h3>
+            <ul class="card__features">
+              <li><i class="fas fa-plane"></i> Aéreo LATAM · São Paulo (GRU)</li>
+              <li><i class="fas fa-hotel"></i> Ramada Kissimmee · café · estacionamento e transfer aos parques</li>
+              <li><i class="fas fa-ticket-alt"></i> 4 dias Disney · Epic Universe + 2 dias Universal Park to Park</li>
+              <li><i class="fas fa-shield-alt"></i> Protect até R$ 16 mil</li>
+            </ul>
+            <div class="card__footer">
+              <div class="card__preco">
+                <span class="card__parcela">10x a partir de <strong>R$&nbsp;2.181</strong></span>
+                <span class="card__total">Total a partir de R$ 21.810 + taxas R$ 735 · base dupla</span>
+              </div>
+              <a href="https://wa.me/5521920064617?text=Ol%C3%A1%20Babi!%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20o%20pacote%20Orlando%20Disney%20e%20Universal"
+                 target="_blank" rel="noopener noreferrer"
+                 class="btn btn--whatsapp btn--full">
+                <i class="fab fa-whatsapp"></i> Quero esse pacote!
+              </a>
+            </div>
+          </div>
+        </article>
+
+        </div>
+      </div>
+
+      <div class="pacotes__category" id="pacotes-sem-aereo">
+        <h3 class="pacotes__subhead"><i class="fas fa-ship" aria-hidden="true"></i> Cruzeiros</h3>
+        <p class="pacotes__category-desc">Cruzeiros com embarque nacional ou pacotes só terrestres — sem trecho aéreo incluso no anúncio.</p>
+        <div class="pacotes__grid">
+
+        <article class="card reveal" data-destino="Navio Daniel 2027 MSC Divina" data-categoria="sem-aereo">
+          <div class="card__img-wrap">
+            <img src="pacotes/pacote-navio-daniel-2027.jpeg"
+                 alt="Navio Daniel 2027 — MSC Divina saindo de Santos" loading="lazy" data-lightbox />
+            <span class="card__badge">08 a 11/01/2027 · Santos</span>
+          </div>
+          <div class="card__body">
+            <h3 class="card__title">Navio Daniel 2027 <span>MSC Divina · 3 noites</span></h3>
+            <ul class="card__features">
+              <li><i class="fas fa-music"></i> Shows com Daniel, Simone Mendes, Fagner e mais</li>
+              <li><i class="fas fa-anchor"></i> Embarque e desembarque em Santos · roteiro Rumo ao Sol</li>
+              <li><i class="fas fa-door-open"></i> Cabines interna a varanda e experiências suite</li>
+              <li><i class="fas fa-exclamation-circle"></i> Taxas de porto/serviço à parte · seguro não incluso</li>
+            </ul>
+            <div class="card__footer">
+              <div class="card__preco">
+                <span class="card__parcela">12x a partir de <strong>R$&nbsp;289</strong></span>
+                <span class="card__total">Consulte cabine · taxas de porto aprox. R$ 1.350 por pessoa</span>
+              </div>
+              <a href="https://wa.me/5521920064617?text=Ol%C3%A1%20Babi!%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20o%20pacote%20Navio%20Daniel%202027%20MSC%20Divina"
+                 target="_blank" rel="noopener noreferrer"
+                 class="btn btn--whatsapp btn--full">
+                <i class="fab fa-whatsapp"></i> Quero esse pacote!
+              </a>
+            </div>
+          </div>
+        </article>
+
+
+
+
   </section>
 
   <!-- ═══════════════════════════════════════
