@@ -419,10 +419,12 @@ ul  { list-style: none; }
   font-size: 1.35rem;
   font-weight: 800;
   color: var(--clr-dark);
-  margin: 0 0 8px;
+  margin: 0 auto 8px;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 10px;
+  text-align: center;
 }
 
 .pacotes__subhead i {
@@ -433,16 +435,19 @@ ul  { list-style: none; }
 .pacotes__category-desc {
   font-size: 0.95rem;
   color: var(--clr-muted);
-  margin: 0 0 20px;
+  margin: 0 auto 20px;
   max-width: 42rem;
   line-height: 1.5;
+  text-align: center;
 }
 
 .pacotes__category-foot {
   font-size: 0.9rem;
   color: var(--clr-muted);
-  margin-top: 16px;
+  margin: 16px auto 0;
+  max-width: 42rem;
   line-height: 1.5;
+  text-align: center;
 }
 
 .pacotes__category-foot a {
