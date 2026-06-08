@@ -17,17 +17,18 @@
   <meta property="og:url" content="https://viajandocomababi.com.br/" />
   <meta property="og:title" content="Viajando com a Babi — Pacotes e Roteiros personalizados" />
   <meta property="og:description" content="Realize o sonho de viajar com pacotes personalizados para destinos incríveis. Fale com a Babi e monte o roteiro dos seus sonhos!" />
-  <meta property="og:image" content="https://viajandocomababi.com.br/assets/logo%20(4).PNG" />
-  <meta property="og:image:width" content="500" />
-  <meta property="og:image:height" content="500" />
+  <meta property="og:image" content="https://viajandocomababi.com.br/assets/og-share.jpeg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
   <meta property="og:locale" content="pt_BR" />
   <meta property="og:site_name" content="Viajando com a Babi" />
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@viajandocomababi_" />
   <meta name="twitter:title" content="Viajando com a Babi — Pacotes e Roteiros personalizados" />
   <meta name="twitter:description" content="Realize o sonho de viajar com pacotes personalizados para destinos incríveis. Fale com a Babi!" />
-  <meta name="twitter:image" content="https://viajandocomababi.com.br/assets/logo%20(4).PNG" />
+  <meta name="twitter:image" content="https://viajandocomababi.com.br/assets/og-share.jpeg" />
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="assets/logo (4).PNG" />
@@ -41,7 +42,93 @@
   <!-- Font Awesome (sem integrity para evitar bloqueio SRI em GitHub Pages) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-  <link rel="stylesheet" href="style.css?v=12" />
+  <link rel="stylesheet" href="style.css?v=13" />
+
+  <!-- Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WGDNTSY8WM"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-WGDNTSY8WM', { send_page_view: true });
+  </script>
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": ["TravelAgency", "ProfessionalService"],
+        "@id": "https://viajandocomababi.com.br/#organization",
+        "name": "Viajando com a Babi",
+        "url": "https://viajandocomababi.com.br/",
+        "logo": "https://viajandocomababi.com.br/assets/logo%20(4).PNG",
+        "image": "https://viajandocomababi.com.br/assets/og-share.jpeg",
+        "telephone": "+55-21-92006-4617",
+        "email": "viajandocomababi@gmail.com",
+        "taxID": "60.536.280/0001-89",
+        "sameAs": ["https://www.instagram.com/viajandocomababi_/"],
+        "areaServed": "BR",
+        "priceRange": "$$",
+        "description": "Agência de viagens com pacotes completos, roteiros personalizados e consultoria para destinos nacionais e internacionais."
+      },
+      {
+        "@type": "Person",
+        "name": "Bárbara Cristina Machado Valente Costa de Abreu",
+        "jobTitle": "Agente de Viagens",
+        "worksFor": { "@id": "https://viajandocomababi.com.br/#organization" }
+      },
+      {
+        "@type": "WebSite",
+        "name": "Viajando com a Babi",
+        "url": "https://viajandocomababi.com.br/"
+      },
+      {
+        "@type": "Service",
+        "serviceType": "Consultoria de viagem",
+        "provider": { "@id": "https://viajandocomababi.com.br/#organization" },
+        "areaServed": "BR"
+      },
+      {
+        "@type": "Service",
+        "serviceType": "Roteiro personalizado",
+        "provider": { "@id": "https://viajandocomababi.com.br/#organization" },
+        "areaServed": "BR"
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Consigo planejar minha viagem sozinho?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Sim, mas uma consultoria economiza tempo, evita erros caros e garante um roteiro alinhado ao seu perfil — com suporte humano em cada etapa." }
+          },
+          {
+            "@type": "Question",
+            "name": "Vale a pena pagar por consultoria de viagem?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Para quem quer praticidade, segurança e um roteiro sob medida, sim. A Babi cuida de passagens, hotéis, passeios e dicas que fazem diferença na experiência." }
+          },
+          {
+            "@type": "Question",
+            "name": "Você compra passagens e hotéis por mim?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Sim. A Viajando com a Babi organiza reservas, monta pacotes completos e acompanha você até o embarque." }
+          },
+          {
+            "@type": "Question",
+            "name": "Funciona para lua de mel e viagem internacional?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Sim. Já organizamos lua de mel na Itália, Paris, Amsterdã e diversos destinos internacionais, além de viagens nacionais e cruzeiros." }
+          },
+          {
+            "@type": "Question",
+            "name": "Como solicito um orçamento?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Pelo WhatsApp (+55 21 92006-4617), e-mail viajandocomababi@gmail.com ou formulário de viagem personalizada no site." }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
 
@@ -56,8 +143,9 @@
 
       <nav class="navbar__links" id="navLinks">
         <a href="#sobre">Sobre</a>
+        <a href="#como-funciona">Como funciona</a>
         <a href="#pacotes">Pacotes</a>
-        <a href="#links">Links</a>
+        <a href="#faq">FAQ</a>
         <a href="#depoimentos">Depoimentos</a>
         <a href="#contato">Contato</a>
         <button class="btn-cadastur-nav" id="btnCadasturNav" aria-label="Ver Certificado Cadastur">
@@ -78,6 +166,8 @@
     </div>
   </header>
 
+  <main id="conteudo-principal">
+
   <!-- ═══════════════════════════════════════
        HERO
   ═══════════════════════════════════════ -->
@@ -86,8 +176,8 @@
     <div class="hero__content">
       <img src="assets/logo (4).PNG"
            alt="Viajando com a Babi" class="hero__logo" />
-      <p class="hero__tagline">O mundo te espera.<br><span>Vamos juntos?</span></p>
-      <p class="hero__sub">Pacotes e Roteiros personalizados para destinos que você sempre sonhou.</p>
+      <h1 class="hero__tagline">O mundo te espera.<br><span>Vamos juntos?</span></h1>
+      <p class="hero__sub">Pacotes com aéreo e roteiros 100% personalizados. Eu cuido de cada detalhe — você só embarca.</p>
       <div class="hero__ctas">
         <a href="https://wa.me/5521920064617?text=Ol%C3%A1%20Babi!%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20os%20pacotes%20de%20viagem"
            target="_blank" rel="noopener noreferrer"
@@ -113,8 +203,8 @@
     <div class="container">
       <div class="sobre__grid">
         <div class="sobre__foto">
-          <img src="fotos/WhatsApp Image 2026-02-23 at 21.49.58.jpeg"
-               alt="Babi em Paris, em frente à Torre Eiffel" loading="lazy" />
+          <img src="assets/babi-sobre.jpeg"
+               alt="Babi — agente de viagens Viajando com a Babi" loading="lazy" width="480" height="600" />
         </div>
         <div class="sobre__texto">
           <span class="label">Quem é a Babi?</span>
@@ -166,6 +256,54 @@
   </section>
 
   <!-- ═══════════════════════════════════════
+       COMO FUNCIONA
+  ═══════════════════════════════════════ -->
+  <section id="como-funciona" class="como-funciona">
+    <div class="container">
+      <span class="label label--center">Atendimento</span>
+      <h2 class="section-title">Como funciona</h2>
+      <p class="section-sub">Do primeiro contato ao embarque — simples, humano e sem complicação.</p>
+      <ol class="como-funciona__steps">
+        <li class="como-funciona__step reveal">
+          <span class="como-funciona__num">1</span>
+          <div>
+            <h3>Você conta o sonho</h3>
+            <p>Pelo WhatsApp ou formulário: destino, datas, perfil da viagem e orçamento aproximado.</p>
+          </div>
+        </li>
+        <li class="como-funciona__step reveal">
+          <span class="como-funciona__num">2</span>
+          <div>
+            <h3>Eu monto as melhores opções</h3>
+            <p>Pesquiso pacotes, aéreos, hotéis e passeios com o melhor custo-benefício para você.</p>
+          </div>
+        </li>
+        <li class="como-funciona__step reveal">
+          <span class="como-funciona__num">3</span>
+          <div>
+            <h3>Ajustamos juntos</h3>
+            <p>Refinamos o roteiro até ficar perfeito para o seu estilo de viajar.</p>
+          </div>
+        </li>
+        <li class="como-funciona__step reveal">
+          <span class="como-funciona__num">4</span>
+          <div>
+            <h3>Reservo e acompanho</h3>
+            <p>Cuido das reservas, pagamento facilitado e suporte até o dia do embarque.</p>
+          </div>
+        </li>
+      </ol>
+      <div class="como-funciona__cta">
+        <a href="https://wa.me/5521920064617?text=Ol%C3%A1%20Babi!%20Quero%20planejar%20minha%20viagem"
+           target="_blank" rel="noopener noreferrer"
+           class="btn btn--whatsapp btn--md">
+          <i class="fab fa-whatsapp"></i> Planejar minha viagem
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
        PACOTES
   ═══════════════════════════════════════ -->
   <section id="pacotes" class="pacotes">
@@ -186,7 +324,7 @@
             <span class="card__badge">19 a 29/10</span>
           </div>
           <div class="card__body">
-            <h3 class="card__title">Chapada Diamantina <span>Grupo com guia · Roteiros 50+</span></h3>
+            <h4 class="card__title">Chapada Diamantina <span>Grupo com guia · Roteiros 50+</span></h4>
             <ul class="card__features">
               <li><i class="fas fa-plane"></i> Bloqueio GOL · Rio (GIG) · aéreo promocional de R$&nbsp;1.103 por R$&nbsp;697</li>
               <li><i class="fas fa-hotel"></i> 3 noites Salvador + 2 Mucugê + 5 Lençóis · café · transfers · guias Luck Adventure</li>
@@ -222,7 +360,7 @@
             <span class="card__badge">26/07 a 02/08 · férias de julho</span>
           </div>
           <div class="card__body">
-            <h3 class="card__title">Aracaju <span>Mangue Seco e Praia do Saco</span></h3>
+            <h4 class="card__title">Aracaju <span>Mangue Seco e Praia do Saco</span></h4>
             <ul class="card__features">
               <li><i class="fas fa-plane"></i> Bloqueio GOL · Rio de Janeiro (GIG) · aéreo de R$&nbsp;1.299 por R$&nbsp;1.014</li>
               <li><i class="fas fa-hotel"></i> Hospedagem com café da manhã · transfer · hotel à escolha (Real Praia, Del Canto, Aruanã)</li>
@@ -250,7 +388,7 @@
             <span class="card__badge">07 a 12/08</span>
           </div>
           <div class="card__body">
-            <h3 class="card__title">Fortaleza <span>Cumbuco · Canoa Quebrada · Lagoinha</span></h3>
+            <h4 class="card__title">Fortaleza <span>Cumbuco · Canoa Quebrada · Lagoinha</span></h4>
             <ul class="card__features">
               <li><i class="fas fa-plane"></i> Bloqueio GOL · Rio de Janeiro (GIG) · aéreo de R$&nbsp;1.089 por R$&nbsp;843</li>
               <li><i class="fas fa-hotel"></i> Hospedagem com café da manhã · transfers · hotel à escolha (Atlas Beach GR, Praia Centro, Carmel Magna)</li>
@@ -278,7 +416,7 @@
             <span class="card__badge">29/06 a 05/07 · 7 dias</span>
           </div>
           <div class="card__body">
-            <h3 class="card__title">Buenos Aires + Ushuaia <span>Temporada de neve · Patagonia</span></h3>
+            <h4 class="card__title">Buenos Aires + Ushuaia <span>Temporada de neve · Patagonia</span></h4>
             <ul class="card__features">
               <li><i class="fas fa-plane"></i> Aéreo LATAM · Rio de Janeiro (GIG) · 3 noites BA + 3 noites Ushuaia</li>
               <li><i class="fas fa-hotel"></i> Hospedagem · café da manhã (exceto em BA) · transfers</li>
@@ -306,7 +444,7 @@
             <span class="card__badge">10 a 15/11</span>
           </div>
           <div class="card__body">
-            <h3 class="card__title">Bonito <span>Experiências com passeios</span></h3>
+            <h4 class="card__title">Bonito <span>Experiências com passeios</span></h4>
             <ul class="card__features">
               <li><i class="fas fa-plane"></i> Bloqueio GOL · Rio de Janeiro (SDU) · aéreo de R$&nbsp;1.489 por R$&nbsp;1.125</li>
               <li><i class="fas fa-hotel"></i> Hospedagem com café da manhã · transfers · hotel à escolha (Voo das Garças, Águas de Bonito, Zagaia)</li>
@@ -334,7 +472,7 @@
             <span class="card__badge">04 a 09/12</span>
           </div>
           <div class="card__body">
-            <h3 class="card__title">Natal Luz de Gramado <span>Maior espetáculo natalino do Brasil</span></h3>
+            <h4 class="card__title">Natal Luz de Gramado <span>Maior espetáculo natalino do Brasil</span></h4>
             <ul class="card__features">
               <li><i class="fas fa-plane"></i> Bloqueio GOL · Rio de Janeiro (GIG) · aéreo de R$&nbsp;788 por R$&nbsp;527</li>
               <li><i class="fas fa-hotel"></i> Hospedagem com café da manhã · transfers · hotel à escolha (Exclusive Gramado, Bertoluci, Laghetto Vivace)</li>
@@ -362,7 +500,7 @@
             <span class="card__badge">05 a 11/08</span>
           </div>
           <div class="card__body">
-            <h3 class="card__title">João Pessoa <span>Pôr do sol no Jacaré</span></h3>
+            <h4 class="card__title">João Pessoa <span>Pôr do sol no Jacaré</span></h4>
             <ul class="card__features">
               <li><i class="fas fa-plane"></i> Bloqueio GOL · Rio de Janeiro (GIG) · aéreo de R$&nbsp;937 por R$&nbsp;619</li>
               <li><i class="fas fa-hotel"></i> Hospedagem com café da manhã · transfer · hotel à escolha (Nord One, Infinity, BA'RA)</li>
@@ -390,7 +528,7 @@
             <span class="card__badge">15 a 20/07 · férias de julho</span>
           </div>
           <div class="card__body">
-            <h3 class="card__title">Porto Seguro <span>City tour + Coroa Vermelha grátis</span></h3>
+            <h4 class="card__title">Porto Seguro <span>City tour + Coroa Vermelha grátis</span></h4>
             <ul class="card__features">
               <li><i class="fas fa-plane"></i> Bloqueio GOL · Rio de Janeiro (GIG) · aéreo de R$&nbsp;989 por R$&nbsp;720</li>
               <li><i class="fas fa-hotel"></i> Hospedagem com café da manhã · transfer · hotel à escolha (Ayla Praia, Portal Ville, Portobello)</li>
@@ -426,7 +564,7 @@
             <span class="card__badge">08 a 11/01/2027 · Santos</span>
           </div>
           <div class="card__body">
-            <h3 class="card__title">Navio Daniel 2027 <span>MSC Divina · 3 noites</span></h3>
+            <h4 class="card__title">Navio Daniel 2027 <span>MSC Divina · 3 noites</span></h4>
             <ul class="card__features">
               <li><i class="fas fa-music"></i> Shows com Daniel, Simone Mendes, Fagner e mais</li>
               <li><i class="fas fa-anchor"></i> Embarque e desembarque em Santos · roteiro Rumo ao Sol</li>
@@ -454,7 +592,7 @@
             <span class="card__badge">Jan e fev/2027 · Rio de Janeiro</span>
           </div>
           <div class="card__body">
-            <h3 class="card__title">Costa Serena <span>América do Sul · 9 noites</span></h3>
+            <h4 class="card__title">Costa Serena <span>América do Sul · 9 noites</span></h4>
             <ul class="card__features">
               <li><i class="fas fa-calendar-alt"></i> <strong>27/01/2027</strong> — Férias de Janeiro: Rio, Ilhabela, Buenos Aires, Montevidéu, Balneário Camboriú, Ilha Grande, Rio</li>
               <li><i class="fas fa-calendar-alt"></i> <strong>05/02/2027</strong> — Carnaval: Rio, Buenos Aires, Montevidéu, Punta del Este, Balneário Camboriú, Ilha Grande, Rio</li>
@@ -577,6 +715,66 @@
             <i class="fab fa-whatsapp"></i> Quero saber como funciona
           </a>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       FAQ
+  ═══════════════════════════════════════ -->
+  <section id="faq" class="faq" aria-labelledby="faq-titulo">
+    <div class="container">
+      <span class="label label--center">Dúvidas frequentes</span>
+      <h2 id="faq-titulo" class="section-title">Perguntas que todo viajante faz</h2>
+      <div class="faq__list">
+
+        <details class="faq__item reveal">
+          <summary class="faq__question">Consigo planejar minha viagem sozinho?</summary>
+          <p class="faq__answer">Sim — mas uma consultoria economiza tempo, evita erros caros e garante um roteiro alinhado ao seu perfil, com suporte humano em cada etapa.</p>
+        </details>
+
+        <details class="faq__item reveal">
+          <summary class="faq__question">Vale a pena pagar por consultoria de viagem?</summary>
+          <p class="faq__answer">Para quem quer praticidade, segurança e experiência personalizada, sim. A Babi cuida de passagens, hotéis, passeios e detalhes que fazem toda a diferença.</p>
+        </details>
+
+        <details class="faq__item reveal">
+          <summary class="faq__question">Quanto custa um roteiro personalizado?</summary>
+          <p class="faq__answer">Depende do destino, época e perfil da viagem. O orçamento é sempre personalizado — fale comigo pelo WhatsApp ou formulário e receba opções sob medida.</p>
+        </details>
+
+        <details class="faq__item reveal">
+          <summary class="faq__question">Você compra passagens e hotéis por mim?</summary>
+          <p class="faq__answer">Sim. Organizo reservas, monto pacotes completos com aéreo e hospedagem, e acompanho você até o embarque.</p>
+        </details>
+
+        <details class="faq__item reveal">
+          <summary class="faq__question">Funciona para lua de mel?</summary>
+          <p class="faq__answer">Com certeza! Já organizei luas de mel na Itália, Paris, Amsterdã e outros destinos dos sonhos — com atenção a cada detalhe.</p>
+        </details>
+
+        <details class="faq__item reveal">
+          <summary class="faq__question">Funciona para viagem internacional?</summary>
+          <p class="faq__answer">Sim. Atendo destinos nacionais e internacionais: Europa, América do Sul, Caribe, cruzeiros e muito mais.</p>
+        </details>
+
+        <details class="faq__item reveal">
+          <summary class="faq__question">Com quanta antecedência devo contratar?</summary>
+          <p class="faq__answer">Quanto antes, melhor — especialmente para alta temporada e internacionais. Mas também atendo viagens com prazos mais curtos, conforme disponibilidade.</p>
+        </details>
+
+        <details class="faq__item reveal">
+          <summary class="faq__question">Como solicito um orçamento?</summary>
+          <p class="faq__answer">Pelo WhatsApp (+55 21 92006-4617), e-mail viajandocomababi@gmail.com ou pelo formulário de viagem personalizada aqui no site.</p>
+        </details>
+
+      </div>
+      <div class="faq__cta">
+        <a href="https://wa.me/5521920064617?text=Ol%C3%A1%20Babi!%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20os%20pacotes%20de%20viagem"
+           target="_blank" rel="noopener noreferrer"
+           class="btn btn--whatsapp btn--md">
+          <i class="fab fa-whatsapp"></i> Falar com a Babi
+        </a>
       </div>
     </div>
   </section>
@@ -718,6 +916,8 @@
     </div>
   </section>
 
+  </main>
+
   <!-- ═══════════════════════════════════════
        CONTATO / FOOTER
   ═══════════════════════════════════════ -->
@@ -736,9 +936,12 @@
           <ul>
             <li><a href="#hero">Início</a></li>
             <li><a href="#sobre">Sobre a Babi</a></li>
+            <li><a href="#como-funciona">Como funciona</a></li>
             <li><a href="#pacotes">Pacotes</a></li>
-            <li><a href="#links">Links úteis</a></li>
+            <li><a href="#pagamento">Pagamento</a></li>
+            <li><a href="#faq">FAQ</a></li>
             <li><a href="#depoimentos">Depoimentos</a></li>
+            <li><a href="privacidade.html">Privacidade</a></li>
             <li>
               <button class="footer__cadastur-btn" id="btnCadasturFooter">
                 <i class="fas fa-certificate"></i> Certificado Cadastur
@@ -785,7 +988,8 @@
       <div class="footer__bottom">
         <p>&copy; <span id="year"></span> Viajando com a Babi — Todos os direitos reservados.</p>
         <p>CNPJ 60.536.280/0001-89</p>
-        <p>Site desenvolvido por <a href="https://wa.me/5521920137715" target="_blank" rel="noopener noreferrer">https://cybershieldgroup.com.br/</a> — (21) 92013-7715</p>
+        <p>Site desenvolvido por <a href="https://cybershieldgroup.com.br/" target="_blank" rel="noopener noreferrer">Cyber Shield Group</a></p>
+        <p><a href="privacidade.html">Política de privacidade</a></p>
         <p>Feito com <i class="fas fa-heart" style="color:#e74c3c"></i> para quem ama viajar.</p>
       </div>
     </div>
@@ -806,7 +1010,10 @@
           <p>Agência de turismo regularizada pelo Ministério do Turismo</p>
         </div>
       </div>
-      <img src="assets/cadastur.jpg" alt="Certificado Cadastur — Viajando com a Babi" class="modal__img" />
+      <div class="modal__cadastur-badge" aria-hidden="true">
+        <i class="fas fa-award"></i>
+        <span>Agência regularizada pelo Ministério do Turismo</span>
+      </div>
       <div class="modal__info">
         <div class="modal__info-item">
           <span>Cadastrado</span>
@@ -891,6 +1098,7 @@
     <span class="fab-whatsapp__tooltip">Falar no WhatsApp</span>
   </a>
 
-  <script src="script.js"></script>
+  <script src="analytics.js?v=1"></script>
+  <script src="script.js?v=13"></script>
 </body>
 </html>

@@ -248,6 +248,10 @@
       `🏙️ Saída de: ${saida}\n` +
       `💰 Orçamento: ${orcamento}`;
 
+    if (window.VCBAnalytics) {
+      window.VCBAnalytics.trackFormLead();
+    }
+
     window.open(
       'https://wa.me/5521920064617?text=' + encodeURIComponent(msg),
       '_blank',
@@ -283,4 +287,24 @@
   );
 
   sections.forEach(s => observer.observe(s));
+})();
+
+/* ──────────────────────────────────────────────────
+   AVATAR FALLBACK — iniciais quando imagem ausente
+────────────────────────────────────────────────── */
+(function initAvatarFallback() {
+  document.querySelectorAll('.depoimento__avatar img').forEach(img => {
+    img.addEventListener('error', function () {
+      const name = this.alt || '?';
+      const initials = name.split(' ').filter(Boolean).map(w => w[0]).slice(0, 2).join('').toUpperCase();
+      const wrap = this.parentElement;
+      if (!wrap || wrap.querySelector('.depoimento__initials')) return;
+      this.style.display = 'none';
+      const span = document.createElement('span');
+      span.className = 'depoimento__initials';
+      span.textContent = initials;
+      span.setAttribute('aria-hidden', 'true');
+      wrap.appendChild(span);
+    });
+  });
 })();

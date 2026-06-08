@@ -2,7 +2,7 @@
 
 Site estático de conversão para a agência de viagens **Viajando com a Babi**, focado em direcionar visitantes ao WhatsApp e ao Instagram.
 
-**URL de produção:** https://caio2121.github.io/viajando-com-a-babi/
+**URL de produção:** https://viajandocomababi.com.br/
 
 ---
 
@@ -61,7 +61,7 @@ Site estático de conversão para a agência de viagens **Viajando com a Babi**,
 
 | Canal | Valor |
 |---|---|
-| WhatsApp | +55 21 99203-6717 |
+| WhatsApp | +55 21 92006-4617 |
 | Instagram | [@viajandocomababi_](https://www.instagram.com/viajandocomababi_/) |
 
 ---
