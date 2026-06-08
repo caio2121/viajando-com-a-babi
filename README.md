@@ -81,6 +81,30 @@ Site estático de conversão para a agência de viagens **Viajando com a Babi**,
 - **Destaque de link ativo** na navbar conforme seção visível
 - **Acessibilidade**: respeita `prefers-reduced-motion`
 - **Mensagens WhatsApp pré-preenchidas** por pacote (URL encoded)
+- **Google Analytics 4** (`G-WGDNTSY8WM`) com rastreamento de pacotes, categorias e leads
+
+---
+
+## Manutenção, analytics e regras
+
+| Tema | Onde consultar |
+|------|----------------|
+| Regras do projeto (Cursor) | [`.cursor/rules/`](.cursor/rules/) |
+| Relatórios GA4 por pacote | [`docs/analytics-pacotes.md`](docs/analytics-pacotes.md) |
+| Funil comercial offline | [`docs/funil-offline.md`](docs/funil-offline.md) |
+
+### Ao adicionar um pacote novo
+
+1. Card em `index.html` com `data-destino` e `data-categoria` (`grupo-guia`, `completo`, `sem-aereo`).
+2. Imagem em `pacotes/` com `alt` descritivo e `data-lightbox` na imagem.
+3. CTA WhatsApp com mensagem citando o nome do pacote.
+4. Validar no GA4 DebugView: `view_item` (impressão) e `package_lead` (clique no WhatsApp).
+
+### Ao alterar eventos GA4
+
+1. Editar apenas `analytics.js` (eventos) ou `script.js` (hooks de UI).
+2. Atualizar `docs/analytics-pacotes.md` e bump `analytics.js?v=N` no `index.html`.
+3. **Nunca** enviar dados pessoais do formulário ao GA4.
 
 ---
 

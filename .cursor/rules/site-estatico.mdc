@@ -1,0 +1,26 @@
+---
+description: Convenções gerais do site estático Viajando com a Babi
+alwaysApply: true
+---
+
+# Site Viajando com a Babi
+
+Site estático single-page: `index.html`, `style.css`, `script.js`, `analytics.js`. Sem build.
+
+## SEO e arquivos de raiz
+
+Manter atualizados: `robots.txt`, `sitemap.xml` (novas páginas como `privacidade.html`), `llms.txt`, canonical `https://viajandocomababi.com.br/`.
+
+## Organização de scripts
+
+Ordem no `index.html`: GA4 (`gtag`) → `analytics.js` → `script.js`. Bump `?v=N` ao alterar CSS/JS.
+
+## Documentação
+
+- Funil comercial offline: `docs/funil-offline.md`
+- Leitura de relatórios GA4: `docs/analytics-pacotes.md`
+- Regras Cursor: `.cursor/rules/`
+
+## LGPD
+
+Formulário redireciona ao WhatsApp; política em `privacidade.html`. Analytics sem PII.

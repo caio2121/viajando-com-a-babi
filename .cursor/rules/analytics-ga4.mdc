@@ -1,0 +1,36 @@
+---
+description: GA4 e eventos de pacotes — analytics.js e script.js
+globs: analytics.js,script.js
+alwaysApply: false
+---
+
+# Analytics GA4 — Viajando com a Babi
+
+Measurement ID: `G-WGDNTSY8WM`. Toda lógica de eventos fica em `analytics.js`; `script.js` só chama `window.VCBAnalytics`.
+
+## Regras obrigatórias
+
+- **Nunca** enviar ao GA4: nome, e-mail, telefone, destino, datas, orçamento ou texto do formulário.
+- Novos eventos: usar `trackEvent()` ou métodos em `window.VCBAnalytics`.
+- Leads comerciais: preferir `generate_lead` e `package_lead` (pacote específico).
+- Ao abrir modal/form externo ao click delegado, chamar hook em `script.js` (ex.: `trackFormOpen`).
+
+## Eventos do catálogo (não remover sem atualizar docs)
+
+| Evento | Uso |
+|--------|-----|
+| `view_item` / `package_impression` | Card visível no viewport |
+| `select_item` / `destination_interest` | Clique no card/imagem |
+| `package_lead` | Lead WhatsApp de um pacote |
+| `package_category_view` | Categoria vista |
+| `form_start` / `form_submit` | Funil do formulário |
+
+## Parâmetros padrão de pacote
+
+Sempre que o evento for de pacote: `package_name`, `package_slug`, `package_category`, `package_region`.
+
+## Ao alterar analytics.js
+
+1. Atualizar `docs/analytics-pacotes.md`
+2. Bump `analytics.js?v=N` em `index.html`
+3. Validar no GA4 DebugView (clique pacote → `view_item`, WhatsApp → `package_lead`)

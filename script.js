@@ -219,7 +219,10 @@
     document.body.style.overflow = '';
   }
 
-  trigger && trigger.addEventListener('click', openModal);
+  trigger && trigger.addEventListener('click', () => {
+    if (window.VCBAnalytics) window.VCBAnalytics.trackFormOpen();
+    openModal();
+  });
   closeBtn && closeBtn.addEventListener('click', closeModal);
 
   modal.addEventListener('click', (e) => {
