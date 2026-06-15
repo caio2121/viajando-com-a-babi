@@ -335,7 +335,7 @@
 
   /* ── Impressões de pacotes (viewport) ──────────── */
 
-  (function initPackageImpressions() {
+  function initPackageImpressions() {
     const cards = document.querySelectorAll(PACKAGE_CARD_SELECTOR);
     if (!cards.length) return;
 
@@ -351,11 +351,11 @@
     );
 
     cards.forEach((card) => observer.observe(card));
-  })();
+  }
 
   /* ── Visualização de categorias e seções ───────── */
 
-  (function initSectionImpressions() {
+  function initSectionImpressions() {
     const categories = document.querySelectorAll('.pacotes__category[id]');
     const sections = document.querySelectorAll(
       '#como-funciona, #pacotes, #links, #pagamento, #faq, #depoimentos'
@@ -377,7 +377,23 @@
 
     categories.forEach((el) => observer.observe(el));
     sections.forEach((el) => observer.observe(el));
-  })();
+  }
+
+  function scheduleIdleObservers() {
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(function () {
+        initPackageImpressions();
+        initSectionImpressions();
+      }, { timeout: 4000 });
+    } else {
+      window.addEventListener('load', function () {
+        initPackageImpressions();
+        initSectionImpressions();
+      });
+    }
+  }
+
+  scheduleIdleObservers();
 
   /* ── Profundidade de scroll ────────────────────── */
 

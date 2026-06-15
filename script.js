@@ -138,6 +138,7 @@
       navLinks.classList.remove('open');
       hamburger && hamburger.classList.remove('open');
       hamburger && hamburger.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
     }
   }
 

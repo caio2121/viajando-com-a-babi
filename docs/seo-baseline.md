@@ -29,7 +29,37 @@ Documento de referência para a **Fase 8** do plano SEO/GEO (Viajando com a Babi
 
 - [Rich Results Test](https://search.google.com/test/rich-results) — `faq.html`
 - [Schema Markup Validator](https://validator.schema.org/) — home e páginas de serviço
-- [PageSpeed Insights](https://pagespeed.web.dev/) — mobile, URL `/`
+- [PageSpeed Insights](https://pagespeed.web.dev/) — mobile Slow 4G, URLs `/` e `/pacotes.html`
+
+## Performance mobile (PSI)
+
+Checklist pós-deploy (Moto G Power + Slow 4G):
+
+| URL | Verificar |
+|-----|-----------|
+| `/` | Performance ≥ 85 · LCP &lt; 2,8 s · render-blocking &lt; 800 ms · 23 cards |
+| `/pacotes.html` | Catálogo completo · imagens srcset · GA4 deferido |
+
+Metas mobile (jun/2026):
+
+| Métrica | Baseline | Meta |
+|---------|----------|------|
+| Performance | 69 | 85–92 |
+| FCP | 4,1 s | &lt; 2,0 s |
+| LCP | 5,6 s | &lt; 2,8 s |
+| Render-blocking | ~3,2 s | &lt; 0,8 s |
+
+Scripts de manutenção: `_optimize_images.py`, `_update_picture_srcset.py`, `_build_pacotes.py`, `_apply_head_partials.py`.
+
+## Cache (Cloudflare + GitHub Pages)
+
+GitHub Pages serve HTML com `Cache-Control: max-age=600` (10 min). Assets versionados (`style.css?v=20`, `script.js?v=20`) devem ter TTL longo via **Cloudflare Cache Rules**:
+
+| Padrão | TTL sugerido |
+|--------|--------------|
+| `/assets/*`, `/pacotes/*` | 1 ano |
+| `/*.css`, `/*.js` | 1 ano (query `?v=N` invalida) |
+| `/*.html` | Respeitar origem (10 min) ou 1 h |
 
 ## Métricas alvo (mobile)
 
@@ -57,3 +87,4 @@ Documento de referência para a **Fase 8** do plano SEO/GEO (Viajando com a Babi
 | Data | Fase | Resumo |
 |------|------|--------|
 | 2026-06 | 1–7 | FAQ hub, páginas institucionais, Schema expandido, robots.txt, logo-vcb, performance |
+| 2026-06 | Mobile | UX mobile (navbar, cards, FAB), defer GA4/fonts/FA, srcset 400w/800w, observers idle |
