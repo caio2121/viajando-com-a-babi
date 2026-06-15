@@ -7,10 +7,6 @@ head_assets = (root / "_partials/head-assets.html").read_text(encoding="utf-8")
 ga4 = (root / "_partials/ga4.html").read_text(encoding="utf-8")
 hub_footer = (root / "_partials/hub-footer.html").read_text(encoding="utf-8")
 
-fab_idx = hub_footer.find('class="fab-whatsapp"')
-fab_start = hub_footer.rfind('<a href="https://wa.me', 0, fab_idx)
-footer_tail = hub_footer[fab_start:]
-
 FONT_BLOCK = re.compile(
     r'  <link rel="preconnect" href="https://fonts\.googleapis\.com" />.*?'
     r'(?:<!-- Font Awesome.*?-->\s*)?'
@@ -25,15 +21,13 @@ GA4_BLOCK = re.compile(
     r'  <!-- Google Analytics 4.*?</script>\s*',
     re.DOTALL,
 )
-FOOTER_TAIL_OLD = re.compile(
-    r'  <a href="https://wa\.me/5521920064617[^"]*"\s+'
-    r'target="_blank" rel="noopener noreferrer"\s+'
-    r'class="fab-whatsapp"[^]*?</html>\s*$',
+FOOTER_BLOCK_OLD = re.compile(
+    r'  <footer id="contato"[\s\S]*?</html>\s*$',
     re.DOTALL,
 )
 SKIP_FOOTER_TAIL = {"index.html", "404.html", "privacidade.html"}
 
-pages = [p for p in root.glob("*.html") if p.name not in SKIP]
+pages = list(root.glob("*.html"))
 
 for path in pages:
     text = path.read_text(encoding="utf-8")
@@ -54,8 +48,8 @@ for path in pages:
     for old_js in ("6", "7"):
         text = text.replace(f"analytics.js?v={old_js}", "analytics.js?v=8")
 
-    if path.name not in SKIP_FOOTER_TAIL and "class=\"fab-whatsapp\"" in text:
-        text = FOOTER_TAIL_OLD.sub(footer_tail, text, count=1)
+    if path.name not in SKIP_FOOTER_TAIL and '<footer id="contato"' in text:
+        text = FOOTER_BLOCK_OLD.sub(hub_footer, text, count=1)
 
     if text != orig:
         path.write_text(text, encoding="utf-8")

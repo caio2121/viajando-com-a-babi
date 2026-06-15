@@ -20,7 +20,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
   </noscript>
-<link rel="stylesheet" href="style.css?v=21" />
+<link rel="stylesheet" href="style.css?v=22" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -33,11 +33,33 @@
     ]
   }
   </script>
-  <!-- Google Analytics 4 (carregamento adiado) -->
+  <!-- Google Analytics 4 + Consent Mode v2 -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
+    var VCB_CONSENT_KEY = 'vcb_consent_analytics';
+    var ga4Loaded = false;
+
+    gtag('consent', 'default', {
+      analytics_storage: 'denied',
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied',
+      wait_for_update: 500
+    });
+
+    function scheduleLoadGA4() {
+      if (ga4Loaded) return;
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(loadGA4, { timeout: 3000 });
+      } else {
+        window.addEventListener('load', loadGA4);
+      }
+    }
+
     function loadGA4() {
+      if (ga4Loaded) return;
+      ga4Loaded = true;
       var s = document.createElement('script');
       s.src = 'https://www.googletagmanager.com/gtag/js?id=G-WGDNTSY8WM';
       s.async = true;
@@ -47,11 +69,52 @@
       };
       document.head.appendChild(s);
     }
-    if ('requestIdleCallback' in window) {
-      requestIdleCallback(loadGA4, { timeout: 3000 });
-    } else {
-      window.addEventListener('load', loadGA4);
+
+    function grantAnalyticsConsent() {
+      try { localStorage.setItem(VCB_CONSENT_KEY, 'granted'); } catch (e) {}
+      gtag('consent', 'update', {
+        analytics_storage: 'granted',
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied'
+      });
+      scheduleLoadGA4();
+      var banner = document.getElementById('cookieBanner');
+      if (banner) banner.hidden = true;
     }
+
+    function denyAnalyticsConsent() {
+      try { localStorage.setItem(VCB_CONSENT_KEY, 'denied'); } catch (e) {}
+      gtag('consent', 'update', {
+        analytics_storage: 'denied',
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied'
+      });
+      var banner = document.getElementById('cookieBanner');
+      if (banner) banner.hidden = true;
+    }
+
+    window.VCBConsent = {
+      grant: grantAnalyticsConsent,
+      deny: denyAnalyticsConsent,
+      key: VCB_CONSENT_KEY
+    };
+
+    try {
+      var stored = localStorage.getItem(VCB_CONSENT_KEY);
+      if (stored === 'granted') {
+        gtag('consent', 'update', {
+          analytics_storage: 'granted',
+          ad_storage: 'denied',
+          ad_user_data: 'denied',
+          ad_personalization: 'denied'
+        });
+        scheduleLoadGA4();
+      } else if (stored === 'denied') {
+        denyAnalyticsConsent();
+      }
+    } catch (e) {}
   </script>
 </head>
 <body>
@@ -120,7 +183,7 @@
 
         <div class="footer__brand">
           <picture><source srcset="assets/logo-vcb.webp" type="image/webp" /><img src="assets/logo-vcb.png"
-               alt="Viajando com a Babi" class="footer__logo" ></picture>
+               alt="Viajando com a Babi" class="footer__logo" width="280" height="150" ></picture>
           <p>Pacotes e Roteiros personalizados para destinos que você sempre sonhou. Do planejamento ao embarque, cuidamos de tudo por você.</p>
         </div>
 
@@ -158,10 +221,10 @@
             <i class="fab fa-instagram"></i>
             <span>@viajandocomababi_</span>
           </a>
-          <a href="mailto:viajandocomababi@gmail.com"
+          <a href="mailto:contato@viajandocomababi.com.br"
              class="footer__social-link footer__social-link--email">
             <i class="fas fa-envelope"></i>
-            <span>viajandocomababi@gmail.com</span>
+            <span>contato@viajandocomababi.com.br</span>
           </a>
           <div class="footer__ctas">
             <a href="https://wa.me/5521920064617?text=Ol%C3%A1%20Babi!%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20os%20pacotes%20de%20viagem"
@@ -201,7 +264,10 @@
           <p>Agência de turismo regularizada pelo Ministério do Turismo</p>
         </div>
       </div>
-      <img src="assets/cadastur.jpg" alt="Certificado Cadastur | Viajando com a Babi" class="modal__img" loading="lazy" />
+      <picture>
+        <source srcset="assets/cadastur.webp" type="image/webp" />
+        <img data-src="assets/cadastur.jpg" alt="Certificado Cadastur | Viajando com a Babi" class="modal__img" width="430" height="304" decoding="async" />
+      </picture>
       <div class="modal__info">
         <div class="modal__info-item">
           <span>Cadastrado</span>
@@ -226,6 +292,39 @@
     <span class="fab-whatsapp__tooltip">Falar no WhatsApp</span>
   </a>
 
+  <div id="cookieBanner" class="cookie-banner" role="dialog" aria-label="Cookies e analytics" aria-live="polite" hidden>
+    <div class="cookie-banner__inner container">
+      <p class="cookie-banner__text">Usamos cookies de analytics (Google Analytics) para entender como o site é usado, sem enviar dados pessoais dos formulários. <a href="privacidade.html">Política de privacidade</a></p>
+      <div class="cookie-banner__actions">
+        <button type="button" class="btn btn--md cookie-banner__accept" id="cookieAccept">Aceitar analytics</button>
+        <button type="button" class="btn btn--outline btn--md cookie-banner__reject" id="cookieReject">Recusar</button>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function initCookieBanner() {
+      var banner = document.getElementById('cookieBanner');
+      if (!banner) return;
+      var key = (window.VCBConsent && window.VCBConsent.key) || 'vcb_consent_analytics';
+      try {
+        if (localStorage.getItem(key)) {
+          banner.hidden = true;
+          return;
+        }
+      } catch (e) {}
+      banner.hidden = false;
+      var accept = document.getElementById('cookieAccept');
+      var reject = document.getElementById('cookieReject');
+      accept && accept.addEventListener('click', function () {
+        window.VCBConsent && window.VCBConsent.grant();
+      });
+      reject && reject.addEventListener('click', function () {
+        window.VCBConsent && window.VCBConsent.deny();
+      });
+    })();
+  </script>
+
+  <script src="analytics.js?v=8"></script>
   <script src="script.js?v=20"></script>
 </body>
 </html>

@@ -12,13 +12,13 @@ assets_dir = root / "assets"
 QUALITY = 78
 
 
-def save_webp(img: Image.Image, path: Path, width: int) -> None:
+def save_webp(img: Image.Image, path: Path, width: int, quality: int = QUALITY) -> None:
     if img.width > width:
         ratio = width / img.width
         height = max(1, round(img.height * ratio))
         img = img.resize((width, height), Image.Resampling.LANCZOS)
-    img.save(path, "WEBP", quality=QUALITY, method=6)
-    print(f"  {path.relative_to(root)} ({img.width}x{img.height})")
+    img.save(path, "WEBP", quality=quality, method=6)
+    print(f"  {path.relative_to(root)} ({img.width}x{img.height}, q={quality})")
 
 
 def process_pacote_webp(webp_path: Path) -> None:
@@ -37,14 +37,22 @@ def process_pacote_webp(webp_path: Path) -> None:
             save_webp(img.copy(), w800, 800)
 
 
-def process_asset(name: str, max_width: int) -> None:
+def process_asset(name: str, max_width: int, quality: int = 85) -> None:
+    jpg = assets_dir / f"{name}.jpg"
+    png = assets_dir / f"{name}.png"
     webp = assets_dir / f"{name}.webp"
-    if not webp.exists():
+    src = jpg if jpg.exists() else png if png.exists() else webp
+    if not src.exists():
         return
-    with Image.open(webp) as img:
+    with Image.open(src) as img:
         img = img.convert("RGB")
         if img.width > max_width:
-            save_webp(img, webp, max_width)
+            save_webp(img, webp, max_width, quality)
+        elif src != webp:
+            save_webp(img, webp, img.width, quality)
+        elif img.width < max_width and src == jpg:
+            # WebP antigo menor que o JPG fonte: regenerar em alta resolução
+            save_webp(img, webp, min(img.width, max_width), quality)
 
 
 print("Pacotes:")
@@ -53,7 +61,7 @@ for webp in sorted(pacotes_dir.glob("*.webp")):
         process_pacote_webp(webp)
 
 print("Assets:")
-process_asset("babi-sobre", 480)
-process_asset("cadastur", 860)
+process_asset("babi-sobre", 960)
+process_asset("cadastur", 960, quality=88)
 
 print("Concluído.")

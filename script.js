@@ -122,11 +122,22 @@
 
   if (!modal) return;
 
-  const modalImg = modal.querySelector('.modal__img[data-src]');
+  const modalImg = modal.querySelector('.modal__img');
+
+  function resolveModalImgSrc(img) {
+    if (!img) return '';
+    const picture = img.closest('picture');
+    if (picture) {
+      const webp = picture.querySelector('source[type="image/webp"]');
+      if (webp && webp.srcset) return webp.srcset;
+    }
+    return img.getAttribute('data-src') || '';
+  }
 
   function openModal() {
-    if (modalImg && modalImg.dataset.src && !modalImg.getAttribute('src')) {
-      modalImg.src = modalImg.dataset.src;
+    if (modalImg && !modalImg.getAttribute('src')) {
+      const src = resolveModalImgSrc(modalImg);
+      if (src) modalImg.src = src;
     }
     modal.classList.add('open');
     document.body.style.overflow = 'hidden';
