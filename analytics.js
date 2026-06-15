@@ -400,6 +400,7 @@
 
   (function initScrollDepth() {
     const marks = [25, 50, 75, 90];
+    const scrollMarks = new Set();
     let maxScroll = 0;
     let ticking = false;
 
@@ -518,6 +519,24 @@
         destination_slug: 'roteiro_personalizado',
         interaction_type: 'custom_itinerary_cta'
       });
+      return;
+    }
+
+    const ctaLink = e.target.closest(
+      '.faq__cta a, .btn--outline, .depoimentos__cta a, .como-funciona__cta a, ' +
+      '.servicos-hub__grid a, .internal-nav a, .internal-page a.btn, .error-page a.btn, ' +
+      '.servico-card a, .links__grid a'
+    );
+    if (ctaLink) {
+      const href = ctaLink.getAttribute('href') || '';
+      if (href && !href.startsWith('#') && !href.includes('wa.me') &&
+          !href.startsWith('mailto:') && !href.includes('instagram.com')) {
+        trackEvent('cta_click', {
+          cta_text: getCtaText(ctaLink),
+          cta_location: getCtaLocation(ctaLink),
+          link_url: href
+        });
+      }
     }
   });
 })();

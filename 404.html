@@ -7,7 +7,7 @@
   <title>Página não encontrada | Viajando com a Babi</title>
   <link rel="icon" type="image/png" href="assets/logo-vcb.png" />
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css?v=21" />
+  <link rel="stylesheet" href="style.css?v=22" />
   <style>
     .error-page {
       min-height: 100vh;
@@ -24,6 +24,89 @@
     .error-page__links { margin-top: 20px; font-size: 0.9rem; }
     .error-page__links a { color: var(--clr-primary-d); font-weight: 700; margin: 0 8px; }
   </style>
+  <!-- Google Analytics 4 + Consent Mode v2 -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    var VCB_CONSENT_KEY = 'vcb_consent_analytics';
+    var ga4Loaded = false;
+
+    gtag('consent', 'default', {
+      analytics_storage: 'denied',
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied',
+      wait_for_update: 500
+    });
+
+    function scheduleLoadGA4() {
+      if (ga4Loaded) return;
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(loadGA4, { timeout: 3000 });
+      } else {
+        window.addEventListener('load', loadGA4);
+      }
+    }
+
+    function loadGA4() {
+      if (ga4Loaded) return;
+      ga4Loaded = true;
+      var s = document.createElement('script');
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-WGDNTSY8WM';
+      s.async = true;
+      s.onload = function() {
+        gtag('js', new Date());
+        gtag('config', 'G-WGDNTSY8WM', { send_page_view: true });
+      };
+      document.head.appendChild(s);
+    }
+
+    function grantAnalyticsConsent() {
+      try { localStorage.setItem(VCB_CONSENT_KEY, 'granted'); } catch (e) {}
+      gtag('consent', 'update', {
+        analytics_storage: 'granted',
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied'
+      });
+      scheduleLoadGA4();
+      var banner = document.getElementById('cookieBanner');
+      if (banner) banner.hidden = true;
+    }
+
+    function denyAnalyticsConsent() {
+      try { localStorage.setItem(VCB_CONSENT_KEY, 'denied'); } catch (e) {}
+      gtag('consent', 'update', {
+        analytics_storage: 'denied',
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied'
+      });
+      var banner = document.getElementById('cookieBanner');
+      if (banner) banner.hidden = true;
+    }
+
+    window.VCBConsent = {
+      grant: grantAnalyticsConsent,
+      deny: denyAnalyticsConsent,
+      key: VCB_CONSENT_KEY
+    };
+
+    try {
+      var stored = localStorage.getItem(VCB_CONSENT_KEY);
+      if (stored === 'granted') {
+        gtag('consent', 'update', {
+          analytics_storage: 'granted',
+          ad_storage: 'denied',
+          ad_user_data: 'denied',
+          ad_personalization: 'denied'
+        });
+        scheduleLoadGA4();
+      } else if (stored === 'denied') {
+        denyAnalyticsConsent();
+      }
+    } catch (e) {}
+  </script>
 </head>
 <body>
   <main class="error-page">
@@ -45,5 +128,39 @@
       </p>
     </div>
   </main>
+
+  <div id="cookieBanner" class="cookie-banner" role="dialog" aria-label="Cookies e analytics" aria-live="polite" hidden>
+    <div class="cookie-banner__inner container">
+      <p class="cookie-banner__text">Usamos cookies de analytics (Google Analytics) para entender como o site é usado, sem enviar dados pessoais dos formulários. <a href="privacidade.html">Política de privacidade</a></p>
+      <div class="cookie-banner__actions">
+        <button type="button" class="btn btn--md cookie-banner__accept" id="cookieAccept">Aceitar analytics</button>
+        <button type="button" class="btn btn--outline btn--md cookie-banner__reject" id="cookieReject">Recusar</button>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function initCookieBanner() {
+      var banner = document.getElementById('cookieBanner');
+      if (!banner) return;
+      var key = (window.VCBConsent && window.VCBConsent.key) || 'vcb_consent_analytics';
+      try {
+        if (localStorage.getItem(key)) {
+          banner.hidden = true;
+          return;
+        }
+      } catch (e) {}
+      banner.hidden = false;
+      var accept = document.getElementById('cookieAccept');
+      var reject = document.getElementById('cookieReject');
+      accept && accept.addEventListener('click', function () {
+        window.VCBConsent && window.VCBConsent.grant();
+      });
+      reject && reject.addEventListener('click', function () {
+        window.VCBConsent && window.VCBConsent.deny();
+      });
+    })();
+  </script>
+
+  <script src="analytics.js?v=8"></script>
 </body>
 </html>

@@ -1,10 +1,15 @@
-"""Aplica head-assets e GA4 deferido nas páginas HTML estáticas."""
+"""Aplica head-assets, GA4+consent e footer scripts nas páginas HTML estáticas."""
 import re
 from pathlib import Path
 
 root = Path(__file__).parent
 head_assets = (root / "_partials/head-assets.html").read_text(encoding="utf-8")
 ga4 = (root / "_partials/ga4.html").read_text(encoding="utf-8")
+hub_footer = (root / "_partials/hub-footer.html").read_text(encoding="utf-8")
+
+fab_idx = hub_footer.find('class="fab-whatsapp"')
+fab_start = hub_footer.rfind('<a href="https://wa.me', 0, fab_idx)
+footer_tail = hub_footer[fab_start:]
 
 FONT_BLOCK = re.compile(
     r'  <link rel="preconnect" href="https://fonts\.googleapis\.com" />.*?'
@@ -17,14 +22,18 @@ FONT_BLOCK_ALT = re.compile(
     r'  <link rel="stylesheet" href="https://cdnjs\.cloudflare\.com/ajax/libs/font-awesome/6\.5\.2/css/all\.min\.css"[^>]*/>\s*',
 )
 GA4_BLOCK = re.compile(
-    r'  <!-- Google Analytics 4.*?<!-- Google Analytics 4 \(carregamento adiado\) -->.*?</script>\s*|'
-    r'  <!-- Google Analytics 4 -->.*?</script>\s*|'
-    r'<script async src="https://www\.googletagmanager\.com/gtag/js[^"]*"></script>\s*'
-    r'<script>\s*window\.dataLayer.*?gtag\(\'config\'.*?</script>\s*',
+    r'  <!-- Google Analytics 4.*?</script>\s*',
     re.DOTALL,
 )
+FOOTER_TAIL_OLD = re.compile(
+    r'  <a href="https://wa\.me/5521920064617[^"]*"\s+'
+    r'target="_blank" rel="noopener noreferrer"\s+'
+    r'class="fab-whatsapp"[^]*?</html>\s*$',
+    re.DOTALL,
+)
+SKIP_FOOTER_TAIL = {"index.html", "404.html", "privacidade.html"}
 
-pages = [p for p in root.glob("*.html") if p.name not in ("404.html", "pacotes.html", "index.html")]
+pages = [p for p in root.glob("*.html") if p.name not in SKIP]
 
 for path in pages:
     text = path.read_text(encoding="utf-8")
@@ -36,14 +45,17 @@ for path in pages:
         elif FONT_BLOCK_ALT.search(text):
             text = FONT_BLOCK_ALT.sub(head_assets, text, count=1)
 
-    text = GA4_BLOCK.sub("", text)
-    if "loadGA4" not in text:
+    text = GA4_BLOCK.sub(ga4, text, count=1)
+    if "VCB_CONSENT_KEY" not in text:
         text = text.replace("</head>", ga4 + "</head>")
 
-    for old in ("15", "16", "17", "18", "19"):
-        text = text.replace(f"style.css?v={old}", "style.css?v=21")
-        text = text.replace(f"script.js?v={old}", "script.js?v=20")
-        text = text.replace(f"analytics.js?v={old}", "analytics.js?v=6")
+    for old_css in ("15", "16", "17", "18", "19", "20", "21"):
+        text = text.replace(f"style.css?v={old_css}", "style.css?v=22")
+    for old_js in ("6", "7"):
+        text = text.replace(f"analytics.js?v={old_js}", "analytics.js?v=8")
+
+    if path.name not in SKIP_FOOTER_TAIL and "class=\"fab-whatsapp\"" in text:
+        text = FOOTER_TAIL_OLD.sub(footer_tail, text, count=1)
 
     if text != orig:
         path.write_text(text, encoding="utf-8")

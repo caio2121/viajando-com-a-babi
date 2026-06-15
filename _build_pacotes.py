@@ -31,7 +31,7 @@ head = f"""<!DOCTYPE html>
   <meta property="og:locale" content="pt_BR" />
   <meta name="twitter:card" content="summary_large_image" />
   <link rel="icon" type="image/png" href="assets/logo-vcb.png" />
-{head_assets}  <link rel="stylesheet" href="style.css?v=21" />
+{head_assets}  <link rel="stylesheet" href="style.css?v=22" />
   <script type="application/ld+json">
   {{
     "@context": "https://schema.org",
@@ -72,10 +72,8 @@ lightbox = """
   </div>
 
 """
-template_tail = hub_footer.replace(
-    '  <script src="script.js?v=20"></script>',
-    lightbox + '  <script src="analytics.js?v=7"></script>\n  <script src="script.js?v=20"></script>',
-)
+cookie_idx = hub_footer.find('<div id="cookieBanner"')
+template_tail = hub_footer[:cookie_idx] + lightbox + hub_footer[cookie_idx:]
 
 (root / "pacotes.html").write_text(head + hub_header + main + template_tail, encoding="utf-8")
 print("pacotes.html atualizado")

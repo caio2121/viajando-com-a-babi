@@ -41,6 +41,16 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://viajandocomababi.com.br/viagem-europa.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://viajandocomababi.com.br/viagem-em-familia.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://viajandocomababi.com.br/faq.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>

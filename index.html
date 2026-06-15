@@ -45,13 +45,35 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
   </noscript>
 
-  <link rel="stylesheet" href="style.css?v=21" />
+  <link rel="stylesheet" href="style.css?v=22" />
 
-  <!-- Google Analytics 4 (carregamento adiado) -->
+  <!-- Google Analytics 4 + Consent Mode v2 -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
+    var VCB_CONSENT_KEY = 'vcb_consent_analytics';
+    var ga4Loaded = false;
+
+    gtag('consent', 'default', {
+      analytics_storage: 'denied',
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied',
+      wait_for_update: 500
+    });
+
+    function scheduleLoadGA4() {
+      if (ga4Loaded) return;
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(loadGA4, { timeout: 3000 });
+      } else {
+        window.addEventListener('load', loadGA4);
+      }
+    }
+
     function loadGA4() {
+      if (ga4Loaded) return;
+      ga4Loaded = true;
       var s = document.createElement('script');
       s.src = 'https://www.googletagmanager.com/gtag/js?id=G-WGDNTSY8WM';
       s.async = true;
@@ -61,11 +83,52 @@
       };
       document.head.appendChild(s);
     }
-    if ('requestIdleCallback' in window) {
-      requestIdleCallback(loadGA4, { timeout: 3000 });
-    } else {
-      window.addEventListener('load', loadGA4);
+
+    function grantAnalyticsConsent() {
+      try { localStorage.setItem(VCB_CONSENT_KEY, 'granted'); } catch (e) {}
+      gtag('consent', 'update', {
+        analytics_storage: 'granted',
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied'
+      });
+      scheduleLoadGA4();
+      var banner = document.getElementById('cookieBanner');
+      if (banner) banner.hidden = true;
     }
+
+    function denyAnalyticsConsent() {
+      try { localStorage.setItem(VCB_CONSENT_KEY, 'denied'); } catch (e) {}
+      gtag('consent', 'update', {
+        analytics_storage: 'denied',
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied'
+      });
+      var banner = document.getElementById('cookieBanner');
+      if (banner) banner.hidden = true;
+    }
+
+    window.VCBConsent = {
+      grant: grantAnalyticsConsent,
+      deny: denyAnalyticsConsent,
+      key: VCB_CONSENT_KEY
+    };
+
+    try {
+      var stored = localStorage.getItem(VCB_CONSENT_KEY);
+      if (stored === 'granted') {
+        gtag('consent', 'update', {
+          analytics_storage: 'granted',
+          ad_storage: 'denied',
+          ad_user_data: 'denied',
+          ad_personalization: 'denied'
+        });
+        scheduleLoadGA4();
+      } else if (stored === 'denied') {
+        denyAnalyticsConsent();
+      }
+    } catch (e) {}
   </script>
 
   <!-- Schema.org JSON-LD -->
@@ -149,6 +212,20 @@
         "provider": { "@id": "https://viajandocomababi.com.br/#organization" },
         "areaServed": "BR",
         "url": "https://viajandocomababi.com.br/roteiro-personalizado.html"
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://viajandocomababi.com.br/#faq",
+        "mainEntity": [
+          { "@type": "Question", "name": "Consigo planejar minha viagem sozinho?", "acceptedAnswer": { "@type": "Answer", "text": "Sim, mas uma consultoria economiza tempo, evita erros caros e garante um roteiro alinhado ao seu perfil, com suporte humano em cada etapa." }},
+          { "@type": "Question", "name": "Vale a pena pagar por consultoria de viagem?", "acceptedAnswer": { "@type": "Answer", "text": "Para quem quer praticidade, segurança e experiência personalizada, sim. A Babi cuida de passagens, hotéis, passeios e detalhes que fazem toda a diferença." }},
+          { "@type": "Question", "name": "Quanto custa um roteiro personalizado?", "acceptedAnswer": { "@type": "Answer", "text": "Depende do destino, época e perfil da viagem. O orçamento é sempre personalizado. Fale comigo pelo WhatsApp ou formulário e receba opções sob medida." }},
+          { "@type": "Question", "name": "Você compra passagens e hotéis por mim?", "acceptedAnswer": { "@type": "Answer", "text": "Sim. Organizo reservas, monto pacotes completos com aéreo e hospedagem, e acompanho você até o embarque." }},
+          { "@type": "Question", "name": "Funciona para lua de mel?", "acceptedAnswer": { "@type": "Answer", "text": "Com certeza! Já organizei luas de mel na Itália, Paris, Amsterdã e outros destinos dos sonhos, com atenção a cada detalhe." }},
+          { "@type": "Question", "name": "Funciona para viagem internacional?", "acceptedAnswer": { "@type": "Answer", "text": "Sim. Atendo destinos nacionais e internacionais: Europa, América do Sul, Caribe, cruzeiros e muito mais." }},
+          { "@type": "Question", "name": "Com quanta antecedência devo contratar?", "acceptedAnswer": { "@type": "Answer", "text": "Quanto antes, melhor, especialmente para alta temporada e internacionais. Mas também atendo viagens com prazos mais curtos, conforme disponibilidade." }},
+          { "@type": "Question", "name": "Como solicito um orçamento?", "acceptedAnswer": { "@type": "Answer", "text": "Pelo WhatsApp (+55 21 92006-4617), e-mail viajandocomababi@gmail.com ou pelo formulário de viagem personalizada aqui no site." }}
+        ]
       }
     ]
   }
@@ -202,7 +279,7 @@
     <div class="hero__content">
       <picture><source srcset="assets/logo-vcb.webp" type="image/webp" /><img src="assets/logo-vcb.png"
            alt="Viajando com a Babi" class="hero__logo"
-           width="405" height="120" fetchpriority="low" ></picture>
+           width="405" height="120" fetchpriority="high" ></picture>
       <h1 class="hero__tagline">O mundo te espera.<br><span>Vamos juntos?</span></h1>
       <p class="hero__seo-lead">Pacotes de viagem com aéreo e hospedagem + roteiros personalizados para destinos nacionais e internacionais. Agência Cadastur, com atendimento humano pelo WhatsApp.</p>
       <p class="hero__sub">Eu cuido de cada detalhe. Você só embarca.</p>
@@ -1295,7 +1372,7 @@
     <div class="container">
       <span class="label label--center">Avaliações reais no Google</span>
       <h2 class="section-title">O que dizem os clientes que já viajaram com a Babi?</h2>
-      <p class="section-sub">Depoimentos reais, incluindo <a href="lua-de-mel.html">planejamento de lua de mel</a> e viagens em família.</p>
+      <p class="section-sub">Depoimentos reais, incluindo <a href="lua-de-mel.html">planejamento de lua de mel</a> e <a href="viagem-em-familia.html">viagens em família</a>.</p>
 
       <div class="depoimentos__grid">
 
@@ -1605,7 +1682,39 @@
     <span class="fab-whatsapp__tooltip">Falar no WhatsApp</span>
   </a>
 
-  <script src="analytics.js?v=7"></script>
+  <div id="cookieBanner" class="cookie-banner" role="dialog" aria-label="Cookies e analytics" aria-live="polite" hidden>
+    <div class="cookie-banner__inner container">
+      <p class="cookie-banner__text">Usamos cookies de analytics (Google Analytics) para entender como o site é usado, sem enviar dados pessoais dos formulários. <a href="privacidade.html">Política de privacidade</a></p>
+      <div class="cookie-banner__actions">
+        <button type="button" class="btn btn--md cookie-banner__accept" id="cookieAccept">Aceitar analytics</button>
+        <button type="button" class="btn btn--outline btn--md cookie-banner__reject" id="cookieReject">Recusar</button>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function initCookieBanner() {
+      var banner = document.getElementById('cookieBanner');
+      if (!banner) return;
+      var key = (window.VCBConsent && window.VCBConsent.key) || 'vcb_consent_analytics';
+      try {
+        if (localStorage.getItem(key)) {
+          banner.hidden = true;
+          return;
+        }
+      } catch (e) {}
+      banner.hidden = false;
+      var accept = document.getElementById('cookieAccept');
+      var reject = document.getElementById('cookieReject');
+      accept && accept.addEventListener('click', function () {
+        window.VCBConsent && window.VCBConsent.grant();
+      });
+      reject && reject.addEventListener('click', function () {
+        window.VCBConsent && window.VCBConsent.deny();
+      });
+    })();
+  </script>
+
+  <script src="analytics.js?v=8"></script>
   <script src="script.js?v=20"></script>
 </body>
 </html>

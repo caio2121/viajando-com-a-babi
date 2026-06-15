@@ -14,6 +14,7 @@ Guia para ler no GA4 quais pacotes e categorias geram mais interesse.
 | Clicou "Quero esse pacote!" | `purchase` + `service_click` + `generate_lead` + `package_lead` | Tentativa de compra (coluna **Itens comprados**) + lead |
 | Abriu formulário | `form_start` | Interesse em roteiro personalizado |
 | Enviou formulário | `form_submit` + `generate_lead` | Lead qualificado (sem PII) |
+| Clicou CTA interno (catálogo, FAQ, serviços) | `cta_click` | Exploração sem contato direto |
 
 ## Parâmetros principais (criar dimensões customizadas no GA4)
 
