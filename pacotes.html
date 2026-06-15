@@ -16,7 +16,7 @@
   <link rel="icon" type="image/png" href="assets/logo-vcb.png" />
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link rel="stylesheet" href="style.css?v=17" />
+  <link rel="stylesheet" href="style.css?v=18" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -39,10 +39,10 @@
   </script>
 </head>
 <body>
-          <header class="navbar" id="navbar">
+            <header class="navbar" id="navbar">
     <div class="navbar__container">
       <a href="/" class="navbar__logo">
-        <picture><source srcset="assets/logo-vcb.webp" type="image/webp" /><img src="assets/logo-vcb.png" alt="Viajando com a Babi" width="200" height="62" ></picture>
+        <picture><source srcset="assets/logo-vcb.webp" type="image/webp" /><img src="assets/logo-vcb.png" alt="Viajando com a Babi" width="200" height="62" fetchpriority="high" ></picture>
       </a>
 
       <nav class="navbar__links" id="navLinks">
@@ -768,7 +768,7 @@
 
         <div class="footer__brand">
           <picture><source srcset="assets/logo-vcb.webp" type="image/webp" /><img src="assets/logo-vcb.png"
-               alt="Viajando com a Babi" class="footer__logo" ></picture>
+               alt="Viajando com a Babi" class="footer__logo" width="280" height="150" ></picture>
           <p>Pacotes e Roteiros personalizados para destinos que você sempre sonhou. Do planejamento ao embarque, cuidamos de tudo por você.</p>
         </div>
 
@@ -849,7 +849,7 @@
           <p>Agência de turismo regularizada pelo Ministério do Turismo</p>
         </div>
       </div>
-      <img src="assets/cadastur.jpg" alt="Certificado Cadastur | Viajando com a Babi" class="modal__img" loading="lazy" />
+      <img data-src="assets/cadastur.webp" alt="Certificado Cadastur | Viajando com a Babi" class="modal__img" width="430" height="304" />
       <div class="modal__info">
         <div class="modal__info-item">
           <span>Cadastrado</span>
@@ -874,13 +874,6 @@
     <span class="fab-whatsapp__tooltip">Falar no WhatsApp</span>
   </a>
 
-
-  <div class="lightbox-overlay" id="lightbox" role="dialog" aria-modal="true" aria-label="Visualizar imagem">
-    <button class="lightbox__close" id="lightboxClose" aria-label="Fechar imagem">&#x2715;</button>
-    <img class="lightbox__img" id="lightboxImg" src="" alt="" />
-  </div>
-
-  <script src="analytics.js?v=4"></script>
-  <script src="script.js?v=17"></script>
+  <script src="script.js?v=18"></script>
 </body>
 </html>

@@ -78,8 +78,9 @@ ul  { list-style: none; }
   font-weight: 800;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--clr-primary-d);
+  color: var(--clr-dark);
   background: var(--clr-primary-l);
+  border: 1px solid rgba(23, 37, 42, 0.14);
   padding: 4px 12px;
   border-radius: 99px;
   margin-bottom: 12px;
@@ -909,17 +910,30 @@ ul  { list-style: none; }
   font-size: 1.8rem;
   box-shadow: 0 4px 20px rgba(37,211,102,0.5);
   transition: transform var(--transition), box-shadow var(--transition);
+  will-change: transform;
+}
+.fab-whatsapp::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: rgba(37,211,102,0.35);
   animation: fabPulse 3s ease-in-out infinite;
+  z-index: -1;
+  pointer-events: none;
 }
 .fab-whatsapp:hover {
   transform: scale(1.12);
   box-shadow: 0 6px 28px rgba(37,211,102,0.65);
+}
+.fab-whatsapp:hover::before {
   animation: none;
+  opacity: 0;
 }
 
 @keyframes fabPulse {
-  0%, 100% { box-shadow: 0 4px 20px rgba(37,211,102,0.5); }
-  50%       { box-shadow: 0 4px 32px rgba(37,211,102,0.8), 0 0 0 10px rgba(37,211,102,0.12); }
+  0%, 100% { transform: scale(1); opacity: 0.35; }
+  50%       { transform: scale(1.35); opacity: 0; }
 }
 
 .fab-whatsapp__tooltip {

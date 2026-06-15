@@ -33,6 +33,8 @@
   <link rel="icon" type="image/png" href="assets/logo-vcb.png" />
   <link rel="apple-touch-icon" href="assets/logo-vcb.png" />
 
+  <link rel="preload" as="image" href="assets/logo-vcb.webp" type="image/webp" fetchpriority="high" />
+
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -41,7 +43,7 @@
   <!-- Font Awesome (sem integrity para evitar bloqueio SRI em GitHub Pages) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-  <link rel="stylesheet" href="style.css?v=17" />
+  <link rel="stylesheet" href="style.css?v=18" />
 
   <!-- Google Analytics 4 -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-WGDNTSY8WM"></script>
@@ -140,7 +142,7 @@
   <header class="navbar" id="navbar">
     <div class="navbar__container">
       <a href="/" class="navbar__logo">
-        <picture><source srcset="assets/logo-vcb.webp" type="image/webp" /><img src="assets/logo-vcb.png" alt="Viajando com a Babi" width="200" height="62" ></picture>
+        <picture><source srcset="assets/logo-vcb.webp" type="image/webp" /><img src="assets/logo-vcb.png" alt="Viajando com a Babi" width="200" height="62" fetchpriority="high" ></picture>
       </a>
 
       <nav class="navbar__links" id="navLinks">
@@ -179,7 +181,7 @@
     <div class="hero__content">
       <picture><source srcset="assets/logo-vcb.webp" type="image/webp" /><img src="assets/logo-vcb.png"
            alt="Viajando com a Babi" class="hero__logo"
-           width="405" height="120" fetchpriority="high" ></picture>
+           width="405" height="120" fetchpriority="low" ></picture>
       <h1 class="hero__tagline">O mundo te espera.<br><span>Vamos juntos?</span></h1>
       <p class="hero__seo-lead">Pacotes de viagem com aéreo e hospedagem + roteiros personalizados para destinos nacionais e internacionais. Agência Cadastur, com atendimento humano pelo WhatsApp.</p>
       <p class="hero__sub">Eu cuido de cada detalhe. Você só embarca.</p>
@@ -1301,7 +1303,7 @@
 
         <div class="footer__brand">
           <picture><source srcset="assets/logo-vcb.webp" type="image/webp" /><img src="assets/logo-vcb.png"
-               alt="Viajando com a Babi" class="footer__logo" ></picture>
+               alt="Viajando com a Babi" class="footer__logo" width="280" height="150" ></picture>
           <p>Pacotes e Roteiros personalizados para destinos que você sempre sonhou. Do planejamento ao embarque, cuidamos de tudo por você.</p>
         </div>
 
@@ -1385,7 +1387,7 @@
           <p>Agência de turismo regularizada pelo Ministério do Turismo</p>
         </div>
       </div>
-      <img src="assets/cadastur.jpg" alt="Certificado Cadastur | Viajando com a Babi" class="modal__img" loading="lazy" />
+      <img data-src="assets/cadastur.webp" alt="Certificado Cadastur | Viajando com a Babi" class="modal__img" width="430" height="304" />
       <div class="modal__info">
         <div class="modal__info-item">
           <span>Cadastrado</span>
@@ -1470,7 +1472,7 @@
     <span class="fab-whatsapp__tooltip">Falar no WhatsApp</span>
   </a>
 
-  <script src="analytics.js?v=4"></script>
-  <script src="script.js?v=17"></script>
+  <script src="analytics.js?v=5"></script>
+  <script src="script.js?v=18"></script>
 </body>
 </html>
