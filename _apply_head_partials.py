@@ -41,7 +41,7 @@ for path in pages:
         text = text.replace("</head>", ga4 + "</head>")
 
     for old in ("15", "16", "17", "18", "19"):
-        text = text.replace(f"style.css?v={old}", "style.css?v=20")
+        text = text.replace(f"style.css?v={old}", "style.css?v=21")
         text = text.replace(f"script.js?v={old}", "script.js?v=20")
         text = text.replace(f"analytics.js?v={old}", "analytics.js?v=6")
 

@@ -31,7 +31,7 @@ head = f"""<!DOCTYPE html>
   <meta property="og:locale" content="pt_BR" />
   <meta name="twitter:card" content="summary_large_image" />
   <link rel="icon" type="image/png" href="assets/logo-vcb.png" />
-{head_assets}  <link rel="stylesheet" href="style.css?v=20" />
+{head_assets}  <link rel="stylesheet" href="style.css?v=21" />
   <script type="application/ld+json">
   {{
     "@context": "https://schema.org",
