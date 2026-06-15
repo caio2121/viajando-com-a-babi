@@ -12,9 +12,16 @@
   <meta property="og:description" content="Dúvidas sobre pacotes de viagem, consultoria e roteiros personalizados." />
   <meta property="og:image" content="https://viajandocomababi.com.br/assets/og-share.jpeg" />
   <link rel="icon" type="image/png" href="assets/logo-vcb.png" />
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link rel="stylesheet" href="style.css?v=17" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Dancing+Script:wght@600;700&display=swap" media="print" onload="this.media='all'" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" media="print" onload="this.media='all'" />
+    <noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  </noscript>
+
+<link rel="stylesheet" href="style.css?v=19" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -32,6 +39,27 @@
       { "@type": "Question", "name": "A agência é regularizada?", "acceptedAnswer": { "@type": "Answer", "text": "Sim. Viajando com a Babi é agência de turismo regularizada pelo Cadastur (CNPJ 60.536.280/0001-89)." }}
     ]
   }
+  </script>
+  <!-- Google Analytics 4 (carregamento adiado) -->
+    <!-- Google Analytics 4 (carregamento adiado) -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    function loadGA4() {
+      var s = document.createElement('script');
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-WGDNTSY8WM';
+      s.async = true;
+      s.onload = function() {
+        gtag('js', new Date());
+        gtag('config', 'G-WGDNTSY8WM', { send_page_view: true });
+      };
+      document.head.appendChild(s);
+    }
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(loadGA4, { timeout: 3000 });
+    } else {
+      window.addEventListener('load', loadGA4);
+    }
   </script>
 </head>
 <body>
@@ -200,6 +228,6 @@
     <span class="fab-whatsapp__tooltip">Falar no WhatsApp</span>
   </a>
 
-  <script src="script.js?v=17"></script>
+  <script src="script.js?v=19"></script>
 </body>
 </html>

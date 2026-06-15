@@ -1,25 +1,65 @@
-"""Regenera pacotes.html a partir dos cards em index.html. Executar após alterar pacotes na home."""
+"""Regenera pacotes.html a partir do catálogo completo em index.html. Executar após alterar pacotes."""
 from pathlib import Path
 
 root = Path(__file__).parent
 index = (root / "index.html").read_text(encoding="utf-8")
 
-start = index.find('<div class="pacotes__category" id="pacotes-completos">')
-cta_start = index.find('<div class="pacotes__cta-extra">')
-cta_end = index.find("</div>", cta_start) + len("</div>")
+start_marker = "<!-- PACOTES_CATALOGO_INICIO -->"
+end_marker = "<!-- PACOTES_CATALOGO_FIM -->"
 
-blocks = index[start:cta_start]
-cta_block = index[cta_start:cta_end]
+if start_marker not in index:
+    raise SystemExit("Marcadores PACOTES_CATALOGO não encontrados em index.html.")
 
-head_before = (root / "pacotes.html").read_text(encoding="utf-8").split("<header class=\"navbar\"")[0]
-head_before = head_before.replace("style.css?v=15", "style.css?v=17").replace("style.css?v=16", "style.css?v=17")
+src_start = index.index(start_marker) + len(start_marker)
+src_end = index.index(end_marker)
+catalog_html = index[src_start:src_end].strip()
+
+inner_start = catalog_html.find('<div class="pacotes__category" id="pacotes-completos">')
+cta_start = catalog_html.find('<div class="pacotes__cta-extra">')
+cta_end = catalog_html.find("</div>", cta_start) + len("</div>")
+
+blocks = catalog_html[inner_start:cta_start]
+cta_block = catalog_html[cta_start:cta_end]
+
+head_assets = (root / "_partials/head-assets.html").read_text(encoding="utf-8")
 ga4 = (root / "_partials/ga4.html").read_text(encoding="utf-8")
-if "G-WGDNTSY8WM" not in head_before:
-    head_before = head_before.replace("</head>", ga4 + "</head>")
 hub_header = (root / "_partials/hub-header.html").read_text(encoding="utf-8")
-head_end = head_before + hub_header
 
-main = f"""  <section id="pacotes" class="pacotes pacotes-page">
+head = f"""<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pacotes de viagem | Viajando com a Babi</title>
+  <meta name="description" content="Catálogo de pacotes de viagem com aéreo e hospedagem: Nordeste, Gramado, América do Sul, Caribe e cruzeiros. Agência Cadastur. Fale com a Babi." />
+  <link rel="canonical" href="https://viajandocomababi.com.br/pacotes.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://viajandocomababi.com.br/pacotes.html" />
+  <meta property="og:title" content="Pacotes de viagem | Viajando com a Babi" />
+  <meta property="og:description" content="Pacotes de viagem com aéreo e hospedagem para destinos nacionais e internacionais." />
+  <meta property="og:image" content="https://viajandocomababi.com.br/assets/og-share.jpeg" />
+  <meta property="og:locale" content="pt_BR" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" type="image/png" href="assets/logo-vcb.png" />
+{head_assets}  <link rel="stylesheet" href="style.css?v=19" />
+  <script type="application/ld+json">
+  {{
+    "@context": "https://schema.org",
+    "@graph": [
+      {{ "@type": "WebPage", "@id": "https://viajandocomababi.com.br/pacotes.html#webpage", "url": "https://viajandocomababi.com.br/pacotes.html", "name": "Pacotes de viagem | Viajando com a Babi", "isPartOf": {{ "@id": "https://viajandocomababi.com.br/#website" }} }},
+      {{ "@type": "BreadcrumbList", "itemListElement": [
+        {{ "@type": "ListItem", "position": 1, "name": "Início", "item": "https://viajandocomababi.com.br/" }},
+        {{ "@type": "ListItem", "position": 2, "name": "Pacotes de viagem", "item": "https://viajandocomababi.com.br/pacotes.html" }}
+      ]}}
+    ]
+  }}
+  </script>
+{ga4}</head>
+<body>
+"""
+
+main = f"""<main id="conteudo-principal">
+  <section id="pacotes" class="pacotes pacotes-page">
     <div class="container pacotes-page__header">
       <nav class="breadcrumb breadcrumb--light" aria-label="Navegação"><a href="/">Início</a> / Pacotes de viagem</nav>
       <span class="label label--center">Catálogo completo</span>
@@ -31,11 +71,8 @@ main = f"""  <section id="pacotes" class="pacotes pacotes-page">
 
     </div>
   </section>
+</main>
 """
-
-tail = (root / "pacotes.html").read_text(encoding="utf-8").split("</section>", 1)[1]
-tail = "</section>" + tail.split("<footer", 1)[1]
-tail = "\n\n  <footer" + tail.split("<footer", 1)[1] if "<footer" in tail else ""
 
 hub_footer = (root / "_partials/hub-footer.html").read_text(encoding="utf-8")
 lightbox = """
@@ -46,12 +83,12 @@ lightbox = """
 
 """
 template_tail = hub_footer.replace(
-    "  <script src=\"script.js?v=17\"></script>",
-    lightbox + "  <script src=\"analytics.js?v=4\"></script>\n  <script src=\"script.js?v=17\"></script>",
+    '  <script src="script.js?v=19"></script>',
+    lightbox + '  <script src="analytics.js?v=5"></script>\n  <script src="script.js?v=19"></script>',
 )
 
 (root / "pacotes.html").write_text(
-    head_end + '<main id="conteudo-principal">\n' + main + template_tail,
+    head + hub_header + main + template_tail,
     encoding="utf-8",
 )
 print("pacotes.html atualizado")

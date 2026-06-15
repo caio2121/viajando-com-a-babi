@@ -1,6 +1,6 @@
 ---
 description: Adicionar ou editar cards de pacotes no index.html
-globs: index.html,_build_pacotes.py,pacotes.html
+globs: index.html,_build_pacotes.py,pacotes.html,_restructure_catalog.py
 alwaysApply: false
 ---
 
@@ -8,7 +8,7 @@ alwaysApply: false
 
 Cada pacote é um `<article class="card">` dentro de `#pacotes`.
 
-**Fonte de verdade:** os cards ficam em `index.html`. A página [`pacotes.html`](pacotes.html) é gerada a partir deles — **não editar `pacotes.html` à mão**.
+**Fonte de verdade:** catálogo completo no bloco oculto `#pacotes-catalog-source` (entre `<!-- PACOTES_CATALOGO_INICIO -->` e `<!-- PACOTES_CATALOGO_FIM -->`). A home exibe **8 destaques** na seção visível `#pacotes`. A página [`pacotes.html`](pacotes.html) é gerada a partir do bloco oculto — **não editar `pacotes.html` à mão**.
 
 ## Atributos obrigatórios no card
 
@@ -27,7 +27,7 @@ Cada pacote é um `<article class="card">` dentro de `#pacotes`.
 ## Estrutura do card
 
 - Título do destino: `<h4 class="card__title">` (não h3).
-- Imagem com `<picture>` (WebP + JPEG), `data-lightbox` e `alt` descritivo (sem travessão longo `—`; ver regra de tipografia em `site-estatico.mdc`).
+- Imagem com `<picture>` responsivo (WebP `-400.webp` + `-800.webp`, JPEG fallback), `data-lightbox`, `width="400" height="260"`, `decoding="async"`.
 - CTA WhatsApp: `class="btn btn--whatsapp btn--full"` com mensagem citando o nome do pacote.
 - Não é necessário código extra de tracking — `analytics.js` lê `data-destino` e `data-categoria`.
 
@@ -37,25 +37,36 @@ Cada pacote é um `<article class="card">` dentro de `#pacotes`.
 2. `#pacotes-sem-aereo` → `data-categoria="sem-aereo"` (cruzeiros)
 3. `#pacotes-grupos-guia` → `data-categoria="grupo-guia"` (sempre por último, antes do CTA extra)
 
-Novos cards: inserir no container da categoria correta; não alterar a ordem dos blocos.
+Novos cards: inserir no bloco oculto `#pacotes-catalog-source` no container da categoria correta. Se quiser destaque na home, copiar o card também na seção visível `#pacotes` (máx. ~8 destaques).
 
 ## Sincronizar `pacotes.html` (obrigatório após alterar cards)
 
-Depois de adicionar, remover ou editar pacotes em `index.html`, regenerar o catálogo:
+Depois de adicionar, remover ou editar pacotes no bloco oculto:
 
 ```bash
 python _build_pacotes.py
 ```
 
-O script copia os blocos `#pacotes-completos`, cruzeiros e grupos com guia de `index.html` para `pacotes.html` (cards, imagens, preços e CTAs).
+O script lê o bloco `PACOTES_CATALOGO` de `index.html` e gera `pacotes.html` com todos os cards.
 
-**Quando rodar:** qualquer mudança nos cards da home — novo pacote, preço, datas, imagem, texto ou remoção.
+**Quando rodar:** qualquer mudança nos cards do catálogo — novo pacote, preço, datas, imagem, texto ou remoção.
 
-**Não commitar** `pacotes.html` desatualizado em relação a `index.html`.
+**Não commitar** `pacotes.html` desatualizado em relação ao bloco oculto em `index.html`.
+
+## Imagens responsivas
+
+Após adicionar ou trocar imagem de pacote:
+
+```bash
+python _optimize_images.py
+python _update_picture_srcset.py
+python _build_pacotes.py
+```
 
 ## Checklist ao publicar pacote novo
 
-1. Card em `index.html` com `id`, `data-destino` e `data-categoria` corretos
-2. Imagem em `pacotes/` com `alt` descritivo; gerar `.webp` se ainda não existir
-3. Executar `python _build_pacotes.py` e revisar `pacotes.html` no browser
-4. Testar no GA4 DebugView: `view_item` (impressão), `purchase` (clique "Quero esse pacote!") e `generate_lead`
+1. Card no bloco oculto `#pacotes-catalog-source` com `id`, `data-destino` e `data-categoria` corretos
+2. Imagem em `pacotes/` com `alt` descritivo; rodar `_optimize_images.py`
+3. Executar `_update_picture_srcset.py` e `python _build_pacotes.py`
+4. (Opcional) Incluir na vitrine da home se for destaque comercial
+5. Testar no GA4 DebugView: `view_item` (impressão), `purchase` (clique "Quero esse pacote!") e `generate_lead`

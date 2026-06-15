@@ -14,9 +14,15 @@
   <meta property="og:locale" content="pt_BR" />
   <meta name="twitter:card" content="summary_large_image" />
   <link rel="icon" type="image/png" href="assets/logo-vcb.png" />
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link rel="stylesheet" href="style.css?v=17" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Dancing+Script:wght@600;700&display=swap" media="print" onload="this.media='all'" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" media="print" onload="this.media='all'" />
+  <noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  </noscript>
+  <link rel="stylesheet" href="style.css?v=19" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -29,20 +35,32 @@
     ]
   }
   </script>
-  <!-- Google Analytics 4 -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WGDNTSY8WM"></script>
+  <!-- Google Analytics 4 (carregamento adiado) -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-WGDNTSY8WM', { send_page_view: true });
+    function loadGA4() {
+      var s = document.createElement('script');
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-WGDNTSY8WM';
+      s.async = true;
+      s.onload = function() {
+        gtag('js', new Date());
+        gtag('config', 'G-WGDNTSY8WM', { send_page_view: true });
+      };
+      document.head.appendChild(s);
+    }
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(loadGA4, { timeout: 3000 });
+    } else {
+      window.addEventListener('load', loadGA4);
+    }
   </script>
 </head>
 <body>
-          <header class="navbar" id="navbar">
+  <header class="navbar" id="navbar">
     <div class="navbar__container">
       <a href="/" class="navbar__logo">
-        <picture><source srcset="assets/logo-vcb.webp" type="image/webp" /><img src="assets/logo-vcb.png" alt="Viajando com a Babi" width="200" height="62" ></picture>
+        <picture><source srcset="assets/logo-vcb.webp" type="image/webp" /><img src="assets/logo-vcb.png" alt="Viajando com a Babi" width="200" height="62" fetchpriority="high" ></picture>
       </a>
 
       <nav class="navbar__links" id="navLinks">
@@ -86,8 +104,8 @@
 
         <article class="card reveal" id="pacote-aracaju" data-destino="Aracaju Imperdível" data-categoria="completo">
           <div class="card__img-wrap">
-            <picture><source srcset="pacotes/pacote-aracaju.webp" type="image/webp" /><img src="pacotes/pacote-aracaju.jpeg"
-                 alt="Aracaju: dias incríveis entre praias e passeios" width="400" height="260" loading="lazy" data-lightbox ></picture>
+            <picture><source srcset="pacotes/pacote-aracaju-400.webp 400w, pacotes/pacote-aracaju-800.webp 800w" sizes="(max-width:640px) 100vw, 400px" type="image/webp" /><img src="pacotes/pacote-aracaju.jpeg"
+                 alt="Aracaju: dias incríveis entre praias e passeios" width="400" height="260" data-lightbox  decoding="async"></picture>
             <span class="card__badge">26/07 a 02/08 · férias de julho</span>
           </div>
           <div class="card__body">
@@ -114,8 +132,8 @@
 
         <article class="card reveal" id="pacote-fortaleza" data-destino="Fortaleza Imperdível" data-categoria="completo">
           <div class="card__img-wrap">
-            <picture><source srcset="pacotes/pacote-fortaleza.webp" type="image/webp" /><img src="pacotes/pacote-fortaleza.jpeg"
-                 alt="Fortaleza: Cumbuco, Canoa Quebrada e Lagoinha" width="400" height="260" loading="lazy" data-lightbox ></picture>
+            <picture><source srcset="pacotes/pacote-fortaleza-400.webp 400w, pacotes/pacote-fortaleza-800.webp 800w" sizes="(max-width:640px) 100vw, 400px" type="image/webp" /><img src="pacotes/pacote-fortaleza.jpeg"
+                 alt="Fortaleza: Cumbuco, Canoa Quebrada e Lagoinha" width="400" height="260" data-lightbox  decoding="async"></picture>
             <span class="card__badge">07 a 12/08</span>
           </div>
           <div class="card__body">
@@ -142,8 +160,8 @@
 
         <article class="card reveal" id="pacote-joao-pessoa" data-destino="João Pessoa com Pôr do Sol" data-categoria="completo">
           <div class="card__img-wrap">
-            <picture><source srcset="pacotes/pacote-joao-pessoa.webp" type="image/webp" /><img src="pacotes/pacote-joao-pessoa.jpeg"
-                 alt="João Pessoa: city tour e pôr do sol no Jacaré" width="400" height="260" loading="lazy" data-lightbox ></picture>
+            <picture><source srcset="pacotes/pacote-joao-pessoa-400.webp 400w, pacotes/pacote-joao-pessoa-800.webp 800w" sizes="(max-width:640px) 100vw, 400px" type="image/webp" /><img src="pacotes/pacote-joao-pessoa.jpeg"
+                 alt="João Pessoa: city tour e pôr do sol no Jacaré" width="400" height="260" data-lightbox  decoding="async" loading="lazy"></picture>
             <span class="card__badge">05 a 11/08</span>
           </div>
           <div class="card__body">
@@ -170,8 +188,8 @@
 
         <article class="card reveal" id="pacote-porto-seguro" data-destino="Porto Seguro com City Tour" data-categoria="completo">
           <div class="card__img-wrap">
-            <picture><source srcset="pacotes/pacote-porto-seguro.webp" type="image/webp" /><img src="pacotes/pacote-porto-seguro.jpeg"
-                 alt="Porto Seguro: city tour e Coroa Vermelha cortesia" loading="lazy" data-lightbox ></picture>
+            <picture><source srcset="pacotes/pacote-porto-seguro-400.webp 400w, pacotes/pacote-porto-seguro-800.webp 800w" sizes="(max-width:640px) 100vw, 400px" type="image/webp" /><img src="pacotes/pacote-porto-seguro.jpeg"
+                 alt="Porto Seguro: city tour e Coroa Vermelha cortesia" data-lightbox  width="400" height="260" decoding="async" loading="lazy"></picture>
             <span class="card__badge">15 a 20/07 · férias de julho</span>
           </div>
           <div class="card__body">
@@ -198,8 +216,8 @@
 
         <article class="card reveal" id="pacote-porto-de-galinhas" data-destino="Porto de Galinhas Olinda Recife" data-categoria="completo">
           <div class="card__img-wrap">
-            <picture><source srcset="pacotes/pacote-porto-de-galinhas.webp" type="image/webp" /><img src="pacotes/pacote-porto-de-galinhas.jpeg"
-                 alt="Porto de Galinhas: Olinda e Recife nas férias de julho" loading="lazy" data-lightbox ></picture>
+            <picture><source srcset="pacotes/pacote-porto-de-galinhas-400.webp 400w, pacotes/pacote-porto-de-galinhas-800.webp 800w" sizes="(max-width:640px) 100vw, 400px" type="image/webp" /><img src="pacotes/pacote-porto-de-galinhas.jpeg"
+                 alt="Porto de Galinhas: Olinda e Recife nas férias de julho" data-lightbox  width="400" height="260" decoding="async" loading="lazy"></picture>
             <span class="card__badge">28/07 a 02/08 · férias de julho</span>
           </div>
           <div class="card__body">
@@ -226,8 +244,8 @@
 
         <article class="card reveal" id="pacote-maceio" data-destino="Maceió Pratagy Acqua Park" data-categoria="completo">
           <div class="card__img-wrap">
-            <picture><source srcset="pacotes/pacote-maceio-pratagy.webp" type="image/webp" /><img src="pacotes/pacote-maceio-pratagy.jpeg"
-                 alt="Maceió: Pratagy Acqua Park e Praia do Gunga" loading="lazy" data-lightbox ></picture>
+            <picture><source srcset="pacotes/pacote-maceio-pratagy-400.webp 400w, pacotes/pacote-maceio-pratagy-800.webp 800w" sizes="(max-width:640px) 100vw, 400px" type="image/webp" /><img src="pacotes/pacote-maceio-pratagy.jpeg"
+                 alt="Maceió: Pratagy Acqua Park e Praia do Gunga" data-lightbox  width="400" height="260" decoding="async" loading="lazy"></picture>
             <span class="card__badge">09 a 16/08</span>
           </div>
           <div class="card__body">
@@ -254,8 +272,8 @@
 
         <article class="card reveal" id="pacote-bahia-3-em-1" data-destino="Bahia 3 em 1" data-categoria="completo">
           <div class="card__img-wrap">
-            <picture><source srcset="pacotes/pacote-bahia-3-em-1.webp" type="image/webp" /><img src="pacotes/pacote-bahia-3-em-1.jpeg"
-                 alt="Bahia 3 em 1: Porto Seguro, Trancoso e Arraial D'Ajuda" loading="lazy" data-lightbox ></picture>
+            <picture><source srcset="pacotes/pacote-bahia-3-em-1-400.webp 400w, pacotes/pacote-bahia-3-em-1-800.webp 800w" sizes="(max-width:640px) 100vw, 400px" type="image/webp" /><img src="pacotes/pacote-bahia-3-em-1.jpeg"
+                 alt="Bahia 3 em 1: Porto Seguro, Trancoso e Arraial D'Ajuda" data-lightbox  width="400" height="260" decoding="async" loading="lazy"></picture>
             <span class="card__badge">16 a 23/06</span>
           </div>
           <div class="card__body">
@@ -282,8 +300,8 @@
 
         <article class="card reveal" id="pacote-bonito" data-destino="Bonito Imperdível" data-categoria="completo">
           <div class="card__img-wrap">
-            <picture><source srcset="pacotes/pacote-bonito.webp" type="image/webp" /><img src="pacotes/pacote-bonito.jpeg"
-                 alt="Bonito: Gruta Catedral e Lagoa Formosa" loading="lazy" data-lightbox ></picture>
+            <picture><source srcset="pacotes/pacote-bonito-400.webp 400w, pacotes/pacote-bonito-800.webp 800w" sizes="(max-width:640px) 100vw, 400px" type="image/webp" /><img src="pacotes/pacote-bonito.jpeg"
+                 alt="Bonito: Gruta Catedral e Lagoa Formosa" data-lightbox  width="400" height="260" decoding="async" loading="lazy"></picture>
             <span class="card__badge">10 a 15/11</span>
           </div>
           <div class="card__body">
@@ -310,8 +328,8 @@
 
         <article class="card reveal" id="pacote-natal-luz-gramado" data-destino="Natal Luz de Gramado" data-categoria="completo">
           <div class="card__img-wrap">
-            <picture><source srcset="pacotes/pacote-natal-luz-gramado.webp" type="image/webp" /><img src="pacotes/pacote-natal-luz-gramado.jpeg"
-                 alt="Natal Luz de Gramado: maior espetáculo natalino do Brasil" loading="lazy" data-lightbox ></picture>
+            <picture><source srcset="pacotes/pacote-natal-luz-gramado-400.webp 400w, pacotes/pacote-natal-luz-gramado-800.webp 800w" sizes="(max-width:640px) 100vw, 400px" type="image/webp" /><img src="pacotes/pacote-natal-luz-gramado.jpeg"
+                 alt="Natal Luz de Gramado: maior espetáculo natalino do Brasil" data-lightbox  width="400" height="260" decoding="async" loading="lazy"></picture>
             <span class="card__badge">04 a 09/12</span>
           </div>
           <div class="card__body">
@@ -338,8 +356,8 @@
 
         <article class="card reveal" id="pacote-gramado-castelo" data-destino="Gramado Castelo St Andrews" data-categoria="completo">
           <div class="card__img-wrap">
-            <picture><source srcset="pacotes/pacote-gramado-castelo.webp" type="image/webp" /><img src="pacotes/pacote-gramado-castelo.jpeg"
-                 alt="Gramado: Castelo St. Andrews e Royal Afternoon Tea" loading="lazy" data-lightbox ></picture>
+            <picture><source srcset="pacotes/pacote-gramado-castelo-400.webp 400w, pacotes/pacote-gramado-castelo-800.webp 800w" sizes="(max-width:640px) 100vw, 400px" type="image/webp" /><img src="pacotes/pacote-gramado-castelo.jpeg"
+                 alt="Gramado: Castelo St. Andrews e Royal Afternoon Tea" data-lightbox  width="400" height="260" decoding="async" loading="lazy"></picture>
             <span class="card__badge">20 a 24/08</span>
           </div>
           <div class="card__body">
@@ -366,8 +384,8 @@
 
         <article class="card reveal" id="pacote-buenos-aires-ushuaia" data-destino="Buenos Aires com Ushuaia" data-categoria="completo">
           <div class="card__img-wrap">
-            <picture><source srcset="pacotes/pacote-buenos-aires-ushuaia.webp" type="image/webp" /><img src="pacotes/pacote-buenos-aires-ushuaia.jpeg"
-                 alt="Buenos Aires e Ushuaia: temporada de neve na Patagonia" loading="lazy" data-lightbox ></picture>
+            <picture><source srcset="pacotes/pacote-buenos-aires-ushuaia-400.webp 400w, pacotes/pacote-buenos-aires-ushuaia-800.webp 800w" sizes="(max-width:640px) 100vw, 400px" type="image/webp" /><img src="pacotes/pacote-buenos-aires-ushuaia.jpeg"
+                 alt="Buenos Aires e Ushuaia: temporada de neve na Patagonia" data-lightbox  width="400" height="260" decoding="async" loading="lazy"></picture>
             <span class="card__badge">29/06 a 05/07 · 7 dias</span>
           </div>
           <div class="card__body">
@@ -394,8 +412,8 @@
 
         <article class="card reveal" id="pacote-ba-bariloche" data-destino="Buenos Aires Bariloche Neve" data-categoria="completo">
           <div class="card__img-wrap">
-            <picture><source srcset="pacotes/pacote-ba-bariloche.webp" type="image/webp" /><img src="pacotes/pacote-ba-bariloche.jpeg"
-                 alt="Buenos Aires e Bariloche: neve no Cerro Catedral" loading="lazy" data-lightbox ></picture>
+            <picture><source srcset="pacotes/pacote-ba-bariloche-400.webp 400w, pacotes/pacote-ba-bariloche-800.webp 800w" sizes="(max-width:640px) 100vw, 400px" type="image/webp" /><img src="pacotes/pacote-ba-bariloche.jpeg"
+                 alt="Buenos Aires e Bariloche: neve no Cerro Catedral" data-lightbox  width="400" height="260" decoding="async" loading="lazy"></picture>
             <span class="card__badge">21 a 28/07 · 8 dias</span>
           </div>
           <div class="card__body">
@@ -422,8 +440,8 @@
 
         <article class="card reveal" id="pacote-buenos-aires-essencial" data-destino="Buenos Aires Essencial" data-categoria="completo">
           <div class="card__img-wrap">
-            <picture><source srcset="pacotes/pacote-buenos-aires-essencial.webp" type="image/webp" /><img src="pacotes/pacote-buenos-aires-essencial.jpeg"
-                 alt="Buenos Aires Essencial: city tour e hospedagem central" loading="lazy" data-lightbox ></picture>
+            <picture><source srcset="pacotes/pacote-buenos-aires-essencial-400.webp 400w, pacotes/pacote-buenos-aires-essencial-800.webp 800w" sizes="(max-width:640px) 100vw, 400px" type="image/webp" /><img src="pacotes/pacote-buenos-aires-essencial.jpeg"
+                 alt="Buenos Aires Essencial: city tour e hospedagem central" data-lightbox  width="400" height="260" decoding="async" loading="lazy"></picture>
             <span class="card__badge">10 a 15/07 · 6 dias</span>
           </div>
           <div class="card__body">
@@ -450,8 +468,8 @@
 
         <article class="card reveal" id="pacote-santiago-atacama" data-destino="Santiago San Pedro Atacama" data-categoria="completo">
           <div class="card__img-wrap">
-            <picture><source srcset="pacotes/pacote-santiago-atacama.webp" type="image/webp" /><img src="pacotes/pacote-santiago-atacama.jpeg"
-                 alt="Santiago e San Pedro de Atacama: vinícolas e Valle de la Luna" loading="lazy" data-lightbox ></picture>
+            <picture><source srcset="pacotes/pacote-santiago-atacama-400.webp 400w, pacotes/pacote-santiago-atacama-800.webp 800w" sizes="(max-width:640px) 100vw, 400px" type="image/webp" /><img src="pacotes/pacote-santiago-atacama.jpeg"
+                 alt="Santiago e San Pedro de Atacama: vinícolas e Valle de la Luna" data-lightbox  width="400" height="260" decoding="async" loading="lazy"></picture>
             <span class="card__badge">25/06 a 01/07 · 7 dias</span>
           </div>
           <div class="card__body">
@@ -478,8 +496,8 @@
 
         <article class="card reveal" id="pacote-santiago-neve" data-destino="Santiago Neve Undurraga" data-categoria="completo">
           <div class="card__img-wrap">
-            <picture><source srcset="pacotes/pacote-santiago-neve.webp" type="image/webp" /><img src="pacotes/pacote-santiago-neve.jpeg"
-                 alt="Santiago: neve e vinhedo Undurraga" loading="lazy" data-lightbox ></picture>
+            <picture><source srcset="pacotes/pacote-santiago-neve-400.webp 400w, pacotes/pacote-santiago-neve-800.webp 800w" sizes="(max-width:640px) 100vw, 400px" type="image/webp" /><img src="pacotes/pacote-santiago-neve.jpeg"
+                 alt="Santiago: neve e vinhedo Undurraga" data-lightbox  width="400" height="260" decoding="async" loading="lazy"></picture>
             <span class="card__badge">01 a 06/07 · 6 dias</span>
           </div>
           <div class="card__body">
@@ -506,8 +524,8 @@
 
         <article class="card reveal" id="pacote-peru-vale-sagrado" data-destino="Peru Vale Sagrado Magico" data-categoria="completo">
           <div class="card__img-wrap">
-            <picture><source srcset="pacotes/pacote-peru-vale-sagrado.webp" type="image/webp" /><img src="pacotes/pacote-peru-vale-sagrado.jpeg"
-                 alt="Peru: Vale Sagrado e Machu Picchu" loading="lazy" data-lightbox ></picture>
+            <picture><source srcset="pacotes/pacote-peru-vale-sagrado-400.webp 400w, pacotes/pacote-peru-vale-sagrado-800.webp 800w" sizes="(max-width:640px) 100vw, 400px" type="image/webp" /><img src="pacotes/pacote-peru-vale-sagrado.jpeg"
+                 alt="Peru: Vale Sagrado e Machu Picchu" data-lightbox  width="400" height="260" decoding="async" loading="lazy"></picture>
             <span class="card__badge">10 a 17/09 · 8 dias</span>
           </div>
           <div class="card__body">
@@ -534,8 +552,8 @@
 
         <article class="card reveal" id="pacote-playa-mujeres-cancun" data-destino="Playa Mujeres Cancun" data-categoria="completo">
           <div class="card__img-wrap">
-            <picture><source srcset="pacotes/pacote-playa-mujeres-cancun.webp" type="image/webp" /><img src="pacotes/pacote-playa-mujeres-cancun.jpeg"
-                 alt="Playa Mujeres e Cancún: all inclusive" loading="lazy" data-lightbox ></picture>
+            <picture><source srcset="pacotes/pacote-playa-mujeres-cancun-400.webp 400w, pacotes/pacote-playa-mujeres-cancun-800.webp 800w" sizes="(max-width:640px) 100vw, 400px" type="image/webp" /><img src="pacotes/pacote-playa-mujeres-cancun.jpeg"
+                 alt="Playa Mujeres e Cancún: all inclusive" data-lightbox  width="400" height="260" decoding="async" loading="lazy"></picture>
             <span class="card__badge">20 a 27/09 · 8 dias</span>
           </div>
           <div class="card__body">
@@ -562,8 +580,8 @@
 
         <article class="card reveal" id="pacote-cancun-oasis-palm" data-destino="Cancun Oasis Palm" data-categoria="completo">
           <div class="card__img-wrap">
-            <picture><source srcset="pacotes/pacote-cancun-oasis-palm.webp" type="image/webp" /><img src="pacotes/pacote-cancun-oasis-palm.jpeg"
-                 alt="Cancún Oasis Palm: all inclusive com transfers grátis" loading="lazy" data-lightbox ></picture>
+            <picture><source srcset="pacotes/pacote-cancun-oasis-palm-400.webp 400w, pacotes/pacote-cancun-oasis-palm-800.webp 800w" sizes="(max-width:640px) 100vw, 400px" type="image/webp" /><img src="pacotes/pacote-cancun-oasis-palm.jpeg"
+                 alt="Cancún Oasis Palm: all inclusive com transfers grátis" data-lightbox  width="400" height="260" decoding="async" loading="lazy"></picture>
             <span class="card__badge">22 a 27/09 · 6 dias</span>
           </div>
           <div class="card__body">
@@ -590,8 +608,8 @@
 
         <article class="card reveal" id="pacote-bahamas" data-destino="Bahamas Essencial" data-categoria="completo">
           <div class="card__img-wrap">
-            <picture><source srcset="pacotes/pacote-bahamas.webp" type="image/webp" /><img src="pacotes/pacote-bahamas.jpeg"
-                 alt="Bahamas Essencial: The Coral at Atlantis" loading="lazy" data-lightbox ></picture>
+            <picture><source srcset="pacotes/pacote-bahamas-400.webp 400w, pacotes/pacote-bahamas-800.webp 800w" sizes="(max-width:640px) 100vw, 400px" type="image/webp" /><img src="pacotes/pacote-bahamas.jpeg"
+                 alt="Bahamas Essencial: The Coral at Atlantis" data-lightbox  width="400" height="260" decoding="async" loading="lazy"></picture>
             <span class="card__badge">11 a 16/09 · 6 dias</span>
           </div>
           <div class="card__body">
@@ -618,8 +636,8 @@
 
         <article class="card reveal" id="pacote-san-andres" data-destino="San Andres Essencial" data-categoria="completo">
           <div class="card__img-wrap">
-            <picture><source srcset="pacotes/pacote-san-andres.webp" type="image/webp" /><img src="pacotes/pacote-san-andres.jpeg"
-                 alt="San Andrés Essencial: all inclusive Sol Caribe Campo" loading="lazy" data-lightbox ></picture>
+            <picture><source srcset="pacotes/pacote-san-andres-400.webp 400w, pacotes/pacote-san-andres-800.webp 800w" sizes="(max-width:640px) 100vw, 400px" type="image/webp" /><img src="pacotes/pacote-san-andres.jpeg"
+                 alt="San Andrés Essencial: all inclusive Sol Caribe Campo" data-lightbox  width="400" height="260" decoding="async" loading="lazy"></picture>
             <span class="card__badge">08 a 13/08 · 6 dias</span>
           </div>
           <div class="card__body">
@@ -654,8 +672,8 @@
 
         <article class="card reveal" id="pacote-navio-daniel-2027" data-destino="Navio Daniel 2027 MSC Divina" data-categoria="sem-aereo">
           <div class="card__img-wrap">
-            <picture><source srcset="pacotes/pacote-navio-daniel-2027.webp" type="image/webp" /><img src="pacotes/pacote-navio-daniel-2027.jpeg"
-                 alt="Navio Daniel 2027: MSC Divina saindo de Santos" loading="lazy" data-lightbox ></picture>
+            <picture><source srcset="pacotes/pacote-navio-daniel-2027-400.webp 400w, pacotes/pacote-navio-daniel-2027-800.webp 800w" sizes="(max-width:640px) 100vw, 400px" type="image/webp" /><img src="pacotes/pacote-navio-daniel-2027.jpeg"
+                 alt="Navio Daniel 2027: MSC Divina saindo de Santos" data-lightbox  width="400" height="260" decoding="async" loading="lazy"></picture>
             <span class="card__badge">08 a 11/01/2027 · Santos</span>
           </div>
           <div class="card__body">
@@ -682,8 +700,8 @@
 
         <article class="card reveal" id="pacote-costa-serena" data-destino="Costa Serena América do Sul" data-categoria="sem-aereo">
           <div class="card__img-wrap">
-            <picture><source srcset="pacotes/pacote-costa-serena.webp" type="image/webp" /><img src="pacotes/pacote-costa-serena.jpeg"
-                 alt="Costa Serena: cruzeiro América do Sul saindo do Rio" loading="lazy" data-lightbox ></picture>
+            <picture><source srcset="pacotes/pacote-costa-serena-400.webp 400w, pacotes/pacote-costa-serena-800.webp 800w" sizes="(max-width:640px) 100vw, 400px" type="image/webp" /><img src="pacotes/pacote-costa-serena.jpeg"
+                 alt="Costa Serena: cruzeiro América do Sul saindo do Rio" data-lightbox  width="400" height="260" decoding="async" loading="lazy"></picture>
             <span class="card__badge">Jan e fev/2027 · Rio de Janeiro</span>
           </div>
           <div class="card__body">
@@ -719,8 +737,8 @@
 
         <article class="card reveal" id="pacote-chapada-salvador" data-destino="Chapada Diamantina com Salvador" data-categoria="grupo-guia">
           <div class="card__img-wrap">
-            <picture><source srcset="pacotes/pacote-chapada-salvador.webp" type="image/webp" /><img src="pacotes/pacote-chapada-salvador.jpeg"
-                 alt="Chapada Diamantina com Salvador: natureza e cultura baiana em grupo" loading="lazy" data-lightbox ></picture>
+            <picture><source srcset="pacotes/pacote-chapada-salvador-400.webp 400w, pacotes/pacote-chapada-salvador-800.webp 800w" sizes="(max-width:640px) 100vw, 400px" type="image/webp" /><img src="pacotes/pacote-chapada-salvador.jpeg"
+                 alt="Chapada Diamantina com Salvador: natureza e cultura baiana em grupo" data-lightbox  width="400" height="260" decoding="async" loading="lazy"></picture>
             <span class="card__badge">19 a 29/10</span>
           </div>
           <div class="card__body">
@@ -762,13 +780,14 @@
 
     </div>
   </section>
+</main>
   <footer id="contato" class="footer">
     <div class="container">
       <div class="footer__grid">
 
         <div class="footer__brand">
           <picture><source srcset="assets/logo-vcb.webp" type="image/webp" /><img src="assets/logo-vcb.png"
-               alt="Viajando com a Babi" class="footer__logo" ></picture>
+               alt="Viajando com a Babi" class="footer__logo" width="280" height="150" ></picture>
           <p>Pacotes e Roteiros personalizados para destinos que você sempre sonhou. Do planejamento ao embarque, cuidamos de tudo por você.</p>
         </div>
 
@@ -849,7 +868,7 @@
           <p>Agência de turismo regularizada pelo Ministério do Turismo</p>
         </div>
       </div>
-      <img src="assets/cadastur.jpg" alt="Certificado Cadastur | Viajando com a Babi" class="modal__img" loading="lazy" />
+      <img data-src="assets/cadastur.webp" alt="Certificado Cadastur | Viajando com a Babi" class="modal__img" width="430" height="304" />
       <div class="modal__info">
         <div class="modal__info-item">
           <span>Cadastrado</span>
@@ -880,7 +899,7 @@
     <img class="lightbox__img" id="lightboxImg" src="" alt="" />
   </div>
 
-  <script src="analytics.js?v=4"></script>
-  <script src="script.js?v=17"></script>
+  <script src="analytics.js?v=5"></script>
+  <script src="script.js?v=19"></script>
 </body>
 </html>

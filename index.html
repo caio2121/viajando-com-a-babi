@@ -33,24 +33,19 @@
   <link rel="icon" type="image/png" href="assets/logo-vcb.png" />
   <link rel="apple-touch-icon" href="assets/logo-vcb.png" />
 
-  <!-- Fonts -->
+  <link rel="preload" as="image" href="assets/logo-vcb.webp" type="image/webp" fetchpriority="high" />
+
+  <!-- Fonts + Font Awesome (não bloqueantes) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Dancing+Script:wght@600;700&display=swap" media="print" onload="this.media='all'" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" media="print" onload="this.media='all'" />
+  <noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  </noscript>
 
-  <!-- Font Awesome (sem integrity para evitar bloqueio SRI em GitHub Pages) -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-  <link rel="stylesheet" href="style.css?v=17" />
-
-  <!-- Google Analytics 4 -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WGDNTSY8WM"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-WGDNTSY8WM', { send_page_view: true });
-  </script>
+<link rel="stylesheet" href="style.css?v=19" />
 
   <!-- Schema.org JSON-LD -->
   <script type="application/ld+json">
@@ -131,6 +126,26 @@
     ]
   }
   </script>
+  <!-- Google Analytics 4 (carregamento adiado) -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    function loadGA4() {
+      var s = document.createElement('script');
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-WGDNTSY8WM';
+      s.async = true;
+      s.onload = function() {
+        gtag('js', new Date());
+        gtag('config', 'G-WGDNTSY8WM', { send_page_view: true });
+      };
+      document.head.appendChild(s);
+    }
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(loadGA4, { timeout: 3000 });
+    } else {
+      window.addEventListener('load', loadGA4);
+    }
+  </script>
 </head>
 <body>
 
@@ -140,7 +155,7 @@
   <header class="navbar" id="navbar">
     <div class="navbar__container">
       <a href="/" class="navbar__logo">
-        <picture><source srcset="assets/logo-vcb.webp" type="image/webp" /><img src="assets/logo-vcb.png" alt="Viajando com a Babi" width="200" height="62" ></picture>
+        <picture><source srcset="assets/logo-vcb.webp" type="image/webp" /><img src="assets/logo-vcb.png" alt="Viajando com a Babi" width="200" height="62" fetchpriority="high" ></picture>
       </a>
 
       <nav class="navbar__links" id="navLinks">
@@ -179,7 +194,7 @@
     <div class="hero__content">
       <picture><source srcset="assets/logo-vcb.webp" type="image/webp" /><img src="assets/logo-vcb.png"
            alt="Viajando com a Babi" class="hero__logo"
-           width="405" height="120" fetchpriority="high" ></picture>
+           width="405" height="120" fetchpriority="low" ></picture>
       <h1 class="hero__tagline">O mundo te espera.<br><span>Vamos juntos?</span></h1>
       <p class="hero__seo-lead">Pacotes de viagem com aéreo e hospedagem + roteiros personalizados para destinos nacionais e internacionais. Agência Cadastur, com atendimento humano pelo WhatsApp.</p>
       <p class="hero__sub">Eu cuido de cada detalhe. Você só embarca.</p>
@@ -312,11 +327,11 @@
   <!-- ═══════════════════════════════════════
        PACOTES
   ═══════════════════════════════════════ -->
-  <section id="pacotes" class="pacotes">
+    <section id="pacotes" class="pacotes">
     <div class="container">
       <span class="label label--center">Pacotes disponíveis</span>
       <h2 class="section-title">Pacotes de viagem: destinos que vão te apaixonar</h2>
-      <p class="section-sub">Catálogo de pacotes de viagem com aéreo, hospedagem e serviços principais, além de cruzeiros e roteiros em grupo com guia. <a href="pacotes.html">Ver catálogo completo de pacotes</a>.</p>
+      <p class="section-sub">Destaques do catálogo com aéreo, hospedagem e serviços principais. <a href="pacotes.html">Ver catálogo completo de pacotes</a> (23 opções).</p>
 
       <div class="pacotes__category" id="pacotes-completos">
         <h3 class="pacotes__subhead"><i class="fas fa-plane-departure" aria-hidden="true"></i> Pacote completo</h3>
@@ -325,8 +340,8 @@
 
         <article class="card reveal" id="pacote-aracaju" data-destino="Aracaju Imperdível" data-categoria="completo">
           <div class="card__img-wrap">
-            <picture><source srcset="pacotes/pacote-aracaju.webp" type="image/webp" /><img src="pacotes/pacote-aracaju.jpeg"
-                 alt="Aracaju: dias incríveis entre praias e passeios" width="400" height="260" loading="lazy" data-lightbox ></picture>
+            <picture><source srcset="pacotes/pacote-aracaju-400.webp 400w, pacotes/pacote-aracaju-800.webp 800w" sizes="(max-width:640px) 100vw, 400px" type="image/webp" /><img src="pacotes/pacote-aracaju.jpeg"
+                 alt="Aracaju: dias incríveis entre praias e passeios" width="400" height="260" data-lightbox  decoding="async"></picture>
             <span class="card__badge">26/07 a 02/08 · férias de julho</span>
           </div>
           <div class="card__body">
@@ -353,8 +368,8 @@
 
         <article class="card reveal" id="pacote-fortaleza" data-destino="Fortaleza Imperdível" data-categoria="completo">
           <div class="card__img-wrap">
-            <picture><source srcset="pacotes/pacote-fortaleza.webp" type="image/webp" /><img src="pacotes/pacote-fortaleza.jpeg"
-                 alt="Fortaleza: Cumbuco, Canoa Quebrada e Lagoinha" width="400" height="260" loading="lazy" data-lightbox ></picture>
+            <picture><source srcset="pacotes/pacote-fortaleza-400.webp 400w, pacotes/pacote-fortaleza-800.webp 800w" sizes="(max-width:640px) 100vw, 400px" type="image/webp" /><img src="pacotes/pacote-fortaleza.jpeg"
+                 alt="Fortaleza: Cumbuco, Canoa Quebrada e Lagoinha" width="400" height="260" data-lightbox  decoding="async"></picture>
             <span class="card__badge">07 a 12/08</span>
           </div>
           <div class="card__body">
@@ -379,94 +394,10 @@
           </div>
         </article>
 
-        <article class="card reveal" id="pacote-joao-pessoa" data-destino="João Pessoa com Pôr do Sol" data-categoria="completo">
-          <div class="card__img-wrap">
-            <picture><source srcset="pacotes/pacote-joao-pessoa.webp" type="image/webp" /><img src="pacotes/pacote-joao-pessoa.jpeg"
-                 alt="João Pessoa: city tour e pôr do sol no Jacaré" width="400" height="260" loading="lazy" data-lightbox ></picture>
-            <span class="card__badge">05 a 11/08</span>
-          </div>
-          <div class="card__body">
-            <h4 class="card__title">João Pessoa <span>Pôr do sol no Jacaré</span></h4>
-            <ul class="card__features">
-              <li><i class="fas fa-plane"></i> Bloqueio GOL · Rio de Janeiro (GIG) · aéreo de R$&nbsp;937 por R$&nbsp;619</li>
-              <li><i class="fas fa-hotel"></i> Hospedagem com café da manhã · transfer · hotel à escolha (Nord One, Infinity, BA'RA)</li>
-              <li><i class="fas fa-map-marked-alt"></i> City tour · entardecer na praia do Jacaré ao som do Bolero de Ravel</li>
-              <li><i class="fas fa-shield-alt"></i> Protect Travel até R$ 4 mil · 7% à vista · outras saídas: 28/08, 17/09, 08/11</li>
-            </ul>
-            <div class="card__footer">
-              <div class="card__preco">
-                <span class="card__parcela">12x a partir de <strong>R$&nbsp;151</strong></span>
-                <span class="card__total">Total a partir de R$ 1.812 + taxas conforme hotel · sujeito a alteração</span>
-              </div>
-              <a href="https://wa.me/5521920064617?text=Ol%C3%A1%20Babi%21%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20o%20pacote%20Jo%C3%A3o%20Pessoa%20com%20P%C3%B4r%20do%20Sol"
-                 target="_blank" rel="noopener noreferrer"
-                 class="btn btn--whatsapp btn--full">
-                <i class="fab fa-whatsapp"></i> Quero esse pacote!
-              </a>
-            </div>
-          </div>
-        </article>
-
-        <article class="card reveal" id="pacote-porto-seguro" data-destino="Porto Seguro com City Tour" data-categoria="completo">
-          <div class="card__img-wrap">
-            <picture><source srcset="pacotes/pacote-porto-seguro.webp" type="image/webp" /><img src="pacotes/pacote-porto-seguro.jpeg"
-                 alt="Porto Seguro: city tour e Coroa Vermelha cortesia" loading="lazy" data-lightbox ></picture>
-            <span class="card__badge">15 a 20/07 · férias de julho</span>
-          </div>
-          <div class="card__body">
-            <h4 class="card__title">Porto Seguro <span>City tour + Coroa Vermelha grátis</span></h4>
-            <ul class="card__features">
-              <li><i class="fas fa-plane"></i> Bloqueio GOL · Rio de Janeiro (GIG) · aéreo de R$&nbsp;989 por R$&nbsp;720</li>
-              <li><i class="fas fa-hotel"></i> Hospedagem com café da manhã · transfer · hotel à escolha (Ayla Praia, Portal Ville, Portobello)</li>
-              <li><i class="fas fa-umbrella-beach"></i> City tour cortesia · passeio à Praia de Coroa Vermelha grátis</li>
-              <li><i class="fas fa-shield-alt"></i> Protect Travel até R$ 4 mil · 7% à vista · outras saídas: 17/06, 27/06, 29/07, 06/08</li>
-            </ul>
-            <div class="card__footer">
-              <div class="card__preco">
-                <span class="card__parcela">12x a partir de <strong>R$&nbsp;174</strong></span>
-                <span class="card__total">Total a partir de R$ 2.088 + taxas conforme hotel · sujeito a alteração</span>
-              </div>
-              <a href="https://wa.me/5521920064617?text=Ol%C3%A1%20Babi%21%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20o%20pacote%20Porto%20Seguro%20com%20City%20Tour"
-                 target="_blank" rel="noopener noreferrer"
-                 class="btn btn--whatsapp btn--full">
-                <i class="fab fa-whatsapp"></i> Quero esse pacote!
-              </a>
-            </div>
-          </div>
-        </article>
-
-        <article class="card reveal" id="pacote-porto-de-galinhas" data-destino="Porto de Galinhas Olinda Recife" data-categoria="completo">
-          <div class="card__img-wrap">
-            <picture><source srcset="pacotes/pacote-porto-de-galinhas.webp" type="image/webp" /><img src="pacotes/pacote-porto-de-galinhas.jpeg"
-                 alt="Porto de Galinhas: Olinda e Recife nas férias de julho" loading="lazy" data-lightbox ></picture>
-            <span class="card__badge">28/07 a 02/08 · férias de julho</span>
-          </div>
-          <div class="card__body">
-            <h4 class="card__title">Porto de Galinhas <span>Olinda e Recife</span></h4>
-            <ul class="card__features">
-              <li><i class="fas fa-plane"></i> Bloqueio GOL · Rio de Janeiro (GIG) · aéreo de R$&nbsp;1.369 por R$&nbsp;1.121</li>
-              <li><i class="fas fa-hotel"></i> Hospedagem com café da manhã · transfers · hotel à escolha (Armação, Solar, Vivá)</li>
-              <li><i class="fas fa-map-marked-alt"></i> City tour Olinda e Recife · praias de Porto de Galinhas</li>
-              <li><i class="fas fa-shield-alt"></i> Protect Travel até R$ 5 mil · 7% à vista · sujeito a alteração</li>
-            </ul>
-            <div class="card__footer">
-              <div class="card__preco">
-                <span class="card__parcela">12x a partir de <strong>R$&nbsp;353</strong></span>
-                <span class="card__total">Total a partir de R$ 4.236 + taxas conforme hotel · sujeito a alteração</span>
-              </div>
-              <a href="https://wa.me/5521920064617?text=Ol%C3%A1%20Babi%21%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20o%20pacote%20Porto%20de%20Galinhas%20Olinda%20e%20Recife"
-                 target="_blank" rel="noopener noreferrer"
-                 class="btn btn--whatsapp btn--full">
-                <i class="fab fa-whatsapp"></i> Quero esse pacote!
-              </a>
-            </div>
-          </div>
-        </article>
-
         <article class="card reveal" id="pacote-maceio" data-destino="Maceió Pratagy Acqua Park" data-categoria="completo">
           <div class="card__img-wrap">
-            <picture><source srcset="pacotes/pacote-maceio-pratagy.webp" type="image/webp" /><img src="pacotes/pacote-maceio-pratagy.jpeg"
-                 alt="Maceió: Pratagy Acqua Park e Praia do Gunga" loading="lazy" data-lightbox ></picture>
+            <picture><source srcset="pacotes/pacote-maceio-pratagy-400.webp 400w, pacotes/pacote-maceio-pratagy-800.webp 800w" sizes="(max-width:640px) 100vw, 400px" type="image/webp" /><img src="pacotes/pacote-maceio-pratagy.jpeg"
+                 alt="Maceió: Pratagy Acqua Park e Praia do Gunga" data-lightbox  width="400" height="260" decoding="async" loading="lazy"></picture>
             <span class="card__badge">09 a 16/08</span>
           </div>
           <div class="card__body">
@@ -491,66 +422,10 @@
           </div>
         </article>
 
-        <article class="card reveal" id="pacote-bahia-3-em-1" data-destino="Bahia 3 em 1" data-categoria="completo">
-          <div class="card__img-wrap">
-            <picture><source srcset="pacotes/pacote-bahia-3-em-1.webp" type="image/webp" /><img src="pacotes/pacote-bahia-3-em-1.jpeg"
-                 alt="Bahia 3 em 1: Porto Seguro, Trancoso e Arraial D'Ajuda" loading="lazy" data-lightbox ></picture>
-            <span class="card__badge">16 a 23/06</span>
-          </div>
-          <div class="card__body">
-            <h4 class="card__title">Bahia 3 em 1 <span>Porto Seguro · Trancoso · Arraial</span></h4>
-            <ul class="card__features">
-              <li><i class="fas fa-plane"></i> Bloqueio GOL · Rio de Janeiro (GIG) · aéreo de R$&nbsp;678 por R$&nbsp;465</li>
-              <li><i class="fas fa-hotel"></i> Hospedagem com café da manhã · transfers · hotel Ayla Praia</li>
-              <li><i class="fas fa-umbrella-beach"></i> Trancoso · Arraial D'Ajuda · Coroa Vermelha</li>
-              <li><i class="fas fa-shield-alt"></i> Protect Travel até R$ 5 mil · 7% à vista · sujeito a alteração</li>
-            </ul>
-            <div class="card__footer">
-              <div class="card__preco">
-                <span class="card__parcela">15x a partir de <strong>R$&nbsp;113</strong></span>
-                <span class="card__total">Total a partir de R$ 1.695 + taxas conforme hotel · sujeito a alteração</span>
-              </div>
-              <a href="https://wa.me/5521920064617?text=Ol%C3%A1%20Babi%21%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20o%20pacote%20Bahia%203%20em%201"
-                 target="_blank" rel="noopener noreferrer"
-                 class="btn btn--whatsapp btn--full">
-                <i class="fab fa-whatsapp"></i> Quero esse pacote!
-              </a>
-            </div>
-          </div>
-        </article>
-
-        <article class="card reveal" id="pacote-bonito" data-destino="Bonito Imperdível" data-categoria="completo">
-          <div class="card__img-wrap">
-            <picture><source srcset="pacotes/pacote-bonito.webp" type="image/webp" /><img src="pacotes/pacote-bonito.jpeg"
-                 alt="Bonito: Gruta Catedral e Lagoa Formosa" loading="lazy" data-lightbox ></picture>
-            <span class="card__badge">10 a 15/11</span>
-          </div>
-          <div class="card__body">
-            <h4 class="card__title">Bonito <span>Experiências com passeios</span></h4>
-            <ul class="card__features">
-              <li><i class="fas fa-plane"></i> Bloqueio GOL · Rio de Janeiro (SDU) · aéreo de R$&nbsp;1.489 por R$&nbsp;1.125</li>
-              <li><i class="fas fa-hotel"></i> Hospedagem com café da manhã · transfers · hotel à escolha (Voo das Garças, Águas de Bonito, Zagaia)</li>
-              <li><i class="fas fa-water"></i> Passeio Gruta Catedral · experiência Lagoa Formosa · consulte roteiro completo de passeios</li>
-              <li><i class="fas fa-shield-alt"></i> Protect Travel até R$ 4 mil · 7% à vista · sujeito a alteração</li>
-            </ul>
-            <div class="card__footer">
-              <div class="card__preco">
-                <span class="card__parcela">12x a partir de <strong>R$&nbsp;259</strong></span>
-                <span class="card__total">Total a partir de R$ 3.108 + taxas conforme hotel · consulte 15x</span>
-              </div>
-              <a href="https://wa.me/5521920064617?text=Ol%C3%A1%20Babi%21%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20o%20pacote%20Bonito%20Imperd%C3%ADvel"
-                 target="_blank" rel="noopener noreferrer"
-                 class="btn btn--whatsapp btn--full">
-                <i class="fab fa-whatsapp"></i> Quero esse pacote!
-              </a>
-            </div>
-          </div>
-        </article>
-
         <article class="card reveal" id="pacote-natal-luz-gramado" data-destino="Natal Luz de Gramado" data-categoria="completo">
           <div class="card__img-wrap">
-            <picture><source srcset="pacotes/pacote-natal-luz-gramado.webp" type="image/webp" /><img src="pacotes/pacote-natal-luz-gramado.jpeg"
-                 alt="Natal Luz de Gramado: maior espetáculo natalino do Brasil" loading="lazy" data-lightbox ></picture>
+            <picture><source srcset="pacotes/pacote-natal-luz-gramado-400.webp 400w, pacotes/pacote-natal-luz-gramado-800.webp 800w" sizes="(max-width:640px) 100vw, 400px" type="image/webp" /><img src="pacotes/pacote-natal-luz-gramado.jpeg"
+                 alt="Natal Luz de Gramado: maior espetáculo natalino do Brasil" data-lightbox  width="400" height="260" decoding="async" loading="lazy"></picture>
             <span class="card__badge">04 a 09/12</span>
           </div>
           <div class="card__body">
@@ -575,94 +450,10 @@
           </div>
         </article>
 
-        <article class="card reveal" id="pacote-gramado-castelo" data-destino="Gramado Castelo St Andrews" data-categoria="completo">
-          <div class="card__img-wrap">
-            <picture><source srcset="pacotes/pacote-gramado-castelo.webp" type="image/webp" /><img src="pacotes/pacote-gramado-castelo.jpeg"
-                 alt="Gramado: Castelo St. Andrews e Royal Afternoon Tea" loading="lazy" data-lightbox ></picture>
-            <span class="card__badge">20 a 24/08</span>
-          </div>
-          <div class="card__body">
-            <h4 class="card__title">Gramado Castelo St. Andrews <span>Royal Afternoon Tea · Bustour</span></h4>
-            <ul class="card__features">
-              <li><i class="fas fa-plane"></i> Bloqueio GOL · Rio de Janeiro (GIG) · aéreo de R$&nbsp;693 por R$&nbsp;453</li>
-              <li><i class="fas fa-hotel"></i> Hospedagem com café da manhã · transfers · hotel Bertoluci</li>
-              <li><i class="fas fa-theater-masks"></i> Royal Afternoon Tea no Castelo St. Andrews · Bustour</li>
-              <li><i class="fas fa-shield-alt"></i> Protect Travel até R$ 5 mil · 7% à vista · sujeito a alteração</li>
-            </ul>
-            <div class="card__footer">
-              <div class="card__preco">
-                <span class="card__parcela">15x a partir de <strong>R$&nbsp;122</strong></span>
-                <span class="card__total">Total a partir de R$ 1.830 + taxas conforme hotel · sujeito a alteração</span>
-              </div>
-              <a href="https://wa.me/5521920064617?text=Ol%C3%A1%20Babi%21%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20o%20pacote%20Gramado%20Castelo%20St.%20Andrews"
-                 target="_blank" rel="noopener noreferrer"
-                 class="btn btn--whatsapp btn--full">
-                <i class="fab fa-whatsapp"></i> Quero esse pacote!
-              </a>
-            </div>
-          </div>
-        </article>
-
-        <article class="card reveal" id="pacote-buenos-aires-ushuaia" data-destino="Buenos Aires com Ushuaia" data-categoria="completo">
-          <div class="card__img-wrap">
-            <picture><source srcset="pacotes/pacote-buenos-aires-ushuaia.webp" type="image/webp" /><img src="pacotes/pacote-buenos-aires-ushuaia.jpeg"
-                 alt="Buenos Aires e Ushuaia: temporada de neve na Patagonia" loading="lazy" data-lightbox ></picture>
-            <span class="card__badge">29/06 a 05/07 · 7 dias</span>
-          </div>
-          <div class="card__body">
-            <h4 class="card__title">Buenos Aires + Ushuaia <span>Temporada de neve · Patagonia</span></h4>
-            <ul class="card__features">
-              <li><i class="fas fa-plane"></i> Aéreo LATAM · Rio de Janeiro (GIG) · 3 noites BA + 3 noites Ushuaia</li>
-              <li><i class="fas fa-hotel"></i> Hospedagem · café da manhã (exceto em BA) · transfers</li>
-              <li><i class="fas fa-mountain"></i> City tour em Buenos Aires · Parque Nacional Tierra del Fuego com ingresso</li>
-              <li><i class="fas fa-shield-alt"></i> Protect Travel até R$ 6 mil · 7% à vista · sujeito a alteração</li>
-            </ul>
-            <div class="card__footer">
-              <div class="card__preco">
-                <span class="card__parcela">12x a partir de <strong>R$&nbsp;483</strong></span>
-                <span class="card__total">Total a partir de R$ 5.796 + taxas R$ 696 · consulte parcelamento em 15x</span>
-              </div>
-              <a href="https://wa.me/5521920064617?text=Ol%C3%A1%20Babi%21%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20o%20pacote%20Buenos%20Aires%20com%20Ushuaia%20Temporada%20de%20Neve"
-                 target="_blank" rel="noopener noreferrer"
-                 class="btn btn--whatsapp btn--full">
-                <i class="fab fa-whatsapp"></i> Quero esse pacote!
-              </a>
-            </div>
-          </div>
-        </article>
-
-        <article class="card reveal" id="pacote-ba-bariloche" data-destino="Buenos Aires Bariloche Neve" data-categoria="completo">
-          <div class="card__img-wrap">
-            <picture><source srcset="pacotes/pacote-ba-bariloche.webp" type="image/webp" /><img src="pacotes/pacote-ba-bariloche.jpeg"
-                 alt="Buenos Aires e Bariloche: neve no Cerro Catedral" loading="lazy" data-lightbox ></picture>
-            <span class="card__badge">21 a 28/07 · 8 dias</span>
-          </div>
-          <div class="card__body">
-            <h4 class="card__title">Buenos Aires + Bariloche <span>Neve · Cerro Catedral</span></h4>
-            <ul class="card__features">
-              <li><i class="fas fa-plane"></i> Aéreo direto Aerolíneas · Rio de Janeiro (GIG) · café da manhã (exceto em BA)</li>
-              <li><i class="fas fa-hotel"></i> Hospedagem · transfers · 4 noites BA + 3 noites Bariloche</li>
-              <li><i class="fas fa-mountain"></i> City tour Buenos Aires · Cerro Catedral com ingresso · Circuito Chico sem ingresso</li>
-              <li><i class="fas fa-shield-alt"></i> Protect Travel até R$ 10 mil · 7% à vista · sujeito a alteração</li>
-            </ul>
-            <div class="card__footer">
-              <div class="card__preco">
-                <span class="card__parcela">12x a partir de <strong>R$&nbsp;631</strong></span>
-                <span class="card__total">Total a partir de R$ 7.572 + taxas R$ 613 · sujeito a alteração</span>
-              </div>
-              <a href="https://wa.me/5521920064617?text=Ol%C3%A1%20Babi%21%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20o%20pacote%20Buenos%20Aires%20com%20Bariloche%20Neve"
-                 target="_blank" rel="noopener noreferrer"
-                 class="btn btn--whatsapp btn--full">
-                <i class="fab fa-whatsapp"></i> Quero esse pacote!
-              </a>
-            </div>
-          </div>
-        </article>
-
         <article class="card reveal" id="pacote-buenos-aires-essencial" data-destino="Buenos Aires Essencial" data-categoria="completo">
           <div class="card__img-wrap">
-            <picture><source srcset="pacotes/pacote-buenos-aires-essencial.webp" type="image/webp" /><img src="pacotes/pacote-buenos-aires-essencial.jpeg"
-                 alt="Buenos Aires Essencial: city tour e hospedagem central" loading="lazy" data-lightbox ></picture>
+            <picture><source srcset="pacotes/pacote-buenos-aires-essencial-400.webp 400w, pacotes/pacote-buenos-aires-essencial-800.webp 800w" sizes="(max-width:640px) 100vw, 400px" type="image/webp" /><img src="pacotes/pacote-buenos-aires-essencial.jpeg"
+                 alt="Buenos Aires Essencial: city tour e hospedagem central" data-lightbox  width="400" height="260" decoding="async" loading="lazy"></picture>
             <span class="card__badge">10 a 15/07 · 6 dias</span>
           </div>
           <div class="card__body">
@@ -687,122 +478,10 @@
           </div>
         </article>
 
-        <article class="card reveal" id="pacote-santiago-atacama" data-destino="Santiago San Pedro Atacama" data-categoria="completo">
-          <div class="card__img-wrap">
-            <picture><source srcset="pacotes/pacote-santiago-atacama.webp" type="image/webp" /><img src="pacotes/pacote-santiago-atacama.jpeg"
-                 alt="Santiago e San Pedro de Atacama: vinícolas e Valle de la Luna" loading="lazy" data-lightbox ></picture>
-            <span class="card__badge">25/06 a 01/07 · 7 dias</span>
-          </div>
-          <div class="card__body">
-            <h4 class="card__title">Santiago + Atacama <span>Vinícolas · Valle de la Luna</span></h4>
-            <ul class="card__features">
-              <li><i class="fas fa-plane"></i> Aéreo LATAM · Rio de Janeiro (GIG) · 3 noites Santiago + 3 noites San Pedro</li>
-              <li><i class="fas fa-hotel"></i> Hospedagem com café da manhã · transfers</li>
-              <li><i class="fas fa-map-marked-alt"></i> City tour Santiago com vinícolas · Valle de la Luna</li>
-              <li><i class="fas fa-shield-alt"></i> Protect Travel até R$ 8 mil · 7% à vista · sujeito a alteração</li>
-            </ul>
-            <div class="card__footer">
-              <div class="card__preco">
-                <span class="card__parcela">12x a partir de <strong>R$&nbsp;624</strong></span>
-                <span class="card__total">Total a partir de R$ 7.488 + taxas R$ 485 · sujeito a alteração</span>
-              </div>
-              <a href="https://wa.me/5521920064617?text=Ol%C3%A1%20Babi%21%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20o%20pacote%20Santiago%20com%20San%20Pedro%20de%20Atacama"
-                 target="_blank" rel="noopener noreferrer"
-                 class="btn btn--whatsapp btn--full">
-                <i class="fab fa-whatsapp"></i> Quero esse pacote!
-              </a>
-            </div>
-          </div>
-        </article>
-
-        <article class="card reveal" id="pacote-santiago-neve" data-destino="Santiago Neve Undurraga" data-categoria="completo">
-          <div class="card__img-wrap">
-            <picture><source srcset="pacotes/pacote-santiago-neve.webp" type="image/webp" /><img src="pacotes/pacote-santiago-neve.jpeg"
-                 alt="Santiago: neve e vinhedo Undurraga" loading="lazy" data-lightbox ></picture>
-            <span class="card__badge">01 a 06/07 · 6 dias</span>
-          </div>
-          <div class="card__body">
-            <h4 class="card__title">Santiago Neve <span>City tour · Vinhedo Undurraga</span></h4>
-            <ul class="card__features">
-              <li><i class="fas fa-plane"></i> Aéreo LATAM · Rio de Janeiro (GIG) · 5 noites em Santiago</li>
-              <li><i class="fas fa-hotel"></i> 45 by Director · café da manhã · transfers</li>
-              <li><i class="fas fa-mountain"></i> City tour grátis · experiência neve · vinhedo Undurraga</li>
-              <li><i class="fas fa-shield-alt"></i> Protect Travel até R$ 4 mil · 7% à vista · sujeito a alteração</li>
-            </ul>
-            <div class="card__footer">
-              <div class="card__preco">
-                <span class="card__parcela">15x a partir de <strong>R$&nbsp;262</strong></span>
-                <span class="card__total">Total a partir de R$ 3.930 + taxas R$ 330 · sujeito a alteração</span>
-              </div>
-              <a href="https://wa.me/5521920064617?text=Ol%C3%A1%20Babi%21%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20o%20pacote%20Santiago%20Neve%20e%20Vinhedo%20Undurraga"
-                 target="_blank" rel="noopener noreferrer"
-                 class="btn btn--whatsapp btn--full">
-                <i class="fab fa-whatsapp"></i> Quero esse pacote!
-              </a>
-            </div>
-          </div>
-        </article>
-
-        <article class="card reveal" id="pacote-peru-vale-sagrado" data-destino="Peru Vale Sagrado Magico" data-categoria="completo">
-          <div class="card__img-wrap">
-            <picture><source srcset="pacotes/pacote-peru-vale-sagrado.webp" type="image/webp" /><img src="pacotes/pacote-peru-vale-sagrado.jpeg"
-                 alt="Peru: Vale Sagrado e Machu Picchu" loading="lazy" data-lightbox ></picture>
-            <span class="card__badge">10 a 17/09 · 8 dias</span>
-          </div>
-          <div class="card__body">
-            <h4 class="card__title">Peru Vale Sagrado <span>Machu Picchu · Cusco</span></h4>
-            <ul class="card__features">
-              <li><i class="fas fa-plane"></i> Aéreo LATAM · Rio de Janeiro (GIG) · 2n Lima + 2n Vale + 1n Aguas Calientes + 2n Cusco</li>
-              <li><i class="fas fa-hotel"></i> Hospedagem com café da manhã · transfers · guia local</li>
-              <li><i class="fas fa-mountain"></i> Machu Picchu trem Voyager + almoço · Vale Sagrado · Chinchero · Ollantaytambo</li>
-              <li><i class="fas fa-shield-alt"></i> Protect Travel até R$ 10 mil · 7% à vista · sujeito a alteração</li>
-            </ul>
-            <div class="card__footer">
-              <div class="card__preco">
-                <span class="card__parcela">12x a partir de <strong>R$&nbsp;797</strong></span>
-                <span class="card__total">Total a partir de R$ 9.564 + taxas R$ 579 · sujeito a alteração</span>
-              </div>
-              <a href="https://wa.me/5521920064617?text=Ol%C3%A1%20Babi%21%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20o%20pacote%20Peru%20Vale%20Sagrado%20M%C3%A1gico"
-                 target="_blank" rel="noopener noreferrer"
-                 class="btn btn--whatsapp btn--full">
-                <i class="fab fa-whatsapp"></i> Quero esse pacote!
-              </a>
-            </div>
-          </div>
-        </article>
-
-        <article class="card reveal" id="pacote-playa-mujeres-cancun" data-destino="Playa Mujeres Cancun" data-categoria="completo">
-          <div class="card__img-wrap">
-            <picture><source srcset="pacotes/pacote-playa-mujeres-cancun.webp" type="image/webp" /><img src="pacotes/pacote-playa-mujeres-cancun.jpeg"
-                 alt="Playa Mujeres e Cancún: all inclusive" loading="lazy" data-lightbox ></picture>
-            <span class="card__badge">20 a 27/09 · 8 dias</span>
-          </div>
-          <div class="card__body">
-            <h4 class="card__title">Playa Mujeres + Cancún <span>All inclusive · 2 destinos</span></h4>
-            <ul class="card__features">
-              <li><i class="fas fa-plane"></i> Aéreo Copa · São Paulo (GRU) · 3 noites Playa Mujeres + 3 noites Cancún</li>
-              <li><i class="fas fa-hotel"></i> Hospedagem all inclusive · transfers</li>
-              <li><i class="fas fa-umbrella-beach"></i> Dois destinos no Caribe mexicano · resorts all inclusive</li>
-              <li><i class="fas fa-shield-alt"></i> Protect Travel até R$ 8 mil · 7% à vista ou 12x sem juros · sujeito a alteração</li>
-            </ul>
-            <div class="card__footer">
-              <div class="card__preco">
-                <span class="card__parcela">12x a partir de <strong>R$&nbsp;624</strong></span>
-                <span class="card__total">Total a partir de R$ 7.488 + taxas R$ 864 · sujeito a alteração</span>
-              </div>
-              <a href="https://wa.me/5521920064617?text=Ol%C3%A1%20Babi%21%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20o%20pacote%20Playa%20Mujeres%20e%20Canc%C3%BAn"
-                 target="_blank" rel="noopener noreferrer"
-                 class="btn btn--whatsapp btn--full">
-                <i class="fab fa-whatsapp"></i> Quero esse pacote!
-              </a>
-            </div>
-          </div>
-        </article>
-
         <article class="card reveal" id="pacote-cancun-oasis-palm" data-destino="Cancun Oasis Palm" data-categoria="completo">
           <div class="card__img-wrap">
-            <picture><source srcset="pacotes/pacote-cancun-oasis-palm.webp" type="image/webp" /><img src="pacotes/pacote-cancun-oasis-palm.jpeg"
-                 alt="Cancún Oasis Palm: all inclusive com transfers grátis" loading="lazy" data-lightbox ></picture>
+            <picture><source srcset="pacotes/pacote-cancun-oasis-palm-400.webp 400w, pacotes/pacote-cancun-oasis-palm-800.webp 800w" sizes="(max-width:640px) 100vw, 400px" type="image/webp" /><img src="pacotes/pacote-cancun-oasis-palm.jpeg"
+                 alt="Cancún Oasis Palm: all inclusive com transfers grátis" data-lightbox  width="400" height="260" decoding="async" loading="lazy"></picture>
             <span class="card__badge">22 a 27/09 · 6 dias</span>
           </div>
           <div class="card__body">
@@ -827,74 +506,18 @@
           </div>
         </article>
 
-        <article class="card reveal" id="pacote-bahamas" data-destino="Bahamas Essencial" data-categoria="completo">
-          <div class="card__img-wrap">
-            <picture><source srcset="pacotes/pacote-bahamas.webp" type="image/webp" /><img src="pacotes/pacote-bahamas.jpeg"
-                 alt="Bahamas Essencial: The Coral at Atlantis" loading="lazy" data-lightbox ></picture>
-            <span class="card__badge">11 a 16/09 · 6 dias</span>
-          </div>
-          <div class="card__body">
-            <h4 class="card__title">Bahamas Essencial <span>The Coral at Atlantis</span></h4>
-            <ul class="card__features">
-              <li><i class="fas fa-plane"></i> Aéreo Copa · Rio de Janeiro (GIG) · saídas diárias</li>
-              <li><i class="fas fa-hotel"></i> The Coral at Atlantis · café da manhã · transfers</li>
-              <li><i class="fas fa-map-marked-alt"></i> City tour com almoço · Nassau</li>
-              <li><i class="fas fa-shield-alt"></i> Protect Travel até R$ 8 mil · 7% à vista · sujeito a alteração</li>
-            </ul>
-            <div class="card__footer">
-              <div class="card__preco">
-                <span class="card__parcela">15x a partir de <strong>R$&nbsp;718</strong></span>
-                <span class="card__total">Total a partir de R$ 10.770 + taxas R$ 598 · sujeito a alteração</span>
-              </div>
-              <a href="https://wa.me/5521920064617?text=Ol%C3%A1%20Babi%21%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20o%20pacote%20Bahamas%20Essencial"
-                 target="_blank" rel="noopener noreferrer"
-                 class="btn btn--whatsapp btn--full">
-                <i class="fab fa-whatsapp"></i> Quero esse pacote!
-              </a>
-            </div>
-          </div>
-        </article>
-
-        <article class="card reveal" id="pacote-san-andres" data-destino="San Andres Essencial" data-categoria="completo">
-          <div class="card__img-wrap">
-            <picture><source srcset="pacotes/pacote-san-andres.webp" type="image/webp" /><img src="pacotes/pacote-san-andres.jpeg"
-                 alt="San Andrés Essencial: all inclusive Sol Caribe Campo" loading="lazy" data-lightbox ></picture>
-            <span class="card__badge">08 a 13/08 · 6 dias</span>
-          </div>
-          <div class="card__body">
-            <h4 class="card__title">San Andrés Essencial <span>All inclusive · Sol Caribe Campo</span></h4>
-            <ul class="card__features">
-              <li><i class="fas fa-plane"></i> Aéreo Copa · Rio de Janeiro (GIG) · 5 noites em San Andrés</li>
-              <li><i class="fas fa-hotel"></i> Sol Caribe Campo · all inclusive · transfers</li>
-              <li><i class="fas fa-umbrella-beach"></i> Guia local · praias do arquipélago</li>
-              <li><i class="fas fa-shield-alt"></i> Protect Travel incluso · 7% à vista · sujeito a alteração</li>
-            </ul>
-            <div class="card__footer">
-              <div class="card__preco">
-                <span class="card__parcela">15x a partir de <strong>R$&nbsp;501</strong></span>
-                <span class="card__total">Total a partir de R$ 7.515 + taxas R$ 456 · sujeito a alteração</span>
-              </div>
-              <a href="https://wa.me/5521920064617?text=Ol%C3%A1%20Babi%21%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20o%20pacote%20San%20Andr%C3%A9s%20Essencial"
-                 target="_blank" rel="noopener noreferrer"
-                 class="btn btn--whatsapp btn--full">
-                <i class="fab fa-whatsapp"></i> Quero esse pacote!
-              </a>
-            </div>
-          </div>
-        </article>
-
-</div>
+        </div>
       </div>
 
       <div class="pacotes__category" id="pacotes-sem-aereo">
         <h3 class="pacotes__subhead" id="cruzeiros"><i class="fas fa-ship" aria-hidden="true"></i> Cruzeiros</h3>
-        <p class="pacotes__category-desc">Cruzeiros com embarque nacional. </p>
+        <p class="pacotes__category-desc">Cruzeiros com embarque nacional.</p>
         <div class="pacotes__grid">
 
         <article class="card reveal" id="pacote-navio-daniel-2027" data-destino="Navio Daniel 2027 MSC Divina" data-categoria="sem-aereo">
           <div class="card__img-wrap">
-            <picture><source srcset="pacotes/pacote-navio-daniel-2027.webp" type="image/webp" /><img src="pacotes/pacote-navio-daniel-2027.jpeg"
-                 alt="Navio Daniel 2027: MSC Divina saindo de Santos" loading="lazy" data-lightbox ></picture>
+            <picture><source srcset="pacotes/pacote-navio-daniel-2027-400.webp 400w, pacotes/pacote-navio-daniel-2027-800.webp 800w" sizes="(max-width:640px) 100vw, 400px" type="image/webp" /><img src="pacotes/pacote-navio-daniel-2027.jpeg"
+                 alt="Navio Daniel 2027: MSC Divina saindo de Santos" data-lightbox  width="400" height="260" decoding="async" loading="lazy"></picture>
             <span class="card__badge">08 a 11/01/2027 · Santos</span>
           </div>
           <div class="card__body">
@@ -919,35 +542,6 @@
           </div>
         </article>
 
-        <article class="card reveal" id="pacote-costa-serena" data-destino="Costa Serena América do Sul" data-categoria="sem-aereo">
-          <div class="card__img-wrap">
-            <picture><source srcset="pacotes/pacote-costa-serena.webp" type="image/webp" /><img src="pacotes/pacote-costa-serena.jpeg"
-                 alt="Costa Serena: cruzeiro América do Sul saindo do Rio" loading="lazy" data-lightbox ></picture>
-            <span class="card__badge">Jan e fev/2027 · Rio de Janeiro</span>
-          </div>
-          <div class="card__body">
-            <h4 class="card__title">Costa Serena <span>América do Sul · 9 noites</span></h4>
-            <ul class="card__features">
-              <li><i class="fas fa-calendar-alt"></i> <strong>27/01/2027</strong>: Férias de Janeiro: Rio, Ilhabela, Buenos Aires, Montevidéu, Balneário Camboriú, Ilha Grande, Rio</li>
-              <li><i class="fas fa-calendar-alt"></i> <strong>05/02/2027</strong>: Carnaval: Rio, Buenos Aires, Montevidéu, Punta del Este, Balneário Camboriú, Ilha Grande, Rio</li>
-              <li><i class="fas fa-door-open"></i> Tarifa My Cruise (dupla): <strong>12x</strong> interna R$&nbsp;554 / externa R$&nbsp;626 / varanda R$&nbsp;675 (jan) · interna R$&nbsp;614 / externa R$&nbsp;687 / varanda R$&nbsp;745 (fev)</li>
-              <li><i class="fas fa-plus-circle"></i> Upgrade All Inclusive: +12x R$&nbsp;203 por pessoa</li>
-              <li><i class="fas fa-exclamation-circle"></i> Taxas: porto R$&nbsp;1.890 · governo R$&nbsp;105 · serviço R$&nbsp;720 (crianças até 13 anos R$&nbsp;360) · seguro não incluso</li>
-            </ul>
-            <div class="card__footer">
-              <div class="card__preco">
-                <span class="card__parcela">12x a partir de <strong>R$&nbsp;554</strong></span>
-                <span class="card__total">Cabine interna · taxas obrigatórias à parte · condições sujeitas à operadora</span>
-              </div>
-              <a href="https://wa.me/5521920064617?text=Ol%C3%A1%20Babi!%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20o%20cruzeiro%20Costa%20Serena%20Am%C3%A9rica%20do%20Sul"
-                 target="_blank" rel="noopener noreferrer"
-                 class="btn btn--whatsapp btn--full">
-                <i class="fab fa-whatsapp"></i> Quero esse pacote!
-              </a>
-            </div>
-          </div>
-        </article>
-
         </div>
       </div>
 
@@ -958,8 +552,8 @@
 
         <article class="card reveal" id="pacote-chapada-salvador" data-destino="Chapada Diamantina com Salvador" data-categoria="grupo-guia">
           <div class="card__img-wrap">
-            <picture><source srcset="pacotes/pacote-chapada-salvador.webp" type="image/webp" /><img src="pacotes/pacote-chapada-salvador.jpeg"
-                 alt="Chapada Diamantina com Salvador: natureza e cultura baiana em grupo" loading="lazy" data-lightbox ></picture>
+            <picture><source srcset="pacotes/pacote-chapada-salvador-400.webp 400w, pacotes/pacote-chapada-salvador-800.webp 800w" sizes="(max-width:640px) 100vw, 400px" type="image/webp" /><img src="pacotes/pacote-chapada-salvador.jpeg"
+                 alt="Chapada Diamantina com Salvador: natureza e cultura baiana em grupo" data-lightbox  width="400" height="260" decoding="async" loading="lazy"></picture>
             <span class="card__badge">19 a 29/10</span>
           </div>
           <div class="card__body">
@@ -989,13 +583,13 @@
 
       <div class="pacotes__cta-extra">
         <p>Não encontrou o destino que procura?</p>
+        <a href="pacotes.html" class="btn btn--whatsapp btn--md">
+          <i class="fab fa-whatsapp"></i> Ver todos os pacotes
+        </a>
         <a href="https://wa.me/5521920064617?text=Ol%C3%A1%20Babi!%20Vim%20pelo%20site%20e%20quero%20montar%20um%20roteiro%20personalizado"
            target="_blank" rel="noopener noreferrer"
-           class="btn btn--outline btn--md">
+           class="btn btn--outline btn--md" style="margin-left:8px">
           <i class="fab fa-whatsapp"></i> Montar roteiro personalizado
-        </a>
-        <a href="roteiro-personalizado.html" class="btn btn--outline btn--md" style="margin-left:8px">
-          Saiba mais sobre roteiros sob medida
         </a>
       </div>
     </div>
@@ -1301,7 +895,7 @@
 
         <div class="footer__brand">
           <picture><source srcset="assets/logo-vcb.webp" type="image/webp" /><img src="assets/logo-vcb.png"
-               alt="Viajando com a Babi" class="footer__logo" ></picture>
+               alt="Viajando com a Babi" class="footer__logo" width="280" height="150" ></picture>
           <p>Pacotes e Roteiros personalizados para destinos que você sempre sonhou. Do planejamento ao embarque, cuidamos de tudo por você.</p>
         </div>
 
@@ -1385,7 +979,7 @@
           <p>Agência de turismo regularizada pelo Ministério do Turismo</p>
         </div>
       </div>
-      <img src="assets/cadastur.jpg" alt="Certificado Cadastur | Viajando com a Babi" class="modal__img" loading="lazy" />
+      <img data-src="assets/cadastur.webp" alt="Certificado Cadastur | Viajando com a Babi" class="modal__img" width="430" height="304" />
       <div class="modal__info">
         <div class="modal__info-item">
           <span>Cadastrado</span>
@@ -1470,7 +1064,694 @@
     <span class="fab-whatsapp__tooltip">Falar no WhatsApp</span>
   </a>
 
-  <script src="analytics.js?v=4"></script>
-  <script src="script.js?v=17"></script>
+  <script src="analytics.js?v=5"></script>
+
+<!-- PACOTES_CATALOGO_INICIO -->
+<div id="pacotes-catalog-source" hidden aria-hidden="true">
+<div class="pacotes__category" id="pacotes-completos">
+        <h3 class="pacotes__subhead"><i class="fas fa-plane-departure" aria-hidden="true"></i> Pacote completo</h3>
+        <p class="pacotes__category-desc">Aéreo, hospedagem e serviços principais inclusos.</p>
+        <div class="pacotes__grid">
+
+        <article class="card reveal" id="pacote-aracaju" data-destino="Aracaju Imperdível" data-categoria="completo">
+          <div class="card__img-wrap">
+            <picture><source srcset="pacotes/pacote-aracaju-400.webp 400w, pacotes/pacote-aracaju-800.webp 800w" sizes="(max-width:640px) 100vw, 400px" type="image/webp" /><img src="pacotes/pacote-aracaju.jpeg"
+                 alt="Aracaju: dias incríveis entre praias e passeios" width="400" height="260" data-lightbox  decoding="async"></picture>
+            <span class="card__badge">26/07 a 02/08 · férias de julho</span>
+          </div>
+          <div class="card__body">
+            <h4 class="card__title">Aracaju <span>Mangue Seco e Praia do Saco</span></h4>
+            <ul class="card__features">
+              <li><i class="fas fa-plane"></i> Bloqueio GOL · Rio de Janeiro (GIG) · aéreo de R$&nbsp;1.299 por R$&nbsp;1.014</li>
+              <li><i class="fas fa-hotel"></i> Hospedagem com café da manhã · transfer · hotel à escolha (Real Praia, Del Canto, Aruanã)</li>
+              <li><i class="fas fa-umbrella-beach"></i> City tour + praia de Aracaju · passeio ao Mangue Seco · Praia do Saco</li>
+              <li><i class="fas fa-shield-alt"></i> Protect Travel até R$ 4 mil · 7% à vista · outra saída: 03/10</li>
+            </ul>
+            <div class="card__footer">
+              <div class="card__preco">
+                <span class="card__parcela">12x a partir de <strong>R$&nbsp;226</strong></span>
+                <span class="card__total">Total a partir de R$ 2.712 + taxas conforme hotel · sujeito a alteração</span>
+              </div>
+              <a href="https://wa.me/5521920064617?text=Ol%C3%A1%20Babi%21%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20o%20pacote%20Aracaju%20Imperd%C3%ADvel"
+                 target="_blank" rel="noopener noreferrer"
+                 class="btn btn--whatsapp btn--full">
+                <i class="fab fa-whatsapp"></i> Quero esse pacote!
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card reveal" id="pacote-fortaleza" data-destino="Fortaleza Imperdível" data-categoria="completo">
+          <div class="card__img-wrap">
+            <picture><source srcset="pacotes/pacote-fortaleza-400.webp 400w, pacotes/pacote-fortaleza-800.webp 800w" sizes="(max-width:640px) 100vw, 400px" type="image/webp" /><img src="pacotes/pacote-fortaleza.jpeg"
+                 alt="Fortaleza: Cumbuco, Canoa Quebrada e Lagoinha" width="400" height="260" data-lightbox  decoding="async"></picture>
+            <span class="card__badge">07 a 12/08</span>
+          </div>
+          <div class="card__body">
+            <h4 class="card__title">Fortaleza <span>Cumbuco · Canoa Quebrada · Lagoinha</span></h4>
+            <ul class="card__features">
+              <li><i class="fas fa-plane"></i> Bloqueio GOL · Rio de Janeiro (GIG) · aéreo de R$&nbsp;1.089 por R$&nbsp;843</li>
+              <li><i class="fas fa-hotel"></i> Hospedagem com café da manhã · transfers · hotel à escolha (Atlas Beach GR, Praia Centro, Carmel Magna)</li>
+              <li><i class="fas fa-map-marked-alt"></i> City tour panorâmico com Praia de Cumbuco · Canoa Quebrada · Praia de Lagoinha</li>
+              <li><i class="fas fa-shield-alt"></i> Protect Travel até R$ 4 mil · 7% à vista · outra saída: 19/06</li>
+            </ul>
+            <div class="card__footer">
+              <div class="card__preco">
+                <span class="card__parcela">12x a partir de <strong>R$&nbsp;152</strong></span>
+                <span class="card__total">Total a partir de R$ 1.824 + taxas conforme hotel · sujeito a alteração</span>
+              </div>
+              <a href="https://wa.me/5521920064617?text=Ol%C3%A1%20Babi%21%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20o%20pacote%20Fortaleza%20Imperd%C3%ADvel"
+                 target="_blank" rel="noopener noreferrer"
+                 class="btn btn--whatsapp btn--full">
+                <i class="fab fa-whatsapp"></i> Quero esse pacote!
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card reveal" id="pacote-joao-pessoa" data-destino="João Pessoa com Pôr do Sol" data-categoria="completo">
+          <div class="card__img-wrap">
+            <picture><source srcset="pacotes/pacote-joao-pessoa-400.webp 400w, pacotes/pacote-joao-pessoa-800.webp 800w" sizes="(max-width:640px) 100vw, 400px" type="image/webp" /><img src="pacotes/pacote-joao-pessoa.jpeg"
+                 alt="João Pessoa: city tour e pôr do sol no Jacaré" width="400" height="260" data-lightbox  decoding="async" loading="lazy"></picture>
+            <span class="card__badge">05 a 11/08</span>
+          </div>
+          <div class="card__body">
+            <h4 class="card__title">João Pessoa <span>Pôr do sol no Jacaré</span></h4>
+            <ul class="card__features">
+              <li><i class="fas fa-plane"></i> Bloqueio GOL · Rio de Janeiro (GIG) · aéreo de R$&nbsp;937 por R$&nbsp;619</li>
+              <li><i class="fas fa-hotel"></i> Hospedagem com café da manhã · transfer · hotel à escolha (Nord One, Infinity, BA'RA)</li>
+              <li><i class="fas fa-map-marked-alt"></i> City tour · entardecer na praia do Jacaré ao som do Bolero de Ravel</li>
+              <li><i class="fas fa-shield-alt"></i> Protect Travel até R$ 4 mil · 7% à vista · outras saídas: 28/08, 17/09, 08/11</li>
+            </ul>
+            <div class="card__footer">
+              <div class="card__preco">
+                <span class="card__parcela">12x a partir de <strong>R$&nbsp;151</strong></span>
+                <span class="card__total">Total a partir de R$ 1.812 + taxas conforme hotel · sujeito a alteração</span>
+              </div>
+              <a href="https://wa.me/5521920064617?text=Ol%C3%A1%20Babi%21%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20o%20pacote%20Jo%C3%A3o%20Pessoa%20com%20P%C3%B4r%20do%20Sol"
+                 target="_blank" rel="noopener noreferrer"
+                 class="btn btn--whatsapp btn--full">
+                <i class="fab fa-whatsapp"></i> Quero esse pacote!
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card reveal" id="pacote-porto-seguro" data-destino="Porto Seguro com City Tour" data-categoria="completo">
+          <div class="card__img-wrap">
+            <picture><source srcset="pacotes/pacote-porto-seguro-400.webp 400w, pacotes/pacote-porto-seguro-800.webp 800w" sizes="(max-width:640px) 100vw, 400px" type="image/webp" /><img src="pacotes/pacote-porto-seguro.jpeg"
+                 alt="Porto Seguro: city tour e Coroa Vermelha cortesia" data-lightbox  width="400" height="260" decoding="async" loading="lazy"></picture>
+            <span class="card__badge">15 a 20/07 · férias de julho</span>
+          </div>
+          <div class="card__body">
+            <h4 class="card__title">Porto Seguro <span>City tour + Coroa Vermelha grátis</span></h4>
+            <ul class="card__features">
+              <li><i class="fas fa-plane"></i> Bloqueio GOL · Rio de Janeiro (GIG) · aéreo de R$&nbsp;989 por R$&nbsp;720</li>
+              <li><i class="fas fa-hotel"></i> Hospedagem com café da manhã · transfer · hotel à escolha (Ayla Praia, Portal Ville, Portobello)</li>
+              <li><i class="fas fa-umbrella-beach"></i> City tour cortesia · passeio à Praia de Coroa Vermelha grátis</li>
+              <li><i class="fas fa-shield-alt"></i> Protect Travel até R$ 4 mil · 7% à vista · outras saídas: 17/06, 27/06, 29/07, 06/08</li>
+            </ul>
+            <div class="card__footer">
+              <div class="card__preco">
+                <span class="card__parcela">12x a partir de <strong>R$&nbsp;174</strong></span>
+                <span class="card__total">Total a partir de R$ 2.088 + taxas conforme hotel · sujeito a alteração</span>
+              </div>
+              <a href="https://wa.me/5521920064617?text=Ol%C3%A1%20Babi%21%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20o%20pacote%20Porto%20Seguro%20com%20City%20Tour"
+                 target="_blank" rel="noopener noreferrer"
+                 class="btn btn--whatsapp btn--full">
+                <i class="fab fa-whatsapp"></i> Quero esse pacote!
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card reveal" id="pacote-porto-de-galinhas" data-destino="Porto de Galinhas Olinda Recife" data-categoria="completo">
+          <div class="card__img-wrap">
+            <picture><source srcset="pacotes/pacote-porto-de-galinhas-400.webp 400w, pacotes/pacote-porto-de-galinhas-800.webp 800w" sizes="(max-width:640px) 100vw, 400px" type="image/webp" /><img src="pacotes/pacote-porto-de-galinhas.jpeg"
+                 alt="Porto de Galinhas: Olinda e Recife nas férias de julho" data-lightbox  width="400" height="260" decoding="async" loading="lazy"></picture>
+            <span class="card__badge">28/07 a 02/08 · férias de julho</span>
+          </div>
+          <div class="card__body">
+            <h4 class="card__title">Porto de Galinhas <span>Olinda e Recife</span></h4>
+            <ul class="card__features">
+              <li><i class="fas fa-plane"></i> Bloqueio GOL · Rio de Janeiro (GIG) · aéreo de R$&nbsp;1.369 por R$&nbsp;1.121</li>
+              <li><i class="fas fa-hotel"></i> Hospedagem com café da manhã · transfers · hotel à escolha (Armação, Solar, Vivá)</li>
+              <li><i class="fas fa-map-marked-alt"></i> City tour Olinda e Recife · praias de Porto de Galinhas</li>
+              <li><i class="fas fa-shield-alt"></i> Protect Travel até R$ 5 mil · 7% à vista · sujeito a alteração</li>
+            </ul>
+            <div class="card__footer">
+              <div class="card__preco">
+                <span class="card__parcela">12x a partir de <strong>R$&nbsp;353</strong></span>
+                <span class="card__total">Total a partir de R$ 4.236 + taxas conforme hotel · sujeito a alteração</span>
+              </div>
+              <a href="https://wa.me/5521920064617?text=Ol%C3%A1%20Babi%21%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20o%20pacote%20Porto%20de%20Galinhas%20Olinda%20e%20Recife"
+                 target="_blank" rel="noopener noreferrer"
+                 class="btn btn--whatsapp btn--full">
+                <i class="fab fa-whatsapp"></i> Quero esse pacote!
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card reveal" id="pacote-maceio" data-destino="Maceió Pratagy Acqua Park" data-categoria="completo">
+          <div class="card__img-wrap">
+            <picture><source srcset="pacotes/pacote-maceio-pratagy-400.webp 400w, pacotes/pacote-maceio-pratagy-800.webp 800w" sizes="(max-width:640px) 100vw, 400px" type="image/webp" /><img src="pacotes/pacote-maceio-pratagy.jpeg"
+                 alt="Maceió: Pratagy Acqua Park e Praia do Gunga" data-lightbox  width="400" height="260" decoding="async" loading="lazy"></picture>
+            <span class="card__badge">09 a 16/08</span>
+          </div>
+          <div class="card__body">
+            <h4 class="card__title">Maceió <span>Pratagy Acqua Park + Gunga</span></h4>
+            <ul class="card__features">
+              <li><i class="fas fa-plane"></i> Bloqueio GOL · Rio de Janeiro (GIG) · aéreo de R$&nbsp;1.330 por R$&nbsp;1.069</li>
+              <li><i class="fas fa-hotel"></i> Hospedagem com café da manhã · transfers · hotel Trópico Praia</li>
+              <li><i class="fas fa-umbrella-beach"></i> Ingresso Pratagy Acqua Park grátis · passeio à Praia do Gunga</li>
+              <li><i class="fas fa-shield-alt"></i> Protect Travel até R$ 5 mil · 7% à vista · sujeito a alteração</li>
+            </ul>
+            <div class="card__footer">
+              <div class="card__preco">
+                <span class="card__parcela">14x a partir de <strong>R$&nbsp;164</strong></span>
+                <span class="card__total">Total a partir de R$ 2.296 + taxas conforme hotel · sujeito a alteração</span>
+              </div>
+              <a href="https://wa.me/5521920064617?text=Ol%C3%A1%20Babi%21%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20o%20pacote%20Macei%C3%B3%20Pratagy%20Acqua%20Park"
+                 target="_blank" rel="noopener noreferrer"
+                 class="btn btn--whatsapp btn--full">
+                <i class="fab fa-whatsapp"></i> Quero esse pacote!
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card reveal" id="pacote-bahia-3-em-1" data-destino="Bahia 3 em 1" data-categoria="completo">
+          <div class="card__img-wrap">
+            <picture><source srcset="pacotes/pacote-bahia-3-em-1-400.webp 400w, pacotes/pacote-bahia-3-em-1-800.webp 800w" sizes="(max-width:640px) 100vw, 400px" type="image/webp" /><img src="pacotes/pacote-bahia-3-em-1.jpeg"
+                 alt="Bahia 3 em 1: Porto Seguro, Trancoso e Arraial D'Ajuda" data-lightbox  width="400" height="260" decoding="async" loading="lazy"></picture>
+            <span class="card__badge">16 a 23/06</span>
+          </div>
+          <div class="card__body">
+            <h4 class="card__title">Bahia 3 em 1 <span>Porto Seguro · Trancoso · Arraial</span></h4>
+            <ul class="card__features">
+              <li><i class="fas fa-plane"></i> Bloqueio GOL · Rio de Janeiro (GIG) · aéreo de R$&nbsp;678 por R$&nbsp;465</li>
+              <li><i class="fas fa-hotel"></i> Hospedagem com café da manhã · transfers · hotel Ayla Praia</li>
+              <li><i class="fas fa-umbrella-beach"></i> Trancoso · Arraial D'Ajuda · Coroa Vermelha</li>
+              <li><i class="fas fa-shield-alt"></i> Protect Travel até R$ 5 mil · 7% à vista · sujeito a alteração</li>
+            </ul>
+            <div class="card__footer">
+              <div class="card__preco">
+                <span class="card__parcela">15x a partir de <strong>R$&nbsp;113</strong></span>
+                <span class="card__total">Total a partir de R$ 1.695 + taxas conforme hotel · sujeito a alteração</span>
+              </div>
+              <a href="https://wa.me/5521920064617?text=Ol%C3%A1%20Babi%21%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20o%20pacote%20Bahia%203%20em%201"
+                 target="_blank" rel="noopener noreferrer"
+                 class="btn btn--whatsapp btn--full">
+                <i class="fab fa-whatsapp"></i> Quero esse pacote!
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card reveal" id="pacote-bonito" data-destino="Bonito Imperdível" data-categoria="completo">
+          <div class="card__img-wrap">
+            <picture><source srcset="pacotes/pacote-bonito-400.webp 400w, pacotes/pacote-bonito-800.webp 800w" sizes="(max-width:640px) 100vw, 400px" type="image/webp" /><img src="pacotes/pacote-bonito.jpeg"
+                 alt="Bonito: Gruta Catedral e Lagoa Formosa" data-lightbox  width="400" height="260" decoding="async" loading="lazy"></picture>
+            <span class="card__badge">10 a 15/11</span>
+          </div>
+          <div class="card__body">
+            <h4 class="card__title">Bonito <span>Experiências com passeios</span></h4>
+            <ul class="card__features">
+              <li><i class="fas fa-plane"></i> Bloqueio GOL · Rio de Janeiro (SDU) · aéreo de R$&nbsp;1.489 por R$&nbsp;1.125</li>
+              <li><i class="fas fa-hotel"></i> Hospedagem com café da manhã · transfers · hotel à escolha (Voo das Garças, Águas de Bonito, Zagaia)</li>
+              <li><i class="fas fa-water"></i> Passeio Gruta Catedral · experiência Lagoa Formosa · consulte roteiro completo de passeios</li>
+              <li><i class="fas fa-shield-alt"></i> Protect Travel até R$ 4 mil · 7% à vista · sujeito a alteração</li>
+            </ul>
+            <div class="card__footer">
+              <div class="card__preco">
+                <span class="card__parcela">12x a partir de <strong>R$&nbsp;259</strong></span>
+                <span class="card__total">Total a partir de R$ 3.108 + taxas conforme hotel · consulte 15x</span>
+              </div>
+              <a href="https://wa.me/5521920064617?text=Ol%C3%A1%20Babi%21%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20o%20pacote%20Bonito%20Imperd%C3%ADvel"
+                 target="_blank" rel="noopener noreferrer"
+                 class="btn btn--whatsapp btn--full">
+                <i class="fab fa-whatsapp"></i> Quero esse pacote!
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card reveal" id="pacote-natal-luz-gramado" data-destino="Natal Luz de Gramado" data-categoria="completo">
+          <div class="card__img-wrap">
+            <picture><source srcset="pacotes/pacote-natal-luz-gramado-400.webp 400w, pacotes/pacote-natal-luz-gramado-800.webp 800w" sizes="(max-width:640px) 100vw, 400px" type="image/webp" /><img src="pacotes/pacote-natal-luz-gramado.jpeg"
+                 alt="Natal Luz de Gramado: maior espetáculo natalino do Brasil" data-lightbox  width="400" height="260" decoding="async" loading="lazy"></picture>
+            <span class="card__badge">04 a 09/12</span>
+          </div>
+          <div class="card__body">
+            <h4 class="card__title">Natal Luz de Gramado <span>Maior espetáculo natalino do Brasil</span></h4>
+            <ul class="card__features">
+              <li><i class="fas fa-plane"></i> Bloqueio GOL · Rio de Janeiro (GIG) · aéreo de R$&nbsp;788 por R$&nbsp;527</li>
+              <li><i class="fas fa-hotel"></i> Hospedagem com café da manhã · transfers · hotel à escolha (Exclusive Gramado, Bertoluci, Laghetto Vivace)</li>
+              <li><i class="fas fa-theater-masks"></i> 1 ingresso espetáculo Nativitaten · 1 ingresso Bustour · transfer ao espetáculo não incluso</li>
+              <li><i class="fas fa-shield-alt"></i> Protect Travel até R$ 4 mil · 7% à vista · outras saídas: 09/11, 27/11</li>
+            </ul>
+            <div class="card__footer">
+              <div class="card__preco">
+                <span class="card__parcela">12x a partir de <strong>R$&nbsp;252</strong></span>
+                <span class="card__total">Total a partir de R$ 3.024 + taxas conforme hotel · sujeito a alteração</span>
+              </div>
+              <a href="https://wa.me/5521920064617?text=Ol%C3%A1%20Babi%21%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20o%20pacote%20Natal%20Luz%20de%20Gramado"
+                 target="_blank" rel="noopener noreferrer"
+                 class="btn btn--whatsapp btn--full">
+                <i class="fab fa-whatsapp"></i> Quero esse pacote!
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card reveal" id="pacote-gramado-castelo" data-destino="Gramado Castelo St Andrews" data-categoria="completo">
+          <div class="card__img-wrap">
+            <picture><source srcset="pacotes/pacote-gramado-castelo-400.webp 400w, pacotes/pacote-gramado-castelo-800.webp 800w" sizes="(max-width:640px) 100vw, 400px" type="image/webp" /><img src="pacotes/pacote-gramado-castelo.jpeg"
+                 alt="Gramado: Castelo St. Andrews e Royal Afternoon Tea" data-lightbox  width="400" height="260" decoding="async" loading="lazy"></picture>
+            <span class="card__badge">20 a 24/08</span>
+          </div>
+          <div class="card__body">
+            <h4 class="card__title">Gramado Castelo St. Andrews <span>Royal Afternoon Tea · Bustour</span></h4>
+            <ul class="card__features">
+              <li><i class="fas fa-plane"></i> Bloqueio GOL · Rio de Janeiro (GIG) · aéreo de R$&nbsp;693 por R$&nbsp;453</li>
+              <li><i class="fas fa-hotel"></i> Hospedagem com café da manhã · transfers · hotel Bertoluci</li>
+              <li><i class="fas fa-theater-masks"></i> Royal Afternoon Tea no Castelo St. Andrews · Bustour</li>
+              <li><i class="fas fa-shield-alt"></i> Protect Travel até R$ 5 mil · 7% à vista · sujeito a alteração</li>
+            </ul>
+            <div class="card__footer">
+              <div class="card__preco">
+                <span class="card__parcela">15x a partir de <strong>R$&nbsp;122</strong></span>
+                <span class="card__total">Total a partir de R$ 1.830 + taxas conforme hotel · sujeito a alteração</span>
+              </div>
+              <a href="https://wa.me/5521920064617?text=Ol%C3%A1%20Babi%21%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20o%20pacote%20Gramado%20Castelo%20St.%20Andrews"
+                 target="_blank" rel="noopener noreferrer"
+                 class="btn btn--whatsapp btn--full">
+                <i class="fab fa-whatsapp"></i> Quero esse pacote!
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card reveal" id="pacote-buenos-aires-ushuaia" data-destino="Buenos Aires com Ushuaia" data-categoria="completo">
+          <div class="card__img-wrap">
+            <picture><source srcset="pacotes/pacote-buenos-aires-ushuaia-400.webp 400w, pacotes/pacote-buenos-aires-ushuaia-800.webp 800w" sizes="(max-width:640px) 100vw, 400px" type="image/webp" /><img src="pacotes/pacote-buenos-aires-ushuaia.jpeg"
+                 alt="Buenos Aires e Ushuaia: temporada de neve na Patagonia" data-lightbox  width="400" height="260" decoding="async" loading="lazy"></picture>
+            <span class="card__badge">29/06 a 05/07 · 7 dias</span>
+          </div>
+          <div class="card__body">
+            <h4 class="card__title">Buenos Aires + Ushuaia <span>Temporada de neve · Patagonia</span></h4>
+            <ul class="card__features">
+              <li><i class="fas fa-plane"></i> Aéreo LATAM · Rio de Janeiro (GIG) · 3 noites BA + 3 noites Ushuaia</li>
+              <li><i class="fas fa-hotel"></i> Hospedagem · café da manhã (exceto em BA) · transfers</li>
+              <li><i class="fas fa-mountain"></i> City tour em Buenos Aires · Parque Nacional Tierra del Fuego com ingresso</li>
+              <li><i class="fas fa-shield-alt"></i> Protect Travel até R$ 6 mil · 7% à vista · sujeito a alteração</li>
+            </ul>
+            <div class="card__footer">
+              <div class="card__preco">
+                <span class="card__parcela">12x a partir de <strong>R$&nbsp;483</strong></span>
+                <span class="card__total">Total a partir de R$ 5.796 + taxas R$ 696 · consulte parcelamento em 15x</span>
+              </div>
+              <a href="https://wa.me/5521920064617?text=Ol%C3%A1%20Babi%21%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20o%20pacote%20Buenos%20Aires%20com%20Ushuaia%20Temporada%20de%20Neve"
+                 target="_blank" rel="noopener noreferrer"
+                 class="btn btn--whatsapp btn--full">
+                <i class="fab fa-whatsapp"></i> Quero esse pacote!
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card reveal" id="pacote-ba-bariloche" data-destino="Buenos Aires Bariloche Neve" data-categoria="completo">
+          <div class="card__img-wrap">
+            <picture><source srcset="pacotes/pacote-ba-bariloche-400.webp 400w, pacotes/pacote-ba-bariloche-800.webp 800w" sizes="(max-width:640px) 100vw, 400px" type="image/webp" /><img src="pacotes/pacote-ba-bariloche.jpeg"
+                 alt="Buenos Aires e Bariloche: neve no Cerro Catedral" data-lightbox  width="400" height="260" decoding="async" loading="lazy"></picture>
+            <span class="card__badge">21 a 28/07 · 8 dias</span>
+          </div>
+          <div class="card__body">
+            <h4 class="card__title">Buenos Aires + Bariloche <span>Neve · Cerro Catedral</span></h4>
+            <ul class="card__features">
+              <li><i class="fas fa-plane"></i> Aéreo direto Aerolíneas · Rio de Janeiro (GIG) · café da manhã (exceto em BA)</li>
+              <li><i class="fas fa-hotel"></i> Hospedagem · transfers · 4 noites BA + 3 noites Bariloche</li>
+              <li><i class="fas fa-mountain"></i> City tour Buenos Aires · Cerro Catedral com ingresso · Circuito Chico sem ingresso</li>
+              <li><i class="fas fa-shield-alt"></i> Protect Travel até R$ 10 mil · 7% à vista · sujeito a alteração</li>
+            </ul>
+            <div class="card__footer">
+              <div class="card__preco">
+                <span class="card__parcela">12x a partir de <strong>R$&nbsp;631</strong></span>
+                <span class="card__total">Total a partir de R$ 7.572 + taxas R$ 613 · sujeito a alteração</span>
+              </div>
+              <a href="https://wa.me/5521920064617?text=Ol%C3%A1%20Babi%21%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20o%20pacote%20Buenos%20Aires%20com%20Bariloche%20Neve"
+                 target="_blank" rel="noopener noreferrer"
+                 class="btn btn--whatsapp btn--full">
+                <i class="fab fa-whatsapp"></i> Quero esse pacote!
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card reveal" id="pacote-buenos-aires-essencial" data-destino="Buenos Aires Essencial" data-categoria="completo">
+          <div class="card__img-wrap">
+            <picture><source srcset="pacotes/pacote-buenos-aires-essencial-400.webp 400w, pacotes/pacote-buenos-aires-essencial-800.webp 800w" sizes="(max-width:640px) 100vw, 400px" type="image/webp" /><img src="pacotes/pacote-buenos-aires-essencial.jpeg"
+                 alt="Buenos Aires Essencial: city tour e hospedagem central" data-lightbox  width="400" height="260" decoding="async" loading="lazy"></picture>
+            <span class="card__badge">10 a 15/07 · 6 dias</span>
+          </div>
+          <div class="card__body">
+            <h4 class="card__title">Buenos Aires Essencial <span>City tour · M Concept Hotel</span></h4>
+            <ul class="card__features">
+              <li><i class="fas fa-plane"></i> Aéreo LATAM · Rio de Janeiro (GIG) · 5 noites em Buenos Aires</li>
+              <li><i class="fas fa-hotel"></i> M Concept Hotel by Unique · café da manhã · transfers</li>
+              <li><i class="fas fa-map-marked-alt"></i> City tour em Buenos Aires</li>
+              <li><i class="fas fa-shield-alt"></i> Protect Travel até R$ 4 mil · 7% à vista · sujeito a alteração</li>
+            </ul>
+            <div class="card__footer">
+              <div class="card__preco">
+                <span class="card__parcela">12x a partir de <strong>R$&nbsp;234</strong></span>
+                <span class="card__total">Total a partir de R$ 2.808 + taxas R$ 654 · sujeito a alteração</span>
+              </div>
+              <a href="https://wa.me/5521920064617?text=Ol%C3%A1%20Babi%21%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20o%20pacote%20Buenos%20Aires%20Essencial"
+                 target="_blank" rel="noopener noreferrer"
+                 class="btn btn--whatsapp btn--full">
+                <i class="fab fa-whatsapp"></i> Quero esse pacote!
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card reveal" id="pacote-santiago-atacama" data-destino="Santiago San Pedro Atacama" data-categoria="completo">
+          <div class="card__img-wrap">
+            <picture><source srcset="pacotes/pacote-santiago-atacama-400.webp 400w, pacotes/pacote-santiago-atacama-800.webp 800w" sizes="(max-width:640px) 100vw, 400px" type="image/webp" /><img src="pacotes/pacote-santiago-atacama.jpeg"
+                 alt="Santiago e San Pedro de Atacama: vinícolas e Valle de la Luna" data-lightbox  width="400" height="260" decoding="async" loading="lazy"></picture>
+            <span class="card__badge">25/06 a 01/07 · 7 dias</span>
+          </div>
+          <div class="card__body">
+            <h4 class="card__title">Santiago + Atacama <span>Vinícolas · Valle de la Luna</span></h4>
+            <ul class="card__features">
+              <li><i class="fas fa-plane"></i> Aéreo LATAM · Rio de Janeiro (GIG) · 3 noites Santiago + 3 noites San Pedro</li>
+              <li><i class="fas fa-hotel"></i> Hospedagem com café da manhã · transfers</li>
+              <li><i class="fas fa-map-marked-alt"></i> City tour Santiago com vinícolas · Valle de la Luna</li>
+              <li><i class="fas fa-shield-alt"></i> Protect Travel até R$ 8 mil · 7% à vista · sujeito a alteração</li>
+            </ul>
+            <div class="card__footer">
+              <div class="card__preco">
+                <span class="card__parcela">12x a partir de <strong>R$&nbsp;624</strong></span>
+                <span class="card__total">Total a partir de R$ 7.488 + taxas R$ 485 · sujeito a alteração</span>
+              </div>
+              <a href="https://wa.me/5521920064617?text=Ol%C3%A1%20Babi%21%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20o%20pacote%20Santiago%20com%20San%20Pedro%20de%20Atacama"
+                 target="_blank" rel="noopener noreferrer"
+                 class="btn btn--whatsapp btn--full">
+                <i class="fab fa-whatsapp"></i> Quero esse pacote!
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card reveal" id="pacote-santiago-neve" data-destino="Santiago Neve Undurraga" data-categoria="completo">
+          <div class="card__img-wrap">
+            <picture><source srcset="pacotes/pacote-santiago-neve-400.webp 400w, pacotes/pacote-santiago-neve-800.webp 800w" sizes="(max-width:640px) 100vw, 400px" type="image/webp" /><img src="pacotes/pacote-santiago-neve.jpeg"
+                 alt="Santiago: neve e vinhedo Undurraga" data-lightbox  width="400" height="260" decoding="async" loading="lazy"></picture>
+            <span class="card__badge">01 a 06/07 · 6 dias</span>
+          </div>
+          <div class="card__body">
+            <h4 class="card__title">Santiago Neve <span>City tour · Vinhedo Undurraga</span></h4>
+            <ul class="card__features">
+              <li><i class="fas fa-plane"></i> Aéreo LATAM · Rio de Janeiro (GIG) · 5 noites em Santiago</li>
+              <li><i class="fas fa-hotel"></i> 45 by Director · café da manhã · transfers</li>
+              <li><i class="fas fa-mountain"></i> City tour grátis · experiência neve · vinhedo Undurraga</li>
+              <li><i class="fas fa-shield-alt"></i> Protect Travel até R$ 4 mil · 7% à vista · sujeito a alteração</li>
+            </ul>
+            <div class="card__footer">
+              <div class="card__preco">
+                <span class="card__parcela">15x a partir de <strong>R$&nbsp;262</strong></span>
+                <span class="card__total">Total a partir de R$ 3.930 + taxas R$ 330 · sujeito a alteração</span>
+              </div>
+              <a href="https://wa.me/5521920064617?text=Ol%C3%A1%20Babi%21%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20o%20pacote%20Santiago%20Neve%20e%20Vinhedo%20Undurraga"
+                 target="_blank" rel="noopener noreferrer"
+                 class="btn btn--whatsapp btn--full">
+                <i class="fab fa-whatsapp"></i> Quero esse pacote!
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card reveal" id="pacote-peru-vale-sagrado" data-destino="Peru Vale Sagrado Magico" data-categoria="completo">
+          <div class="card__img-wrap">
+            <picture><source srcset="pacotes/pacote-peru-vale-sagrado-400.webp 400w, pacotes/pacote-peru-vale-sagrado-800.webp 800w" sizes="(max-width:640px) 100vw, 400px" type="image/webp" /><img src="pacotes/pacote-peru-vale-sagrado.jpeg"
+                 alt="Peru: Vale Sagrado e Machu Picchu" data-lightbox  width="400" height="260" decoding="async" loading="lazy"></picture>
+            <span class="card__badge">10 a 17/09 · 8 dias</span>
+          </div>
+          <div class="card__body">
+            <h4 class="card__title">Peru Vale Sagrado <span>Machu Picchu · Cusco</span></h4>
+            <ul class="card__features">
+              <li><i class="fas fa-plane"></i> Aéreo LATAM · Rio de Janeiro (GIG) · 2n Lima + 2n Vale + 1n Aguas Calientes + 2n Cusco</li>
+              <li><i class="fas fa-hotel"></i> Hospedagem com café da manhã · transfers · guia local</li>
+              <li><i class="fas fa-mountain"></i> Machu Picchu trem Voyager + almoço · Vale Sagrado · Chinchero · Ollantaytambo</li>
+              <li><i class="fas fa-shield-alt"></i> Protect Travel até R$ 10 mil · 7% à vista · sujeito a alteração</li>
+            </ul>
+            <div class="card__footer">
+              <div class="card__preco">
+                <span class="card__parcela">12x a partir de <strong>R$&nbsp;797</strong></span>
+                <span class="card__total">Total a partir de R$ 9.564 + taxas R$ 579 · sujeito a alteração</span>
+              </div>
+              <a href="https://wa.me/5521920064617?text=Ol%C3%A1%20Babi%21%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20o%20pacote%20Peru%20Vale%20Sagrado%20M%C3%A1gico"
+                 target="_blank" rel="noopener noreferrer"
+                 class="btn btn--whatsapp btn--full">
+                <i class="fab fa-whatsapp"></i> Quero esse pacote!
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card reveal" id="pacote-playa-mujeres-cancun" data-destino="Playa Mujeres Cancun" data-categoria="completo">
+          <div class="card__img-wrap">
+            <picture><source srcset="pacotes/pacote-playa-mujeres-cancun-400.webp 400w, pacotes/pacote-playa-mujeres-cancun-800.webp 800w" sizes="(max-width:640px) 100vw, 400px" type="image/webp" /><img src="pacotes/pacote-playa-mujeres-cancun.jpeg"
+                 alt="Playa Mujeres e Cancún: all inclusive" data-lightbox  width="400" height="260" decoding="async" loading="lazy"></picture>
+            <span class="card__badge">20 a 27/09 · 8 dias</span>
+          </div>
+          <div class="card__body">
+            <h4 class="card__title">Playa Mujeres + Cancún <span>All inclusive · 2 destinos</span></h4>
+            <ul class="card__features">
+              <li><i class="fas fa-plane"></i> Aéreo Copa · São Paulo (GRU) · 3 noites Playa Mujeres + 3 noites Cancún</li>
+              <li><i class="fas fa-hotel"></i> Hospedagem all inclusive · transfers</li>
+              <li><i class="fas fa-umbrella-beach"></i> Dois destinos no Caribe mexicano · resorts all inclusive</li>
+              <li><i class="fas fa-shield-alt"></i> Protect Travel até R$ 8 mil · 7% à vista ou 12x sem juros · sujeito a alteração</li>
+            </ul>
+            <div class="card__footer">
+              <div class="card__preco">
+                <span class="card__parcela">12x a partir de <strong>R$&nbsp;624</strong></span>
+                <span class="card__total">Total a partir de R$ 7.488 + taxas R$ 864 · sujeito a alteração</span>
+              </div>
+              <a href="https://wa.me/5521920064617?text=Ol%C3%A1%20Babi%21%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20o%20pacote%20Playa%20Mujeres%20e%20Canc%C3%BAn"
+                 target="_blank" rel="noopener noreferrer"
+                 class="btn btn--whatsapp btn--full">
+                <i class="fab fa-whatsapp"></i> Quero esse pacote!
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card reveal" id="pacote-cancun-oasis-palm" data-destino="Cancun Oasis Palm" data-categoria="completo">
+          <div class="card__img-wrap">
+            <picture><source srcset="pacotes/pacote-cancun-oasis-palm-400.webp 400w, pacotes/pacote-cancun-oasis-palm-800.webp 800w" sizes="(max-width:640px) 100vw, 400px" type="image/webp" /><img src="pacotes/pacote-cancun-oasis-palm.jpeg"
+                 alt="Cancún Oasis Palm: all inclusive com transfers grátis" data-lightbox  width="400" height="260" decoding="async" loading="lazy"></picture>
+            <span class="card__badge">22 a 27/09 · 6 dias</span>
+          </div>
+          <div class="card__body">
+            <h4 class="card__title">Cancún Oasis Palm <span>All inclusive · Oasis Palm</span></h4>
+            <ul class="card__features">
+              <li><i class="fas fa-plane"></i> Aéreo Copa · Rio de Janeiro (GIG) · 5 noites em Cancún</li>
+              <li><i class="fas fa-hotel"></i> Oasis Palm · all inclusive · transfers grátis</li>
+              <li><i class="fas fa-umbrella-beach"></i> Resort all inclusive na zona hoteleira de Cancún</li>
+              <li><i class="fas fa-shield-alt"></i> Protect Travel até R$ 12 mil · 7% à vista · sujeito a alteração</li>
+            </ul>
+            <div class="card__footer">
+              <div class="card__preco">
+                <span class="card__parcela">15x a partir de <strong>R$&nbsp;388</strong></span>
+                <span class="card__total">Total a partir de R$ 5.820 + taxas R$ 810 · sujeito a alteração</span>
+              </div>
+              <a href="https://wa.me/5521920064617?text=Ol%C3%A1%20Babi%21%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20o%20pacote%20Canc%C3%BAn%20Oasis%20Palm"
+                 target="_blank" rel="noopener noreferrer"
+                 class="btn btn--whatsapp btn--full">
+                <i class="fab fa-whatsapp"></i> Quero esse pacote!
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card reveal" id="pacote-bahamas" data-destino="Bahamas Essencial" data-categoria="completo">
+          <div class="card__img-wrap">
+            <picture><source srcset="pacotes/pacote-bahamas-400.webp 400w, pacotes/pacote-bahamas-800.webp 800w" sizes="(max-width:640px) 100vw, 400px" type="image/webp" /><img src="pacotes/pacote-bahamas.jpeg"
+                 alt="Bahamas Essencial: The Coral at Atlantis" data-lightbox  width="400" height="260" decoding="async" loading="lazy"></picture>
+            <span class="card__badge">11 a 16/09 · 6 dias</span>
+          </div>
+          <div class="card__body">
+            <h4 class="card__title">Bahamas Essencial <span>The Coral at Atlantis</span></h4>
+            <ul class="card__features">
+              <li><i class="fas fa-plane"></i> Aéreo Copa · Rio de Janeiro (GIG) · saídas diárias</li>
+              <li><i class="fas fa-hotel"></i> The Coral at Atlantis · café da manhã · transfers</li>
+              <li><i class="fas fa-map-marked-alt"></i> City tour com almoço · Nassau</li>
+              <li><i class="fas fa-shield-alt"></i> Protect Travel até R$ 8 mil · 7% à vista · sujeito a alteração</li>
+            </ul>
+            <div class="card__footer">
+              <div class="card__preco">
+                <span class="card__parcela">15x a partir de <strong>R$&nbsp;718</strong></span>
+                <span class="card__total">Total a partir de R$ 10.770 + taxas R$ 598 · sujeito a alteração</span>
+              </div>
+              <a href="https://wa.me/5521920064617?text=Ol%C3%A1%20Babi%21%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20o%20pacote%20Bahamas%20Essencial"
+                 target="_blank" rel="noopener noreferrer"
+                 class="btn btn--whatsapp btn--full">
+                <i class="fab fa-whatsapp"></i> Quero esse pacote!
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card reveal" id="pacote-san-andres" data-destino="San Andres Essencial" data-categoria="completo">
+          <div class="card__img-wrap">
+            <picture><source srcset="pacotes/pacote-san-andres-400.webp 400w, pacotes/pacote-san-andres-800.webp 800w" sizes="(max-width:640px) 100vw, 400px" type="image/webp" /><img src="pacotes/pacote-san-andres.jpeg"
+                 alt="San Andrés Essencial: all inclusive Sol Caribe Campo" data-lightbox  width="400" height="260" decoding="async" loading="lazy"></picture>
+            <span class="card__badge">08 a 13/08 · 6 dias</span>
+          </div>
+          <div class="card__body">
+            <h4 class="card__title">San Andrés Essencial <span>All inclusive · Sol Caribe Campo</span></h4>
+            <ul class="card__features">
+              <li><i class="fas fa-plane"></i> Aéreo Copa · Rio de Janeiro (GIG) · 5 noites em San Andrés</li>
+              <li><i class="fas fa-hotel"></i> Sol Caribe Campo · all inclusive · transfers</li>
+              <li><i class="fas fa-umbrella-beach"></i> Guia local · praias do arquipélago</li>
+              <li><i class="fas fa-shield-alt"></i> Protect Travel incluso · 7% à vista · sujeito a alteração</li>
+            </ul>
+            <div class="card__footer">
+              <div class="card__preco">
+                <span class="card__parcela">15x a partir de <strong>R$&nbsp;501</strong></span>
+                <span class="card__total">Total a partir de R$ 7.515 + taxas R$ 456 · sujeito a alteração</span>
+              </div>
+              <a href="https://wa.me/5521920064617?text=Ol%C3%A1%20Babi%21%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20o%20pacote%20San%20Andr%C3%A9s%20Essencial"
+                 target="_blank" rel="noopener noreferrer"
+                 class="btn btn--whatsapp btn--full">
+                <i class="fab fa-whatsapp"></i> Quero esse pacote!
+              </a>
+            </div>
+          </div>
+        </article>
+
+</div>
+      </div>
+
+      <div class="pacotes__category" id="pacotes-sem-aereo">
+        <h3 class="pacotes__subhead" id="cruzeiros"><i class="fas fa-ship" aria-hidden="true"></i> Cruzeiros</h3>
+        <p class="pacotes__category-desc">Cruzeiros com embarque nacional. </p>
+        <div class="pacotes__grid">
+
+        <article class="card reveal" id="pacote-navio-daniel-2027" data-destino="Navio Daniel 2027 MSC Divina" data-categoria="sem-aereo">
+          <div class="card__img-wrap">
+            <picture><source srcset="pacotes/pacote-navio-daniel-2027-400.webp 400w, pacotes/pacote-navio-daniel-2027-800.webp 800w" sizes="(max-width:640px) 100vw, 400px" type="image/webp" /><img src="pacotes/pacote-navio-daniel-2027.jpeg"
+                 alt="Navio Daniel 2027: MSC Divina saindo de Santos" data-lightbox  width="400" height="260" decoding="async" loading="lazy"></picture>
+            <span class="card__badge">08 a 11/01/2027 · Santos</span>
+          </div>
+          <div class="card__body">
+            <h4 class="card__title">Navio Daniel 2027 <span>MSC Divina · 3 noites</span></h4>
+            <ul class="card__features">
+              <li><i class="fas fa-music"></i> Shows com Daniel, Simone Mendes, Fagner e mais</li>
+              <li><i class="fas fa-anchor"></i> Embarque e desembarque em Santos · roteiro Rumo ao Sol</li>
+              <li><i class="fas fa-door-open"></i> Cabines interna a varanda e experiências suite</li>
+              <li><i class="fas fa-exclamation-circle"></i> Taxas de porto/serviço à parte · seguro não incluso</li>
+            </ul>
+            <div class="card__footer">
+              <div class="card__preco">
+                <span class="card__parcela">12x a partir de <strong>R$&nbsp;289</strong></span>
+                <span class="card__total">Consulte cabine · taxas de porto aprox. R$ 1.350 por pessoa</span>
+              </div>
+              <a href="https://wa.me/5521920064617?text=Ol%C3%A1%20Babi!%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20o%20pacote%20Navio%20Daniel%202027%20MSC%20Divina"
+                 target="_blank" rel="noopener noreferrer"
+                 class="btn btn--whatsapp btn--full">
+                <i class="fab fa-whatsapp"></i> Quero esse pacote!
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card reveal" id="pacote-costa-serena" data-destino="Costa Serena América do Sul" data-categoria="sem-aereo">
+          <div class="card__img-wrap">
+            <picture><source srcset="pacotes/pacote-costa-serena-400.webp 400w, pacotes/pacote-costa-serena-800.webp 800w" sizes="(max-width:640px) 100vw, 400px" type="image/webp" /><img src="pacotes/pacote-costa-serena.jpeg"
+                 alt="Costa Serena: cruzeiro América do Sul saindo do Rio" data-lightbox  width="400" height="260" decoding="async" loading="lazy"></picture>
+            <span class="card__badge">Jan e fev/2027 · Rio de Janeiro</span>
+          </div>
+          <div class="card__body">
+            <h4 class="card__title">Costa Serena <span>América do Sul · 9 noites</span></h4>
+            <ul class="card__features">
+              <li><i class="fas fa-calendar-alt"></i> <strong>27/01/2027</strong>: Férias de Janeiro: Rio, Ilhabela, Buenos Aires, Montevidéu, Balneário Camboriú, Ilha Grande, Rio</li>
+              <li><i class="fas fa-calendar-alt"></i> <strong>05/02/2027</strong>: Carnaval: Rio, Buenos Aires, Montevidéu, Punta del Este, Balneário Camboriú, Ilha Grande, Rio</li>
+              <li><i class="fas fa-door-open"></i> Tarifa My Cruise (dupla): <strong>12x</strong> interna R$&nbsp;554 / externa R$&nbsp;626 / varanda R$&nbsp;675 (jan) · interna R$&nbsp;614 / externa R$&nbsp;687 / varanda R$&nbsp;745 (fev)</li>
+              <li><i class="fas fa-plus-circle"></i> Upgrade All Inclusive: +12x R$&nbsp;203 por pessoa</li>
+              <li><i class="fas fa-exclamation-circle"></i> Taxas: porto R$&nbsp;1.890 · governo R$&nbsp;105 · serviço R$&nbsp;720 (crianças até 13 anos R$&nbsp;360) · seguro não incluso</li>
+            </ul>
+            <div class="card__footer">
+              <div class="card__preco">
+                <span class="card__parcela">12x a partir de <strong>R$&nbsp;554</strong></span>
+                <span class="card__total">Cabine interna · taxas obrigatórias à parte · condições sujeitas à operadora</span>
+              </div>
+              <a href="https://wa.me/5521920064617?text=Ol%C3%A1%20Babi!%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20o%20cruzeiro%20Costa%20Serena%20Am%C3%A9rica%20do%20Sul"
+                 target="_blank" rel="noopener noreferrer"
+                 class="btn btn--whatsapp btn--full">
+                <i class="fab fa-whatsapp"></i> Quero esse pacote!
+              </a>
+            </div>
+          </div>
+        </article>
+
+        </div>
+      </div>
+
+      <div class="pacotes__category" id="pacotes-grupos-guia">
+        <h3 class="pacotes__subhead"><i class="fas fa-user-friends" aria-hidden="true"></i> Grupos com Guia</h3>
+        <p class="pacotes__category-desc">Roteiros em grupo com guia.</p>
+        <div class="pacotes__grid">
+
+        <article class="card reveal" id="pacote-chapada-salvador" data-destino="Chapada Diamantina com Salvador" data-categoria="grupo-guia">
+          <div class="card__img-wrap">
+            <picture><source srcset="pacotes/pacote-chapada-salvador-400.webp 400w, pacotes/pacote-chapada-salvador-800.webp 800w" sizes="(max-width:640px) 100vw, 400px" type="image/webp" /><img src="pacotes/pacote-chapada-salvador.jpeg"
+                 alt="Chapada Diamantina com Salvador: natureza e cultura baiana em grupo" data-lightbox  width="400" height="260" decoding="async" loading="lazy"></picture>
+            <span class="card__badge">19 a 29/10</span>
+          </div>
+          <div class="card__body">
+            <h4 class="card__title">Chapada Diamantina <span>Grupo com guia · Roteiros 50+</span></h4>
+            <ul class="card__features">
+              <li><i class="fas fa-plane"></i> Bloqueio GOL · Rio (GIG) · aéreo promocional de R$&nbsp;1.103 por R$&nbsp;697</li>
+              <li><i class="fas fa-hotel"></i> 3 noites Salvador + 2 Mucugê + 5 Lençóis · café · transfers · guias Luck Adventure</li>
+              <li><i class="fas fa-map-marked-alt"></i> City tour panorâmico em Salvador · Cachoeira do Buracão · principais mirantes da Chapada</li>
+              <li><i class="fas fa-shield-alt"></i> Protect Travel até R$ 6 mil · 7% à vista · sujeito a alteração</li>
+            </ul>
+            <div class="card__footer">
+              <div class="card__preco">
+                <span class="card__parcela">12x a partir de <strong>R$&nbsp;603</strong></span>
+                <span class="card__total">Total a partir de R$ 7.236 + taxas R$ 199 · consulte parcelamento em 15x</span>
+              </div>
+              <a href="https://wa.me/5521920064617?text=Ol%C3%A1%20Babi!%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20o%20pacote%20Chapada%20Diamantina%20com%20Salvador"
+                 target="_blank" rel="noopener noreferrer"
+                 class="btn btn--whatsapp btn--full">
+                <i class="fab fa-whatsapp"></i> Quero esse pacote!
+              </a>
+            </div>
+          </div>
+        </article>
+
+        </div>
+      </div>
+
+      <div class="pacotes__cta-extra">
+        <p>Não encontrou o destino que procura?</p>
+        <a href="https://wa.me/5521920064617?text=Ol%C3%A1%20Babi!%20Vim%20pelo%20site%20e%20quero%20montar%20um%20roteiro%20personalizado"
+           target="_blank" rel="noopener noreferrer"
+           class="btn btn--outline btn--md">
+          <i class="fab fa-whatsapp"></i> Montar roteiro personalizado
+        </a>
+        <a href="roteiro-personalizado.html" class="btn btn--outline btn--md" style="margin-left:8px">
+          Saiba mais sobre roteiros sob medida
+        </a>
+      </div>
+</div>
+<!-- PACOTES_CATALOGO_FIM -->
+
+
+<script src="script.js?v=19"></script>
 </body>
 </html>
