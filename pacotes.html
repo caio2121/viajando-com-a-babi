@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pacotes de viagem — Viajando com a Babi</title>
-  <meta name="description" content="Catálogo de pacotes de viagem com aéreo e hospedagem: Nordeste, Gramado, América do Sul, Caribe e cruzeiros. Agência Cadastur — fale com a Babi." />
+  <title>Pacotes de viagem | Viajando com a Babi</title>
+  <meta name="description" content="Catálogo de pacotes de viagem com aéreo e hospedagem: Nordeste, Gramado, América do Sul, Caribe e cruzeiros. Agência Cadastur. Fale com a Babi." />
   <link rel="canonical" href="https://viajandocomababi.com.br/pacotes.html" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://viajandocomababi.com.br/pacotes.html" />
-  <meta property="og:title" content="Pacotes de viagem — Viajando com a Babi" />
+  <meta property="og:title" content="Pacotes de viagem | Viajando com a Babi" />
   <meta property="og:description" content="Pacotes de viagem com aéreo e hospedagem para destinos nacionais e internacionais." />
   <meta property="og:image" content="https://viajandocomababi.com.br/assets/og-share.jpeg" />
   <meta property="og:locale" content="pt_BR" />
@@ -16,12 +16,12 @@
   <link rel="icon" type="image/png" href="assets/logo-vcb.png" />
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link rel="stylesheet" href="style.css?v=16" />
+  <link rel="stylesheet" href="style.css?v=17" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@graph": [
-      { "@type": "WebPage", "@id": "https://viajandocomababi.com.br/pacotes.html#webpage", "url": "https://viajandocomababi.com.br/pacotes.html", "name": "Pacotes de viagem — Viajando com a Babi", "isPartOf": { "@id": "https://viajandocomababi.com.br/#website" } },
+      { "@type": "WebPage", "@id": "https://viajandocomababi.com.br/pacotes.html#webpage", "url": "https://viajandocomababi.com.br/pacotes.html", "name": "Pacotes de viagem | Viajando com a Babi", "isPartOf": { "@id": "https://viajandocomababi.com.br/#website" } },
       { "@type": "BreadcrumbList", "itemListElement": [
         { "@type": "ListItem", "position": 1, "name": "Início", "item": "https://viajandocomababi.com.br/" },
         { "@type": "ListItem", "position": 2, "name": "Pacotes de viagem", "item": "https://viajandocomababi.com.br/pacotes.html" }
@@ -31,29 +31,44 @@
   </script>
 </head>
 <body>
-  <header class="navbar" id="navbar">
+        <header class="navbar" id="navbar">
     <div class="navbar__container">
-      <a href="/" class="navbar__logo"><img src="assets/logo-vcb.png" alt="Viajando com a Babi" width="200" height="62" /></a>
+      <a href="/" class="navbar__logo">
+        <picture><source srcset="assets/logo-vcb.webp" type="image/webp" /><img src="assets/logo-vcb.png" alt="Viajando com a Babi" width="200" height="62" ></picture>
+      </a>
+
       <nav class="navbar__links" id="navLinks">
+        <a href="/">Início</a>
         <a href="sobre.html">Sobre</a>
         <a href="como-funciona.html">Como funciona</a>
         <a href="pacotes.html">Pacotes</a>
         <a href="faq.html">FAQ</a>
         <a href="/#depoimentos">Depoimentos</a>
         <a href="/#contato">Contato</a>
+        <button class="btn-cadastur-nav" id="btnCadasturNav" type="button" aria-label="Ver Certificado Cadastur">
+          <i class="fas fa-award" style="color:#d4a017"></i>
+          Cadastur
+        </button>
       </nav>
-      <a href="https://wa.me/5521920064617?text=Ol%C3%A1%20Babi!%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20os%20pacotes%20de%20viagem" target="_blank" rel="noopener noreferrer" class="btn btn--whatsapp btn--sm navbar__cta"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-      <button class="navbar__hamburger" id="hamburger" aria-label="Abrir menu" aria-expanded="false"><span></span><span></span><span></span></button>
+
+      <a href="https://wa.me/5521920064617?text=Ol%C3%A1%20Babi!%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20os%20pacotes%20de%20viagem"
+         target="_blank" rel="noopener noreferrer"
+         class="btn btn--whatsapp btn--sm navbar__cta">
+        <i class="fab fa-whatsapp"></i> WhatsApp
+      </a>
+
+      <button class="navbar__hamburger" id="hamburger" aria-label="Abrir menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </header>
-
-  <main id="conteudo-principal">
+<main id="conteudo-principal">
   <section class="pacotes pacotes-page">
     <div class="container pacotes-page__header">
       <nav class="breadcrumb breadcrumb--light" aria-label="Navegação"><a href="/">Início</a> / Pacotes de viagem</nav>
       <span class="label label--center">Catálogo completo</span>
       <h1 class="section-title">Pacotes de viagem</h1>
-      <p class="section-sub">Pacotes com aéreo, hospedagem e serviços principais — além de cruzeiros e roteiros em grupo. Quer algo sob medida? <a href="roteiro-personalizado.html">Monte um roteiro personalizado</a>.</p>
+      <p class="section-sub">Pacotes com aéreo, hospedagem e serviços principais, além de cruzeiros e roteiros em grupo. Quer algo sob medida? <a href="roteiro-personalizado.html">Monte um roteiro personalizado</a>.</p>
     </div>
     <div class="container">
 <div class="pacotes__category" id="pacotes-completos">
@@ -64,7 +79,7 @@
         <article class="card reveal" id="pacote-aracaju" data-destino="Aracaju Imperdível" data-categoria="completo">
           <div class="card__img-wrap">
             <picture><source srcset="pacotes/pacote-aracaju.webp" type="image/webp" /><img src="pacotes/pacote-aracaju.jpeg"
-                 alt="Aracaju — dias incríveis entre praias e passeios" width="400" height="260" loading="lazy" data-lightbox ></picture>
+                 alt="Aracaju: dias incríveis entre praias e passeios" width="400" height="260" loading="lazy" data-lightbox ></picture>
             <span class="card__badge">26/07 a 02/08 · férias de julho</span>
           </div>
           <div class="card__body">
@@ -92,7 +107,7 @@
         <article class="card reveal" id="pacote-fortaleza" data-destino="Fortaleza Imperdível" data-categoria="completo">
           <div class="card__img-wrap">
             <picture><source srcset="pacotes/pacote-fortaleza.webp" type="image/webp" /><img src="pacotes/pacote-fortaleza.jpeg"
-                 alt="Fortaleza — Cumbuco, Canoa Quebrada e Lagoinha" width="400" height="260" loading="lazy" data-lightbox ></picture>
+                 alt="Fortaleza: Cumbuco, Canoa Quebrada e Lagoinha" width="400" height="260" loading="lazy" data-lightbox ></picture>
             <span class="card__badge">07 a 12/08</span>
           </div>
           <div class="card__body">
@@ -120,7 +135,7 @@
         <article class="card reveal" id="pacote-joao-pessoa" data-destino="João Pessoa com Pôr do Sol" data-categoria="completo">
           <div class="card__img-wrap">
             <picture><source srcset="pacotes/pacote-joao-pessoa.webp" type="image/webp" /><img src="pacotes/pacote-joao-pessoa.jpeg"
-                 alt="João Pessoa — city tour e pôr do sol no Jacaré" width="400" height="260" loading="lazy" data-lightbox ></picture>
+                 alt="João Pessoa: city tour e pôr do sol no Jacaré" width="400" height="260" loading="lazy" data-lightbox ></picture>
             <span class="card__badge">05 a 11/08</span>
           </div>
           <div class="card__body">
@@ -148,7 +163,7 @@
         <article class="card reveal" id="pacote-porto-seguro" data-destino="Porto Seguro com City Tour" data-categoria="completo">
           <div class="card__img-wrap">
             <picture><source srcset="pacotes/pacote-porto-seguro.webp" type="image/webp" /><img src="pacotes/pacote-porto-seguro.jpeg"
-                 alt="Porto Seguro — city tour e Coroa Vermelha cortesia" loading="lazy" data-lightbox ></picture>
+                 alt="Porto Seguro: city tour e Coroa Vermelha cortesia" loading="lazy" data-lightbox ></picture>
             <span class="card__badge">15 a 20/07 · férias de julho</span>
           </div>
           <div class="card__body">
@@ -176,7 +191,7 @@
         <article class="card reveal" id="pacote-porto-de-galinhas" data-destino="Porto de Galinhas Olinda Recife" data-categoria="completo">
           <div class="card__img-wrap">
             <picture><source srcset="pacotes/pacote-porto-de-galinhas.webp" type="image/webp" /><img src="pacotes/pacote-porto-de-galinhas.jpeg"
-                 alt="Porto de Galinhas — Olinda e Recife nas férias de julho" loading="lazy" data-lightbox ></picture>
+                 alt="Porto de Galinhas: Olinda e Recife nas férias de julho" loading="lazy" data-lightbox ></picture>
             <span class="card__badge">28/07 a 02/08 · férias de julho</span>
           </div>
           <div class="card__body">
@@ -204,7 +219,7 @@
         <article class="card reveal" id="pacote-maceio" data-destino="Maceió Pratagy Acqua Park" data-categoria="completo">
           <div class="card__img-wrap">
             <picture><source srcset="pacotes/pacote-maceio-pratagy.webp" type="image/webp" /><img src="pacotes/pacote-maceio-pratagy.jpeg"
-                 alt="Maceió — Pratagy Acqua Park e Praia do Gunga" loading="lazy" data-lightbox ></picture>
+                 alt="Maceió: Pratagy Acqua Park e Praia do Gunga" loading="lazy" data-lightbox ></picture>
             <span class="card__badge">09 a 16/08</span>
           </div>
           <div class="card__body">
@@ -232,7 +247,7 @@
         <article class="card reveal" id="pacote-bahia-3-em-1" data-destino="Bahia 3 em 1" data-categoria="completo">
           <div class="card__img-wrap">
             <picture><source srcset="pacotes/pacote-bahia-3-em-1.webp" type="image/webp" /><img src="pacotes/pacote-bahia-3-em-1.jpeg"
-                 alt="Bahia 3 em 1 — Porto Seguro, Trancoso e Arraial D'Ajuda" loading="lazy" data-lightbox ></picture>
+                 alt="Bahia 3 em 1: Porto Seguro, Trancoso e Arraial D'Ajuda" loading="lazy" data-lightbox ></picture>
             <span class="card__badge">16 a 23/06</span>
           </div>
           <div class="card__body">
@@ -260,7 +275,7 @@
         <article class="card reveal" id="pacote-bonito" data-destino="Bonito Imperdível" data-categoria="completo">
           <div class="card__img-wrap">
             <picture><source srcset="pacotes/pacote-bonito.webp" type="image/webp" /><img src="pacotes/pacote-bonito.jpeg"
-                 alt="Bonito — Gruta Catedral e Lagoa Formosa" loading="lazy" data-lightbox ></picture>
+                 alt="Bonito: Gruta Catedral e Lagoa Formosa" loading="lazy" data-lightbox ></picture>
             <span class="card__badge">10 a 15/11</span>
           </div>
           <div class="card__body">
@@ -288,7 +303,7 @@
         <article class="card reveal" id="pacote-natal-luz-gramado" data-destino="Natal Luz de Gramado" data-categoria="completo">
           <div class="card__img-wrap">
             <picture><source srcset="pacotes/pacote-natal-luz-gramado.webp" type="image/webp" /><img src="pacotes/pacote-natal-luz-gramado.jpeg"
-                 alt="Natal Luz de Gramado — maior espetáculo natalino do Brasil" loading="lazy" data-lightbox ></picture>
+                 alt="Natal Luz de Gramado: maior espetáculo natalino do Brasil" loading="lazy" data-lightbox ></picture>
             <span class="card__badge">04 a 09/12</span>
           </div>
           <div class="card__body">
@@ -316,7 +331,7 @@
         <article class="card reveal" id="pacote-gramado-castelo" data-destino="Gramado Castelo St Andrews" data-categoria="completo">
           <div class="card__img-wrap">
             <picture><source srcset="pacotes/pacote-gramado-castelo.webp" type="image/webp" /><img src="pacotes/pacote-gramado-castelo.jpeg"
-                 alt="Gramado — Castelo St. Andrews e Royal Afternoon Tea" loading="lazy" data-lightbox ></picture>
+                 alt="Gramado: Castelo St. Andrews e Royal Afternoon Tea" loading="lazy" data-lightbox ></picture>
             <span class="card__badge">20 a 24/08</span>
           </div>
           <div class="card__body">
@@ -344,7 +359,7 @@
         <article class="card reveal" id="pacote-buenos-aires-ushuaia" data-destino="Buenos Aires com Ushuaia" data-categoria="completo">
           <div class="card__img-wrap">
             <picture><source srcset="pacotes/pacote-buenos-aires-ushuaia.webp" type="image/webp" /><img src="pacotes/pacote-buenos-aires-ushuaia.jpeg"
-                 alt="Buenos Aires e Ushuaia — temporada de neve na Patagonia" loading="lazy" data-lightbox ></picture>
+                 alt="Buenos Aires e Ushuaia: temporada de neve na Patagonia" loading="lazy" data-lightbox ></picture>
             <span class="card__badge">29/06 a 05/07 · 7 dias</span>
           </div>
           <div class="card__body">
@@ -372,7 +387,7 @@
         <article class="card reveal" id="pacote-ba-bariloche" data-destino="Buenos Aires Bariloche Neve" data-categoria="completo">
           <div class="card__img-wrap">
             <picture><source srcset="pacotes/pacote-ba-bariloche.webp" type="image/webp" /><img src="pacotes/pacote-ba-bariloche.jpeg"
-                 alt="Buenos Aires e Bariloche — neve no Cerro Catedral" loading="lazy" data-lightbox ></picture>
+                 alt="Buenos Aires e Bariloche: neve no Cerro Catedral" loading="lazy" data-lightbox ></picture>
             <span class="card__badge">21 a 28/07 · 8 dias</span>
           </div>
           <div class="card__body">
@@ -400,7 +415,7 @@
         <article class="card reveal" id="pacote-buenos-aires-essencial" data-destino="Buenos Aires Essencial" data-categoria="completo">
           <div class="card__img-wrap">
             <picture><source srcset="pacotes/pacote-buenos-aires-essencial.webp" type="image/webp" /><img src="pacotes/pacote-buenos-aires-essencial.jpeg"
-                 alt="Buenos Aires Essencial — city tour e hospedagem central" loading="lazy" data-lightbox ></picture>
+                 alt="Buenos Aires Essencial: city tour e hospedagem central" loading="lazy" data-lightbox ></picture>
             <span class="card__badge">10 a 15/07 · 6 dias</span>
           </div>
           <div class="card__body">
@@ -428,7 +443,7 @@
         <article class="card reveal" id="pacote-santiago-atacama" data-destino="Santiago San Pedro Atacama" data-categoria="completo">
           <div class="card__img-wrap">
             <picture><source srcset="pacotes/pacote-santiago-atacama.webp" type="image/webp" /><img src="pacotes/pacote-santiago-atacama.jpeg"
-                 alt="Santiago e San Pedro de Atacama — vinícolas e Valle de la Luna" loading="lazy" data-lightbox ></picture>
+                 alt="Santiago e San Pedro de Atacama: vinícolas e Valle de la Luna" loading="lazy" data-lightbox ></picture>
             <span class="card__badge">25/06 a 01/07 · 7 dias</span>
           </div>
           <div class="card__body">
@@ -456,7 +471,7 @@
         <article class="card reveal" id="pacote-santiago-neve" data-destino="Santiago Neve Undurraga" data-categoria="completo">
           <div class="card__img-wrap">
             <picture><source srcset="pacotes/pacote-santiago-neve.webp" type="image/webp" /><img src="pacotes/pacote-santiago-neve.jpeg"
-                 alt="Santiago — neve e vinhedo Undurraga" loading="lazy" data-lightbox ></picture>
+                 alt="Santiago: neve e vinhedo Undurraga" loading="lazy" data-lightbox ></picture>
             <span class="card__badge">01 a 06/07 · 6 dias</span>
           </div>
           <div class="card__body">
@@ -484,7 +499,7 @@
         <article class="card reveal" id="pacote-peru-vale-sagrado" data-destino="Peru Vale Sagrado Magico" data-categoria="completo">
           <div class="card__img-wrap">
             <picture><source srcset="pacotes/pacote-peru-vale-sagrado.webp" type="image/webp" /><img src="pacotes/pacote-peru-vale-sagrado.jpeg"
-                 alt="Peru — Vale Sagrado e Machu Picchu" loading="lazy" data-lightbox ></picture>
+                 alt="Peru: Vale Sagrado e Machu Picchu" loading="lazy" data-lightbox ></picture>
             <span class="card__badge">10 a 17/09 · 8 dias</span>
           </div>
           <div class="card__body">
@@ -512,7 +527,7 @@
         <article class="card reveal" id="pacote-playa-mujeres-cancun" data-destino="Playa Mujeres Cancun" data-categoria="completo">
           <div class="card__img-wrap">
             <picture><source srcset="pacotes/pacote-playa-mujeres-cancun.webp" type="image/webp" /><img src="pacotes/pacote-playa-mujeres-cancun.jpeg"
-                 alt="Playa Mujeres e Cancún — all inclusive" loading="lazy" data-lightbox ></picture>
+                 alt="Playa Mujeres e Cancún: all inclusive" loading="lazy" data-lightbox ></picture>
             <span class="card__badge">20 a 27/09 · 8 dias</span>
           </div>
           <div class="card__body">
@@ -540,7 +555,7 @@
         <article class="card reveal" id="pacote-cancun-oasis-palm" data-destino="Cancun Oasis Palm" data-categoria="completo">
           <div class="card__img-wrap">
             <picture><source srcset="pacotes/pacote-cancun-oasis-palm.webp" type="image/webp" /><img src="pacotes/pacote-cancun-oasis-palm.jpeg"
-                 alt="Cancún Oasis Palm — all inclusive com transfers grátis" loading="lazy" data-lightbox ></picture>
+                 alt="Cancún Oasis Palm: all inclusive com transfers grátis" loading="lazy" data-lightbox ></picture>
             <span class="card__badge">22 a 27/09 · 6 dias</span>
           </div>
           <div class="card__body">
@@ -568,7 +583,7 @@
         <article class="card reveal" id="pacote-bahamas" data-destino="Bahamas Essencial" data-categoria="completo">
           <div class="card__img-wrap">
             <picture><source srcset="pacotes/pacote-bahamas.webp" type="image/webp" /><img src="pacotes/pacote-bahamas.jpeg"
-                 alt="Bahamas Essencial — The Coral at Atlantis" loading="lazy" data-lightbox ></picture>
+                 alt="Bahamas Essencial: The Coral at Atlantis" loading="lazy" data-lightbox ></picture>
             <span class="card__badge">11 a 16/09 · 6 dias</span>
           </div>
           <div class="card__body">
@@ -596,7 +611,7 @@
         <article class="card reveal" id="pacote-san-andres" data-destino="San Andres Essencial" data-categoria="completo">
           <div class="card__img-wrap">
             <picture><source srcset="pacotes/pacote-san-andres.webp" type="image/webp" /><img src="pacotes/pacote-san-andres.jpeg"
-                 alt="San Andrés Essencial — all inclusive Sol Caribe Campo" loading="lazy" data-lightbox ></picture>
+                 alt="San Andrés Essencial: all inclusive Sol Caribe Campo" loading="lazy" data-lightbox ></picture>
             <span class="card__badge">08 a 13/08 · 6 dias</span>
           </div>
           <div class="card__body">
@@ -632,7 +647,7 @@
         <article class="card reveal" id="pacote-navio-daniel-2027" data-destino="Navio Daniel 2027 MSC Divina" data-categoria="sem-aereo">
           <div class="card__img-wrap">
             <picture><source srcset="pacotes/pacote-navio-daniel-2027.webp" type="image/webp" /><img src="pacotes/pacote-navio-daniel-2027.jpeg"
-                 alt="Navio Daniel 2027 — MSC Divina saindo de Santos" loading="lazy" data-lightbox ></picture>
+                 alt="Navio Daniel 2027: MSC Divina saindo de Santos" loading="lazy" data-lightbox ></picture>
             <span class="card__badge">08 a 11/01/2027 · Santos</span>
           </div>
           <div class="card__body">
@@ -660,14 +675,14 @@
         <article class="card reveal" id="pacote-costa-serena" data-destino="Costa Serena América do Sul" data-categoria="sem-aereo">
           <div class="card__img-wrap">
             <picture><source srcset="pacotes/pacote-costa-serena.webp" type="image/webp" /><img src="pacotes/pacote-costa-serena.jpeg"
-                 alt="Costa Serena — cruzeiro América do Sul saindo do Rio" loading="lazy" data-lightbox ></picture>
+                 alt="Costa Serena: cruzeiro América do Sul saindo do Rio" loading="lazy" data-lightbox ></picture>
             <span class="card__badge">Jan e fev/2027 · Rio de Janeiro</span>
           </div>
           <div class="card__body">
             <h4 class="card__title">Costa Serena <span>América do Sul · 9 noites</span></h4>
             <ul class="card__features">
-              <li><i class="fas fa-calendar-alt"></i> <strong>27/01/2027</strong> — Férias de Janeiro: Rio, Ilhabela, Buenos Aires, Montevidéu, Balneário Camboriú, Ilha Grande, Rio</li>
-              <li><i class="fas fa-calendar-alt"></i> <strong>05/02/2027</strong> — Carnaval: Rio, Buenos Aires, Montevidéu, Punta del Este, Balneário Camboriú, Ilha Grande, Rio</li>
+              <li><i class="fas fa-calendar-alt"></i> <strong>27/01/2027</strong>: Férias de Janeiro: Rio, Ilhabela, Buenos Aires, Montevidéu, Balneário Camboriú, Ilha Grande, Rio</li>
+              <li><i class="fas fa-calendar-alt"></i> <strong>05/02/2027</strong>: Carnaval: Rio, Buenos Aires, Montevidéu, Punta del Este, Balneário Camboriú, Ilha Grande, Rio</li>
               <li><i class="fas fa-door-open"></i> Tarifa My Cruise (dupla): <strong>12x</strong> interna R$&nbsp;554 / externa R$&nbsp;626 / varanda R$&nbsp;675 (jan) · interna R$&nbsp;614 / externa R$&nbsp;687 / varanda R$&nbsp;745 (fev)</li>
               <li><i class="fas fa-plus-circle"></i> Upgrade All Inclusive: +12x R$&nbsp;203 por pessoa</li>
               <li><i class="fas fa-exclamation-circle"></i> Taxas: porto R$&nbsp;1.890 · governo R$&nbsp;105 · serviço R$&nbsp;720 (crianças até 13 anos R$&nbsp;360) · seguro não incluso</li>
@@ -697,7 +712,7 @@
         <article class="card reveal" id="pacote-chapada-salvador" data-destino="Chapada Diamantina com Salvador" data-categoria="grupo-guia">
           <div class="card__img-wrap">
             <picture><source srcset="pacotes/pacote-chapada-salvador.webp" type="image/webp" /><img src="pacotes/pacote-chapada-salvador.jpeg"
-                 alt="Chapada Diamantina com Salvador — natureza e cultura baiana em grupo" loading="lazy" data-lightbox ></picture>
+                 alt="Chapada Diamantina com Salvador: natureza e cultura baiana em grupo" loading="lazy" data-lightbox ></picture>
             <span class="card__badge">19 a 29/10</span>
           </div>
           <div class="card__body">
@@ -739,40 +754,109 @@
 
     </div>
   </section>
-
-  <footer class="footer" id="contato">
+  <footer id="contato" class="footer">
     <div class="container">
       <div class="footer__grid">
+
         <div class="footer__brand">
-          <img src="assets/logo-vcb.png" alt="Viajando com a Babi" class="footer__logo" />
-          <p>Pacotes e roteiros personalizados — do planejamento ao embarque.</p>
+          <picture><source srcset="assets/logo-vcb.webp" type="image/webp" /><img src="assets/logo-vcb.png"
+               alt="Viajando com a Babi" class="footer__logo" ></picture>
+          <p>Pacotes e Roteiros personalizados para destinos que você sempre sonhou. Do planejamento ao embarque, cuidamos de tudo por você.</p>
         </div>
+
         <div class="footer__links">
-          <h4>Navegação</h4>
+          <p class="footer__col-title">Navegação</p>
           <ul>
             <li><a href="/">Início</a></li>
             <li><a href="sobre.html">Sobre a Babi</a></li>
+            <li><a href="como-funciona.html">Como funciona</a></li>
             <li><a href="pacotes.html">Pacotes de viagem</a></li>
             <li><a href="servicos.html">Serviços</a></li>
             <li><a href="faq.html">FAQ</a></li>
+            <li><a href="/#depoimentos">Depoimentos</a></li>
+            <li><a href="/#pagamento">Pagamento</a></li>
             <li><a href="privacidade.html">Privacidade</a></li>
+            <li>
+              <button class="footer__cadastur-btn" id="btnCadasturFooter" type="button">
+                <i class="fas fa-certificate"></i> Certificado Cadastur
+              </button>
+            </li>
           </ul>
         </div>
+
         <div class="footer__contato">
-          <h4>Fale comigo</h4>
-          <a href="https://wa.me/5521920064617" target="_blank" rel="noopener noreferrer" class="footer__social-link footer__social-link--wa"><i class="fab fa-whatsapp"></i><span>+55 21 92006-4617</span></a>
-          <a href="mailto:viajandocomababi@gmail.com" class="footer__social-link footer__social-link--email"><i class="fas fa-envelope"></i><span>viajandocomababi@gmail.com</span></a>
+          <p class="footer__col-title">Fale comigo</p>
+          <a href="https://wa.me/5521920064617?text=Ol%C3%A1%20Babi!%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20os%20pacotes%20de%20viagem"
+             target="_blank" rel="noopener noreferrer"
+             class="footer__social-link footer__social-link--wa">
+            <i class="fab fa-whatsapp"></i>
+            <span>+55 21 92006-4617</span>
+          </a>
+          <a href="https://www.instagram.com/viajandocomababi_/"
+             target="_blank" rel="noopener noreferrer"
+             class="footer__social-link footer__social-link--ig">
+            <i class="fab fa-instagram"></i>
+            <span>@viajandocomababi_</span>
+          </a>
+          <a href="mailto:viajandocomababi@gmail.com"
+             class="footer__social-link footer__social-link--email">
+            <i class="fas fa-envelope"></i>
+            <span>viajandocomababi@gmail.com</span>
+          </a>
+          <div class="footer__ctas">
+            <a href="https://wa.me/5521920064617?text=Ol%C3%A1%20Babi!%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20os%20pacotes%20de%20viagem"
+               target="_blank" rel="noopener noreferrer"
+               class="btn btn--whatsapp btn--md">
+              <i class="fab fa-whatsapp"></i> WhatsApp
+            </a>
+            <a href="https://www.instagram.com/viajandocomababi_/"
+               target="_blank" rel="noopener noreferrer"
+               class="btn btn--instagram btn--md">
+              <i class="fab fa-instagram"></i> Instagram
+            </a>
+          </div>
         </div>
+
       </div>
+
       <div class="footer__bottom">
-        <p>&copy; <span id="year"></span> Viajando com a Babi — CNPJ 60.536.280/0001-89</p>
+        <p>&copy; <span id="year"></span> Viajando com a Babi | Todos os direitos reservados.</p>
+        <p>CNPJ 60.536.280/0001-89</p>
+        <p>Site desenvolvido por <a href="https://cybershieldgroup.com.br/" target="_blank" rel="noopener noreferrer">Cyber Shield Group</a></p>
+        <p><a href="privacidade.html">Política de privacidade</a></p>
+        <p>Feito com <i class="fas fa-heart" style="color:#e74c3c"></i> para quem ama viajar.</p>
       </div>
     </div>
   </footer>
 
-  <div class="lightbox-overlay" id="lightbox" role="dialog" aria-modal="true" aria-label="Visualizar imagem">
-    <button class="lightbox__close" id="lightboxClose" aria-label="Fechar imagem">&#x2715;</button>
-    <img class="lightbox__img" id="lightboxImg" src="" alt="" />
+  <div class="modal-overlay" id="modalCadastur" role="dialog" aria-modal="true" aria-label="Certificado Cadastur">
+    <div class="modal">
+      <button class="modal__close" id="modalClose" aria-label="Fechar" type="button">
+        <i class="fas fa-times"></i>
+      </button>
+      <div class="modal__header">
+        <i class="fas fa-award"></i>
+        <div>
+          <h3>Certificado Cadastur</h3>
+          <p>Agência de turismo regularizada pelo Ministério do Turismo</p>
+        </div>
+      </div>
+      <img src="assets/cadastur.jpg" alt="Certificado Cadastur | Viajando com a Babi" class="modal__img" loading="lazy" />
+      <div class="modal__info">
+        <div class="modal__info-item">
+          <span>Cadastrado</span>
+          <strong>Bárbara Cristina Machado Valente Costa de Abreu</strong>
+        </div>
+        <div class="modal__info-item">
+          <span>Nº de Cadastro</span>
+          <strong>60.536.280/0001-89</strong>
+        </div>
+        <div class="modal__info-item">
+          <span>Validade</span>
+          <strong>25/04/2025 a 25/04/2027</strong>
+        </div>
+      </div>
+    </div>
   </div>
 
   <a href="https://wa.me/5521920064617?text=Ol%C3%A1%20Babi!%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20os%20pacotes%20de%20viagem"
@@ -782,7 +866,6 @@
     <span class="fab-whatsapp__tooltip">Falar no WhatsApp</span>
   </a>
 
-  <script src="analytics.js?v=3"></script>
-  <script src="script.js?v=16"></script>
+  <script src="script.js?v=17"></script>
 </body>
 </html>

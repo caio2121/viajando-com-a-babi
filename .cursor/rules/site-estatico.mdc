@@ -5,7 +5,11 @@ alwaysApply: true
 
 # Site Viajando com a Babi
 
-Site estático: `index.html` (home), páginas hub (`pacotes.html`, `sobre.html`, etc.), `style.css`, `script.js`, `analytics.js`. Sem build — exceto regeneração de `pacotes.html` via `_build_pacotes.py`.
+Site estático: `index.html` (home), páginas hub (`pacotes.html`, `sobre.html`, etc.), `style.css`, `script.js`, `analytics.js`. Sem build, exceto regeneração de `pacotes.html` via `_build_pacotes.py`.
+
+## Tipografia e copy
+
+Não usar travessão longo (`—`, U+2014) em conteúdo publicado: HTML, meta tags, `alt`, JSON-LD, `llms.txt`. Preferir vírgula, ponto, dois-pontos ou ` | ` em títulos de página.
 
 ## SEO e arquivos de raiz
 
@@ -19,6 +23,14 @@ Manter atualizados: `robots.txt`, `sitemap.xml` (novas páginas como `privacidad
 ## Organização de scripts
 
 Ordem no `index.html`: GA4 (`gtag`) → `analytics.js` → `script.js`. Bump `?v=N` ao alterar CSS/JS.
+
+## Footer das páginas hub
+
+Páginas internas (`sobre.html`, `faq.html`, etc.) usam o bloco padrão em [`_partials/hub-footer.html`](_partials/hub-footer.html). Ao alterar o footer, editar esse arquivo e rodar `python _build_pacotes.py` para sincronizar `pacotes.html`.
+
+## Header das páginas hub
+
+Navbar padrão em [`_partials/hub-header.html`](_partials/hub-header.html): logo WebP, link **Início**, navegação completa, botão Cadastur e CTA WhatsApp. `_build_pacotes.py` injeta esse bloco em `pacotes.html`.
 
 ## Documentação
 

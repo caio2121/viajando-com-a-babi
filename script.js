@@ -311,3 +311,13 @@
     });
   });
 })();
+
+/* ──────────────────────────────────────────────────
+   PACOTES: rótulos únicos nos CTAs (acessibilidade)
+────────────────────────────────────────────────── */
+(function initPackageButtonLabels() {
+  document.querySelectorAll('.card[data-destino] .btn--whatsapp.btn--full').forEach(btn => {
+    const destino = btn.closest('.card')?.dataset.destino;
+    if (destino) btn.setAttribute('aria-label', `Quero esse pacote: ${destino}`);
+  });
+})();

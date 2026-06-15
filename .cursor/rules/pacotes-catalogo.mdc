@@ -27,7 +27,7 @@ Cada pacote é um `<article class="card">` dentro de `#pacotes`.
 ## Estrutura do card
 
 - Título do destino: `<h4 class="card__title">` (não h3).
-- Imagem com `<picture>` (WebP + JPEG), `data-lightbox` e `alt` descritivo.
+- Imagem com `<picture>` (WebP + JPEG), `data-lightbox` e `alt` descritivo (sem travessão longo `—`; ver regra de tipografia em `site-estatico.mdc`).
 - CTA WhatsApp: `class="btn btn--whatsapp btn--full"` com mensagem citando o nome do pacote.
 - Não é necessário código extra de tracking — `analytics.js` lê `data-destino` e `data-categoria`.
 
