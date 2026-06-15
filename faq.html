@@ -20,7 +20,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
   </noscript>
-<link rel="stylesheet" href="style.css?v=22" />
+<link rel="stylesheet" href="style.css?v=21" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -39,33 +39,11 @@
     ]
   }
   </script>
-  <!-- Google Analytics 4 + Consent Mode v2 -->
+  <!-- Google Analytics 4 (carregamento adiado) -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
-    var VCB_CONSENT_KEY = 'vcb_consent_analytics';
-    var ga4Loaded = false;
-
-    gtag('consent', 'default', {
-      analytics_storage: 'denied',
-      ad_storage: 'denied',
-      ad_user_data: 'denied',
-      ad_personalization: 'denied',
-      wait_for_update: 500
-    });
-
-    function scheduleLoadGA4() {
-      if (ga4Loaded) return;
-      if ('requestIdleCallback' in window) {
-        requestIdleCallback(loadGA4, { timeout: 3000 });
-      } else {
-        window.addEventListener('load', loadGA4);
-      }
-    }
-
     function loadGA4() {
-      if (ga4Loaded) return;
-      ga4Loaded = true;
       var s = document.createElement('script');
       s.src = 'https://www.googletagmanager.com/gtag/js?id=G-WGDNTSY8WM';
       s.async = true;
@@ -75,52 +53,11 @@
       };
       document.head.appendChild(s);
     }
-
-    function grantAnalyticsConsent() {
-      try { localStorage.setItem(VCB_CONSENT_KEY, 'granted'); } catch (e) {}
-      gtag('consent', 'update', {
-        analytics_storage: 'granted',
-        ad_storage: 'denied',
-        ad_user_data: 'denied',
-        ad_personalization: 'denied'
-      });
-      scheduleLoadGA4();
-      var banner = document.getElementById('cookieBanner');
-      if (banner) banner.hidden = true;
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(loadGA4, { timeout: 3000 });
+    } else {
+      window.addEventListener('load', loadGA4);
     }
-
-    function denyAnalyticsConsent() {
-      try { localStorage.setItem(VCB_CONSENT_KEY, 'denied'); } catch (e) {}
-      gtag('consent', 'update', {
-        analytics_storage: 'denied',
-        ad_storage: 'denied',
-        ad_user_data: 'denied',
-        ad_personalization: 'denied'
-      });
-      var banner = document.getElementById('cookieBanner');
-      if (banner) banner.hidden = true;
-    }
-
-    window.VCBConsent = {
-      grant: grantAnalyticsConsent,
-      deny: denyAnalyticsConsent,
-      key: VCB_CONSENT_KEY
-    };
-
-    try {
-      var stored = localStorage.getItem(VCB_CONSENT_KEY);
-      if (stored === 'granted') {
-        gtag('consent', 'update', {
-          analytics_storage: 'granted',
-          ad_storage: 'denied',
-          ad_user_data: 'denied',
-          ad_personalization: 'denied'
-        });
-        scheduleLoadGA4();
-      } else if (stored === 'denied') {
-        denyAnalyticsConsent();
-      }
-    } catch (e) {}
   </script>
 </head>
 <body>
@@ -144,46 +81,151 @@
         </button>
       </nav>
 
-    <a href="https://wa.me/5521920064617?text=Ol%C3%A1%20Babi!%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20os%20pacotes%20de%20viagem"
+      <a href="https://wa.me/5521920064617?text=Ol%C3%A1%20Babi!%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20os%20pacotes%20de%20viagem"
+         target="_blank" rel="noopener noreferrer"
+         class="btn btn--whatsapp btn--sm navbar__cta">
+        <i class="fab fa-whatsapp"></i> WhatsApp
+      </a>
+
+      <button class="navbar__hamburger" id="hamburger" aria-label="Abrir menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+<main class="container internal-page">
+    <nav class="breadcrumb" aria-label="Navegação"><a href="/">Início</a> / Perguntas frequentes</nav>
+    <span class="label label--left">Dúvidas frequentes</span>
+    <h1 class="section-title">Perguntas que todo viajante faz</h1>
+
+    <div class="faq__list">
+      <details class="faq__item" open><summary class="faq__question">Consigo planejar minha viagem sozinho?</summary><p class="faq__answer">Sim, mas uma consultoria economiza tempo, evita erros caros e garante um roteiro alinhado ao seu perfil, com suporte humano em cada etapa.</p></details>
+      <details class="faq__item"><summary class="faq__question">Vale a pena pagar por consultoria de viagem?</summary><p class="faq__answer">Para quem quer praticidade, segurança e experiência personalizada, sim. A Babi cuida de passagens, hotéis, passeios e detalhes que fazem toda a diferença.</p></details>
+      <details class="faq__item"><summary class="faq__question">Quanto custa um roteiro personalizado?</summary><p class="faq__answer">Depende do destino, época e perfil da viagem. O orçamento é sempre personalizado. Fale comigo pelo WhatsApp ou formulário e receba opções sob medida.</p></details>
+      <details class="faq__item"><summary class="faq__question">Você compra passagens e hotéis por mim?</summary><p class="faq__answer">Sim. Organizo reservas, monto pacotes completos com aéreo e hospedagem, e acompanho você até o embarque.</p></details>
+      <details class="faq__item"><summary class="faq__question">Funciona para lua de mel?</summary><p class="faq__answer">Com certeza! Já organizei luas de mel na Itália, Paris, Amsterdã e outros destinos dos sonhos, com atenção a cada detalhe. <a href="lua-de-mel.html">Saiba mais sobre lua de mel</a>.</p></details>
+      <details class="faq__item"><summary class="faq__question">Funciona para viagem internacional?</summary><p class="faq__answer">Sim. Atendo destinos nacionais e internacionais: Europa, América do Sul, Caribe, cruzeiros e muito mais. Veja o <a href="pacotes.html">catálogo de pacotes</a>.</p></details>
+      <details class="faq__item"><summary class="faq__question">Com quanta antecedência devo contratar?</summary><p class="faq__answer">Quanto antes, melhor, especialmente para alta temporada e internacionais. Mas também atendo viagens com prazos mais curtos, conforme disponibilidade.</p></details>
+      <details class="faq__item"><summary class="faq__question">Como solicito um orçamento?</summary><p class="faq__answer">Pelo WhatsApp (+55 21 92006-4617), e-mail viajandocomababi@gmail.com ou pelo formulário de viagem personalizada <a href="/">no site</a>.</p></details>
+      <details class="faq__item"><summary class="faq__question">Qual a diferença entre pacote de viagem e roteiro personalizado?</summary><p class="faq__answer">Pacotes de viagem são opções prontas com aéreo, hospedagem e serviços definidos. Roteiro personalizado é montado sob medida. Veja <a href="roteiro-personalizado.html">roteiro personalizado</a>.</p></details>
+      <details class="faq__item"><summary class="faq__question">A agência é regularizada?</summary><p class="faq__answer">Sim. Viajando com a Babi é agência Cadastur (CNPJ 60.536.280/0001-89).</p></details>
+    </div>
+
+    <p style="margin-top:32px"><a href="https://wa.me/5521920064617" class="btn btn--whatsapp btn--md" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i> Falar com a Babi</a></p>
+  </main>
+
+  <footer id="contato" class="footer">
+    <div class="container">
+      <div class="footer__grid">
+
+        <div class="footer__brand">
+          <picture><source srcset="assets/logo-vcb.webp" type="image/webp" /><img src="assets/logo-vcb.png"
+               alt="Viajando com a Babi" class="footer__logo" ></picture>
+          <p>Pacotes e Roteiros personalizados para destinos que você sempre sonhou. Do planejamento ao embarque, cuidamos de tudo por você.</p>
+        </div>
+
+        <div class="footer__links">
+          <p class="footer__col-title">Navegação</p>
+          <ul>
+            <li><a href="/">Início</a></li>
+            <li><a href="sobre.html">Sobre a Babi</a></li>
+            <li><a href="como-funciona.html">Como funciona</a></li>
+            <li><a href="pacotes.html">Pacotes de viagem</a></li>
+            <li><a href="servicos.html">Serviços</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="/#depoimentos">Depoimentos</a></li>
+            <li><a href="/#pagamento">Pagamento</a></li>
+            <li><a href="privacidade.html">Privacidade</a></li>
+            <li>
+              <button class="footer__cadastur-btn" id="btnCadasturFooter" type="button">
+                <i class="fas fa-certificate"></i> Certificado Cadastur
+              </button>
+            </li>
+          </ul>
+        </div>
+
+        <div class="footer__contato">
+          <p class="footer__col-title">Fale comigo</p>
+          <a href="https://wa.me/5521920064617?text=Ol%C3%A1%20Babi!%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20os%20pacotes%20de%20viagem"
+             target="_blank" rel="noopener noreferrer"
+             class="footer__social-link footer__social-link--wa">
+            <i class="fab fa-whatsapp"></i>
+            <span>+55 21 92006-4617</span>
+          </a>
+          <a href="https://www.instagram.com/viajandocomababi_/"
+             target="_blank" rel="noopener noreferrer"
+             class="footer__social-link footer__social-link--ig">
+            <i class="fab fa-instagram"></i>
+            <span>@viajandocomababi_</span>
+          </a>
+          <a href="mailto:viajandocomababi@gmail.com"
+             class="footer__social-link footer__social-link--email">
+            <i class="fas fa-envelope"></i>
+            <span>viajandocomababi@gmail.com</span>
+          </a>
+          <div class="footer__ctas">
+            <a href="https://wa.me/5521920064617?text=Ol%C3%A1%20Babi!%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20os%20pacotes%20de%20viagem"
+               target="_blank" rel="noopener noreferrer"
+               class="btn btn--whatsapp btn--md">
+              <i class="fab fa-whatsapp"></i> WhatsApp
+            </a>
+            <a href="https://www.instagram.com/viajandocomababi_/"
+               target="_blank" rel="noopener noreferrer"
+               class="btn btn--instagram btn--md">
+              <i class="fab fa-instagram"></i> Instagram
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="footer__bottom">
+        <p>&copy; <span id="year"></span> Viajando com a Babi | Todos os direitos reservados.</p>
+        <p>CNPJ 60.536.280/0001-89</p>
+        <p>Site desenvolvido por <a href="https://cybershieldgroup.com.br/" target="_blank" rel="noopener noreferrer">Cyber Shield Group</a></p>
+        <p><a href="privacidade.html">Política de privacidade</a></p>
+        <p>Feito com <i class="fas fa-heart" style="color:#e74c3c"></i> para quem ama viajar.</p>
+      </div>
+    </div>
+  </footer>
+
+  <div class="modal-overlay" id="modalCadastur" role="dialog" aria-modal="true" aria-label="Certificado Cadastur">
+    <div class="modal">
+      <button class="modal__close" id="modalClose" aria-label="Fechar" type="button">
+        <i class="fas fa-times"></i>
+      </button>
+      <div class="modal__header">
+        <i class="fas fa-award"></i>
+        <div>
+          <h3>Certificado Cadastur</h3>
+          <p>Agência de turismo regularizada pelo Ministério do Turismo</p>
+        </div>
+      </div>
+      <img src="assets/cadastur.jpg" alt="Certificado Cadastur | Viajando com a Babi" class="modal__img" loading="lazy" />
+      <div class="modal__info">
+        <div class="modal__info-item">
+          <span>Cadastrado</span>
+          <strong>Bárbara Cristina Machado Valente Costa de Abreu</strong>
+        </div>
+        <div class="modal__info-item">
+          <span>Nº de Cadastro</span>
+          <strong>60.536.280/0001-89</strong>
+        </div>
+        <div class="modal__info-item">
+          <span>Validade</span>
+          <strong>25/04/2025 a 25/04/2027</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <a href="https://wa.me/5521920064617?text=Ol%C3%A1%20Babi!%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20os%20pacotes%20de%20viagem"
      target="_blank" rel="noopener noreferrer"
      class="fab-whatsapp" aria-label="Falar no WhatsApp">
     <i class="fab fa-whatsapp"></i>
     <span class="fab-whatsapp__tooltip">Falar no WhatsApp</span>
   </a>
 
-  <div id="cookieBanner" class="cookie-banner" role="dialog" aria-label="Cookies e analytics" aria-live="polite" hidden>
-    <div class="cookie-banner__inner container">
-      <p class="cookie-banner__text">Usamos cookies de analytics (Google Analytics) para entender como o site é usado, sem enviar dados pessoais dos formulários. <a href="privacidade.html">Política de privacidade</a></p>
-      <div class="cookie-banner__actions">
-        <button type="button" class="btn btn--md cookie-banner__accept" id="cookieAccept">Aceitar analytics</button>
-        <button type="button" class="btn btn--outline btn--md cookie-banner__reject" id="cookieReject">Recusar</button>
-      </div>
-    </div>
-  </div>
-  <script>
-    (function initCookieBanner() {
-      var banner = document.getElementById('cookieBanner');
-      if (!banner) return;
-      var key = (window.VCBConsent && window.VCBConsent.key) || 'vcb_consent_analytics';
-      try {
-        if (localStorage.getItem(key)) {
-          banner.hidden = true;
-          return;
-        }
-      } catch (e) {}
-      banner.hidden = false;
-      var accept = document.getElementById('cookieAccept');
-      var reject = document.getElementById('cookieReject');
-      accept && accept.addEventListener('click', function () {
-        window.VCBConsent && window.VCBConsent.grant();
-      });
-      reject && reject.addEventListener('click', function () {
-        window.VCBConsent && window.VCBConsent.deny();
-      });
-    })();
-  </script>
-
-  <script src="analytics.js?v=8"></script>
   <script src="script.js?v=20"></script>
 </body>
 </html>
