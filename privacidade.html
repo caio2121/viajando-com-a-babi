@@ -19,7 +19,7 @@
   <meta name="twitter:image" content="https://viajandocomababi.com.br/assets/og-share.jpeg" />
   <link rel="icon" type="image/png" href="assets/logo-vcb.png" />
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css?v=19" />
+  <link rel="stylesheet" href="style.css?v=17" />
   <style>
     .legal-page { padding: calc(var(--navbar-h) + 40px) 0 60px; max-width: 760px; margin: 0 auto; }
     .legal-page h1 { font-size: 2rem; color: var(--clr-dark); margin-bottom: 8px; }
@@ -29,27 +29,6 @@
     .legal-page a { color: var(--clr-primary-d); text-decoration: underline; }
     .legal-page__back { display: inline-block; margin-bottom: 24px; font-weight: 700; color: var(--clr-primary); }
   </style>
-  <!-- Google Analytics 4 (carregamento adiado) -->
-    <!-- Google Analytics 4 (carregamento adiado) -->
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    function loadGA4() {
-      var s = document.createElement('script');
-      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-WGDNTSY8WM';
-      s.async = true;
-      s.onload = function() {
-        gtag('js', new Date());
-        gtag('config', 'G-WGDNTSY8WM', { send_page_view: true });
-      };
-      document.head.appendChild(s);
-    }
-    if ('requestIdleCallback' in window) {
-      requestIdleCallback(loadGA4, { timeout: 3000 });
-    } else {
-      window.addEventListener('load', loadGA4);
-    }
-  </script>
 </head>
 <body>
   <main class="container legal-page">

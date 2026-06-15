@@ -383,20 +383,14 @@
 
   (function initScrollDepth() {
     const marks = [25, 50, 75, 90];
-    let maxScroll = 0;
-    let ticking = false;
 
-    function recalcMaxScroll() {
+    function onScroll() {
       const doc = document.documentElement;
-      maxScroll = doc.scrollHeight - doc.clientHeight;
-    }
+      const scrollTop = doc.scrollTop || document.body.scrollTop;
+      const max = doc.scrollHeight - doc.clientHeight;
+      if (max <= 0) return;
 
-    function onScrollFrame() {
-      ticking = false;
-      if (maxScroll <= 0) return;
-
-      const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-      const pct = Math.round((scrollTop / maxScroll) * 100);
+      const pct = Math.round((scrollTop / max) * 100);
       marks.forEach((mark) => {
         if (pct >= mark && !scrollMarks.has(mark)) {
           scrollMarks.add(mark);
@@ -408,16 +402,8 @@
       });
     }
 
-    function onScroll() {
-      if (!ticking) {
-        ticking = true;
-        requestAnimationFrame(onScrollFrame);
-      }
-    }
-
-    recalcMaxScroll();
-    window.addEventListener('resize', recalcMaxScroll, { passive: true });
     window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
   })();
 
   /* ── Cliques ───────────────────────────────────── */

@@ -122,12 +122,7 @@
 
   if (!modal) return;
 
-  const modalImg = modal.querySelector('.modal__img[data-src]');
-
   function openModal() {
-    if (modalImg && modalImg.dataset.src && !modalImg.getAttribute('src')) {
-      modalImg.src = modalImg.dataset.src;
-    }
     modal.classList.add('open');
     document.body.style.overflow = 'hidden';
 
