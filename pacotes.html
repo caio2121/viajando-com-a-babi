@@ -29,9 +29,17 @@
     ]
   }
   </script>
+  <!-- Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WGDNTSY8WM"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-WGDNTSY8WM', { send_page_view: true });
+  </script>
 </head>
 <body>
-        <header class="navbar" id="navbar">
+          <header class="navbar" id="navbar">
     <div class="navbar__container">
       <a href="/" class="navbar__logo">
         <picture><source srcset="assets/logo-vcb.webp" type="image/webp" /><img src="assets/logo-vcb.png" alt="Viajando com a Babi" width="200" height="62" ></picture>
@@ -63,7 +71,7 @@
     </div>
   </header>
 <main id="conteudo-principal">
-  <section class="pacotes pacotes-page">
+  <section id="pacotes" class="pacotes pacotes-page">
     <div class="container pacotes-page__header">
       <nav class="breadcrumb breadcrumb--light" aria-label="Navegação"><a href="/">Início</a> / Pacotes de viagem</nav>
       <span class="label label--center">Catálogo completo</span>
@@ -866,6 +874,13 @@
     <span class="fab-whatsapp__tooltip">Falar no WhatsApp</span>
   </a>
 
+
+  <div class="lightbox-overlay" id="lightbox" role="dialog" aria-modal="true" aria-label="Visualizar imagem">
+    <button class="lightbox__close" id="lightboxClose" aria-label="Fechar imagem">&#x2715;</button>
+    <img class="lightbox__img" id="lightboxImg" src="" alt="" />
+  </div>
+
+  <script src="analytics.js?v=4"></script>
   <script src="script.js?v=17"></script>
 </body>
 </html>

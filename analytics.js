@@ -11,7 +11,7 @@
   const viewedPackages = new Set();
   const viewedCategories = new Set();
   const viewedSections = new Set();
-  const scrollMarks = new Set();
+  const PACKAGE_CARD_SELECTOR = '#pacotes .card[data-destino], .pacotes-page .card[data-destino]';
 
   /* ── Helpers ─────────────────────────────────────── */
 
@@ -143,7 +143,7 @@
     if (el.closest('#hero')) return 'hero';
     if (el.closest('#sobre')) return 'about_section';
     if (el.closest('#como-funciona')) return 'how_it_works_section';
-    if (el.closest('#pacotes')) return 'services_section';
+    if (el.closest('#pacotes') || el.closest('.pacotes-page')) return 'services_section';
     if (el.closest('#links')) return 'links_section';
     if (el.closest('#pagamento')) return 'payment_section';
     if (el.closest('#faq')) return 'faq_section';
@@ -336,7 +336,7 @@
   /* ── Impressões de pacotes (viewport) ──────────── */
 
   (function initPackageImpressions() {
-    const cards = document.querySelectorAll('#pacotes .card[data-destino]');
+    const cards = document.querySelectorAll(PACKAGE_CARD_SELECTOR);
     if (!cards.length) return;
 
     const observer = new IntersectionObserver(
@@ -466,7 +466,7 @@
       return;
     }
 
-    const cardBody = e.target.closest('#pacotes .card[data-destino]');
+    const cardBody = e.target.closest(PACKAGE_CARD_SELECTOR);
     if (cardBody && !e.target.closest('a')) {
       trackPackageSelect(cardBody, 'card_explore');
       return;
