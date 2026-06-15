@@ -98,7 +98,7 @@ Site estático de conversão para a agência de viagens **Viajando com a Babi**,
 1. Card em `index.html` com `data-destino` e `data-categoria` (`grupo-guia`, `completo`, `sem-aereo`).
 2. Imagem em `pacotes/` com `alt` descritivo e `data-lightbox` na imagem.
 3. CTA WhatsApp com mensagem citando o nome do pacote.
-4. Validar no GA4 DebugView: `view_item` (impressão) e `package_lead` (clique no WhatsApp).
+4. Validar no GA4 DebugView: `view_item` (impressão), `purchase` (clique "Quero esse pacote!") e `generate_lead`.
 
 ### Ao alterar eventos GA4
 

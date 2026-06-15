@@ -88,6 +88,51 @@
     }];
   }
 
+  function packageItemsWithPrice(meta, price) {
+    if (!meta) return [];
+    return [{
+      item_id: meta.package_slug,
+      item_name: meta.package_name,
+      item_category: meta.package_category,
+      item_category2: meta.package_region,
+      quantity: 1,
+      price: price
+    }];
+  }
+
+  function parseBrlAmount(text) {
+    if (!text) return 0;
+    const match = String(text).match(/R\$\s*([\d.]+)/);
+    if (!match) return 0;
+    const normalized = match[1].replace(/\./g, '');
+    const val = parseFloat(normalized);
+    return Number.isFinite(val) ? val : 0;
+  }
+
+  function parsePackageValue(card) {
+    if (!card) return 0;
+
+    const attrVal = card.getAttribute('data-valor-total');
+    if (attrVal) {
+      const parsed = parseFloat(attrVal.replace(/\./g, '').replace(',', '.'));
+      if (Number.isFinite(parsed) && parsed > 0) return parsed;
+    }
+
+    const totalEl = card.querySelector('.card__total');
+    if (totalEl) {
+      const fromTotal = parseBrlAmount(totalEl.textContent);
+      if (fromTotal > 0) return fromTotal;
+    }
+
+    const parcelaEl = card.querySelector('.card__parcela strong');
+    if (parcelaEl) {
+      const parcela = parseBrlAmount(parcelaEl.textContent);
+      if (parcela > 0) return parcela * 12;
+    }
+
+    return 0;
+  }
+
   function getCtaText(el) {
     return (el.getAttribute('aria-label') || el.textContent || '').replace(/\s+/g, ' ').trim().slice(0, 100);
   }
@@ -175,6 +220,25 @@
     });
   }
 
+  function trackPackagePurchaseIntent(card) {
+    const meta = getPackageMeta(card);
+    if (!meta) return;
+
+    const value = parsePackageValue(card);
+
+    trackEvent('purchase', {
+      transaction_id: 'intent_' + meta.package_slug + '_' + Date.now(),
+      value: value,
+      currency: 'BRL',
+      items: packageItemsWithPrice(meta, value),
+      purchase_type: 'whatsapp_intent',
+      package_name: meta.package_name,
+      package_slug: meta.package_slug,
+      package_category: meta.package_category,
+      package_region: meta.package_region
+    });
+  }
+
   function trackCategoryView(categoryEl) {
     const id = categoryEl.id;
     if (!id || viewedCategories.has(id)) return;
@@ -242,6 +306,7 @@
     trackGenerateLead,
     trackPackageView,
     trackPackageSelect,
+    trackPackagePurchaseIntent,
 
     trackFormOpen: function () {
       trackEvent('form_start', {
@@ -347,6 +412,9 @@
     const wa = e.target.closest('a[href*="wa.me/' + WA_NUMBER + '"]');
     if (wa) {
       const card = wa.closest('.card[data-destino]');
+      if (card && wa.closest('.card__footer .btn--whatsapp')) {
+        trackPackagePurchaseIntent(card);
+      }
       if (card) {
         const meta = getPackageMeta(card);
         trackEvent('service_click', {

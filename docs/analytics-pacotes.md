@@ -11,7 +11,7 @@ Guia para ler no GA4 quais pacotes e categorias geram mais interesse.
 | Viu o card na tela | `view_item` + `package_impression` | Impressão do pacote (1x por visita) |
 | Viu a categoria | `package_category_view` | Grupos com guia / Pacote completo / Cruzeiros |
 | Clicou no card ou imagem | `select_item` + `destination_interest` | Exploração ativa |
-| Clicou "Quero esse pacote!" | `service_click` + `generate_lead` + `package_lead` | Intenção comercial por destino |
+| Clicou "Quero esse pacote!" | `purchase` + `service_click` + `generate_lead` + `package_lead` | Tentativa de compra (coluna **Itens comprados**) + lead |
 | Abriu formulário | `form_start` | Interesse em roteiro personalizado |
 | Enviou formulário | `form_submit` + `generate_lead` | Lead qualificado (sem PII) |
 
@@ -25,6 +25,27 @@ Guia para ler no GA4 quais pacotes e categorias geram mais interesse.
 | `package_region` | `brasil_nordeste`, `argentina`, `caribe`, `cruzeiro`, etc. |
 | `interaction_type` | `viewport`, `card_explore`, `image_click`, `whatsapp_cta` |
 | `interest_level` | `high` (lead direto) ou `medium` |
+| `purchase_type` | `whatsapp_intent` (tentativa via botão do pacote) |
+| `value` / `price` | Valor estimado do pacote em BRL (parseado do card) |
+
+## Funil e-commerce no relatório de itens
+
+| Coluna GA4 | Evento |
+|------------|--------|
+| Itens vistos | `view_item` |
+| Itens comprados | `purchase` (clique em "Quero esse pacote!") |
+| Receita do item | `purchase.value` (estimado, "a partir de") |
+
+**Nota:** `purchase` no site = intenção comercial, não pagamento confirmado. Vendas fechadas: `close_convert_lead` via [`funil-offline.md`](funil-offline.md).
+
+## Valor do pacote no `purchase`
+
+Ordem de leitura em `analytics.js`:
+
+1. `data-valor-total="2712"` no card (recomendado para cruzeiros sem total fixo)
+2. Texto `.card__total` — ex.: "Total a partir de R$ 2.712"
+3. `.card__parcela strong` × 12
+4. `0` se não houver valor parseável
 
 ## Como configurar no GA4 (Admin)
 
@@ -50,6 +71,11 @@ Guia para ler no GA4 quais pacotes e categorias geram mais interesse.
 ### Pacotes que mais geram lead
 - Evento `package_lead` ou `generate_lead` onde `package_slug` não é `(not set)`
 - Ordenar por `package_name`
+
+### Pacotes com tentativa de compra
+- Evento `purchase` com `purchase_type = whatsapp_intent`
+- Relatório **Monetização → Desempenho do item** → coluna **Itens comprados**
+- Comparar com **Itens vistos** para taxa de conversão por pacote
 
 ### Regiões mais buscadas
 - Evento `destination_interest`
@@ -79,6 +105,8 @@ O site classifica destinos sem editar cada card:
 | `cruzeiro` | MSC Divina, Costa Serena |
 
 Para forçar região em um pacote novo, adicione no HTML: `data-regiao="caribe"` no `<article class="card">`.
+
+Para forçar valor no `purchase`, use `data-valor-total="7236"` quando `.card__total` não tiver número claro.
 
 ## Privacidade
 
