@@ -93,12 +93,13 @@ Site estático de conversão para a agência de viagens **Viajando com a Babi**,
 | Relatórios GA4 por pacote | [`docs/analytics-pacotes.md`](docs/analytics-pacotes.md) |
 | Funil comercial offline | [`docs/funil-offline.md`](docs/funil-offline.md) |
 
-### Ao adicionar um pacote novo
+### Ao adicionar ou alterar um pacote
 
-1. Card em `index.html` com `data-destino` e `data-categoria` (`grupo-guia`, `completo`, `sem-aereo`).
-2. Imagem em `pacotes/` com `alt` descritivo e `data-lightbox` na imagem.
+1. Card em `index.html` com `id`, `data-destino` e `data-categoria` (`grupo-guia`, `completo`, `sem-aereo`).
+2. Imagem em `pacotes/` com `alt` descritivo, `<picture>` (WebP + JPEG) e `data-lightbox` na imagem.
 3. CTA WhatsApp com mensagem citando o nome do pacote.
-4. Validar no GA4 DebugView: `view_item` (impressão), `purchase` (clique "Quero esse pacote!") e `generate_lead`.
+4. **Regenerar o catálogo:** `python _build_pacotes.py` (sincroniza `pacotes.html` com a home — não editar `pacotes.html` manualmente).
+5. Validar no GA4 DebugView: `view_item` (impressão), `purchase` (clique "Quero esse pacote!") e `generate_lead`.
 
 ### Ao alterar eventos GA4
 
@@ -147,9 +148,11 @@ Ative o GitHub Pages em: **Settings → Pages → Branch: main / Folder: / (root
 
 ## Como adicionar novos pacotes
 
-1. Adicione a imagem do pacote na pasta `pacotes/`
-2. No `index.html`, dentro de `<div class="pacotes__grid">`, copie um bloco `<article class="card reveal">` existente
-3. Atualize: imagem (`src`), destino (`alt`, `data-destino`, título), datas (`card__badge`), features, preço e o link do WhatsApp com o nome do destino codificado na URL
+1. Adicione a imagem do pacote na pasta `pacotes/` (e o `.webp`, se aplicável)
+2. No `index.html`, dentro do `<div class="pacotes__grid">` da categoria correta, copie um bloco `<article class="card reveal">` existente
+3. Atualize: `id` (slug), imagem (`src` / `picture`), destino (`alt`, `data-destino`, título), datas (`card__badge`), features, preço e link do WhatsApp
+4. Execute `python _build_pacotes.py` para atualizar `pacotes.html`
+5. Revise a página `/pacotes.html` no browser antes do deploy
 
 ---
 

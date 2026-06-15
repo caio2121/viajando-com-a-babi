@@ -5,11 +5,16 @@ alwaysApply: true
 
 # Site Viajando com a Babi
 
-Site estático single-page: `index.html`, `style.css`, `script.js`, `analytics.js`. Sem build.
+Site estático: `index.html` (home), páginas hub (`pacotes.html`, `sobre.html`, etc.), `style.css`, `script.js`, `analytics.js`. Sem build — exceto regeneração de `pacotes.html` via `_build_pacotes.py`.
 
 ## SEO e arquivos de raiz
 
 Manter atualizados: `robots.txt`, `sitemap.xml` (novas páginas como `privacidade.html`), `llms.txt`, canonical `https://viajandocomababi.com.br/`.
+
+## Catálogo de pacotes
+
+- Cards só em `index.html`; detalhes em `.cursor/rules/pacotes-catalogo.mdc`.
+- Após alterar pacotes na home: `python _build_pacotes.py` → atualiza `pacotes.html`.
 
 ## Organização de scripts
 

@@ -303,6 +303,109 @@ ul  { list-style: none; }
   max-width: 440px;
 }
 
+.hero__seo-lead {
+  font-size: clamp(0.9rem, 2.2vw, 1.05rem);
+  font-weight: 700;
+  color: var(--clr-text);
+  max-width: 520px;
+  line-height: 1.5;
+}
+
+/* ──────────────────────────────────────────────────
+   INTERNAL PAGES (hub SEO)
+────────────────────────────────────────────────── */
+.internal-page {
+  padding: calc(var(--navbar-h) + 48px) 0 80px;
+  min-height: 60vh;
+}
+.internal-page .section-title { text-align: left; margin-bottom: 16px; }
+.internal-page .section-sub { text-align: left; margin: 0 0 32px; max-width: none; }
+.internal-page .label--left { display: inline-block; }
+.internal-page__intro {
+  max-width: 720px;
+  margin-bottom: 40px;
+  color: var(--clr-text);
+  line-height: 1.7;
+}
+.internal-page__intro p { margin-bottom: 16px; }
+.internal-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+.internal-nav a {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--clr-primary-d);
+  padding: 8px 16px;
+  border: 2px solid var(--clr-primary-l);
+  border-radius: var(--radius-xl);
+  transition: background var(--transition), border-color var(--transition);
+}
+.internal-nav a:hover {
+  background: var(--clr-primary-l);
+  border-color: var(--clr-primary);
+}
+.pacotes-hub__category { margin-bottom: 40px; }
+.pacotes-hub__category h2 {
+  font-size: 1.35rem;
+  color: var(--clr-dark);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.pacotes-hub__list {
+  display: grid;
+  gap: 12px;
+}
+.pacotes-hub__item {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px 20px;
+  background: var(--clr-bg);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--clr-primary-l);
+}
+.pacotes-hub__item strong { color: var(--clr-dark); font-size: 1rem; }
+.pacotes-hub__item span { font-size: 0.85rem; color: var(--clr-muted); }
+.pacotes-hub__links { display: flex; gap: 10px; flex-wrap: wrap; }
+.pacotes-hub__links a {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--clr-primary-d);
+}
+.pacotes-hub__links a:hover { text-decoration: underline; }
+.servicos-hub__grid {
+  display: grid;
+  gap: 20px;
+  margin-top: 24px;
+}
+@media (min-width: 640px) {
+  .servicos-hub__grid { grid-template-columns: repeat(2, 1fr); }
+}
+.servico-card {
+  padding: 24px;
+  background: var(--clr-bg);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--clr-primary-l);
+}
+.servico-card h2 { font-size: 1.15rem; color: var(--clr-dark); margin-bottom: 10px; }
+.servico-card p { font-size: 0.95rem; color: var(--clr-text); margin-bottom: 16px; line-height: 1.6; }
+.servico-card--featured { border-color: var(--clr-primary); background: var(--clr-primary-l); }
+.breadcrumb {
+  font-size: 0.85rem;
+  color: var(--clr-muted);
+  margin-bottom: 24px;
+}
+.breadcrumb a { color: var(--clr-primary-d); font-weight: 600; }
+.faq__cta { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: 32px; }
+.pacotes__cta-extra { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: center; }
+
 .hero__ctas {
   display: flex;
   flex-direction: column;
@@ -405,6 +508,48 @@ ul  { list-style: none; }
 .pacotes {
   padding: 80px 0;
   background: var(--clr-bg);
+}
+
+/* Página dedicada de catálogo */
+.pacotes-page {
+  padding-top: calc(var(--navbar-h) + 24px);
+  min-height: 100vh;
+}
+.pacotes-page__header {
+  margin-bottom: 48px;
+  text-align: center;
+}
+.pacotes-page__header .section-sub a {
+  color: var(--clr-primary-d);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.pacotes-page__header .section-sub a:hover {
+  color: var(--clr-primary);
+}
+.breadcrumb--light {
+  justify-content: center;
+  margin-bottom: 16px;
+}
+.breadcrumb--light a {
+  color: var(--clr-primary-d);
+}
+.card__img-wrap picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.card__img-wrap picture img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+}
+@media (min-width: 640px) {
+  .card__img-wrap picture img { height: 240px; }
+}
+@media (min-width: 1024px) {
+  .card__img-wrap picture img { height: 260px; }
 }
 
 .pacotes__grid {

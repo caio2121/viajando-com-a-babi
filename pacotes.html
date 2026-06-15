@@ -3,321 +3,60 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#3AAFA9" />
-
-  <!-- SEO -->
-  <title>Viajando com a Babi — Pacotes de viagem e roteiros personalizados</title>
-  <meta name="description" content="Pacotes de viagem com aéreo e hospedagem para Nordeste, América do Sul, Caribe e cruzeiros. Agência Cadastur — roteiros personalizados e atendimento humano pelo WhatsApp." />
-  <meta name="author" content="Viajando com a Babi" />
-  <link rel="canonical" href="https://viajandocomababi.com.br/" />
-
-  <!-- Open Graph / WhatsApp / Facebook -->
+  <title>Pacotes de viagem — Viajando com a Babi</title>
+  <meta name="description" content="Catálogo de pacotes de viagem com aéreo e hospedagem: Nordeste, Gramado, América do Sul, Caribe e cruzeiros. Agência Cadastur — fale com a Babi." />
+  <link rel="canonical" href="https://viajandocomababi.com.br/pacotes.html" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://viajandocomababi.com.br/" />
-  <meta property="og:title" content="Viajando com a Babi — Pacotes de viagem e roteiros personalizados" />
-  <meta property="og:description" content="Pacotes de viagem com aéreo e hospedagem para destinos nacionais e internacionais. Agência Cadastur — fale com a Babi pelo WhatsApp!" />
+  <meta property="og:url" content="https://viajandocomababi.com.br/pacotes.html" />
+  <meta property="og:title" content="Pacotes de viagem — Viajando com a Babi" />
+  <meta property="og:description" content="Pacotes de viagem com aéreo e hospedagem para destinos nacionais e internacionais." />
   <meta property="og:image" content="https://viajandocomababi.com.br/assets/og-share.jpeg" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
   <meta property="og:locale" content="pt_BR" />
-  <meta property="og:site_name" content="Viajando com a Babi" />
-
-  <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:site" content="@viajandocomababi_" />
-  <meta name="twitter:title" content="Viajando com a Babi — Pacotes de viagem e roteiros personalizados" />
-  <meta name="twitter:description" content="Pacotes de viagem com aéreo e hospedagem. Agência Cadastur — fale com a Babi pelo WhatsApp!" />
-  <meta name="twitter:image" content="https://viajandocomababi.com.br/assets/og-share.jpeg" />
-
-  <!-- Favicon -->
   <link rel="icon" type="image/png" href="assets/logo-vcb.png" />
-  <link rel="apple-touch-icon" href="assets/logo-vcb.png" />
-
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet" />
-
-  <!-- Font Awesome (sem integrity para evitar bloqueio SRI em GitHub Pages) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
   <link rel="stylesheet" href="style.css?v=16" />
-
-  <!-- Google Analytics 4 -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WGDNTSY8WM"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-WGDNTSY8WM', { send_page_view: true });
-  </script>
-
-  <!-- Schema.org JSON-LD -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@graph": [
-      {
-        "@type": ["TravelAgency", "ProfessionalService"],
-        "@id": "https://viajandocomababi.com.br/#organization",
-        "name": "Viajando com a Babi",
-        "url": "https://viajandocomababi.com.br/",
-        "logo": "https://viajandocomababi.com.br/assets/logo-vcb.png",
-        "image": "https://viajandocomababi.com.br/assets/og-share.jpeg",
-        "telephone": "+55-21-92006-4617",
-        "email": "viajandocomababi@gmail.com",
-        "taxID": "60.536.280/0001-89",
-        "sameAs": ["https://www.instagram.com/viajandocomababi_/"],
-        "areaServed": { "@type": "Country", "name": "Brasil" },
-        "priceRange": "$$",
-        "description": "Agência de viagens Cadastur com pacotes de viagem completos, roteiros personalizados e consultoria para destinos nacionais e internacionais.",
-        "contactPoint": {
-          "@type": "ContactPoint",
-          "telephone": "+55-21-92006-4617",
-          "email": "viajandocomababi@gmail.com",
-          "contactType": "customer service",
-          "availableLanguage": ["Portuguese"],
-          "areaServed": "BR"
-        }
-      },
-      {
-        "@type": "Person",
-        "@id": "https://viajandocomababi.com.br/#babi",
-        "name": "Bárbara Cristina Machado Valente Costa de Abreu",
-        "alternateName": "Babi",
-        "jobTitle": "Agente de Viagens",
-        "description": "Agente de viagens apaixonada por criar pacotes e roteiros personalizados com atendimento humano do orçamento ao embarque.",
-        "image": "https://viajandocomababi.com.br/assets/babi-sobre.jpeg",
-        "worksFor": { "@id": "https://viajandocomababi.com.br/#organization" },
-        "sameAs": ["https://www.instagram.com/viajandocomababi_/"]
-      },
-      {
-        "@type": "WebSite",
-        "@id": "https://viajandocomababi.com.br/#website",
-        "name": "Viajando com a Babi",
-        "url": "https://viajandocomababi.com.br/",
-        "publisher": { "@id": "https://viajandocomababi.com.br/#organization" }
-      },
-      {
-        "@type": "WebPage",
-        "@id": "https://viajandocomababi.com.br/#webpage",
-        "url": "https://viajandocomababi.com.br/",
-        "name": "Viajando com a Babi — Pacotes de viagem e roteiros personalizados",
-        "description": "Pacotes de viagem com aéreo e hospedagem para Nordeste, América do Sul, Caribe e cruzeiros. Agência Cadastur.",
-        "isPartOf": { "@id": "https://viajandocomababi.com.br/#website" },
-        "about": { "@id": "https://viajandocomababi.com.br/#organization" }
-      },
-      {
-        "@type": "Service",
-        "serviceType": "Pacotes de viagem",
-        "provider": { "@id": "https://viajandocomababi.com.br/#organization" },
-        "areaServed": "BR",
-        "url": "https://viajandocomababi.com.br/pacotes.html"
-      },
-      {
-        "@type": "Service",
-        "serviceType": "Consultoria de viagem",
-        "provider": { "@id": "https://viajandocomababi.com.br/#organization" },
-        "areaServed": "BR",
-        "url": "https://viajandocomababi.com.br/consultoria-de-viagem.html"
-      },
-      {
-        "@type": "Service",
-        "serviceType": "Roteiro personalizado",
-        "provider": { "@id": "https://viajandocomababi.com.br/#organization" },
-        "areaServed": "BR",
-        "url": "https://viajandocomababi.com.br/roteiro-personalizado.html"
-      }
+      { "@type": "WebPage", "@id": "https://viajandocomababi.com.br/pacotes.html#webpage", "url": "https://viajandocomababi.com.br/pacotes.html", "name": "Pacotes de viagem — Viajando com a Babi", "isPartOf": { "@id": "https://viajandocomababi.com.br/#website" } },
+      { "@type": "BreadcrumbList", "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Início", "item": "https://viajandocomababi.com.br/" },
+        { "@type": "ListItem", "position": 2, "name": "Pacotes de viagem", "item": "https://viajandocomababi.com.br/pacotes.html" }
+      ]}
     ]
   }
   </script>
 </head>
 <body>
-
-  <!-- ═══════════════════════════════════════
-       NAVBAR
-  ═══════════════════════════════════════ -->
   <header class="navbar" id="navbar">
     <div class="navbar__container">
-      <a href="#hero" class="navbar__logo">
-        <picture><source srcset="assets/logo-vcb.webp" type="image/webp" /><img src="assets/logo-vcb.png" alt="Viajando com a Babi" width="200" height="62" ></picture>
-      </a>
-
+      <a href="/" class="navbar__logo"><img src="assets/logo-vcb.png" alt="Viajando com a Babi" width="200" height="62" /></a>
       <nav class="navbar__links" id="navLinks">
         <a href="sobre.html">Sobre</a>
         <a href="como-funciona.html">Como funciona</a>
         <a href="pacotes.html">Pacotes</a>
         <a href="faq.html">FAQ</a>
-        <a href="#depoimentos">Depoimentos</a>
-        <a href="#contato">Contato</a>
-        <button class="btn-cadastur-nav" id="btnCadasturNav" aria-label="Ver Certificado Cadastur">
-          <i class="fas fa-award" style="color:#d4a017"></i>
-          Cadastur
-        </button>
+        <a href="/#depoimentos">Depoimentos</a>
+        <a href="/#contato">Contato</a>
       </nav>
-
-      <a href="https://wa.me/5521920064617?text=Ol%C3%A1%20Babi!%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20os%20pacotes%20de%20viagem"
-         target="_blank" rel="noopener noreferrer"
-         class="btn btn--whatsapp btn--sm navbar__cta">
-        <i class="fab fa-whatsapp"></i> WhatsApp
-      </a>
-
-      <button class="navbar__hamburger" id="hamburger" aria-label="Abrir menu" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
+      <a href="https://wa.me/5521920064617?text=Ol%C3%A1%20Babi!%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20os%20pacotes%20de%20viagem" target="_blank" rel="noopener noreferrer" class="btn btn--whatsapp btn--sm navbar__cta"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+      <button class="navbar__hamburger" id="hamburger" aria-label="Abrir menu" aria-expanded="false"><span></span><span></span><span></span></button>
     </div>
   </header>
 
   <main id="conteudo-principal">
-
-  <!-- ═══════════════════════════════════════
-       HERO
-  ═══════════════════════════════════════ -->
-  <section id="hero" class="hero">
-    <div class="hero__overlay"></div>
-    <div class="hero__content">
-      <picture><source srcset="assets/logo-vcb.webp" type="image/webp" /><img src="assets/logo-vcb.png"
-           alt="Viajando com a Babi" class="hero__logo"
-           width="405" height="120" fetchpriority="high" ></picture>
-      <h1 class="hero__tagline">O mundo te espera.<br><span>Vamos juntos?</span></h1>
-      <p class="hero__seo-lead">Pacotes de viagem com aéreo e hospedagem + roteiros personalizados para destinos nacionais e internacionais. Agência Cadastur — atendimento humano pelo WhatsApp.</p>
-      <p class="hero__sub">Eu cuido de cada detalhe — você só embarca.</p>
-      <div class="hero__ctas">
-        <a href="https://wa.me/5521920064617?text=Ol%C3%A1%20Babi!%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20os%20pacotes%20de%20viagem"
-           target="_blank" rel="noopener noreferrer"
-           class="btn btn--whatsapp btn--lg">
-          <i class="fab fa-whatsapp"></i> Falar no WhatsApp
-        </a>
-        <a href="https://www.instagram.com/viajandocomababi_/"
-           target="_blank" rel="noopener noreferrer"
-           class="btn btn--instagram btn--lg">
-          <i class="fab fa-instagram"></i> Ver no Instagram
-        </a>
-      </div>
+  <section class="pacotes pacotes-page">
+    <div class="container pacotes-page__header">
+      <nav class="breadcrumb breadcrumb--light" aria-label="Navegação"><a href="/">Início</a> / Pacotes de viagem</nav>
+      <span class="label label--center">Catálogo completo</span>
+      <h1 class="section-title">Pacotes de viagem</h1>
+      <p class="section-sub">Pacotes com aéreo, hospedagem e serviços principais — além de cruzeiros e roteiros em grupo. Quer algo sob medida? <a href="roteiro-personalizado.html">Monte um roteiro personalizado</a>.</p>
     </div>
-    <a href="#sobre" class="hero__scroll" aria-label="Rolar para baixo">
-      <i class="fas fa-chevron-down"></i>
-    </a>
-  </section>
-
-  <!-- ═══════════════════════════════════════
-       SOBRE
-  ═══════════════════════════════════════ -->
-  <section id="sobre" class="sobre">
     <div class="container">
-      <div class="sobre__grid">
-        <div class="sobre__foto">
-          <picture><source srcset="assets/babi-sobre.webp" type="image/webp" /><img src="assets/babi-sobre.jpeg?v=2"
-               alt="Babi em Paris, em frente à Torre Eiffel" loading="lazy" width="480" height="600" /></picture>
-        </div>
-        <div class="sobre__texto">
-          <span class="label">Quem é a Babi?</span>
-          <h2>Transformamos sonhos em experiências únicas</h2>
-          <p>
-            Sou a Babi, agente de viagens apaixonada por criar <strong>Pacotes e Roteiros personalizados</strong>
-            que cuidam de cada detalhe da sua jornada: destino, passeios, reservas e dicas especiais.
-            Mais do que organizar viagens, entrego dedicação, carinho e comprometimento para que sua
-            experiência seja leve, segura e inesquecível.
-          </p>
-          <p>
-            Seja para relaxar, explorar, celebrar ou se reinventar, estou pronta para ajudar você a
-            <strong>viver o mundo do seu jeito</strong>.
-          </p>
-          <p><a href="sobre.html">Conheça a história completa da Babi →</a></p>
-          <div class="sobre__destaques">
-            <div class="destaque">
-              <i class="fas fa-map-marked-alt"></i>
-              <strong>Roteiros 100% personalizados</strong>
-            </div>
-            <div class="destaque">
-              <i class="fas fa-headset"></i>
-              <strong>Atendimento humano</strong>
-            </div>
-            <div class="destaque">
-              <i class="fas fa-tags"></i>
-              <strong>Melhores preços do mercado</strong>
-            </div>
-            <div class="destaque">
-              <i class="fas fa-shield-alt"></i>
-              <strong>Seguro viagem incluso</strong>
-            </div>
-            <div class="destaque">
-              <i class="fas fa-comments"></i>
-              <strong>Consultoria para sua viagem</strong>
-            </div>
-            <div class="destaque">
-              <i class="fas fa-suitcase"></i>
-              <strong>Pacote de viagens prontos</strong>
-            </div>
-          </div>
-          <a href="https://wa.me/5521920064617?text=Ol%C3%A1%20Babi!%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20os%20pacotes%20de%20viagem"
-             target="_blank" rel="noopener noreferrer"
-             class="btn btn--whatsapp btn--md">
-            <i class="fab fa-whatsapp"></i> Vamos conversar!
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════════════════════════════════════
-       COMO FUNCIONA
-  ═══════════════════════════════════════ -->
-  <section id="como-funciona" class="como-funciona">
-    <div class="container">
-      <span class="label label--center">Atendimento</span>
-      <h2 class="section-title">Como funciona</h2>
-      <p class="section-sub">Do primeiro contato ao embarque — simples, humano e sem complicação.</p>
-      <ol class="como-funciona__steps">
-        <li class="como-funciona__step reveal">
-          <span class="como-funciona__num">1</span>
-          <div>
-            <h3>Você conta o sonho</h3>
-            <p>Pelo WhatsApp ou formulário: destino, datas, perfil da viagem e orçamento aproximado.</p>
-          </div>
-        </li>
-        <li class="como-funciona__step reveal">
-          <span class="como-funciona__num">2</span>
-          <div>
-            <h3>Eu monto as melhores opções</h3>
-            <p>Pesquiso pacotes, aéreos, hotéis e passeios com o melhor custo-benefício para você.</p>
-          </div>
-        </li>
-        <li class="como-funciona__step reveal">
-          <span class="como-funciona__num">3</span>
-          <div>
-            <h3>Ajustamos juntos</h3>
-            <p>Refinamos o roteiro até ficar perfeito para o seu estilo de viajar.</p>
-          </div>
-        </li>
-        <li class="como-funciona__step reveal">
-          <span class="como-funciona__num">4</span>
-          <div>
-            <h3>Reservo e acompanho</h3>
-            <p>Cuido das reservas, pagamento facilitado e suporte até o dia do embarque.</p>
-          </div>
-        </li>
-      </ol>
-      <div class="como-funciona__cta">
-        <a href="https://wa.me/5521920064617?text=Ol%C3%A1%20Babi!%20Quero%20planejar%20minha%20viagem"
-           target="_blank" rel="noopener noreferrer"
-           class="btn btn--whatsapp btn--md">
-          <i class="fab fa-whatsapp"></i> Planejar minha viagem
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════════════════════════════════════
-       PACOTES
-  ═══════════════════════════════════════ -->
-  <section id="pacotes" class="pacotes">
-    <div class="container">
-      <span class="label label--center">Pacotes disponíveis</span>
-      <h2 class="section-title">Pacotes de viagem — destinos que vão te apaixonar</h2>
-      <p class="section-sub">Catálogo de pacotes de viagem com aéreo, hospedagem e serviços principais — além de cruzeiros e roteiros em grupo com guia. <a href="pacotes.html">Ver catálogo completo de pacotes</a>.</p>
-
-      <div class="pacotes__category" id="pacotes-completos">
+<div class="pacotes__category" id="pacotes-completos">
         <h3 class="pacotes__subhead"><i class="fas fa-plane-departure" aria-hidden="true"></i> Pacote completo</h3>
         <p class="pacotes__category-desc">Aéreo, hospedagem e serviços principais inclusos.</p>
         <div class="pacotes__grid">
@@ -997,471 +736,45 @@
           Saiba mais sobre roteiros sob medida
         </a>
       </div>
+
     </div>
   </section>
 
-  <!-- ═══════════════════════════════════════
-       LINKS ÚTEIS
-  ═══════════════════════════════════════ -->
-  <section id="links" class="links-uteis">
-    <div class="container">
-      <span class="label label--center">Links úteis</span>
-      <h2 class="section-title">Tudo que você precisa em um só lugar</h2>
-      <div class="links-uteis__grid">
-
-        <a href="https://wa.me/5521920064617?text=Ol%C3%A1%20Babi!%20Quero%20fazer%20um%20or%C3%A7amento%20de%20viagem"
-           target="_blank" rel="noopener noreferrer" class="link-card reveal">
-          <div class="link-card__icon link-card__icon--wa">
-            <i class="fab fa-whatsapp"></i>
-          </div>
-          <div class="link-card__text">
-            <strong>Fazer orçamento agora</strong>
-            <span>Fale direto com a Babi pelo WhatsApp</span>
-          </div>
-          <i class="fas fa-chevron-right link-card__arrow"></i>
-        </a>
-
-        <button class="link-card link-card--btn reveal" id="btnFormularioLink">
-          <div class="link-card__icon link-card__icon--form">
-            <i class="fas fa-route"></i>
-          </div>
-          <div class="link-card__text">
-            <strong>Formulário para viagem personalizada</strong>
-            <span>Preencha e receba um roteiro exclusivo pelo WhatsApp</span>
-          </div>
-          <i class="fas fa-chevron-right link-card__arrow"></i>
-        </button>
-
-        <a href="https://assist-365.com/br/?voucher=VIAJANDOCOMBABI"
-           target="_blank" rel="noopener noreferrer" class="link-card reveal">
-          <div class="link-card__icon link-card__icon--seguro">
-            <i class="fas fa-heartbeat"></i>
-          </div>
-          <div class="link-card__text">
-            <strong>Cupom Seguro Saúde — Assist 365</strong>
-            <span>Use o cupom <em>VIAJANDOCOMBABI</em> e ganhe desconto</span>
-          </div>
-          <i class="fas fa-chevron-right link-card__arrow"></i>
-        </a>
-
-        <button class="link-card link-card--btn reveal" id="btnCadasturLink">
-          <div class="link-card__icon link-card__icon--cadastur">
-            <i class="fas fa-award"></i>
-          </div>
-          <div class="link-card__text">
-            <strong>Certificado Cadastur</strong>
-            <span>Agência de turismo regularizada pelo Ministério do Turismo</span>
-          </div>
-          <i class="fas fa-chevron-right link-card__arrow"></i>
-        </button>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════════════════════════════════════
-       FORMAS DE PAGAMENTO
-  ═══════════════════════════════════════ -->
-  <section id="pagamento" class="pagamento" aria-labelledby="pagamento-titulo">
-    <div class="container">
-      <div class="pagamento__card reveal">
-        <span class="label pagamento__badge">Boleto sem análise de crédito</span>
-        <h2 id="pagamento-titulo" class="section-title pagamento__title">Facilitamos a forma de pagar a sua viagem</h2>
-        <p class="pagamento__lead">
-          Aqui você encontra boleto sem análise de crédito e também parcelamento no cartão, tudo isso sem juros, para escolher a opção que faz mais sentido para o seu momento.
-        </p>
-        <ul class="pagamento__pontos">
-          <li>
-            <span class="pagamento__icone" aria-hidden="true"><i class="fas fa-barcode"></i></span>
-            <span>Boleto sem análise de crédito com mais praticidade</span>
-          </li>
-          <li>
-            <span class="pagamento__icone" aria-hidden="true"><i class="fas fa-credit-card"></i></span>
-            <span>Parcelamento no cartão para maior flexibilidade</span>
-          </li>
-        </ul>
-        <div class="pagamento__cta">
-          <a href="https://wa.me/5521920064617?text=Ol%C3%A1%20Babi!%20Vim%20pelo%20site%20e%20quero%20saber%20como%20funciona%20o%20pagamento%20(boleto%20e%20parcelamento%20no%20cart%C3%A3o)."
-             target="_blank" rel="noopener noreferrer"
-             class="btn btn--whatsapp btn--md btn--full pagamento__btn">
-            <i class="fab fa-whatsapp"></i> Quero saber como funciona
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════════════════════════════════════
-       FAQ
-  ═══════════════════════════════════════ -->
-  <section id="faq" class="faq" aria-labelledby="faq-titulo">
-    <div class="container">
-      <span class="label label--center">Dúvidas frequentes</span>
-      <h2 id="faq-titulo" class="section-title">Perguntas que todo viajante faz</h2>
-      <div class="faq__list">
-
-        <details class="faq__item reveal">
-          <summary class="faq__question">Consigo planejar minha viagem sozinho?</summary>
-          <p class="faq__answer">Sim — mas uma consultoria economiza tempo, evita erros caros e garante um roteiro alinhado ao seu perfil, com suporte humano em cada etapa.</p>
-        </details>
-
-        <details class="faq__item reveal">
-          <summary class="faq__question">Vale a pena pagar por consultoria de viagem?</summary>
-          <p class="faq__answer">Para quem quer praticidade, segurança e experiência personalizada, sim. A Babi cuida de passagens, hotéis, passeios e detalhes que fazem toda a diferença.</p>
-        </details>
-
-        <details class="faq__item reveal">
-          <summary class="faq__question">Quanto custa um roteiro personalizado?</summary>
-          <p class="faq__answer">Depende do destino, época e perfil da viagem. O orçamento é sempre personalizado — fale comigo pelo WhatsApp ou formulário e receba opções sob medida.</p>
-        </details>
-
-        <details class="faq__item reveal">
-          <summary class="faq__question">Você compra passagens e hotéis por mim?</summary>
-          <p class="faq__answer">Sim. Organizo reservas, monto pacotes completos com aéreo e hospedagem, e acompanho você até o embarque.</p>
-        </details>
-
-        <details class="faq__item reveal">
-          <summary class="faq__question">Funciona para lua de mel?</summary>
-          <p class="faq__answer">Com certeza! Já organizei luas de mel na Itália, Paris, Amsterdã e outros destinos dos sonhos — com atenção a cada detalhe.</p>
-        </details>
-
-        <details class="faq__item reveal">
-          <summary class="faq__question">Funciona para viagem internacional?</summary>
-          <p class="faq__answer">Sim. Atendo destinos nacionais e internacionais: Europa, América do Sul, Caribe, cruzeiros e muito mais.</p>
-        </details>
-
-        <details class="faq__item reveal">
-          <summary class="faq__question">Com quanta antecedência devo contratar?</summary>
-          <p class="faq__answer">Quanto antes, melhor — especialmente para alta temporada e internacionais. Mas também atendo viagens com prazos mais curtos, conforme disponibilidade.</p>
-        </details>
-
-        <details class="faq__item reveal">
-          <summary class="faq__question">Como solicito um orçamento?</summary>
-          <p class="faq__answer">Pelo WhatsApp (+55 21 92006-4617), e-mail viajandocomababi@gmail.com ou pelo formulário de viagem personalizada aqui no site.</p>
-        </details>
-
-      </div>
-      <div class="faq__cta">
-        <a href="faq.html" class="btn btn--outline btn--md">Ver todas as perguntas</a>
-        <a href="https://wa.me/5521920064617?text=Ol%C3%A1%20Babi!%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20os%20pacotes%20de%20viagem"
-           target="_blank" rel="noopener noreferrer"
-           class="btn btn--whatsapp btn--md">
-          <i class="fab fa-whatsapp"></i> Falar com a Babi
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════════════════════════════════════
-       DEPOIMENTOS
-  ═══════════════════════════════════════ -->
-  <section id="depoimentos" class="depoimentos">
-    <div class="container">
-      <span class="label label--center">Avaliações reais no Google</span>
-      <h2 class="section-title">O que dizem os clientes que já viajaram com a Babi?</h2>
-      <p class="section-sub">Depoimentos reais — incluindo <a href="lua-de-mel.html">planejamento de lua de mel</a> e viagens em família.</p>
-
-      <div class="depoimentos__grid">
-
-        <div class="depoimento reveal">
-          <div class="depoimento__estrelas">
-            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-            <i class="fas fa-star"></i><i class="fas fa-star"></i>
-          </div>
-          <blockquote>
-            Confiamos a viagem mais importante das nossas vidas nas mãos da Babi: nossa primeira viagem juntos + primeira viagem internacional + destino dos sonhos desde a adolescência + viagem de LUA DE MEL!!! A Babi nos deu uma atenção fenomenal e cuidou de cada detalhe pra que nossa experiência fosse incrível. Nosso sonho se tornou realidade e hoje deixa gostinho de saudade!!
-          </blockquote>
-          <div class="depoimento__autor">
-            <div class="depoimento__avatar">
-              <picture><source srcset="assets/depoimentos/imagem keyla.webp" type="image/webp" /><img src="assets/depoimentos/imagem keyla.jpeg" alt="Keyla Gomes" loading="lazy" ></picture>
-            </div>
-            <div>
-              <strong>Keyla Gomes</strong>
-              <span>Lua de mel — Itália</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="depoimento reveal">
-          <div class="depoimento__estrelas">
-            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-            <i class="fas fa-star"></i><i class="fas fa-star"></i>
-          </div>
-          <blockquote>
-            Desde que conheci essa empresa, nunca mais viajei sem o apoio deles. Organizaram a minha tão sonhada lua de mel em Paris e Amsterdã, além de outras quatro viagens nacionais, sempre com um atendimento impecável. A atenção aos detalhes, o cuidado em cada etapa e a prontidão para responder dúvidas tornaram cada experiência ainda mais especial. Confio de olhos fechados!
-          </blockquote>
-          <div class="depoimento__autor">
-            <div class="depoimento__avatar">
-              <picture><source srcset="assets/depoimentos/imagem roberto.webp" type="image/webp" /><img src="assets/depoimentos/imagem roberto.jpeg" alt="Roberto Matheus" loading="lazy" ></picture>
-            </div>
-            <div>
-              <strong>Roberto Matheus</strong>
-              <span>Local Guide · Lua de mel em Paris &amp; Amsterdã</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="depoimento reveal">
-          <div class="depoimento__estrelas">
-            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-            <i class="fas fa-star"></i><i class="fas fa-star"></i>
-          </div>
-          <blockquote>
-            Fiz a minha viagem dos sonhos para Itália com a Babi e simplesmente nunca mais viajo sem essa mulher, foi tudo perfeito e milimetricamente pensado.
-          </blockquote>
-          <div class="depoimento__autor">
-            <div class="depoimento__avatar">
-              <picture><source srcset="assets/depoimentos/imagem Thiago.webp" type="image/webp" /><img src="assets/depoimentos/imagem Thiago.png" alt="Thiago Vianna" loading="lazy" ></picture>
-            </div>
-            <div>
-              <strong>Thiago Vianna</strong>
-              <span>Itália</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="depoimento reveal">
-          <div class="depoimento__estrelas">
-            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-            <i class="fas fa-star"></i><i class="fas fa-star"></i>
-          </div>
-          <blockquote>
-            A Babi é simplesmente incrível! Sempre disponível, responde rápido e organiza roteiros impecáveis. Fizemos uma viagem sensacional em família, tudo perfeitamente planejado. Já estamos fazendo novas cotações para 2026. Empresa séria, responsável e totalmente confiável.
-          </blockquote>
-          <div class="depoimento__autor">
-            <div class="depoimento__avatar">
-              <img src="assets/depoimentos/imagem claudio.webp" alt="Claudio Rocha" loading="lazy" />
-            </div>
-            <div>
-              <strong>Claudio Rocha</strong>
-              <span>Viagem em família</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="depoimento reveal">
-          <div class="depoimento__estrelas">
-            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-            <i class="fas fa-star"></i><i class="fas fa-star"></i>
-          </div>
-          <blockquote>
-            Minha primeira viagem internacional foi para o Panamá, e quem organizou tudo foi a Babi! O resort era maravilhoso, com comidas deliciosas incluídas e uma estrutura perfeita para relaxar. A Babi cuidou de cada detalhe com tanto carinho que eu só precisei chegar e curtir.
-          </blockquote>
-          <div class="depoimento__autor">
-            <div class="depoimento__avatar">
-              <picture><source srcset="assets/depoimentos/imagem larissa.webp" type="image/webp" /><img src="assets/depoimentos/imagem larissa.png" alt="Larissa Lima" loading="lazy" ></picture>
-            </div>
-            <div>
-              <strong>Larissa Lima</strong>
-              <span>Panamá — Primeira viagem internacional</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="depoimento reveal">
-          <div class="depoimento__estrelas">
-            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-            <i class="fas fa-star"></i><i class="fas fa-star"></i>
-          </div>
-          <blockquote>
-            Babi como sempre incrível, atendimento nota mil, e as viagens que ela organiza sempre têm o melhor custo benefício! Amo os roteiros, sempre nos faz aproveitar o melhor de cada destino. Fechem sem medo, ela arrasa!
-          </blockquote>
-          <div class="depoimento__autor">
-            <div class="depoimento__avatar">
-              <picture><source srcset="assets/depoimentos/imagem deca.webp" type="image/webp" /><img src="assets/depoimentos/imagem deca.png" alt="Decafranca Silva" loading="lazy" ></picture>
-            </div>
-            <div>
-              <strong>Decafranca Silva</strong>
-              <span>Múltiplas viagens</span>
-            </div>
-          </div>
-        </div>
-
-      </div><!-- /.depoimentos__grid -->
-
-      <div class="depoimentos__cta">
-        <a href="https://wa.me/5521920064617?text=Ol%C3%A1%20Babi!%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20os%20pacotes%20de%20viagem"
-           target="_blank" rel="noopener noreferrer"
-           class="btn btn--whatsapp btn--md">
-          <i class="fab fa-whatsapp"></i> Quero ser o próximo a viajar!
-        </a>
-      </div>
-    </div>
-  </section>
-
-  </main>
-
-  <!-- ═══════════════════════════════════════
-       CONTATO / FOOTER
-  ═══════════════════════════════════════ -->
-  <footer id="contato" class="footer">
+  <footer class="footer" id="contato">
     <div class="container">
       <div class="footer__grid">
-
         <div class="footer__brand">
-          <picture><source srcset="assets/logo-vcb.webp" type="image/webp" /><img src="assets/logo-vcb.png"
-               alt="Viajando com a Babi" class="footer__logo" ></picture>
-          <p>Pacotes e Roteiros personalizados para destinos que você sempre sonhou. Do planejamento ao embarque, cuidamos de tudo por você.</p>
+          <img src="assets/logo-vcb.png" alt="Viajando com a Babi" class="footer__logo" />
+          <p>Pacotes e roteiros personalizados — do planejamento ao embarque.</p>
         </div>
-
         <div class="footer__links">
           <h4>Navegação</h4>
           <ul>
             <li><a href="/">Início</a></li>
             <li><a href="sobre.html">Sobre a Babi</a></li>
-            <li><a href="como-funciona.html">Como funciona</a></li>
             <li><a href="pacotes.html">Pacotes de viagem</a></li>
             <li><a href="servicos.html">Serviços</a></li>
             <li><a href="faq.html">FAQ</a></li>
-            <li><a href="/#depoimentos">Depoimentos</a></li>
-            <li><a href="/#pagamento">Pagamento</a></li>
             <li><a href="privacidade.html">Privacidade</a></li>
-            <li>
-              <button class="footer__cadastur-btn" id="btnCadasturFooter">
-                <i class="fas fa-certificate"></i> Certificado Cadastur
-              </button>
-            </li>
           </ul>
         </div>
-
         <div class="footer__contato">
           <h4>Fale comigo</h4>
-          <a href="https://wa.me/5521920064617?text=Ol%C3%A1%20Babi!%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20os%20pacotes%20de%20viagem"
-             target="_blank" rel="noopener noreferrer"
-             class="footer__social-link footer__social-link--wa">
-            <i class="fab fa-whatsapp"></i>
-            <span>+55 21 92006-4617</span>
-          </a>
-          <a href="https://www.instagram.com/viajandocomababi_/"
-             target="_blank" rel="noopener noreferrer"
-             class="footer__social-link footer__social-link--ig">
-            <i class="fab fa-instagram"></i>
-            <span>@viajandocomababi_</span>
-          </a>
-          <a href="mailto:viajandocomababi@gmail.com"
-             class="footer__social-link footer__social-link--email">
-            <i class="fas fa-envelope"></i>
-            <span>viajandocomababi@gmail.com</span>
-          </a>
-          <div class="footer__ctas">
-            <a href="https://wa.me/5521920064617?text=Ol%C3%A1%20Babi!%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20os%20pacotes%20de%20viagem"
-               target="_blank" rel="noopener noreferrer"
-               class="btn btn--whatsapp btn--md">
-              <i class="fab fa-whatsapp"></i> WhatsApp
-            </a>
-            <a href="https://www.instagram.com/viajandocomababi_/"
-               target="_blank" rel="noopener noreferrer"
-               class="btn btn--instagram btn--md">
-              <i class="fab fa-instagram"></i> Instagram
-            </a>
-          </div>
+          <a href="https://wa.me/5521920064617" target="_blank" rel="noopener noreferrer" class="footer__social-link footer__social-link--wa"><i class="fab fa-whatsapp"></i><span>+55 21 92006-4617</span></a>
+          <a href="mailto:viajandocomababi@gmail.com" class="footer__social-link footer__social-link--email"><i class="fas fa-envelope"></i><span>viajandocomababi@gmail.com</span></a>
         </div>
-
-      </div><!-- /.footer__grid -->
-
+      </div>
       <div class="footer__bottom">
-        <p>&copy; <span id="year"></span> Viajando com a Babi — Todos os direitos reservados.</p>
-        <p>CNPJ 60.536.280/0001-89</p>
-        <p>Site desenvolvido por <a href="https://cybershieldgroup.com.br/" target="_blank" rel="noopener noreferrer">Cyber Shield Group</a></p>
-        <p><a href="privacidade.html">Política de privacidade</a></p>
-        <p>Feito com <i class="fas fa-heart" style="color:#e74c3c"></i> para quem ama viajar.</p>
+        <p>&copy; <span id="year"></span> Viajando com a Babi — CNPJ 60.536.280/0001-89</p>
       </div>
     </div>
   </footer>
 
-  <!-- ═══════════════════════════════════════
-       MODAL CADASTUR
-  ═══════════════════════════════════════ -->
-  <div class="modal-overlay" id="modalCadastur" role="dialog" aria-modal="true" aria-label="Certificado Cadastur">
-    <div class="modal">
-      <button class="modal__close" id="modalClose" aria-label="Fechar">
-        <i class="fas fa-times"></i>
-      </button>
-      <div class="modal__header">
-        <i class="fas fa-award"></i>
-        <div>
-          <h3>Certificado Cadastur</h3>
-          <p>Agência de turismo regularizada pelo Ministério do Turismo</p>
-        </div>
-      </div>
-      <img src="assets/cadastur.jpg" alt="Certificado Cadastur — Viajando com a Babi" class="modal__img" loading="lazy" />
-      <div class="modal__info">
-        <div class="modal__info-item">
-          <span>Cadastrado</span>
-          <strong>Bárbara Cristina Machado Valente Costa de Abreu</strong>
-        </div>
-        <div class="modal__info-item">
-          <span>Nº de Cadastro</span>
-          <strong>60.536.280/0001-89</strong>
-        </div>
-        <div class="modal__info-item">
-          <span>Validade</span>
-          <strong>25/04/2025 a 25/04/2027</strong>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ═══════════════════════════════════════
-       MODAL FORMULÁRIO DE VIAGEM
-  ═══════════════════════════════════════ -->
-  <div class="modal-overlay" id="modalFormulario" role="dialog" aria-modal="true" aria-label="Formulário para viagem personalizada">
-    <div class="modal">
-      <button class="modal__close" id="modalFormClose" aria-label="Fechar">
-        <i class="fas fa-times"></i>
-      </button>
-      <div class="modal__header">
-        <i class="fas fa-route" style="font-size:2rem;color:var(--clr-primary);flex-shrink:0"></i>
-        <div>
-          <h3>Planeje sua viagem</h3>
-          <p>Preencha e enviaremos seu roteiro pelo WhatsApp</p>
-        </div>
-      </div>
-      <form id="formViagem" class="modal__form" novalidate>
-        <div class="form__group">
-          <label for="fDestino">✈️ Destino desejado *</label>
-          <input type="text" id="fDestino" required placeholder="Ex: Itália, Cancún, Nordeste…" />
-        </div>
-        <div class="form__group">
-          <label for="fDatas">📅 Datas ou mês *</label>
-          <input type="text" id="fDatas" required placeholder="Ex: julho/2026 ou 10 a 20/ago" />
-        </div>
-        <div class="form__row">
-          <div class="form__group">
-            <label for="fAdultos">👥 Nº de adultos *</label>
-            <input type="number" id="fAdultos" required min="1" placeholder="2" />
-          </div>
-          <div class="form__group">
-            <label for="fCriancas">👶 Idades das crianças</label>
-            <input type="text" id="fCriancas" placeholder="Ex: 5 e 8 anos" />
-          </div>
-        </div>
-        <div class="form__group">
-          <label for="fSaida">🏙️ Cidade de saída *</label>
-          <input type="text" id="fSaida" required placeholder="Ex: Rio de Janeiro" />
-        </div>
-        <div class="form__group">
-          <label for="fOrcamento">💰 Orçamento estimado *</label>
-          <input type="text" id="fOrcamento" required placeholder="Ex: R$ 5.000 por pessoa" />
-        </div>
-        <button type="submit" class="btn btn--whatsapp btn--md btn--full">
-          <i class="fab fa-whatsapp"></i> Enviar pelo WhatsApp
-        </button>
-      </form>
-    </div>
-  </div>
-
-  <!-- ═══════════════════════════════════════
-       LIGHTBOX DE IMAGENS
-  ═══════════════════════════════════════ -->
   <div class="lightbox-overlay" id="lightbox" role="dialog" aria-modal="true" aria-label="Visualizar imagem">
     <button class="lightbox__close" id="lightboxClose" aria-label="Fechar imagem">&#x2715;</button>
     <img class="lightbox__img" id="lightboxImg" src="" alt="" />
   </div>
 
-  <!-- ═══════════════════════════════════════
-       FAB WHATSAPP (FIXO)
-  ═══════════════════════════════════════ -->
   <a href="https://wa.me/5521920064617?text=Ol%C3%A1%20Babi!%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20os%20pacotes%20de%20viagem"
      target="_blank" rel="noopener noreferrer"
      class="fab-whatsapp" aria-label="Falar no WhatsApp">
@@ -1470,6 +783,6 @@
   </a>
 
   <script src="analytics.js?v=3"></script>
-  <script src="script.js?v=15"></script>
+  <script src="script.js?v=16"></script>
 </body>
 </html>

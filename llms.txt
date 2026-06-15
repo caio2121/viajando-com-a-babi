@@ -1,6 +1,6 @@
 # Viajando com a Babi
 
-> Agência de viagens regularizada pelo Cadastur (CNPJ 60.536.280/0001-89), especializada em pacotes com aéreo e hospedagem, roteiros personalizados e consultoria de viagem para destinos nacionais e internacionais.
+> Agência de viagens regularizada pelo Cadastur (CNPJ 60.536.280/0001-89), especializada em pacotes de viagem com aéreo e hospedagem, roteiros personalizados e consultoria de viagem para destinos nacionais e internacionais.
 
 ## Quem somos
 
@@ -8,7 +8,7 @@ A Viajando com a Babi é conduzida por Bárbara Cristina Machado Valente Costa d
 
 ## Serviços
 
-- Pacotes de viagem completos (aéreo, hospedagem, transfers e passeios)
+- Pacotes de viagem completos (aéreo, hospedagem, transfers e passeios) — prioridade comercial
 - Roteiros 100% personalizados sob medida
 - Consultoria de viagem (nacional e internacional)
 - Planejamento de lua de mel, viagens em família e cruzeiros
@@ -36,4 +36,12 @@ Viajantes que querem economizar tempo, evitar erros de planejamento e ter suport
 ## Páginas principais
 
 - Home: https://viajandocomababi.com.br/
+- Pacotes de viagem: https://viajandocomababi.com.br/pacotes.html
+- Sobre a Babi: https://viajandocomababi.com.br/sobre.html
+- Como funciona: https://viajandocomababi.com.br/como-funciona.html
+- Serviços: https://viajandocomababi.com.br/servicos.html
+- Consultoria de viagem: https://viajandocomababi.com.br/consultoria-de-viagem.html
+- Roteiro personalizado: https://viajandocomababi.com.br/roteiro-personalizado.html
+- Lua de mel: https://viajandocomababi.com.br/lua-de-mel.html
+- FAQ: https://viajandocomababi.com.br/faq.html
 - Política de privacidade: https://viajandocomababi.com.br/privacidade.html

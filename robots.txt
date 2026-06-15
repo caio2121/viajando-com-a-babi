@@ -1,4 +1,27 @@
 User-agent: *
 Allow: /
 
+Disallow: /novaspostagens/
+Disallow: /pacotes/pacote-africa-austral.jpeg
+Disallow: /pacotes/pacote-aruba.jpeg
+Disallow: /pacotes/pacote-bariloche-neve.jpeg
+Disallow: /pacotes/pacote-bariloche.jpeg
+Disallow: /pacotes/pacote-buenos-aires.jpeg
+Disallow: /pacotes/pacote-cancun.jpeg
+Disallow: /pacotes/pacote-carmel-resorts.jpeg
+Disallow: /pacotes/pacote-circuito-italiano.jpeg
+Disallow: /pacotes/pacote-foz-iguacu.jpeg
+Disallow: /pacotes/pacote-gramado-nasa.jpeg
+Disallow: /pacotes/pacote-jericoacoara.jpeg
+Disallow: /pacotes/pacote-londres-paris.jpeg
+Disallow: /pacotes/pacote-los-cabos.jpeg
+Disallow: /pacotes/pacote-maceio.jpeg
+Disallow: /pacotes/pacote-mendoza-santiago.jpeg
+Disallow: /pacotes/pacote-orlando.jpeg
+Disallow: /pacotes/pacote-paris-disneyland.jpeg
+Disallow: /pacotes/pacote-puerto-plata.jpeg
+Disallow: /pacotes/pacote-salvador-praia-forte.jpeg
+Disallow: /pacotes/pacote-salvador-tivoli.jpeg
+Disallow: /pacotes/pacote-ushuaia.jpeg
+
 Sitemap: https://viajandocomababi.com.br/sitemap.xml
