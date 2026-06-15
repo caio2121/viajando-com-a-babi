@@ -96,12 +96,13 @@ O site classifica destinos sem editar cada card:
 
 | Região | Exemplos |
 |--------|----------|
-| `brasil_nordeste` | Aracaju, Fortaleza, Bahia, João Pessoa… |
+| `brasil_nordeste` | Aracaju, Fortaleza, Bahia, João Pessoa, Porto de Galinhas… |
 | `brasil_sul` | Gramado, Bonito |
+| `brasil_centro` | Rio Quente, Caldas Novas |
 | `argentina` | Buenos Aires, Bariloche, Ushuaia |
 | `chile` | Santiago, Atacama |
-| `peru` | Vale Sagrado |
-| `caribe` | Cancún, Bahamas, San Andrés |
+| `peru` | Essências do Peru, Vale Sagrado |
+| `caribe` | Cancún, Riviera Maya, Bahamas, San Andrés |
 | `cruzeiro` | MSC Divina, Costa Serena |
 
 Para forçar região em um pacote novo, adicione no HTML: `data-regiao="caribe"` no `<article class="card">`.

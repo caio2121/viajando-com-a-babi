@@ -42,6 +42,7 @@
   function inferRegion(destino) {
     const d = (destino || '').toLowerCase();
     if (/gramado|bonito/.test(d)) return 'brasil_sul';
+    if (/rio quente|caldas novas/.test(d)) return 'brasil_centro';
     if (/chapada|salvador|bahia|aracaju|fortaleza|jo[aã]o pessoa|porto seguro|macei[oó]|recife|olinda|porto de galinhas|natal/.test(d)) return 'brasil_nordeste';
     if (/buenos aires|ushuaia|bariloche|patagonia/.test(d)) return 'argentina';
     if (/santiago|atacama/.test(d)) return 'chile';

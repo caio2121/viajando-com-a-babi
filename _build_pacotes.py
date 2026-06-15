@@ -74,7 +74,7 @@ lightbox = """
 """
 template_tail = hub_footer.replace(
     '  <script src="script.js?v=20"></script>',
-    lightbox + '  <script src="analytics.js?v=6"></script>\n  <script src="script.js?v=20"></script>',
+    lightbox + '  <script src="analytics.js?v=7"></script>\n  <script src="script.js?v=20"></script>',
 )
 
 (root / "pacotes.html").write_text(head + hub_header + main + template_tail, encoding="utf-8")
