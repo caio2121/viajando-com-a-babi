@@ -32,11 +32,13 @@
     ]
   }
   </script>
-  <!-- Google Analytics 4 + Consent Mode v2 -->
+  <!-- Google Analytics 4 + Google Ads + Consent Mode v2 -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     var VCB_CONSENT_KEY = 'vcb_consent_analytics';
+    var VCB_GA4_ID = 'G-WGDNTSY8WM';
+    var VCB_ADS_ID = 'AW-18242129651';
     var ga4Loaded = false;
 
     gtag('consent', 'default', {
@@ -60,11 +62,12 @@
       if (ga4Loaded) return;
       ga4Loaded = true;
       var s = document.createElement('script');
-      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-WGDNTSY8WM';
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=' + VCB_GA4_ID;
       s.async = true;
       s.onload = function() {
         gtag('js', new Date());
-        gtag('config', 'G-WGDNTSY8WM', { send_page_view: true });
+        gtag('config', VCB_GA4_ID, { send_page_view: true });
+        gtag('config', VCB_ADS_ID);
       };
       document.head.appendChild(s);
     }

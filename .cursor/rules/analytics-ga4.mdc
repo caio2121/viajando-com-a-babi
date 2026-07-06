@@ -6,7 +6,7 @@ alwaysApply: false
 
 # Analytics GA4 — Viajando com a Babi
 
-Measurement ID: `G-WGDNTSY8WM`. Toda lógica de eventos fica em `analytics.js`; `script.js` só chama `window.VCBAnalytics`.
+Measurement ID: `G-WGDNTSY8WM`. Google Ads: `AW-18242129651` (configurado no bloco gtag de `_partials/ga4.html`, carregado junto com o GA4 após consentimento). Toda lógica de eventos fica em `analytics.js`; `script.js` só chama `window.VCBAnalytics`.
 
 ## Regras obrigatórias
 
