@@ -23,7 +23,7 @@ Guia para ler no GA4 quais pacotes e categorias geram mais interesse.
 | `package_name` | Nome legível do pacote |
 | `package_slug` | ID estável para relatórios (ex: `aracaju_imperdivel`) |
 | `package_category` | `grupos_com_guia`, `pacote_completo`, `cruzeiro` |
-| `package_region` | `brasil_nordeste`, `argentina`, `caribe`, `cruzeiro`, etc. |
+| `package_region` | `brasil_nordeste`, `argentina`, `caribe`, `mexico`, `oriente`, `eua`, `uruguai`, `cruzeiro`, etc. |
 | `interaction_type` | `viewport`, `card_explore`, `image_click`, `whatsapp_cta` |
 | `interest_level` | `high` (lead direto) ou `medium` |
 | `purchase_type` | `whatsapp_intent` (tentativa via botão do pacote) |

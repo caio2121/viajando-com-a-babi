@@ -21,7 +21,7 @@ head = f"""<!DOCTYPE html>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Pacotes de viagem | Viajando com a Babi</title>
-  <meta name="description" content="Catálogo de pacotes de viagem com aéreo e hospedagem: Nordeste, Gramado, América do Sul, Caribe e cruzeiros. Agência Cadastur. Fale com a Babi." />
+  <meta name="description" content="Catálogo de pacotes de viagem: Nordeste, Gramado, João Pessoa, Cone Sul, México, Caribe, Dubai, Disneyland e cruzeiros. Agência Cadastur. Fale com a Babi." />
   <link rel="canonical" href="https://viajandocomababi.com.br/pacotes.html" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://viajandocomababi.com.br/pacotes.html" />
@@ -31,7 +31,7 @@ head = f"""<!DOCTYPE html>
   <meta property="og:locale" content="pt_BR" />
   <meta name="twitter:card" content="summary_large_image" />
   <link rel="icon" type="image/png" href="assets/logo-vcb.png" />
-{head_assets}  <link rel="stylesheet" href="style.css?v=24" />
+{head_assets}  <link rel="stylesheet" href="style.css?v=25" />
   <script type="application/ld+json">
   {{
     "@context": "https://schema.org",

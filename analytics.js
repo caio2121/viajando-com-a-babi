@@ -47,6 +47,11 @@
     if (/buenos aires|ushuaia|bariloche|patagonia/.test(d)) return 'argentina';
     if (/santiago|atacama/.test(d)) return 'chile';
     if (/peru|vale sagrado|cusco/.test(d)) return 'peru';
+    if (/dubai|turquia|istambul|capadocia|pamukkale/.test(d)) return 'oriente';
+    if (/disney|california/.test(d)) return 'eua';
+    if (/mexico|m[eé]xico|teotihuac/.test(d)) return 'mexico';
+    if (/curacao|cura[cç]ao/.test(d)) return 'caribe';
+    if (/uruguai|montevid/.test(d)) return 'uruguai';
     if (/canc[uú]n|playa mujeres|bahamas|san andres|caribe/.test(d)) return 'caribe';
     if (/navio|msc|cruzeiro|costa serena/.test(d)) return 'cruzeiro';
     return 'outros';
