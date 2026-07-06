@@ -268,15 +268,17 @@
       `🏙️ Saída de: ${saida}\n` +
       `💰 Orçamento: ${orcamento}`;
 
+    const waUrl = 'https://wa.me/5521920064617?text=' + encodeURIComponent(msg);
+
     if (window.VCBAnalytics) {
       window.VCBAnalytics.trackFormLead();
     }
 
-    window.open(
-      'https://wa.me/5521920064617?text=' + encodeURIComponent(msg),
-      '_blank',
-      'noopener,noreferrer'
-    );
+    if (typeof window.gtag_report_conversion === 'function') {
+      window.gtag_report_conversion(waUrl);
+    } else {
+      window.open(waUrl, '_blank', 'noopener,noreferrer');
+    }
     closeModal();
   });
 })();

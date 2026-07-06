@@ -52,6 +52,29 @@
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
+    var VCB_ADS_CONVERSION = 'AW-18242129651/_fe6COee7sscEPOdw_pD';
+
+    function gtag_report_conversion(url) {
+      var targetUrl = url;
+      var callback = function () {
+        if (typeof targetUrl !== 'undefined' && targetUrl) {
+          window.open(targetUrl, '_blank', 'noopener,noreferrer');
+        }
+      };
+      if (typeof gtag !== 'function') {
+        callback();
+        return false;
+      }
+      gtag('event', 'conversion', {
+        send_to: VCB_ADS_CONVERSION,
+        value: 1.0,
+        currency: 'BRL',
+        event_callback: callback
+      });
+      return false;
+    }
+    window.gtag_report_conversion = gtag_report_conversion;
+
     var VCB_CONSENT_KEY = 'vcb_consent_analytics';
     var VCB_GA4_ID = 'G-WGDNTSY8WM';
     var VCB_ADS_ID = 'AW-18242129651';
@@ -88,14 +111,18 @@
       document.head.appendChild(s);
     }
 
+    function grantGrantedConsent() {
+      return {
+        analytics_storage: 'granted',
+        ad_storage: 'granted',
+        ad_user_data: 'granted',
+        ad_personalization: 'granted'
+      };
+    }
+
     function grantAnalyticsConsent() {
       try { localStorage.setItem(VCB_CONSENT_KEY, 'granted'); } catch (e) {}
-      gtag('consent', 'update', {
-        analytics_storage: 'granted',
-        ad_storage: 'denied',
-        ad_user_data: 'denied',
-        ad_personalization: 'denied'
-      });
+      gtag('consent', 'update', grantGrantedConsent());
       scheduleLoadGA4();
       var banner = document.getElementById('cookieBanner');
       if (banner) banner.hidden = true;
@@ -122,12 +149,7 @@
     try {
       var stored = localStorage.getItem(VCB_CONSENT_KEY);
       if (stored === 'granted') {
-        gtag('consent', 'update', {
-          analytics_storage: 'granted',
-          ad_storage: 'denied',
-          ad_user_data: 'denied',
-          ad_personalization: 'denied'
-        });
+        gtag('consent', 'update', grantGrantedConsent());
         scheduleLoadGA4();
       } else if (stored === 'denied') {
         denyAnalyticsConsent();
@@ -1609,11 +1631,11 @@
     <span class="fab-whatsapp__tooltip">Falar no WhatsApp</span>
   </a>
 
-  <div id="cookieBanner" class="cookie-banner" role="dialog" aria-label="Cookies e analytics" aria-live="polite" hidden>
+  <div id="cookieBanner" class="cookie-banner" role="dialog" aria-label="Cookies e privacidade" aria-live="polite" hidden>
     <div class="cookie-banner__inner container">
-      <p class="cookie-banner__text">Usamos cookies de analytics (Google Analytics) para entender como o site é usado, sem enviar dados pessoais dos formulários. <a href="privacidade.html">Política de privacidade</a></p>
+      <p class="cookie-banner__text">Usamos cookies de analytics (Google Analytics) e de publicidade (Google Ads) para medir visitas e campanhas, sem enviar dados pessoais dos formulários. <a href="privacidade.html">Política de privacidade</a></p>
       <div class="cookie-banner__actions">
-        <button type="button" class="btn btn--md cookie-banner__accept" id="cookieAccept">Aceitar analytics</button>
+        <button type="button" class="btn btn--md cookie-banner__accept" id="cookieAccept">Aceitar cookies</button>
         <button type="button" class="btn btn--outline btn--md cookie-banner__reject" id="cookieReject">Recusar</button>
       </div>
     </div>
@@ -1641,7 +1663,7 @@
     })();
   </script>
 
-  <script src="analytics.js?v=9"></script>
-  <script src="script.js?v=20"></script>
+  <script src="analytics.js?v=10"></script>
+  <script src="script.js?v=21"></script>
 </body>
 </html>

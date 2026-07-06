@@ -33,6 +33,29 @@
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
+    var VCB_ADS_CONVERSION = 'AW-18242129651/_fe6COee7sscEPOdw_pD';
+
+    function gtag_report_conversion(url) {
+      var targetUrl = url;
+      var callback = function () {
+        if (typeof targetUrl !== 'undefined' && targetUrl) {
+          window.open(targetUrl, '_blank', 'noopener,noreferrer');
+        }
+      };
+      if (typeof gtag !== 'function') {
+        callback();
+        return false;
+      }
+      gtag('event', 'conversion', {
+        send_to: VCB_ADS_CONVERSION,
+        value: 1.0,
+        currency: 'BRL',
+        event_callback: callback
+      });
+      return false;
+    }
+    window.gtag_report_conversion = gtag_report_conversion;
+
     var VCB_CONSENT_KEY = 'vcb_consent_analytics';
     var VCB_GA4_ID = 'G-WGDNTSY8WM';
     var VCB_ADS_ID = 'AW-18242129651';
@@ -69,14 +92,18 @@
       document.head.appendChild(s);
     }
 
+    function grantGrantedConsent() {
+      return {
+        analytics_storage: 'granted',
+        ad_storage: 'granted',
+        ad_user_data: 'granted',
+        ad_personalization: 'granted'
+      };
+    }
+
     function grantAnalyticsConsent() {
       try { localStorage.setItem(VCB_CONSENT_KEY, 'granted'); } catch (e) {}
-      gtag('consent', 'update', {
-        analytics_storage: 'granted',
-        ad_storage: 'denied',
-        ad_user_data: 'denied',
-        ad_personalization: 'denied'
-      });
+      gtag('consent', 'update', grantGrantedConsent());
       scheduleLoadGA4();
       var banner = document.getElementById('cookieBanner');
       if (banner) banner.hidden = true;
@@ -103,12 +130,7 @@
     try {
       var stored = localStorage.getItem(VCB_CONSENT_KEY);
       if (stored === 'granted') {
-        gtag('consent', 'update', {
-          analytics_storage: 'granted',
-          ad_storage: 'denied',
-          ad_user_data: 'denied',
-          ad_personalization: 'denied'
-        });
+        gtag('consent', 'update', grantGrantedConsent());
         scheduleLoadGA4();
       } else if (stored === 'denied') {
         denyAnalyticsConsent();
@@ -120,7 +142,7 @@
   <main class="container legal-page">
     <a href="/" class="legal-page__back">&larr; Voltar ao site</a>
     <h1>Política de Privacidade</h1>
-    <p><strong>Última atualização:</strong> junho de 2026</p>
+    <p><strong>Última atualização:</strong> julho de 2026</p>
 
     <p>A <strong>Viajando com a Babi</strong> (CNPJ 60.536.280/0001-89) respeita sua privacidade e trata dados pessoais em conformidade com a Lei Geral de Proteção de Dados (LGPD (Lei nº 13.709/2018).</p>
 
@@ -135,7 +157,7 @@
       <li>Nome, telefone e e-mail (quando você os informar voluntariamente)</li>
       <li>Mensagens enviadas por WhatsApp ou e-mail</li>
     </ul>
-    <p>O site também utiliza <strong>Google Analytics 4</strong> para medir visitas e interações (cliques em botões de contato), <strong>sem enviar</strong> ao Google o conteúdo que você digita nos formulários.</p>
+    <p>O site também utiliza <strong>Google Analytics 4</strong> para medir visitas e interações (cliques em botões de contato) e <strong>Google Ads</strong> para medir campanhas e remarketing, <strong>sem enviar</strong> ao Google o conteúdo que você digita nos formulários.</p>
 
     <h2>3. Finalidade do tratamento</h2>
     <ul>
@@ -148,11 +170,11 @@
     <p>Execução de procedimentos preliminares a contrato, legítimo interesse (análise de tráfego do site) e consentimento quando aplicável.</p>
 
     <h2>5. Compartilhamento</h2>
-    <p>Seus dados podem ser compartilhados apenas com operadoras, hotéis, seguradoras e parceiros necessários para montar sua viagem, ou com ferramentas de análise (Google Analytics), conforme a finalidade descrita.</p>
+    <p>Seus dados podem ser compartilhados apenas com operadoras, hotéis, seguradoras e parceiros necessários para montar sua viagem, ou com ferramentas de análise e publicidade (Google Analytics e Google Ads), conforme a finalidade descrita.</p>
 
     <h2>6. Cookies e tecnologias similares</h2>
-    <p>O site exibe um banner de cookies na primeira visita. Você pode <strong>aceitar</strong> ou <strong>recusar</strong> o uso de cookies de analytics (Google Analytics 4). A preferência é salva no navegador (<code>localStorage</code>, chave <code>vcb_consent_analytics</code>).</p>
-    <p>Se você aceita, o Google Analytics pode utilizar cookies para estatísticas de uso, com Consent Mode v2 (analytics só após consentimento). Se recusa, o script de analytics não é carregado. Nenhum dado digitado nos formulários do site é enviado ao Google.</p>
+    <p>O site exibe um banner de cookies na primeira visita. Você pode <strong>aceitar</strong> ou <strong>recusar</strong> o uso de cookies de analytics e publicidade. A preferência é salva no navegador (<code>localStorage</code>, chave <code>vcb_consent_analytics</code>).</p>
+    <p>Se você aceita, o Google Analytics e o Google Ads podem utilizar cookies para estatísticas de uso e medição de campanhas, com Consent Mode v2 (só após consentimento). Isso inclui cookies de analytics e de publicidade (armazenamento de anúncios, dados de usuário para anúncios e personalização de anúncios). Se recusa, os scripts do Google não são carregados. Nenhum dado digitado nos formulários do site é enviado ao Google.</p>
     <p>Você pode gerenciar ou limpar cookies e dados locais nas configurações do seu navegador.</p>
 
     <h2>7. Seus direitos</h2>
@@ -167,11 +189,11 @@
     <p style="margin-top:32px;"><a href="/">Voltar para viajandocomababi.com.br</a></p>
   </main>
 
-  <div id="cookieBanner" class="cookie-banner" role="dialog" aria-label="Cookies e analytics" aria-live="polite" hidden>
+  <div id="cookieBanner" class="cookie-banner" role="dialog" aria-label="Cookies e privacidade" aria-live="polite" hidden>
     <div class="cookie-banner__inner container">
-      <p class="cookie-banner__text">Usamos cookies de analytics (Google Analytics) para entender como o site é usado, sem enviar dados pessoais dos formulários. <a href="privacidade.html">Política de privacidade</a></p>
+      <p class="cookie-banner__text">Usamos cookies de analytics (Google Analytics) e de publicidade (Google Ads) para medir visitas e campanhas, sem enviar dados pessoais dos formulários. <a href="privacidade.html">Política de privacidade</a></p>
       <div class="cookie-banner__actions">
-        <button type="button" class="btn btn--md cookie-banner__accept" id="cookieAccept">Aceitar analytics</button>
+        <button type="button" class="btn btn--md cookie-banner__accept" id="cookieAccept">Aceitar cookies</button>
         <button type="button" class="btn btn--outline btn--md cookie-banner__reject" id="cookieReject">Recusar</button>
       </div>
     </div>
@@ -198,6 +220,6 @@
       });
     })();
   </script>
-  <script src="analytics.js?v=8"></script>
+  <script src="analytics.js?v=10"></script>
 </body>
 </html>

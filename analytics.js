@@ -448,6 +448,7 @@
   document.addEventListener('click', function (e) {
     const wa = e.target.closest('a[href*="wa.me/' + WA_NUMBER + '"]');
     if (wa) {
+      e.preventDefault();
       const card = wa.closest('.card[data-destino]');
       if (card && wa.closest('.card__footer .btn--whatsapp')) {
         trackPackagePurchaseIntent(card);
@@ -464,6 +465,11 @@
         });
       }
       trackGenerateLead(wa);
+      if (typeof window.gtag_report_conversion === 'function') {
+        window.gtag_report_conversion(wa.getAttribute('href'));
+      } else {
+        window.open(wa.getAttribute('href'), '_blank', 'noopener,noreferrer');
+      }
       return;
     }
 
