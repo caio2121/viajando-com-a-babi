@@ -37,13 +37,10 @@
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
-    var VCB_ADS_CONVERSION = 'AW-18242129651/cixPCJWihc0cEPOdw_pD';
-
     function gtag_report_conversion(url) {
-      var targetUrl = url;
       var callback = function () {
-        if (typeof targetUrl !== 'undefined' && targetUrl) {
-          window.open(targetUrl, '_blank', 'noopener,noreferrer');
+        if (typeof(url) != 'undefined') {
+          window.location = url;
         }
       };
       if (typeof gtag !== 'function') {
@@ -51,10 +48,10 @@
         return false;
       }
       gtag('event', 'conversion', {
-        send_to: VCB_ADS_CONVERSION,
-        value: 1.0,
-        currency: 'BRL',
-        event_callback: callback
+        'send_to': 'AW-18242129651/_fe6COee7sscEPOdw_pD',
+        'value': 1.0,
+        'currency': 'BRL',
+        'event_callback': callback
       });
       return false;
     }
