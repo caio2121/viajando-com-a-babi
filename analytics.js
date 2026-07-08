@@ -465,10 +465,15 @@
         });
       }
       trackGenerateLead(wa);
-      if (typeof window.gtag_report_conversion === 'function') {
-        window.gtag_report_conversion(wa.getAttribute('href'));
+      // Google Ads "Contato": só intenção alta (botão do pacote).
+      // FAB/navbar/hero/footer = generate_lead no GA4, sem conversion Ads.
+      // Contato real confirmado: planilha → working_lead (docs/funil-offline.md).
+      const href = wa.getAttribute('href');
+      const highIntentPackageCta = !!(card && wa.closest('.card__footer .btn--whatsapp'));
+      if (highIntentPackageCta && typeof window.gtag_report_conversion === 'function') {
+        window.gtag_report_conversion(href);
       } else {
-        window.open(wa.getAttribute('href'), '_blank', 'noopener,noreferrer');
+        window.open(href, '_blank', 'noopener,noreferrer');
       }
       return;
     }

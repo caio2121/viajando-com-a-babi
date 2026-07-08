@@ -6,7 +6,7 @@ alwaysApply: false
 
 # Analytics GA4 — Viajando com a Babi
 
-Measurement ID: `G-WGDNTSY8WM`. Google Ads: `AW-18242129651` (config + conversão **Contato** `AW-18242129651/_fe6COee7sscEPOdw_pD` via `gtag_report_conversion` em cliques WhatsApp). Toda lógica de eventos fica em `analytics.js`; `script.js` só chama `window.VCBAnalytics`.
+Measurement ID: `G-WGDNTSY8WM`. Google Ads: `AW-18242129651` (config + conversão **Contato** `AW-18242129651/_fe6COee7sscEPOdw_pD` via `gtag_report_conversion` **somente** em CTA de pacote "Quero esse pacote!" e envio do formulário). Clique genérico WhatsApp (FAB/navbar/hero/footer) dispara `generate_lead` no GA4, **sem** Ads conversion. Contato real: planilha → `working_lead` ([`docs/funil-offline.md`](docs/funil-offline.md)). Toda lógica de eventos fica em `analytics.js`; `script.js` só chama `window.VCBAnalytics`.
 
 ## Regras obrigatórias
 
@@ -30,7 +30,7 @@ Measurement ID: `G-WGDNTSY8WM`. Google Ads: `AW-18242129651` (config + conversã
 
 Sempre que o evento for de pacote: `package_name`, `package_slug`, `package_category`, `package_region`.
 
-Evento `purchase` em clique no botão do card: incluir `purchase_type: whatsapp_intent`, `value`, `currency: BRL`, `transaction_id` único. **Não** marcar `purchase` como conversão principal — usar `generate_lead`.
+Evento `purchase` em clique no botão do card: incluir `purchase_type: whatsapp_intent`, `value`, `currency: BRL`, `transaction_id` único. **Não** marcar `purchase` como conversão principal — preferir `generate_lead` no GA4 e `working_lead` (planilha) / import Ads como contato real.
 
 ## Ao alterar analytics.js
 

@@ -11,10 +11,21 @@ Guia para ler no GA4 quais pacotes e categorias geram mais interesse.
 | Viu o card na tela | `view_item` + `package_impression` | Impressão do pacote (1x por visita) |
 | Viu a categoria | `package_category_view` | Grupos com guia / Pacote completo / Cruzeiros |
 | Clicou no card ou imagem | `select_item` + `destination_interest` | Exploração ativa |
-| Clicou "Quero esse pacote!" | `purchase` + `service_click` + `generate_lead` + `package_lead` | Tentativa de compra (coluna **Itens comprados**) + lead |
+| Clicou "Quero esse pacote!" | `purchase` + `service_click` + `generate_lead` + `package_lead` + Ads `conversion` | Tentativa de compra + lead + conversão Ads (intenção alta) |
+| Clicou WhatsApp genérico (FAB, navbar, hero, footer) | `generate_lead` | Engajamento GA4 **sem** conversão Ads |
 | Abriu formulário | `form_start` | Interesse em roteiro personalizado |
-| Enviou formulário | `form_submit` + `generate_lead` | Lead qualificado (sem PII) |
+| Enviou formulário | `form_submit` + `generate_lead` + Ads `conversion` | Lead qualificado (sem PII) + conversão Ads |
+| Contato real (mensagem chegou) | `working_lead` (planilha) | Conversão confiável; ver [`funil-offline.md`](funil-offline.md) |
 | Clicou CTA interno (catálogo, FAQ, serviços) | `cta_click` | Exploração sem contato direto |
+
+## Google Ads "Contato" (`gtag_report_conversion`)
+
+Dispara **apenas** em:
+
+1. Botão **Quero esse pacote!** no card (`.card__footer .btn--whatsapp`)
+2. Envio do formulário de roteiro personalizado (`script.js`)
+
+Não dispara em FAB, navbar, hero ou footer. Meta principal recomendada no Ads: `working_lead` importado do GA4 (planilha). Ação Contato por clique: secundária / observação.
 
 ## Parâmetros principais (criar dimensões customizadas no GA4)
 
