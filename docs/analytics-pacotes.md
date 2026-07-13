@@ -25,7 +25,19 @@ Dispara **apenas** em:
 1. Botão **Quero esse pacote!** no card (`.card__footer .btn--whatsapp`)
 2. Envio do formulário de roteiro personalizado (`script.js`)
 
-Não dispara em FAB, navbar, hero ou footer. Meta principal recomendada no Ads: `working_lead` importado do GA4 (planilha). Ação Contato por clique: secundária / observação.
+Não dispara em FAB, navbar, hero ou footer. Meta principal no Ads: `working_lead` (planilha). **Contato** (tag): secundária / intenção alta.
+
+### Conversões otimizadas (alerta do Ads)
+
+A tag usa o snippet in-page recomendado pelo Google:
+
+- `allow_enhanced_conversions: true` no `gtag('config', AW-...)`
+- `gtag('set', 'user_data', ...)` antes do evento `conversion`
+- `transport_type: 'beacon'` para não perder o clique ao abrir o WhatsApp
+- Só dispara com cookies de publicidade aceitos (`ad_storage` granted)
+- `transaction_id` único por clique (pacote ou formulário)
+
+Sem e-mail/telefone no formulário: não enviamos PII ao Ads; o alerta de cobertura pode persistir até o Ads reavaliar (48–72 h).
 
 ## Parâmetros principais (criar dimensões customizadas no GA4)
 

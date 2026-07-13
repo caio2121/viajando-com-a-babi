@@ -275,7 +275,9 @@
     }
 
     if (typeof window.gtag_report_conversion === 'function') {
-      window.gtag_report_conversion(waUrl);
+      window.gtag_report_conversion(waUrl, {
+        transaction_id: 'form_' + Date.now()
+      });
     } else {
       window.open(waUrl, '_blank', 'noopener,noreferrer');
     }

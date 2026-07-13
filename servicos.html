@@ -33,30 +33,41 @@
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
-    function gtag_report_conversion(url) {
-      var callback = function () {
-        if (typeof(url) != 'undefined') {
-          window.location = url;
-        }
-      };
-      if (typeof gtag !== 'function') {
-        callback();
-        return false;
-      }
-      gtag('event', 'conversion', {
-        'send_to': 'AW-18242129651/_fe6COee7sscEPOdw_pD',
-        'value': 1.0,
-        'currency': 'BRL',
-        'event_callback': callback
-      });
-      return false;
-    }
-    window.gtag_report_conversion = gtag_report_conversion;
-
     var VCB_CONSENT_KEY = 'vcb_consent_analytics';
     var VCB_GA4_ID = 'G-WGDNTSY8WM';
     var VCB_ADS_ID = 'AW-18242129651';
+    var VCB_ADS_CONVERSION = 'AW-18242129651/_fe6COee7sscEPOdw_pD';
     var ga4Loaded = false;
+
+    function gtag_report_conversion(url, opts) {
+      opts = opts || {};
+      var targetUrl = url;
+      var callback = function () {
+        if (typeof targetUrl !== 'undefined' && targetUrl) {
+          window.open(targetUrl, '_blank', 'noopener,noreferrer');
+        }
+      };
+      var granted = false;
+      try { granted = localStorage.getItem(VCB_CONSENT_KEY) === 'granted'; } catch (e) {}
+      if (!granted || typeof gtag !== 'function') {
+        callback();
+        return false;
+      }
+      gtag('set', 'user_data', opts.user_data || {});
+      var params = {
+        send_to: VCB_ADS_CONVERSION,
+        value: 1.0,
+        currency: 'BRL',
+        transport_type: 'beacon',
+        event_callback: callback
+      };
+      if (opts.transaction_id) {
+        params.transaction_id = opts.transaction_id;
+      }
+      gtag('event', 'conversion', params);
+      return false;
+    }
+    window.gtag_report_conversion = gtag_report_conversion;
 
     gtag('consent', 'default', {
       analytics_storage: 'denied',
@@ -84,7 +95,7 @@
       s.onload = function() {
         gtag('js', new Date());
         gtag('config', VCB_GA4_ID, { send_page_view: true });
-        gtag('config', VCB_ADS_ID);
+        gtag('config', VCB_ADS_ID, { allow_enhanced_conversions: true });
       };
       document.head.appendChild(s);
     }
@@ -357,7 +368,7 @@
     })();
   </script>
 
-  <script src="analytics.js?v=11"></script>
-  <script src="script.js?v=22"></script>
+  <script src="analytics.js?v=12"></script>
+  <script src="script.js?v=23"></script>
 </body>
 </html>

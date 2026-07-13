@@ -472,7 +472,10 @@
       const href = wa.getAttribute('href');
       const highIntentPackageCta = !!(card && wa.closest('.card__footer .btn--whatsapp'));
       if (highIntentPackageCta && typeof window.gtag_report_conversion === 'function') {
-        window.gtag_report_conversion(href);
+        const pkgMeta = getPackageMeta(card);
+        window.gtag_report_conversion(href, {
+          transaction_id: 'pkg_' + (pkgMeta ? pkgMeta.package_slug : 'intent') + '_' + Date.now()
+        });
       } else {
         window.open(href, '_blank', 'noopener,noreferrer');
       }
