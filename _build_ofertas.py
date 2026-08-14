@@ -2,12 +2,16 @@
 import urllib.parse
 from pathlib import Path
 
+import _catalog_ui as ui
+
 ROOT = Path(__file__).parent
 GENERATED = ROOT / "data" / "generated"
 
 PAGES = {
     "promo-voos.html": {
         "fragment": "promo-voos-cards.html",
+        "kind": "voos",
+        "page_size": 20,
         "title": "Promoções de voos | Viajando com a Babi",
         "description": "Promoções de passagens aéreas com saída do Rio de Janeiro e São Paulo. Consulte datas, taxas e disponibilidade com a Babi.",
         "canonical": "https://viajandocomababi.com.br/promo-voos.html",
@@ -17,9 +21,12 @@ PAGES = {
         "cta_text": "saber mais sobre promoções de voo",
         "schema_name": "Promoções de voos",
         "section_class": "ofertas-page ofertas-page--voos",
+        "list_class": "oferta-list",
     },
     "campanhas.html": {
         "fragment": "campanhas-cards.html",
+        "kind": "campanhas",
+        "page_size": 30,
         "title": "Campanhas e ofertas de viagem | Viajando com a Babi",
         "description": "Campanhas de hotéis, resorts e condições especiais de viagem. Descontos sazonais e promoções com a Babi.",
         "canonical": "https://viajandocomababi.com.br/campanhas.html",
@@ -29,6 +36,7 @@ PAGES = {
         "cta_text": "saber mais sobre campanhas",
         "schema_name": "Campanhas e ofertas de viagem",
         "section_class": "ofertas-page ofertas-page--campanhas",
+        "list_class": "oferta-list",
     },
 }
 
@@ -60,7 +68,7 @@ def build_page(filename: str, cfg: dict) -> None:
   <meta property="og:locale" content="pt_BR" />
   <meta name="twitter:card" content="summary_large_image" />
   <link rel="icon" type="image/png" href="assets/logo-vcb.png" />
-{head_assets}  <link rel="stylesheet" href="style.css?v=27" />
+{head_assets}  <link rel="stylesheet" href="style.css?v={ui.CSS_VERSION}" />
   <script type="application/ld+json">
   {{
     "@context": "https://schema.org",
@@ -85,10 +93,12 @@ def build_page(filename: str, cfg: dict) -> None:
       <h1 class="section-title">{cfg['h1']}</h1>
       <p class="section-sub">{cfg['sub']}</p>
     </div>
-    <div class="container">
-      <div class="pacotes__grid">
+    <div class="container" data-catalog-root="{cfg['kind']}">
+{ui.toolbar(cfg['kind'], cfg['page_size'])}
+      <div class="{cfg['list_class']}" data-catalog-list>
 {cards}
       </div>
+{ui.empty_state(cfg['kind'])}
       <div class="pacotes__cta-extra">
         <p>Não encontrou o que procura?</p>
         <a href="{wa_cta}"

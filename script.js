@@ -342,3 +342,312 @@
     if (destino) btn.setAttribute('aria-label', `Quero esse pacote: ${destino}`);
   });
 })();
+
+/* ──────────────────────────────────────────────────
+   CATÁLOGO: filtros, ordenação e mostrar mais
+────────────────────────────────────────────────── */
+(function initCatalog() {
+  const root = document.querySelector('[data-catalog-root]');
+  if (!root) return;
+
+  const bar = root.querySelector('[data-catalog]');
+  const list = root.querySelector('[data-catalog-list]');
+  if (!bar || !list) return;
+
+  const kind = bar.getAttribute('data-catalog') || 'pacotes';
+  const pageSize = parseInt(bar.getAttribute('data-page-size') || '24', 10) || 24;
+  const items = Array.from(list.querySelectorAll('.catalog-item'));
+  const emptyEl = root.querySelector('[data-catalog-empty]');
+  const moreBtn = root.querySelector('[data-catalog-more]');
+  const countEl = bar.querySelector('[data-catalog-count]');
+  const sortEl = bar.querySelector('[data-catalog-sort]');
+  const modal = document.getElementById('modalCatalogFilter');
+  const openBtn = bar.querySelector('[data-catalog-open-filter]');
+  const originSelects = document.querySelectorAll('[data-catalog-root] [data-catalog-origin], #modalCatalogFilter [data-catalog-origin]');
+  const destSelects = document.querySelectorAll('[data-catalog-root] [data-catalog-dest], #modalCatalogFilter [data-catalog-dest]');
+  const destSearch = document.querySelector('[data-catalog-root] [data-catalog-dest-search], #modalCatalogFilter [data-catalog-dest-search]');
+  const priceInputs = document.querySelectorAll('[data-catalog-root] [data-catalog-price], #modalCatalogFilter [data-catalog-price]');
+  const priceLabels = document.querySelectorAll('[data-catalog-root] [data-catalog-price-label], #modalCatalogFilter [data-catalog-price-label]');
+  const fromInputs = document.querySelectorAll('[data-catalog-root] [data-catalog-from], #modalCatalogFilter [data-catalog-from]');
+  const toInputs = document.querySelectorAll('[data-catalog-root] [data-catalog-to], #modalCatalogFilter [data-catalog-to]');
+  const tipoSelect = modal && modal.querySelector('[data-catalog-tipo]');
+
+  let shown = pageSize;
+  let lastFocus = null;
+
+  function track(name, params) {
+    if (window.VCBAnalytics && typeof window.VCBAnalytics.trackEvent === 'function') {
+      window.VCBAnalytics.trackEvent(name, params || {});
+    }
+  }
+
+  function moneyLabel(value) {
+    return 'R$ ' + Math.round(value).toLocaleString('pt-BR');
+  }
+
+  function itemDate(el) {
+    return el.getAttribute('data-sort-date') || '9999-12-31';
+  }
+
+  function itemPrice(el) {
+    const n = parseFloat(el.getAttribute('data-sort-price') || '0');
+    return Number.isFinite(n) ? n : 0;
+  }
+
+  function originKey(el) {
+    const bucket = el.getAttribute('data-origem') || '';
+    const iata = el.getAttribute('data-origem-iata') || '';
+    return iata ? bucket + ':' + iata : bucket;
+  }
+
+  function originLabel(el) {
+    const bucket = el.getAttribute('data-origem') || '';
+    const iata = el.getAttribute('data-origem-iata') || '';
+    const names = { rio: 'Rio de Janeiro', sp: 'São Paulo', 'sem-aereo': 'Sem aéreo' };
+    const base = names[bucket] || bucket;
+    if (iata) return base + ' (' + iata + ')';
+    return base || 'Outras';
+  }
+
+  function fillSelects() {
+    const origins = new Map();
+    const dests = new Map();
+    let maxPrice = 0;
+    items.forEach(el => {
+      const ok = originKey(el);
+      if (ok) origins.set(ok, originLabel(el));
+      const dk = el.getAttribute('data-destino-key') || '';
+      const title = (el.querySelector('.card__title, .oferta-row__title') || {}).textContent || el.getAttribute('data-destino') || '';
+      if (dk) dests.set(dk, title.replace(/\s+/g, ' ').trim().split('\n')[0]);
+      maxPrice = Math.max(maxPrice, itemPrice(el));
+    });
+    originSelects.forEach(sel => {
+      const current = sel.value;
+      sel.querySelectorAll('option:not([value=""])').forEach(o => o.remove());
+      Array.from(origins.entries()).sort((a, b) => a[1].localeCompare(b[1], 'pt-BR')).forEach(([value, label]) => {
+        const opt = document.createElement('option');
+        opt.value = value;
+        opt.textContent = label;
+        sel.appendChild(opt);
+      });
+      sel.value = current;
+    });
+    destSelects.forEach(sel => {
+      const current = sel.value;
+      sel.querySelectorAll('option:not([value=""])').forEach(o => o.remove());
+      Array.from(dests.entries()).sort((a, b) => a[1].localeCompare(b[1], 'pt-BR')).forEach(([value, label]) => {
+        const opt = document.createElement('option');
+        opt.value = value;
+        opt.textContent = label;
+        sel.appendChild(opt);
+      });
+      sel.value = current;
+    });
+    const ceiling = Math.ceil((maxPrice || 1000) / 100) * 100;
+    priceInputs.forEach(input => {
+      input.min = '0';
+      input.max = String(ceiling);
+      if (!input.value || Number(input.value) > ceiling) input.value = String(ceiling);
+    });
+    syncPriceLabels();
+    if (tipoSelect) {
+      const tipos = new Set(items.map(el => el.getAttribute('data-tipo')).filter(Boolean));
+      tipoSelect.querySelectorAll('option').forEach(opt => {
+        if (!opt.value) return;
+        opt.hidden = !tipos.has(opt.value);
+      });
+    }
+  }
+
+  function syncPriceLabels() {
+    const input = priceInputs[0];
+    if (!input) return;
+    const text = moneyLabel(Number(input.value || 0));
+    priceLabels.forEach(el => { el.textContent = text; });
+  }
+
+  function currentFilters() {
+    const origin = (originSelects[0] && originSelects[0].value) || '';
+    const dest = (destSelects[0] && destSelects[0].value) || '';
+    const from = (fromInputs[0] && fromInputs[0].value) || '';
+    const to = (toInputs[0] && toInputs[0].value) || '';
+    const priceInput = priceInputs[0];
+    const max = priceInput ? Number(priceInput.max) : 0;
+    const price = priceInput ? Number(priceInput.value) : max;
+    const tipo = (tipoSelect && tipoSelect.value) || '';
+    return { origin, dest, from, to, price, max, tipo };
+  }
+
+  function activeFilterCount(f) {
+    let n = 0;
+    if (f.origin) n += 1;
+    if (f.dest) n += 1;
+    if (f.from) n += 1;
+    if (f.to) n += 1;
+    if (f.tipo) n += 1;
+    if (f.price && f.max && f.price < f.max) n += 1;
+    return n;
+  }
+
+  function matches(el, f) {
+    if (f.origin) {
+      const key = originKey(el);
+      const bucket = el.getAttribute('data-origem') || '';
+      if (f.origin !== key && f.origin !== bucket) return false;
+    }
+    if (f.dest && el.getAttribute('data-destino-key') !== f.dest) return false;
+    if (f.tipo && el.getAttribute('data-tipo') !== f.tipo) return false;
+    const d = itemDate(el);
+    if (f.from && d !== '9999-12-31' && d < f.from) return false;
+    if (f.to && d !== '9999-12-31' && d > f.to) return false;
+    if (f.price && f.max && f.price < f.max) {
+      const p = itemPrice(el);
+      if (p > f.price) return false;
+    }
+    return true;
+  }
+
+  function sortItems(arr) {
+    const mode = (sortEl && sortEl.value) || 'date';
+    return arr.slice().sort((a, b) => {
+      if (mode === 'price-desc') return itemPrice(b) - itemPrice(a) || itemDate(a).localeCompare(itemDate(b));
+      if (mode === 'price') return itemPrice(a) - itemPrice(b) || itemDate(a).localeCompare(itemDate(b));
+      return itemDate(a).localeCompare(itemDate(b)) || itemPrice(a) - itemPrice(b);
+    });
+  }
+
+  function apply() {
+    const f = currentFilters();
+    const filtered = sortItems(items.filter(el => matches(el, f)));
+    const unmatched = items.filter(el => !filtered.includes(el));
+    const frag = document.createDocumentFragment();
+    filtered.forEach(el => frag.appendChild(el));
+    unmatched.forEach(el => frag.appendChild(el));
+    list.appendChild(frag);
+
+    filtered.forEach((el, i) => {
+      el.hidden = false;
+      el.classList.toggle('is-paged-out', i >= shown);
+    });
+    unmatched.forEach(el => {
+      el.hidden = true;
+      el.classList.remove('is-paged-out');
+    });
+
+    const total = filtered.length;
+    const noun = total === 1
+      ? (kind === 'voos' ? 'promoção encontrada' : kind === 'campanhas' ? 'campanha encontrada' : 'pacote encontrado')
+      : (kind === 'voos' ? 'promoções encontradas' : kind === 'campanhas' ? 'campanhas encontradas' : 'pacotes encontrados');
+    if (countEl) countEl.textContent = total + ' ' + noun;
+
+    if (emptyEl) emptyEl.hidden = total !== 0;
+    if (moreBtn) {
+      moreBtn.hidden = shown >= total || total === 0;
+      moreBtn.parentElement.hidden = moreBtn.hidden;
+    }
+
+    const active = activeFilterCount(f);
+    root.querySelectorAll('[data-catalog-clear]').forEach(btn => {
+      if (btn.closest('.catalog-empty')) return;
+      btn.hidden = active === 0;
+    });
+    if (openBtn) {
+      openBtn.setAttribute('data-active', active ? 'true' : 'false');
+      openBtn.innerHTML = active
+        ? '<i class="fas fa-sliders-h" aria-hidden="true"></i> Filtrar pacotes (' + active + ')'
+        : '<i class="fas fa-sliders-h" aria-hidden="true"></i> Filtrar pacotes';
+    }
+  }
+
+  function clearFilters() {
+    originSelects.forEach(sel => { sel.value = ''; });
+    destSelects.forEach(sel => { sel.value = ''; });
+    fromInputs.forEach(el => { el.value = ''; });
+    toInputs.forEach(el => { el.value = ''; });
+    if (tipoSelect) tipoSelect.value = '';
+    if (destSearch) destSearch.value = '';
+    priceInputs.forEach(input => { input.value = input.max; });
+    shown = pageSize;
+    syncPriceLabels();
+    apply();
+    track(kind === 'pacotes' ? 'filter_packages_clear' : 'filter_packages_clear', { catalog_type: kind });
+  }
+
+  function openModal() {
+    if (!modal) return;
+    lastFocus = document.activeElement;
+    modal.hidden = false;
+    modal.classList.add('open');
+    document.body.classList.add('catalog-modal-open');
+    const first = modal.querySelector('select, input, button');
+    first && first.focus();
+    track('filter_packages_open');
+  }
+
+  function closeModal() {
+    if (!modal) return;
+    modal.classList.remove('open');
+    modal.hidden = true;
+    document.body.classList.remove('catalog-modal-open');
+    lastFocus && lastFocus.focus();
+  }
+
+  fillSelects();
+  apply();
+
+  sortEl && sortEl.addEventListener('change', () => {
+    shown = pageSize;
+    apply();
+    track(kind === 'voos' ? 'sort_flights' : 'sort_packages', { sort_by: sortEl.value, catalog_type: kind });
+  });
+
+  moreBtn && moreBtn.addEventListener('click', () => {
+    shown += pageSize;
+    apply();
+  });
+
+  root.querySelectorAll('[data-catalog-clear]').forEach(btn => {
+    btn.addEventListener('click', clearFilters);
+  });
+  modal && modal.querySelectorAll('[data-catalog-clear]').forEach(btn => {
+    btn.addEventListener('click', () => { clearFilters(); closeModal(); });
+  });
+
+  openBtn && openBtn.addEventListener('click', openModal);
+  modal && modal.querySelector('[data-catalog-close-filter]') && modal.querySelector('[data-catalog-close-filter]').addEventListener('click', closeModal);
+  modal && modal.addEventListener('click', (e) => {
+    if (e.target === modal) closeModal();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal && modal.classList.contains('open')) closeModal();
+  });
+
+  const form = modal && modal.querySelector('[data-catalog-form]');
+  form && form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    shown = pageSize;
+    apply();
+    closeModal();
+    track('filter_packages_apply', { filter_count: activeFilterCount(currentFilters()), catalog_type: kind });
+  });
+
+  const inline = bar.querySelector('[data-catalog-inline]');
+  inline && inline.addEventListener('submit', (e) => {
+    e.preventDefault();
+    shown = pageSize;
+    apply();
+    track('filter_packages_apply', { filter_count: activeFilterCount(currentFilters()), catalog_type: kind });
+  });
+
+  priceInputs.forEach(input => input.addEventListener('input', syncPriceLabels));
+
+  if (destSearch && destSelects[0]) {
+    destSearch.addEventListener('input', () => {
+      const q = destSearch.value.toLowerCase();
+      destSelects[0].querySelectorAll('option').forEach(opt => {
+        if (!opt.value) return;
+        opt.hidden = q ? opt.textContent.toLowerCase().indexOf(q) === -1 : false;
+      });
+    });
+  }
+})();

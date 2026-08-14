@@ -25,6 +25,9 @@ Measurement ID: `G-WGDNTSY8WM`. Google Ads: `AW-18242129651` (config + conversã
 | `purchase` | Tentativa de compra ("Quero esse pacote!") — coluna Itens comprados |
 | `package_category_view` | Categoria vista |
 | `form_start` / `form_submit` | Funil do formulário |
+| `filter_packages_open` / `filter_packages_apply` / `filter_packages_clear` | Modal/filtros do catálogo (sem texto digitado) |
+| `sort_packages` / `sort_flights` | Ordenação por data ou preço |
+| `flight_whatsapp_click` / `campaign_whatsapp_click` / `package_whatsapp_click` | Clique WhatsApp em voo, campanha ou pacote |
 
 ## Parâmetros padrão de pacote
 

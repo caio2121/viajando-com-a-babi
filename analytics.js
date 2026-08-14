@@ -11,7 +11,7 @@
   const viewedPackages = new Set();
   const viewedCategories = new Set();
   const viewedSections = new Set();
-  const PACKAGE_CARD_SELECTOR = '#pacotes .card[data-destino], .pacotes-page .card[data-destino], .ofertas-page .card[data-destino]';
+  const PACKAGE_CARD_SELECTOR = '#pacotes .card[data-destino], .pacotes-page .card[data-destino], .ofertas-page .card[data-destino], .oferta-row[data-destino]';
 
   /* ── Helpers ─────────────────────────────────────── */
 
@@ -70,7 +70,7 @@
   }
 
   function getPackageMeta(el) {
-    const card = el && el.closest ? el.closest('.card[data-destino]') : el;
+    const card = el && el.closest ? el.closest('.card[data-destino], .oferta-row[data-destino]') : el;
     if (!card) return null;
 
     const destino = card.getAttribute('data-destino') || 'desconhecido';
@@ -452,12 +452,16 @@
     const wa = e.target.closest('a[href*="wa.me/' + WA_NUMBER + '"]');
     if (wa) {
       e.preventDefault();
-      const card = wa.closest('.card[data-destino]');
+      const card = wa.closest('.card[data-destino], .oferta-row[data-destino]');
       if (card && wa.closest('.card__footer .btn--whatsapp')) {
         trackPackagePurchaseIntent(card);
       }
       if (card) {
         const meta = getPackageMeta(card);
+        const categoria = card.getAttribute('data-categoria') || '';
+        if (categoria === 'promo-voo') trackEvent('flight_whatsapp_click', { package_slug: meta.package_slug, package_category: meta.package_category });
+        else if (categoria === 'campanha') trackEvent('campaign_whatsapp_click', { package_slug: meta.package_slug, package_category: meta.package_category });
+        else trackEvent('package_whatsapp_click', { package_slug: meta.package_slug, package_category: meta.package_category });
         trackEvent('service_click', {
           service_name: meta.package_name,
           service_category: meta.package_category,

@@ -8,7 +8,9 @@ alwaysApply: false
 
 Cada pacote é um `<article class="card">` dentro de `#pacotes`.
 
-**Fonte de verdade:** os cards ficam em `index.html`. A página [`pacotes.html`](pacotes.html) é gerada a partir deles — **não editar `pacotes.html` à mão**.
+**Fonte de verdade da home:** os cards ficam em `index.html`. A página [`pacotes.html`](pacotes.html) é gerada a partir deles **mais** as ofertas sincronizadas da operadora, num catálogo único com filtros. **Não editar `pacotes.html` à mão.**
+
+A home preserva as categorias visuais (`#pacotes-completos`, cruzeiros). Em `pacotes.html` não existe agrupamento "manual vs sincronizado".
 
 ## Atributos obrigatórios no card
 
@@ -47,9 +49,9 @@ Depois de adicionar, remover ou editar pacotes em `index.html`, regenerar o cat�
 python _build_pacotes.py
 ```
 
-O script copia os blocos `#pacotes-completos`, cruzeiros e grupos com guia de `index.html` para `pacotes.html` (cards, imagens, preços e CTAs).
+O script une os cards da home às ofertas em `data/generated/pacotes-sync.html`, injeta atributos de ordenação/filtro e o modal **Filtrar pacotes**. Não recria a seção "Mais ofertas".
 
-**Quando rodar:** qualquer mudança nos cards da home — novo pacote, preço, datas, imagem, texto ou remoção.
+**Quando rodar:** qualquer mudança nos cards da home, ou depois de `python _sync_operator.py`.
 
 **Não commitar** `pacotes.html` desatualizado em relação a `index.html`.
 

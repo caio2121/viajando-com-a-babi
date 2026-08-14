@@ -5,7 +5,7 @@ alwaysApply: true
 
 # Site Viajando com a Babi
 
-Site estático: `index.html` (home), páginas hub (`pacotes.html`, `sobre.html`, etc.), `style.css`, `script.js`, `analytics.js`. Sem build, exceto regeneração de `pacotes.html` via `_build_pacotes.py`.
+Site estático: `index.html` (home), páginas hub (`pacotes.html`, `promo-voos.html`, `campanhas.html`, `sobre.html`, etc.), `style.css`, `script.js`, `analytics.js`. Sem build no visitante. Regeneração: `_build_pacotes.py` (catálogo), `_sync_operator.py` + `_build_ofertas.py` (ofertas da operadora).
 
 ## Tipografia e copy
 
@@ -17,8 +17,10 @@ Manter atualizados: `robots.txt`, `sitemap.xml` (novas páginas como `privacidad
 
 ## Catálogo de pacotes
 
-- Cards só em `index.html`; detalhes em `.cursor/rules/pacotes-catalogo.mdc`.
-- Após alterar pacotes na home: `python _build_pacotes.py` → atualiza `pacotes.html`.
+- Cards curados na home: `index.html`. A página [`pacotes.html`](pacotes.html) une esses cards às ofertas sincronizadas num **catálogo único** (sem seção "Mais ofertas").
+- Filtros e ordenação são gerados por `_build_pacotes.py`. Não editar `pacotes.html` à mão.
+- Após alterar pacotes na home: `python _build_pacotes.py`.
+- Após sincronizar a operadora: `python _sync_operator.py` → `python _build_ofertas.py` → `python _build_pacotes.py`.
 
 ## Organização de scripts
 

@@ -15,6 +15,7 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import html
 import io
 import json
 import re
@@ -31,7 +32,7 @@ GENERATED = DATA / "generated"
 SYNC_FILE = DATA / "operator-sync.json"
 SOURCE_URL = "https://viajandocomdesconto.com/"
 WA_NUMBER = "5521920064617"
-TODAY = date(2026, 8, 14)
+TODAY = date.today()
 
 RIO_IATA = {"GIG", "SDU"}
 SP_IATA = {"GRU", "CGH", "VCP"}
@@ -81,7 +82,7 @@ def parse_br_date(text: str) -> date | None:
             return datetime.strptime(text, fmt).date()
         except ValueError:
             pass
-    m = re.search(r"(\d{2})/(\d{2})(?:/(\d{2,4}))?", text)
+    m = re.search(r"(\d{1,2})/(\d{1,2})(?:/(\d{2,4}))?", text)
     if not m:
         return None
     day, month, year = int(m.group(1)), int(m.group(2)), m.group(3)
@@ -105,7 +106,13 @@ def parse_br_date(text: str) -> date | None:
 def parse_date_range(text: str) -> tuple[date | None, date | None]:
     if not text:
         return None, None
-    cleaned = re.sub(r"\s*(até|ate|a)\s*", " a ", text, flags=re.I)
+    cleaned = re.sub(r"\s*(até|ate)\s*", " a ", text, flags=re.I)
+    m = re.search(r"(\d{1,2})\s+a\s+(\d{1,2})/(\d{1,2})(?:/(\d{2,4}))?", cleaned, re.I)
+    if m and "/" not in m.group(1):
+        year = m.group(4)
+        start = parse_br_date(f"{m.group(1)}/{m.group(3)}" + (f"/{year}" if year else ""))
+        end = parse_br_date(f"{m.group(2)}/{m.group(3)}" + (f"/{year}" if year else ""))
+        return start, end
     parts = re.split(r"\s+a\s+|\s*-\s*", cleaned, maxsplit=1, flags=re.I)
     start = parse_br_date(parts[0]) if parts else None
     end = parse_br_date(parts[1]) if len(parts) > 1 else start
@@ -143,6 +150,45 @@ def br_money_html(value: str) -> str:
 def wa_link(message: str) -> str:
     encoded = urllib.parse.quote(message, safe="")
     return f"https://wa.me/{WA_NUMBER}?text={encoded}"
+
+
+def attr(value: str) -> str:
+    return html.escape(str(value or ""), quote=True)
+
+
+def nights_from_range(text: str) -> int | None:
+    start, end = parse_date_range(text)
+    if start and end and end >= start:
+        delta = (end - start).days
+        return delta if delta > 0 else None
+    return None
+
+
+def next_future_iso(*texts: str) -> str:
+    candidates: list[date] = []
+    for text in texts:
+        if not text:
+            continue
+        start, end = parse_date_range(str(text))
+        for parsed in (start, end):
+            if parsed and parsed >= TODAY:
+                candidates.append(parsed)
+        for part in re.split(r"[,;]", str(text)):
+            parsed = parse_br_date(part.strip())
+            if parsed and parsed >= TODAY:
+                candidates.append(parsed)
+    if not candidates:
+        return ""
+    return min(candidates).isoformat()
+
+
+def tipo_from_offer(offer: dict) -> str:
+    blob = normalize(" ".join(offer.get("inclui") or []) + " " + (offer.get("title") or "") + " " + (offer.get("destination") or ""))
+    if "cruzeiro" in blob or "navio" in blob or "msc" in blob:
+        return "cruzeiro"
+    if offer.get("flight_included"):
+        return "com-aereo"
+    return "sem-aereo"
 
 
 def money_to_float(text: str) -> float:
@@ -310,7 +356,10 @@ def filter_pacotes(raw: list[dict]) -> tuple[list[dict], dict]:
                 "total_price": total,
                 "evento": bool(pkg.get("evento")),
                 "pacote_categoria": pkg.get("categoria") or "",
+                "sort_date": next_future_iso(origin.get("data", ""), origin.get("outras") or ""),
+                "sort_price": round(money_to_float(total), 2),
             }
+            offer["tipo"] = tipo_from_offer(offer)
             selected.append(offer)
             if bucket == "rio":
                 stats["rio"] += 1
@@ -333,6 +382,7 @@ def filter_promo_voos(raw: list[dict]) -> tuple[list[dict], dict]:
             stats["ignored_expired"] += 1
             continue
         offer_id = f"voo:{item.get('origem_iata')}:{normalize(item.get('destino',''))}:{item.get('data','')}"
+        preco = item.get("por") or item.get("de") or ""
         selected.append(
             {
                 "id": offer_id,
@@ -351,6 +401,9 @@ def filter_promo_voos(raw: list[dict]) -> tuple[list[dict], dict]:
                 "inclui": item.get("inclui") or [],
                 "installments": item.get("min_label") or "",
                 "obs": item.get("obs") or "",
+                "nights": nights_from_range(item.get("data") or ""),
+                "sort_date": next_future_iso(item.get("data", ""), ", ".join(item.get("outras") or [])),
+                "sort_price": round(money_to_float(preco), 2),
             }
         )
         stats[bucket] += 1
@@ -389,6 +442,9 @@ def filter_campanhas(raw: list[dict]) -> tuple[list[dict], dict]:
                 "chd": item.get("chd") or "",
                 "nota": item.get("nota") or "",
                 "fornecedor": item.get("fornecedor") or "",
+                "exclusivo": item.get("exclusivo") or "",
+                "sort_date": next_future_iso(item.get("periodo_venda") or "", item.get("periodo_hospedagem") or ""),
+                "sort_price": 0,
             }
         )
         stats["selected"] += 1
@@ -398,8 +454,8 @@ def filter_campanhas(raw: list[dict]) -> tuple[list[dict], dict]:
 
 def render_pacote_card(offer: dict) -> str:
     stem = local_image_stem(offer["source_slug"], offer["destination"])
-    alt = f"{offer['destination']}: {offer['title']}"
-    card_id = stem
+    suffix = offer.get("origin_airport") or offer.get("origin_bucket") or "na"
+    card_id = slugify(f"{stem}-{suffix}")
     destino_label = offer["title"][:80]
     badge = offer["departure_date"]
     if offer.get("additional_dates"):
@@ -410,7 +466,7 @@ def render_pacote_card(offer: dict) -> str:
         aereo = offer.get("por") or offer.get("de") or ""
         de = f" de {offer['de']}" if offer.get("de") and offer.get("por") else ""
         features.append(
-            f'<li><i class="fas fa-plane"></i> Saída {offer["origin_city"]} ({offer["origin_airport"]})'
+            f'<li><i class="fas fa-plane"></i> Saída {html.escape(offer["origin_city"])} ({html.escape(offer["origin_airport"])})'
             f"{': aéreo' + de + ' por ' + br_money_html(aereo) if aereo else ''}</li>"
         )
     elif not offer["flight_included"]:
@@ -420,12 +476,12 @@ def render_pacote_card(offer: dict) -> str:
     if hotel:
         regime = hotel.get("regime") or "consulte regime"
         features.append(
-            f'<li><i class="fas fa-hotel"></i> {hotel.get("nome", "Hospedagem")} · {regime}</li>'
+            f'<li><i class="fas fa-hotel"></i> {html.escape(hotel.get("nome", "Hospedagem"))} · {html.escape(regime)}</li>'
         )
     for line in (offer.get("inclui") or [])[:3]:
         clean = re.sub(r"[^\x00-\x7F\u00C0-\u024F\s.,·\-+%/()R$]", "", line).strip()
         if clean and "passagem" not in normalize(clean):
-            features.append(f'<li><i class="fas fa-check"></i> {clean}</li>')
+            features.append(f'<li><i class="fas fa-check"></i> {html.escape(clean)}</li>')
     if offer.get("taxas"):
         features.append(f'<li><i class="fas fa-exclamation-circle"></i> Taxas {br_money_html(offer["taxas"])} · sujeito a alteração</li>')
 
@@ -434,26 +490,33 @@ def render_pacote_card(offer: dict) -> str:
     if offer.get("installments"):
         m = re.search(r"(\d+)x\s*de?\s*R\$\s*([\d.,]+)", offer["installments"], re.I)
         if m:
-            parcela_html = f'10x a partir de <strong>{br_money_html("R$ " + m.group(2))}</strong>'
+            parcela_html = f'{html.escape(m.group(1))}x a partir de <strong>{br_money_html("R$ " + m.group(2))}</strong>'
         else:
-            parcela_html = offer["installments"]
+            parcela_html = html.escape(offer["installments"])
     if offer.get("total_price"):
         total_html = f'Total a partir de {br_money_html(offer["total_price"])} + taxas · sujeito a alteração'
 
-    subtitle = offer["destination"]
+    subtitle = offer["title"].replace(offer["destination"], "").strip(" ·:-")[:60]
     msg = f"Olá, Babi! Tenho interesse na oferta {destino_label}."
+    origem = offer.get("origin_bucket") or "sem-aereo"
+    tipo = offer.get("tipo") or tipo_from_offer(offer)
+    alt = f"{offer['destination']}: {offer['title']}"
     attrs = (
-        f'id="{card_id}" data-destino="{destino_label}" data-categoria="{offer["categoria_site"]}" '
-        f'data-source="operator" data-source-id="{offer["id"]}"'
+        f'id="{attr(card_id)}" data-destino="{attr(destino_label)}" '
+        f'data-categoria="{attr(offer["categoria_site"])}" data-source="operator" '
+        f'data-source-id="{attr(offer["id"])}" data-sort-date="{attr(offer.get("sort_date", ""))}" '
+        f'data-sort-price="{offer.get("sort_price") or 0}" data-origem="{attr(origem)}" '
+        f'data-origem-iata="{attr(offer.get("origin_airport", ""))}" '
+        f'data-destino-key="{attr(slugify(offer["destination"]))}" data-tipo="{attr(tipo)}"'
     )
     return f"""
-        <article class="card reveal" {attrs}>
+        <article class="card reveal catalog-item" {attrs}>
           <div class="card__img-wrap">
             {image_tags(stem, alt)}
-            <span class="card__badge">{badge[:70]}</span>
+            <span class="card__badge">{html.escape(str(badge)[:70])}</span>
           </div>
           <div class="card__body">
-            <h4 class="card__title">{offer['destination']} <span>{offer['title'].replace(offer['destination'], '').strip(' ·:-')[:60]}</span></h4>
+            <h4 class="card__title">{html.escape(offer['destination'])} <span>{html.escape(subtitle)}</span></h4>
             <ul class="card__features">
               {''.join(features)}
             </ul>
@@ -472,96 +535,127 @@ def render_pacote_card(offer: dict) -> str:
         </article>"""
 
 
-def render_voo_card(offer: dict) -> str:
+def render_voo_row(offer: dict) -> str:
     card_id = slugify(f"voo-{offer['origin_airport']}-{offer['destination']}", "promo-")
     destino_label = offer["title"]
     msg = f"Olá, Babi! Tenho interesse na promoção de voo {destino_label}."
-    attrs = (
-        f'id="{card_id}" data-destino="{destino_label}" data-categoria="promo-voo" '
-        f'data-source="operator" data-source-id="{offer["id"]}"'
-    )
-    features = [
-        f'<li><i class="fas fa-plane-departure"></i> {offer["origin_city"]} ({offer["origin_airport"]}) → {offer["destination"]}</li>',
-        f'<li><i class="fas fa-calendar-alt"></i> {offer["departure_date"]}</li>',
-    ]
-    if offer.get("additional_dates"):
-        features.append(f'<li><i class="fas fa-calendar"></i> Outras: {offer["additional_dates"]}</li>')
-    if offer.get("taxas"):
-        features.append(f'<li><i class="fas fa-exclamation-circle"></i> Taxas {br_money_html(offer["taxas"])}</li>')
-    if offer.get("obs"):
-        features.append(f'<li><i class="fas fa-info-circle"></i> {offer["obs"]}</li>')
-
+    start, end = parse_date_range(offer.get("departure_date") or "")
+    nights = offer.get("nights")
+    nights_html = f" · {nights} noites" if nights else ""
     preco = offer.get("por") or offer.get("de") or ""
-    parcela = offer.get("installments") or ""
+    taxas = offer.get("taxas") or ""
+    ida = start.strftime("%d/%m") if start else (offer.get("departure_date") or "")
+    volta = end.strftime("%d/%m") if end and end != start else ""
+    extras = []
+    if offer.get("additional_dates"):
+        extras.append(f"Outras saídas: {html.escape(offer['additional_dates'])}")
+    if offer.get("obs"):
+        extras.append(html.escape(offer["obs"]))
+    if offer.get("installments"):
+        extras.append(html.escape(offer["installments"]))
+    conditions = ""
+    if extras:
+        conditions = (
+            '<details class="oferta-row__details">'
+            "<summary>Ver condições</summary>"
+            f'<p>{" · ".join(extras)}</p>'
+            "</details>"
+        )
+    origem_txt = f"{offer['origin_city']} ({offer['origin_airport']})" if offer.get("origin_airport") else offer.get("origin_city") or ""
+    attrs = (
+        f'id="{attr(card_id)}" data-destino="{attr(destino_label)}" data-categoria="promo-voo" '
+        f'data-source="operator" data-source-id="{attr(offer["id"])}" '
+        f'data-sort-date="{attr(offer.get("sort_date", ""))}" data-sort-price="{offer.get("sort_price") or 0}" '
+        f'data-origem="{attr(offer.get("origin_bucket", ""))}" data-origem-iata="{attr(offer.get("origin_airport", ""))}" '
+        f'data-destino-key="{attr(slugify(offer["destination"]))}"'
+    )
+    volta_cell = (
+        f'<div class="oferta-row__leg"><span class="oferta-row__kicker">Volta</span>'
+        f'<strong>{html.escape(volta)}</strong>'
+        f'<span>{html.escape(offer["destination"])} → {html.escape(offer["origin_airport"])}</span></div>'
+        if volta else ""
+    )
     return f"""
-        <article class="card reveal" {attrs}>
-          <div class="card__img-wrap card__img-wrap--icon">
-            <div class="card__icon-placeholder" aria-hidden="true"><i class="fas fa-plane"></i></div>
-            <span class="card__badge">{offer['departure_date'][:40]}</span>
-          </div>
-          <div class="card__body">
-            <h4 class="card__title">{offer['destination']} <span>{offer['origin_airport']} · promoção de voo</span></h4>
-            <ul class="card__features">
-              {''.join(features)}
-            </ul>
-            <div class="card__footer">
-              <div class="card__preco">
-                {'<span class="card__parcela">A partir de <strong>' + br_money_html(preco) + '</strong></span>' if preco else ''}
-                {'<span class="card__total">' + parcela + '</span>' if parcela else ''}
+        <article class="oferta-row catalog-item" {attrs}>
+          <div class="oferta-row__main">
+            <h3 class="oferta-row__title">{html.escape(offer['destination'])}{html.escape(nights_html)}</h3>
+            <p class="oferta-row__meta">Saindo de {html.escape(origem_txt)}</p>
+            <div class="oferta-row__legs">
+              <div class="oferta-row__leg">
+                <span class="oferta-row__kicker">Ida</span>
+                <strong>{html.escape(ida)}</strong>
+                <span>{html.escape(offer["origin_airport"])} → {html.escape(offer["destination"])}</span>
               </div>
-              <a href="{wa_link(msg)}"
-                 target="_blank" rel="noopener noreferrer"
-                 class="btn btn--whatsapp btn--full">
-                <i class="fab fa-whatsapp"></i> Quero essa promoção!
-              </a>
+              {volta_cell}
             </div>
+            {conditions}
+          </div>
+          <div class="oferta-row__price">
+            {'<span class="oferta-row__value">' + br_money_html(preco) + '</span>' if preco else ''}
+            {'<span class="oferta-row__tax">+ taxa ' + br_money_html(taxas) + '</span>' if taxas else ''}
+            <a href="{wa_link(msg)}" target="_blank" rel="noopener noreferrer" class="btn btn--whatsapp btn--sm">
+              <i class="fab fa-whatsapp"></i> Tenho interesse
+            </a>
           </div>
         </article>"""
 
 
-def render_campanha_card(offer: dict) -> str:
+def render_campanha_row(offer: dict) -> str:
     card_id = slugify(f"camp-{offer['destination']}-{offer.get('hotel','')}", "campanha-")
     destino_label = offer["title"]
     msg = f"Olá, Babi! Tenho interesse na campanha {destino_label}."
-    attrs = (
-        f'id="{card_id}" data-destino="{destino_label}" data-categoria="campanha" '
-        f'data-source="operator" data-source-id="{offer["id"]}"'
-    )
-    features = [
-        f'<li><i class="fas fa-hotel"></i> {offer.get("hotel") or "Consulte hotel participante"}</li>',
-    ]
-    if offer.get("desconto"):
-        features.append(f'<li><i class="fas fa-tag"></i> Desconto: {offer["desconto"]}</li>')
-    if offer.get("periodo_hospedagem"):
-        features.append(f'<li><i class="fas fa-calendar-check"></i> Hospedagem: {offer["periodo_hospedagem"]}</li>')
-    if offer.get("periodo_venda"):
-        features.append(f'<li><i class="fas fa-clock"></i> Vendas até: {offer["periodo_venda"]}</li>')
-    if offer.get("chd"):
-        features.append(f'<li><i class="fas fa-child"></i> {offer["chd"]}</li>')
+    extras = []
     if offer.get("nota"):
-        features.append(f'<li><i class="fas fa-info-circle"></i> {offer["nota"]}</li>')
-
+        extras.append(offer["nota"])
+    if offer.get("chd"):
+        extras.append(offer["chd"])
+    if offer.get("fornecedor"):
+        extras.append(offer["fornecedor"])
+    if offer.get("exclusivo"):
+        extras.append(str(offer["exclusivo"]))
+    summary = " · ".join(html.escape(x) for x in extras if x)
+    long_note = (offer.get("nota") or "")
+    details = ""
+    if len(long_note) > 90:
+        summary = html.escape((offer.get("chd") or "")[:80])
+        details = (
+            '<details class="oferta-row__details">'
+            "<summary>Ver condições</summary>"
+            f"<p>{html.escape(long_note)}</p>"
+            "</details>"
+        )
+    attrs = (
+        f'id="{attr(card_id)}" data-destino="{attr(destino_label)}" data-categoria="campanha" '
+        f'data-source="operator" data-source-id="{attr(offer["id"])}" '
+        f'data-sort-date="{attr(offer.get("sort_date", ""))}" data-sort-price="0" '
+        f'data-destino-key="{attr(slugify(offer["destination"]))}"'
+    )
     return f"""
-        <article class="card reveal" {attrs}>
-          <div class="card__img-wrap card__img-wrap--icon">
-            <div class="card__icon-placeholder" aria-hidden="true"><i class="fas fa-percent"></i></div>
-            <span class="card__badge">{offer.get("desconto") or "Campanha"}</span>
-          </div>
-          <div class="card__body">
-            <h4 class="card__title">{offer['destination']} <span>{offer.get('hotel') or 'oferta especial'}</span></h4>
-            <ul class="card__features">
-              {''.join(features)}
-            </ul>
-            <div class="card__footer">
-              <div class="card__preco">
-                <span class="card__total">Condições sujeitas à disponibilidade da operadora</span>
+        <article class="oferta-row catalog-item" {attrs}>
+          <div class="oferta-row__main">
+            <h3 class="oferta-row__title">{html.escape(offer['destination'])}</h3>
+            <p class="oferta-row__meta">{html.escape(offer.get("hotel") or "Consulte hotel participante")}</p>
+            <div class="oferta-row__legs">
+              <div class="oferta-row__leg">
+                <span class="oferta-row__kicker">Benefício</span>
+                <strong>{html.escape(offer.get("desconto") or "Consulte")}</strong>
               </div>
-              <a href="{wa_link(msg)}"
-                 target="_blank" rel="noopener noreferrer"
-                 class="btn btn--whatsapp btn--full">
-                <i class="fab fa-whatsapp"></i> Quero saber mais!
-              </a>
+              <div class="oferta-row__leg">
+                <span class="oferta-row__kicker">Hospedagem</span>
+                <strong>{html.escape(offer.get("periodo_hospedagem") or "Consulte")}</strong>
+              </div>
+              <div class="oferta-row__leg">
+                <span class="oferta-row__kicker">Vendas até</span>
+                <strong>{html.escape(offer.get("periodo_venda") or "Consulte")}</strong>
+              </div>
             </div>
+            {f'<p class="oferta-row__note">{summary}</p>' if summary else ''}
+            {details}
+          </div>
+          <div class="oferta-row__price">
+            <a href="{wa_link(msg)}" target="_blank" rel="noopener noreferrer" class="btn btn--whatsapp btn--sm">
+              <i class="fab fa-whatsapp"></i> Quero saber mais
+            </a>
           </div>
         </article>"""
 
@@ -587,12 +681,11 @@ def write_fragments(pacotes: list[dict], voos: list[dict], campanhas: list[dict]
         "\n".join(render_pacote_card(o) for o in pacotes), encoding="utf-8"
     )
     (GENERATED / "promo-voos-cards.html").write_text(
-        "\n".join(render_voo_card(o) for o in voos), encoding="utf-8"
+        "\n".join(render_voo_row(o) for o in voos), encoding="utf-8"
     )
     (GENERATED / "campanhas-cards.html").write_text(
-        "\n".join(render_campanha_card(o) for o in campanhas), encoding="utf-8"
+        "\n".join(render_campanha_row(o) for o in campanhas), encoding="utf-8"
     )
-
 
 def save_sync_state(
     pacotes: list[dict],

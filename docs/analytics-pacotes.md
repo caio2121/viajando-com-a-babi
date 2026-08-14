@@ -15,6 +15,8 @@ Guia para ler no GA4 quais pacotes e categorias geram mais interesse.
 | Clicou WhatsApp genérico (FAB, navbar, hero, footer) | `generate_lead` | Engajamento GA4 **sem** conversão Ads |
 | Abriu formulário | `form_start` | Interesse em roteiro personalizado |
 | Enviou formulário | `form_submit` + `generate_lead` + Ads `conversion` | Lead qualificado (sem PII) + conversão Ads |
+| Filtrou/ordenou catálogo | `filter_packages_*`, `sort_packages`, `sort_flights` | Uso de filtros (sem texto digitado) |
+| WhatsApp de voo/campanha | `flight_whatsapp_click` / `campaign_whatsapp_click` | Lead de oferta compacta |
 | Contato real (mensagem chegou) | `working_lead` (planilha) | Conversão confiável; ver [`funil-offline.md`](funil-offline.md) |
 | Clicou CTA interno (catálogo, FAQ, serviços) | `cta_click` | Exploração sem contato direto |
 
