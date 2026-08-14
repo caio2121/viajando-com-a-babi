@@ -738,15 +738,28 @@ ul  { list-style: none; }
   flex-direction: column;
   gap: 2px;
 }
-.card__parcela {
+.card__total {
+  order: 1;
   font-size: 1rem;
+  font-weight: 700;
   color: var(--clr-text);
 }
-.card__parcela strong {
+.card__total strong {
   font-size: 1.4rem;
   color: var(--clr-primary-d);
 }
-.card__total {
+.card__parcela {
+  order: 2;
+  font-size: 0.85rem;
+  color: var(--clr-muted);
+}
+.card__parcela strong {
+  font-size: inherit;
+  font-weight: 600;
+  color: inherit;
+}
+.card__taxas {
+  order: 3;
   font-size: 0.78rem;
   color: var(--clr-muted);
 }

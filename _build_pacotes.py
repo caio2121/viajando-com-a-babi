@@ -12,6 +12,7 @@ from pathlib import Path
 
 import _catalog_ui as ui
 import _dates as dates
+import _money as money
 
 root = Path(__file__).parent
 TODAY = dates.TODAY
@@ -30,20 +31,7 @@ def slugify(text: str) -> str:
 
 
 def money_to_float(text: str) -> float:
-    if not text:
-        return 0.0
-    m = re.search(r"([\d.]+,\d{2}|\d[\d.]*)", text.replace("R$", ""))
-    if not m:
-        return 0.0
-    raw = m.group(1)
-    if "," in raw:
-        raw = raw.replace(".", "").replace(",", ".")
-    else:
-        raw = raw.replace(".", "")
-    try:
-        return float(raw)
-    except ValueError:
-        return 0.0
+    return money.money_to_float(text)
 
 
 def infer_origin(card: str) -> tuple[str, str]:
@@ -111,12 +99,12 @@ def enrich_card(card: str, source: str = "manual") -> str:
     if badge and dates.sanitize_date_text(badge.group(1)) != badge.group(1):
         card = card.replace(badge.group(0), f'class="card__badge">{html.escape(dates.sanitize_date_text(badge.group(1))[:70])}', 1)
     if "data-sort-price=" not in card:
+        price = 0.0
         if valor_attr:
             price = money_to_float(valor_attr.group(1))
         elif total:
             price = money_to_float(total.group(1))
-        else:
-            price = money_to_float(re.search(r"R\$\s*([\d.]+(?:,\d{2})?)", card).group(0) if re.search(r"R\$\s*[\d.]+", card) else "")
+        # Não extrair o primeiro R$ do card (pode ser aéreo ou parcela).
         price_txt = f"{price:.2f}" if price > 0 else ""
         card = card.replace("<article", f'<article data-sort-price="{price_txt}"', 1)
     if "data-origem=" not in card:

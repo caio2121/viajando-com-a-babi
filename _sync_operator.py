@@ -27,6 +27,7 @@ from datetime import date, datetime
 from pathlib import Path
 
 import _dates as dates
+import _money as money
 
 ROOT = Path(__file__).parent
 DATA = ROOT / "data"
@@ -200,26 +201,31 @@ def tipo_from_offer(offer: dict) -> str:
 
 
 def money_to_float(text: str) -> float:
-    if not text:
-        return 0.0
-    m = re.search(r"([\d.,]+)", text.replace("R$", ""))
-    if not m:
-        return 0.0
-    raw = m.group(1)
-    if "," in raw:
-        raw = raw.replace(".", "").replace(",", ".")
-    else:
-        raw = raw.replace(".", "")
-    try:
-        return float(raw)
-    except ValueError:
-        return 0.0
+    return money.money_to_float(text)
 
 
 def pick_cheapest_hotel(hoteis: list[dict] | None) -> dict | None:
     if not hoteis:
         return None
-    return min(hoteis, key=lambda h: money_to_float(h.get("preco", "")))
+    return min(hoteis, key=lambda h: money.parse_brl(h.get("preco")) or float("inf"))
+
+
+def package_has_components(inclui: list | None, hoteis: list | None) -> bool:
+    if hoteis:
+        return True
+    blob = money.normalize_text(" ".join(str(x) for x in (inclui or [])))
+    markers = (
+        "hospedagem",
+        "hotel",
+        "transfer",
+        "ingresso",
+        "passeio",
+        "servico",
+        "serviço",
+        "cafe da manha",
+        "all inclusive",
+    )
+    return any(m in blob for m in markers)
 
 
 def fingerprint(*parts: str) -> str:
@@ -342,10 +348,22 @@ def filter_pacotes(raw: list[dict]) -> tuple[list[dict], dict]:
                 stats["ignored_expired"] += 1
                 continue
             hotel = pick_cheapest_hotel(origin.get("hoteis"))
-            total = hotel.get("preco") if hotel else origin.get("por") or origin.get("de") or ""
-            parcela = hotel.get("parcela") if hotel else origin.get("min_parcela") or ""
+            inclui = origin.get("inclui") or []
+            hoteis = origin.get("hoteis") or []
+            installment_text = (hotel.get("parcela") if hotel else "") or origin.get("min_parcela") or ""
+            airfare_original = money.parse_brl(origin.get("de"))
+            airfare_sale = money.parse_brl(origin.get("por"))
+            fees_text = (hotel.get("taxas") if hotel else "") or origin.get("taxas") or ""
+            fees_value = money.parse_brl(fees_text)
+            package_total, price_source = money.resolve_package_total(
+                hotel_price_text=hotel.get("preco") if hotel else None,
+                installment_text=installment_text,
+                airfare_sale=airfare_sale,
+                has_package_components=package_has_components(inclui, hoteis),
+            )
+            inst_count, inst_value = money.parse_installment(installment_text)
+            total_display = money.format_brl(package_total) if package_total is not None else ""
             offer_id = f"pacote:{slug}:{origin.get('iata') or bucket}"
-            sort_price = round(money_to_float(total), 2)
             offer = {
                 "id": offer_id,
                 "fingerprint": fingerprint("pacote", slug, origin.get("iata", ""), origin.get("data", "")),
@@ -362,17 +380,25 @@ def filter_pacotes(raw: list[dict]) -> tuple[list[dict], dict]:
                 "flight_included": flight,
                 "categoria_site": "sem-aereo" if not flight else "completo",
                 "capa": pkg.get("capa") or "",
-                "inclui": origin.get("inclui") or [],
-                "hoteis": origin.get("hoteis") or [],
-                "taxas": origin.get("taxas") or "",
+                "inclui": inclui,
+                "hoteis": hoteis,
+                "taxas": fees_text,
+                "fees": fees_value,
                 "de": origin.get("de") or "",
                 "por": origin.get("por") or "",
-                "installments": parcela,
-                "total_price": total,
+                "airfare_original_price": airfare_original,
+                "airfare_sale_price": airfare_sale,
+                "installments": installment_text,
+                "installment_count": inst_count,
+                "installment_value": inst_value,
+                "total_price": total_display,
+                "package_total_price": package_total,
+                "price_source": price_source,
+                "currency": "BRL",
                 "evento": bool(pkg.get("evento")),
                 "pacote_categoria": pkg.get("categoria") or "",
                 "sort_date": dates.next_sort_date(departure_dates),
-                "sort_price": sort_price if sort_price > 0 else None,
+                "sort_price": package_total,
             }
             offer["tipo"] = tipo_from_offer(offer)
             selected.append(offer)
@@ -622,21 +648,39 @@ def render_pacote_card(offer: dict) -> str:
 
     parcela_html = ""
     total_html = ""
+    package_total = offer.get("package_total_price")
+    if package_total is None and offer.get("sort_price") not in (None, ""):
+        package_total = offer.get("sort_price")
+    if isinstance(package_total, (int, float)) and package_total > 0:
+        total_html = (
+            f'A partir de <strong>{money.format_brl(float(package_total), html_nbsp=True)}</strong>'
+        )
+    else:
+        total_html = "Consulte o valor"
+
     if offer.get("installments"):
         m = re.search(r"(\d+)x\s*de?\s*R\$\s*([\d.,]+)", offer["installments"], re.I)
         if m:
-            parcela_html = f'{html.escape(m.group(1))}x a partir de <strong>{br_money_html("R$ " + m.group(2))}</strong>'
+            parcela_html = f'{html.escape(m.group(1))}x de {br_money_html("R$ " + m.group(2))}'
         else:
             parcela_html = html.escape(offer["installments"])
-    if offer.get("total_price"):
-        total_html = f'Total a partir de {br_money_html(offer["total_price"])} + taxas · sujeito a alteração'
+
+    taxas_note = ""
+    if offer.get("taxas") or offer.get("fees"):
+        taxas_note = "+ taxas · sujeito a alteração"
+    elif package_total:
+        taxas_note = "sujeito a alteração"
 
     subtitle = offer["title"].replace(offer["destination"], "").strip(" ·:-")[:60]
     msg = f"Olá, Babi! Tenho interesse na oferta {destino_label}."
     origem = offer.get("origin_bucket") or "sem-aereo"
     tipo = offer.get("tipo") or tipo_from_offer(offer)
     alt = f"{offer['destination']}: {offer['title']}"
-    price_attr = "" if offer.get("sort_price") in (None, "") else str(offer.get("sort_price"))
+    sort_price = offer.get("sort_price")
+    if sort_price in (None, ""):
+        price_attr = ""
+    else:
+        price_attr = f"{float(sort_price):.2f}"
     dates_attr = dates.dates_attr(offer.get("departure_dates") or [])
     attrs = (
         f'id="{attr(card_id)}" data-destino="{attr(destino_label)}" '
@@ -659,8 +703,9 @@ def render_pacote_card(offer: dict) -> str:
             </ul>
             <div class="card__footer">
               <div class="card__preco">
+                <span class="card__total">{total_html}</span>
                 {'<span class="card__parcela">' + parcela_html + '</span>' if parcela_html else ''}
-                {'<span class="card__total">' + total_html + '</span>' if total_html else ''}
+                {'<span class="card__taxas">' + taxas_note + '</span>' if taxas_note else ''}
               </div>
               <a href="{wa_link(msg)}"
                  target="_blank" rel="noopener noreferrer"
@@ -901,7 +946,83 @@ def validate_voos(voos: list[dict]) -> dict:
     }
 
 
-def print_report(voos: list[dict], voo_stats: dict, pacotes: list[dict], campanhas: list[dict], checks: dict) -> None:
+def validate_pacotes(pacotes: list[dict]) -> dict:
+    """Auditoria semântica de preços dos pacotes sincronizados."""
+    with_total = 0
+    without_total = 0
+    with_installment = 0
+    with_airfare = 0
+    inconsistencies = []
+    airfare_as_total = []
+    consulte = []
+
+    for offer in pacotes:
+        title = offer.get("title") or offer.get("id") or ""
+        total = offer.get("package_total_price")
+        if total is None:
+            total = offer.get("sort_price")
+        air = offer.get("airfare_sale_price")
+        if air is None:
+            air = money.parse_brl(offer.get("por"))
+        inst_count = offer.get("installment_count")
+        inst_value = offer.get("installment_value")
+        if inst_count is None or inst_value is None:
+            inst_count, inst_value = money.parse_installment(offer.get("installments"))
+
+        if air is not None and air > 0:
+            with_airfare += 1
+        if inst_count and inst_value:
+            with_installment += 1
+
+        if total is None or total <= 0:
+            without_total += 1
+            consulte.append(title)
+            continue
+
+        with_total += 1
+        if total <= 0:
+            inconsistencies.append({"title": title, "reason": "total_non_positive", "total": total})
+        if inst_count is not None and inst_count <= 0:
+            inconsistencies.append({"title": title, "reason": "installment_count_invalid", "count": inst_count})
+        if inst_value is not None and inst_value <= 0:
+            inconsistencies.append({"title": title, "reason": "installment_value_invalid", "value": inst_value})
+        if inst_count and inst_value:
+            calc = inst_count * inst_value
+            if abs(total - calc) > money.price_tolerance(calc):
+                inconsistencies.append(
+                    {
+                        "title": title,
+                        "reason": "total_vs_installment",
+                        "total": total,
+                        "installment_total": calc,
+                        "diff": round(abs(total - calc), 2),
+                    }
+                )
+
+        has_components = package_has_components(offer.get("inclui"), offer.get("hoteis"))
+        if air is not None and abs(total - air) < 0.01 and has_components:
+            airfare_as_total.append(
+                {
+                    "title": title,
+                    "total": total,
+                    "airfare_sale_price": air,
+                    "price_source": offer.get("price_source"),
+                }
+            )
+
+    return {
+        "analisados": len(pacotes),
+        "com_preco_total": with_total,
+        "sem_preco_total": without_total,
+        "com_parcelamento": with_installment,
+        "com_aereo": with_airfare,
+        "inconsistencias": inconsistencies,
+        "aereo_como_total": airfare_as_total,
+        "consulte": consulte,
+    }
+
+
+def print_report(voos: list[dict], voo_stats: dict, pacotes: list[dict], campanhas: list[dict], checks: dict, price_audit: dict | None = None) -> None:
     multi = sum(1 for o in pacotes if len(o.get("departure_dates") or []) > 1)
     print("\nPROMO DE VOOS")
     print(f"Bloqueios encontrados na fonte: {voo_stats.get('total', 0)}")
@@ -922,6 +1043,19 @@ def print_report(voos: list[dict], voo_stats: dict, pacotes: list[dict], campanh
     print("\nPACOTES")
     print(f"Total: {len(pacotes)}")
     print(f"Com múltiplas saídas: {multi}")
+    if price_audit:
+        print("\nAUDITORIA DE PREÇOS (sync)")
+        print(f"Pacotes analisados: {price_audit['analisados']}")
+        print(f"Com preço total confiável: {price_audit['com_preco_total']}")
+        print(f"Sem preço total: {price_audit['sem_preco_total']}")
+        print(f"Com parcelamento: {price_audit['com_parcelamento']}")
+        print(f"Com preço de aéreo: {price_audit['com_aereo']}")
+        print(f"Inconsistências preço/parcela: {len(price_audit['inconsistencias'])}")
+        print(f"Suspeitos aéreo=total: {len(price_audit['aereo_como_total'])}")
+        for row in price_audit["inconsistencias"][:10]:
+            print(f"  ! {row}")
+        for row in price_audit["aereo_como_total"][:10]:
+            print(f"  ! aereo_como_total: {row}")
     print("\nCAMPANHAS")
     print(f"Publicadas: {len(campanhas)}")
 
@@ -955,6 +1089,7 @@ def main() -> None:
 
     write_fragments(pacotes, voos, campanhas)
     checks = validate_voos(voos)
+    price_audit = validate_pacotes(pacotes)
 
     index_ids = existing_card_ids((ROOT / "index.html").read_text(encoding="utf-8"))
     matched = sum(1 for o in pacotes if match_offer_to_card(o, index_ids))
@@ -975,11 +1110,18 @@ def main() -> None:
         },
         "reconciliacao_index": {"cards_existentes": len(index_ids), "pacotes_correspondidos": matched},
         "validacao_voos": checks,
+        "validacao_precos_pacotes": {
+            "analisados": price_audit["analisados"],
+            "com_preco_total": price_audit["com_preco_total"],
+            "sem_preco_total": price_audit["sem_preco_total"],
+            "inconsistencias": len(price_audit["inconsistencias"]),
+            "aereo_como_total": len(price_audit["aereo_como_total"]),
+        },
     }
     save_sync_state(pacotes, voos, campanhas, stats, cotado_em)
 
     print(json.dumps(stats, ensure_ascii=False, indent=2))
-    print_report(voos, voo_stats, pacotes, campanhas, checks)
+    print_report(voos, voo_stats, pacotes, campanhas, checks, price_audit)
     print(f"\nArquivos gerados em {GENERATED} e {SYNC_FILE}")
     if args.apply:
         print("Nota: cards da home permanecem curados; catálogo expandido vai para pacotes.html via _build_pacotes.py")

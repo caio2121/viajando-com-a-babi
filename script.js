@@ -528,21 +528,31 @@
     return true;
   }
 
+  function itemTitle(el) {
+    const node = el.querySelector('.card__title, .oferta-row__title');
+    return ((node && node.textContent) || el.getAttribute('data-destino') || '').replace(/\s+/g, ' ').trim();
+  }
+
+  function tieBreak(a, b) {
+    const da = itemDate(a);
+    const db = itemDate(b);
+    if (da !== db) return da.localeCompare(db);
+    return itemTitle(a).localeCompare(itemTitle(b), 'pt-BR');
+  }
+
   function sortItems(arr) {
     const mode = (sortEl && sortEl.value) || 'date';
     return arr.slice().sort((a, b) => {
       const pa = itemPrice(a);
       const pb = itemPrice(b);
-      const da = itemDate(a);
-      const db = itemDate(b);
       if (mode === 'price' || mode === 'price-desc') {
-        if (pa == null && pb == null) return da.localeCompare(db);
+        if (pa == null && pb == null) return tieBreak(a, b);
         if (pa == null) return 1;
         if (pb == null) return -1;
         const diff = mode === 'price-desc' ? pb - pa : pa - pb;
-        return diff || da.localeCompare(db);
+        return diff || tieBreak(a, b);
       }
-      return da.localeCompare(db) || (pa == null ? 1e12 : pa) - (pb == null ? 1e12 : pb);
+      return tieBreak(a, b) || (pa == null ? 1e12 : pa) - (pb == null ? 1e12 : pb);
     });
   }
 

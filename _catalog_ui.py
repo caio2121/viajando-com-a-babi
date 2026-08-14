@@ -1,7 +1,7 @@
 """HTML compartilhado de filtros, ordenação e estados vazios do catálogo."""
 
-CSS_VERSION = "28"
-JS_VERSION = "25"
+CSS_VERSION = "29"
+JS_VERSION = "26"
 ANALYTICS_VERSION = "14"
 
 
@@ -15,7 +15,7 @@ def toolbar(kind: str, page_size: int = 24) -> str:
     sort_block = ""
     if kind != "campanhas":
         sort_price = """
-            <option value="price">Preço</option>
+            <option value="price">Menor preço</option>
             <option value="price-desc">Maior preço</option>"""
         sort_block = f"""
         <label class="catalog-bar__sort">
