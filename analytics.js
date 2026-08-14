@@ -11,7 +11,8 @@
   const viewedPackages = new Set();
   const viewedCategories = new Set();
   const viewedSections = new Set();
-  const PACKAGE_CARD_SELECTOR = '#pacotes .card[data-destino], .pacotes-page .card[data-destino], .ofertas-page .card[data-destino], .oferta-row[data-destino]';
+  const PACKAGE_CARD_SELECTOR = '#pacotes .card[data-destino], .pacotes-page .card[data-destino], .ofertas-page .card[data-destino], .oferta-row[data-destino], .dest-option[data-destino]';
+  let packageObserver = null;
 
   /* ── Helpers ─────────────────────────────────────── */
 
@@ -70,7 +71,7 @@
   }
 
   function getPackageMeta(el) {
-    const card = el && el.closest ? el.closest('.card[data-destino], .oferta-row[data-destino]') : el;
+    const card = el && el.closest ? el.closest('.card[data-destino], .oferta-row[data-destino], .dest-option[data-destino]') : el;
     if (!card) return null;
 
     const destino = card.getAttribute('data-destino') || 'desconhecido';
@@ -125,6 +126,12 @@
     if (attrVal) {
       const parsed = parseFloat(attrVal.replace(/\./g, '').replace(',', '.'));
       if (Number.isFinite(parsed) && parsed > 0) return parsed;
+    }
+
+    const destTotal = card.querySelector('.dest-option__total');
+    if (destTotal) {
+      const fromDest = parseBrlAmount(destTotal.textContent);
+      if (fromDest > 0) return fromDest;
     }
 
     const totalEl = card.querySelector('.card__total');
@@ -316,6 +323,9 @@
     trackPackageView,
     trackPackageSelect,
     trackPackagePurchaseIntent,
+    observePackageCard: function (card) {
+      if (packageObserver && card) packageObserver.observe(card);
+    },
 
     trackFormOpen: function () {
       trackEvent('form_start', {
@@ -359,6 +369,7 @@
       { threshold: [0.55, 0.75] }
     );
 
+    packageObserver = observer;
     cards.forEach((card) => observer.observe(card));
   }
 
@@ -452,8 +463,8 @@
     const wa = e.target.closest('a[href*="wa.me/' + WA_NUMBER + '"]');
     if (wa) {
       e.preventDefault();
-      const card = wa.closest('.card[data-destino], .oferta-row[data-destino]');
-      if (card && wa.closest('.card__footer .btn--whatsapp')) {
+      const card = wa.closest('.card[data-destino], .oferta-row[data-destino], .dest-option[data-destino]');
+      if (card && (wa.closest('.card__footer .btn--whatsapp') || wa.closest('.dest-option__cta'))) {
         trackPackagePurchaseIntent(card);
       }
       if (card) {
@@ -476,7 +487,7 @@
       // FAB/navbar/hero/footer = generate_lead no GA4, sem conversion Ads.
       // Contato real confirmado: planilha → working_lead (docs/funil-offline.md).
       const href = wa.getAttribute('href');
-      const highIntentPackageCta = !!(card && wa.closest('.card__footer .btn--whatsapp'));
+      const highIntentPackageCta = !!(card && (wa.closest('.card__footer .btn--whatsapp') || wa.closest('.dest-option__cta')));
       if (highIntentPackageCta && typeof window.gtag_report_conversion === 'function') {
         const pkgMeta = getPackageMeta(card);
         window.gtag_report_conversion(href, {

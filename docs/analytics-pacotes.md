@@ -11,7 +11,7 @@ Guia para ler no GA4 quais pacotes e categorias geram mais interesse.
 | Viu o card na tela | `view_item` + `package_impression` | Impressão do pacote (1x por visita) |
 | Viu a categoria | `package_category_view` | Grupos com guia / Pacote completo / Cruzeiros |
 | Clicou no card ou imagem | `select_item` + `destination_interest` | Exploração ativa |
-| Clicou "Quero esse pacote!" | `purchase` + `service_click` + `generate_lead` + `package_lead` + Ads `conversion` | Tentativa de compra + lead + conversão Ads (intenção alta) |
+| Clicou "Tenho interesse" na opção do destino | `purchase` + `package_lead` + Ads `conversion` | Mesma intenção alta, a partir do modal de opções |
 | Clicou WhatsApp genérico (FAB, navbar, hero, footer) | `generate_lead` | Engajamento GA4 **sem** conversão Ads |
 | Abriu formulário | `form_start` | Interesse em roteiro personalizado |
 | Enviou formulário | `form_submit` + `generate_lead` + Ads `conversion` | Lead qualificado (sem PII) + conversão Ads |
@@ -24,7 +24,7 @@ Guia para ler no GA4 quais pacotes e categorias geram mais interesse.
 
 Dispara **apenas** em:
 
-1. Botão **Quero esse pacote!** no card (`.card__footer .btn--whatsapp`)
+1. Botão **Quero esse pacote!** no card (`.card__footer .btn--whatsapp`) ou **Tenho interesse** no modal de opções (`.dest-option__cta`)
 2. Envio do formulário de roteiro personalizado (`script.js`)
 
 Não dispara em FAB, navbar, hero ou footer. Meta principal no Ads: `working_lead` (planilha). **Contato** (tag): secundária / intenção alta.

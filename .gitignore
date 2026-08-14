@@ -39,3 +39,4 @@ venv/
 *.tmp
 *.bak
 *.log
+*.md

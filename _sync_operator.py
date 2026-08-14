@@ -5,7 +5,7 @@ Sincroniza ofertas de viajandocomdesconto.com com o site Viajando com a Babi.
 Uso:
   python _sync_operator.py              # coleta, filtra, gera fragments e operator-sync.json
   python _sync_operator.py --apply      # também atualiza cards existentes em index.html
-  python _sync_operator.py --download-images  # baixa imagens ausentes
+  python _sync_operator.py --from-json  # regenera fragments a partir de data/operator-sync.json
 
 Depois:
   python _build_ofertas.py
@@ -27,6 +27,7 @@ from datetime import date, datetime
 from pathlib import Path
 
 import _dates as dates
+import _destination as destmod
 import _money as money
 
 ROOT = Path(__file__).parent
@@ -615,7 +616,7 @@ def filter_campanhas(raw: list[dict]) -> tuple[list[dict], dict]:
 def render_pacote_card(offer: dict) -> str:
     stem = local_image_stem(offer["source_slug"], offer["destination"])
     suffix = offer.get("origin_airport") or offer.get("origin_bucket") or "na"
-    card_id = slugify(f"{stem}-{suffix}")
+    card_id = slugify(f"{offer.get('source_slug') or stem}-{suffix}", "pacote-")
     destino_label = offer["title"][:80]
     badge = dates.sanitize_date_text(as_text(offer.get("departure_date")))
     extra = dates.sanitize_date_text(as_text(offer.get("additional_dates")))
@@ -634,14 +635,18 @@ def render_pacote_card(offer: dict) -> str:
         features.append('<li><i class="fas fa-bed"></i> Pacote sem aéreo · consulte condições</li>')
 
     hotel = pick_cheapest_hotel(offer.get("hoteis"))
+    hotel_name = hotel.get("nome", "") if hotel else ""
+    regime = (hotel.get("regime") if hotel else "") or ""
     if hotel:
-        regime = hotel.get("regime") or "consulte regime"
+        regime_txt = regime or "consulte regime"
         features.append(
-            f'<li><i class="fas fa-hotel"></i> {html.escape(hotel.get("nome", "Hospedagem"))} · {html.escape(regime)}</li>'
+            f'<li><i class="fas fa-hotel"></i> {html.escape(hotel.get("nome", "Hospedagem"))} · {html.escape(regime_txt)}</li>'
         )
+    extras = []
     for line in (offer.get("inclui") or [])[:3]:
         clean = re.sub(r"[^\x00-\x7F\u00C0-\u024F\s.,·\-+%/()R$]", "", line).strip()
         if clean and "passagem" not in normalize(clean):
+            extras.append(clean)
             features.append(f'<li><i class="fas fa-check"></i> {html.escape(clean)}</li>')
     if offer.get("taxas"):
         features.append(f'<li><i class="fas fa-exclamation-circle"></i> Taxas {br_money_html(offer["taxas"])} · sujeito a alteração</li>')
@@ -671,7 +676,6 @@ def render_pacote_card(offer: dict) -> str:
     elif package_total:
         taxas_note = "sujeito a alteração"
 
-    subtitle = offer["title"].replace(offer["destination"], "").strip(" ·:-")[:60]
     msg = f"Olá, Babi! Tenho interesse na oferta {destino_label}."
     origem = offer.get("origin_bucket") or "sem-aereo"
     tipo = offer.get("tipo") or tipo_from_offer(offer)
@@ -682,13 +686,33 @@ def render_pacote_card(offer: dict) -> str:
     else:
         price_attr = f"{float(sort_price):.2f}"
     dates_attr = dates.dates_attr(offer.get("departure_dates") or [])
+    group_key, group_label = destmod.group_identity(
+        destination=offer.get("destination") or "",
+        title=offer.get("title") or "",
+        tipo=tipo,
+        evento=bool(offer.get("evento")),
+        categoria=offer.get("pacote_categoria") or "",
+    )
+    subtitle = destmod.offer_name(offer["title"], offer.get("destination") or "", group_label)
+    extra_attrs = []
+    if offer.get("evento"):
+        extra_attrs.append('data-evento="1"')
+    if hotel_name:
+        extra_attrs.append(f'data-hotel="{attr(hotel_name)}"')
+    if regime:
+        extra_attrs.append(f'data-regime="{attr(regime)}"')
+    if extras:
+        extra_attrs.append(f'data-extras="{attr(" · ".join(extras[:2]))}"')
+    extra_attr_html = (" " + " ".join(extra_attrs)) if extra_attrs else ""
     attrs = (
         f'id="{attr(card_id)}" data-destino="{attr(destino_label)}" '
         f'data-categoria="{attr(offer["categoria_site"])}" data-source="operator" '
         f'data-source-id="{attr(offer["id"])}" data-sort-date="{attr(offer.get("sort_date", ""))}" '
         f'data-dates="{attr(dates_attr)}" data-sort-price="{attr(price_attr)}" data-origem="{attr(origem)}" '
         f'data-origem-iata="{attr(offer.get("origin_airport", ""))}" '
-        f'data-destino-key="{attr(slugify(offer["destination"]))}" data-tipo="{attr(tipo)}"'
+        f'data-destination="{attr(offer.get("destination") or "")}" '
+        f'data-destino-key="{attr(group_key)}" data-group-label="{attr(group_label)}" '
+        f'data-offer-name="{attr(subtitle)}" data-tipo="{attr(tipo)}"{extra_attr_html}'
     )
     return f"""
         <article class="card reveal catalog-item" {attrs}>
@@ -1064,7 +1088,22 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="Sincroniza ofertas da operadora")
     parser.add_argument("--apply", action="store_true", help="Reservado para futuras atualizações in-place em index.html")
     parser.add_argument("--download-images", action="store_true", help="Baixa imagens ausentes dos pacotes")
+    parser.add_argument("--from-json", action="store_true", help="Regenera fragments a partir de data/operator-sync.json, sem coletar a fonte")
     args = parser.parse_args()
+
+    if args.from_json:
+        if not SYNC_FILE.exists():
+            raise SystemExit("data/operator-sync.json não encontrado")
+        payload = json.loads(SYNC_FILE.read_text(encoding="utf-8"))
+        pacotes = (payload.get("offers") or {}).get("pacotes") or []
+        voos = (payload.get("offers") or {}).get("promo_voos") or []
+        campanhas = (payload.get("offers") or {}).get("campanhas") or []
+        write_fragments(pacotes, voos, campanhas)
+        checks = validate_voos(voos)
+        price_audit = validate_pacotes(pacotes)
+        print(f"Fragments regenerados de {SYNC_FILE} ({len(pacotes)} pacotes, {len(voos)} voos, {len(campanhas)} campanhas)")
+        print_report(voos, payload.get("stats", {}).get("filtro_voos") or {}, pacotes, campanhas, checks, price_audit)
+        return
 
     print("Coletando fonte…")
     html = fetch_html()

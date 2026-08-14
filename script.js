@@ -183,8 +183,6 @@
   const overlay  = document.getElementById('lightbox');
   const closeBtn = document.getElementById('lightboxClose');
   const img      = document.getElementById('lightboxImg');
-  const triggers = document.querySelectorAll('.card__img-wrap img[data-lightbox]');
-
   if (!overlay || !img) return;
 
   function openLightbox(src, alt) {
@@ -200,8 +198,10 @@
     img.src = '';
   }
 
-  triggers.forEach(t => {
-    t.addEventListener('click', () => openLightbox(t.src, t.alt));
+  document.addEventListener('click', (e) => {
+    const t = e.target.closest && e.target.closest('.card__img-wrap img[data-lightbox]');
+    if (!t) return;
+    openLightbox(t.src, t.alt);
   });
 
   closeBtn && closeBtn.addEventListener('click', closeLightbox);
@@ -373,8 +373,12 @@
   const tipoSelect = modal && modal.querySelector('[data-catalog-tipo]');
   const destTypeSelects = document.querySelectorAll('[data-catalog-root] [data-catalog-dest-type], #modalCatalogFilter [data-catalog-dest-type]');
 
+  const grouped = kind === 'pacotes';
+  const destModal = document.getElementById('modalDestinationOffers');
+  const destCards = new Map();
   let shown = pageSize;
   let lastFocus = null;
+  let destModalState = { key: '', origin: '', sort: 'price', opener: null, offers: [] };
 
   function track(name, params) {
     if (window.VCBAnalytics && typeof window.VCBAnalytics.trackEvent === 'function') {
@@ -384,6 +388,33 @@
 
   function moneyLabel(value) {
     return 'R$ ' + Math.round(value).toLocaleString('pt-BR');
+  }
+
+  function escapeHtml(value) {
+    return String(value || '')
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  function formatIso(iso) {
+    const parts = String(iso || '').split('-');
+    if (parts.length < 3) return '';
+    return parts[2] + '/' + parts[1];
+  }
+
+  function originBucketLabel(bucket) {
+    const names = { rio: 'Rio de Janeiro', sp: 'São Paulo', 'sem-aereo': 'Sem aéreo', 'sem_aereo': 'Sem aéreo' };
+    return names[bucket] || bucket || 'Outras';
+  }
+
+  function groupKey(el) {
+    return el.getAttribute('data-destino-key') || '';
+  }
+
+  function groupLabelOf(el) {
+    return (el.getAttribute('data-group-label') || '').trim();
   }
 
   function itemDates(el) {
@@ -414,7 +445,7 @@
   function originLabel(el) {
     const bucket = el.getAttribute('data-origem') || '';
     const iata = el.getAttribute('data-origem-iata') || '';
-    const names = { rio: 'Rio de Janeiro', sp: 'São Paulo', 'sem-aereo': 'Sem aéreo' };
+    const names = { rio: 'Rio de Janeiro', sp: 'São Paulo', 'sem-aereo': 'Sem aéreo', 'sem_aereo': 'Sem aéreo' };
     const base = names[bucket] || bucket;
     if (kind === 'voos') return base || 'Outras';
     if (iata) return base + ' (' + iata + ')';
@@ -428,9 +459,9 @@
     items.forEach(el => {
       const ok = originKey(el);
       if (ok) origins.set(ok, originLabel(el));
-      const dk = el.getAttribute('data-destino-key') || '';
-      const title = (el.querySelector('.card__title, .oferta-row__title') || {}).textContent || el.getAttribute('data-destino') || '';
-      if (dk) dests.set(dk, title.replace(/\s+/g, ' ').trim().split('\n')[0]);
+      const dk = groupKey(el);
+      const label = groupLabelOf(el) || ((el.querySelector('.card__title, .oferta-row__title') || {}).textContent || el.getAttribute('data-destino') || '');
+      if (dk) dests.set(dk, label.replace(/\s+/g, ' ').trim().split('\n')[0]);
       const price = itemPrice(el);
       if (price != null) maxPrice = Math.max(maxPrice, price);
     });
@@ -511,7 +542,7 @@
       const bucket = el.getAttribute('data-origem') || '';
       if (f.origin !== key && f.origin !== bucket) return false;
     }
-    if (f.dest && el.getAttribute('data-destino-key') !== f.dest) return false;
+    if (f.dest && groupKey(el) !== f.dest) return false;
     if (f.tipo && el.getAttribute('data-tipo') !== f.tipo) return false;
     if (f.destType && el.getAttribute('data-destino-tipo') !== f.destType) return false;
     const dateFilterOn = !!(f.from || f.to);
@@ -556,15 +587,167 @@
     });
   }
 
-  function apply() {
-    const f = currentFilters();
-    const filtered = sortItems(items.filter(el => matches(el, f)));
+  function offerOptionTitle(el, destLabel) {
+    const named = (el.getAttribute('data-offer-name') || '').trim();
+    if (named) return named;
+    const raw = (el.getAttribute('data-destino') || itemTitle(el)).replace(/\s+/g, ' ').trim();
+    if (!destLabel) return raw;
+    const stripped = raw.replace(new RegExp('^' + destLabel.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '\\s*[-:·,]?\\s*', 'i'), '').trim();
+    return stripped || raw;
+  }
+
+  function offerHotelLine(el) {
+    const hotel = (el.getAttribute('data-hotel') || '').trim();
+    const regime = (el.getAttribute('data-regime') || '').trim();
+    if (hotel) return [hotel, regime].filter(Boolean).join(' · ');
+    const li = Array.from(el.querySelectorAll('.card__features li')).find(n => n.querySelector('.fa-hotel'));
+    return li ? (li.textContent || '').replace(/\s+/g, ' ').trim() : '';
+  }
+
+  function offerExtras(el) {
+    const attr = (el.getAttribute('data-extras') || '').trim();
+    if (attr) return attr;
+    const extra = [];
+    el.querySelectorAll('.card__features li').forEach(li => {
+      if (li.querySelector('.fa-plane, .fa-hotel, .fa-exclamation-circle')) return;
+      const text = (li.textContent || '').replace(/\s+/g, ' ').trim();
+      if (text) extra.push(text);
+    });
+    return extra.slice(0, 2).join(' · ');
+  }
+
+  function offerParcela(el) {
+    const node = el.querySelector('.card__parcela');
+    return node ? (node.textContent || '').replace(/\s+/g, ' ').trim() : '';
+  }
+
+  function offerTaxas(el) {
+    const node = el.querySelector('.card__taxas');
+    return node ? (node.textContent || '').replace(/\s+/g, ' ').trim() : '';
+  }
+
+  function groupOffers(offers) {
+    const map = new Map();
+    offers.forEach(el => {
+      const key = groupKey(el) || el.id || itemTitle(el);
+      if (!map.has(key)) {
+        map.set(key, {
+          key: key,
+          label: groupLabelOf(el) || itemTitle(el),
+          offers: []
+        });
+      }
+      map.get(key).offers.push(el);
+    });
+    map.forEach(group => {
+      const prices = group.offers.map(itemPrice).filter(v => v != null);
+      group.sortPrice = prices.length ? Math.min.apply(null, prices) : null;
+      const dates = group.offers.map(itemDate).filter(d => d && d !== '9999-12-31').sort();
+      group.sortDate = dates[0] || '9999-12-31';
+      const buckets = [];
+      const seen = {};
+      group.offers.forEach(el => {
+        const bucket = el.getAttribute('data-origem') || '';
+        if (!bucket || seen[bucket]) return;
+        seen[bucket] = true;
+        buckets.push(bucket);
+      });
+      group.origins = buckets;
+      const cheapest = group.offers.slice().sort((a, b) => {
+        const pa = itemPrice(a);
+        const pb = itemPrice(b);
+        if (pa == null && pb == null) return 0;
+        if (pa == null) return 1;
+        if (pb == null) return -1;
+        return pa - pb;
+      })[0];
+      group.imageSource = cheapest || group.offers[0];
+    });
+    return Array.from(map.values());
+  }
+
+  function sortGroups(groups) {
+    const mode = (sortEl && sortEl.value) || 'date';
+    return groups.slice().sort((a, b) => {
+      if (mode === 'price' || mode === 'price-desc') {
+        if (a.sortPrice == null && b.sortPrice == null) return a.label.localeCompare(b.label, 'pt-BR');
+        if (a.sortPrice == null) return 1;
+        if (b.sortPrice == null) return -1;
+        const diff = mode === 'price-desc' ? b.sortPrice - a.sortPrice : a.sortPrice - b.sortPrice;
+        return diff || a.label.localeCompare(b.label, 'pt-BR');
+      }
+      if (a.sortDate !== b.sortDate) return a.sortDate.localeCompare(b.sortDate);
+      return a.label.localeCompare(b.label, 'pt-BR');
+    });
+  }
+
+  function destCardHtml(group) {
+    const count = group.offers.length;
+    const countLabel = count === 1 ? '1 opção disponível' : count + ' opções disponíveis';
+    const originText = group.origins.map(originBucketLabel).filter(Boolean).join(' · ');
+    const next = group.sortDate && group.sortDate !== '9999-12-31' ? 'Próxima saída: ' + formatIso(group.sortDate) : '';
+    const price = group.sortPrice != null
+      ? 'A partir de <strong>' + moneyLabel(group.sortPrice).replace(' ', '&nbsp;') + '</strong>'
+      : 'Consulte o valor';
+    const cta = count === 1 ? 'Ver opção' : 'Ver opções';
+    return (
+      '<div class="card__body">' +
+        '<h4 class="card__title">' + escapeHtml(group.label) + '</h4>' +
+        '<div class="card__meta">' +
+          '<p class="card__count">' + escapeHtml(countLabel) + '</p>' +
+          (originText ? '<p class="card__origins">' + escapeHtml(originText) + '</p>' : '') +
+          (next ? '<p class="card__next-date">' + escapeHtml(next) + '</p>' : '') +
+        '</div>' +
+        '<div class="card__footer">' +
+          '<div class="card__preco"><span class="card__total">' + price + '</span></div>' +
+          '<button type="button" class="btn btn--md btn--full" data-open-destination>' +
+            escapeHtml(cta) +
+          '</button>' +
+        '</div>' +
+      '</div>'
+    );
+  }
+
+  function upsertDestCard(group) {
+    let card = destCards.get(group.key);
+    if (!card) {
+      card = document.createElement('article');
+      card.className = 'card reveal catalog-item catalog-dest-card visible';
+      destCards.set(group.key, card);
+      if (window.VCBAnalytics && typeof window.VCBAnalytics.observePackageCard === 'function') {
+        window.VCBAnalytics.observePackageCard(card);
+      }
+    }
+    card.setAttribute('data-group-key', group.key);
+    card.setAttribute('data-destino', group.label);
+    card.setAttribute('data-destino-key', group.key);
+    card.setAttribute('data-sort-price', group.sortPrice != null ? String(group.sortPrice) : '');
+    card.setAttribute('data-sort-date', group.sortDate || '');
+    const imgWrap = (group.imageSource && group.imageSource.querySelector('.card__img-wrap'))
+      ? group.imageSource.querySelector('.card__img-wrap').cloneNode(true)
+      : null;
+    if (imgWrap) {
+      const badge = imgWrap.querySelector('.card__badge');
+      if (badge) badge.remove();
+      const img = imgWrap.querySelector('img');
+      if (img) img.alt = group.label;
+    }
+    card.innerHTML = (imgWrap ? imgWrap.outerHTML : '<div class="card__img-wrap"></div>') + destCardHtml(group);
+    return card;
+  }
+
+  function syncBodyLock() {
+    const filterOpen = !!(modal && modal.classList.contains('open'));
+    const destOpen = !!(destModal && destModal.classList.contains('open'));
+    document.body.classList.toggle('catalog-modal-open', filterOpen || destOpen);
+  }
+
+  function applyFlat(filtered) {
     const unmatched = items.filter(el => !filtered.includes(el));
     const frag = document.createDocumentFragment();
     filtered.forEach(el => frag.appendChild(el));
     unmatched.forEach(el => frag.appendChild(el));
     list.appendChild(frag);
-
     filtered.forEach((el, i) => {
       el.hidden = false;
       el.classList.toggle('is-paged-out', i >= shown);
@@ -573,16 +756,77 @@
       el.hidden = true;
       el.classList.remove('is-paged-out');
     });
+    return filtered.length;
+  }
 
-    const total = filtered.length;
-    const noun = total === 1
-      ? (kind === 'voos' ? 'promoção encontrada' : kind === 'campanhas' ? 'campanha encontrada' : 'pacote encontrado')
-      : (kind === 'voos' ? 'promoções encontradas' : kind === 'campanhas' ? 'campanhas encontradas' : 'pacotes encontrados');
-    if (countEl) countEl.textContent = total + ' ' + noun;
+  function applyGrouped(filtered) {
+    root.setAttribute('data-grouped', 'true');
+    items.forEach(el => {
+      el.hidden = true;
+      el.setAttribute('aria-hidden', 'true');
+      el.classList.add('catalog-offer');
+      el.classList.remove('is-paged-out');
+    });
+    const groups = sortGroups(groupOffers(filtered));
+    const activeKeys = new Set(groups.map(g => g.key));
+    destCards.forEach((card, key) => {
+      if (!activeKeys.has(key)) {
+        card.hidden = true;
+        card.classList.remove('is-paged-out');
+      }
+    });
+    const frag = document.createDocumentFragment();
+    groups.forEach((group, i) => {
+      const card = upsertDestCard(group);
+      card.hidden = false;
+      card.classList.toggle('is-paged-out', i >= shown);
+      frag.appendChild(card);
+    });
+    items.forEach(el => frag.appendChild(el));
+    list.appendChild(frag);
+    if (destModal && destModal.classList.contains('open') && destModalState.key) {
+      const current = groups.find(g => g.key === destModalState.key);
+      if (current) {
+        if (destModalState.origin && !current.offers.some(el => el.getAttribute('data-origem') === destModalState.origin)) {
+          destModalState.origin = '';
+        }
+        fillDestModal(current);
+      } else closeDestModal();
+    }
+    return { destCount: groups.length, offerCount: filtered.length };
+  }
 
-    if (emptyEl) emptyEl.hidden = total !== 0;
+  function apply() {
+    const f = currentFilters();
+    const filtered = sortItems(items.filter(el => matches(el, f)));
+    let destCount = filtered.length;
+    let offerCount = filtered.length;
+    if (grouped) {
+      const result = applyGrouped(filtered);
+      destCount = result.destCount;
+      offerCount = result.offerCount;
+    } else {
+      destCount = applyFlat(filtered);
+    }
+
+    if (countEl) {
+      if (grouped) {
+        const destWord = destCount === 1 ? 'destino' : 'destinos';
+        const optNoun = offerCount === 1 ? 'opção' : 'opções';
+        const suffix = activeFilterCount(f) ? ' encontradas' : ' disponíveis';
+        countEl.textContent = destCount + ' ' + destWord + ' · ' + offerCount + ' ' + optNoun + suffix;
+      } else {
+        const noun = destCount === 1
+          ? (kind === 'voos' ? 'promoção encontrada' : 'campanha encontrada')
+          : (kind === 'voos' ? 'promoções encontradas' : 'campanhas encontradas');
+        countEl.textContent = destCount + ' ' + noun;
+      }
+    }
+
+    const visibleTotal = grouped ? destCount : offerCount;
+    if (emptyEl) emptyEl.hidden = visibleTotal !== 0;
     if (moreBtn) {
-      moreBtn.hidden = shown >= total || total === 0;
+      moreBtn.hidden = shown >= visibleTotal || visibleTotal === 0;
       moreBtn.parentElement.hidden = moreBtn.hidden;
     }
 
@@ -597,6 +841,168 @@
         ? '<i class="fas fa-sliders-h" aria-hidden="true"></i> Filtrar pacotes (' + active + ')'
         : '<i class="fas fa-sliders-h" aria-hidden="true"></i> Filtrar pacotes';
     }
+  }
+
+  function destFocusable() {
+    if (!destModal) return [];
+    return Array.from(destModal.querySelectorAll('a[href], button:not([disabled]), select, textarea, input, [tabindex]:not([tabindex="-1"])'))
+      .filter(el => !el.hasAttribute('hidden') && el.offsetParent !== null);
+  }
+
+  function optionDatesHtml(el) {
+    const dates = itemDates(el);
+    if (!dates.length) return '';
+    const first = formatIso(dates[0]);
+    if (dates.length === 1) return '<p class="dest-option__dates">' + escapeHtml(first) + '</p>';
+    const extra = dates.length - 1;
+    const itemsHtml = dates.map(d => '<li>' + escapeHtml(formatIso(d) + '/' + d.slice(0, 4)) + '</li>').join('');
+    return (
+      '<details class="dest-option__dates">' +
+        '<summary>' + escapeHtml(first) + ' · + ' + extra + (extra === 1 ? ' outra saída' : ' outras saídas') + '</summary>' +
+        '<ul>' + itemsHtml + '</ul>' +
+      '</details>'
+    );
+  }
+
+  function optionWaHref(el, destLabel, optionTitle, dateLabel) {
+    const origin = originLabel(el);
+    const originBit = origin
+      ? (/^S[ãa]o Paulo/i.test(origin) ? ', saída de ' + origin : ', saída do ' + origin)
+      : '';
+    const msg = 'Olá, Babi! Tenho interesse no pacote ' + destLabel +
+      (optionTitle ? ', ' + optionTitle : '') +
+      originBit +
+      (dateLabel ? ' em ' + dateLabel : '') + '.';
+    const a = el.querySelector('a.btn--whatsapp[href*="wa.me"]');
+    if (a && a.href) {
+      try {
+        const url = new URL(a.href);
+        url.searchParams.set('text', msg);
+        return url.toString();
+      } catch (err) {}
+    }
+    return 'https://wa.me/5521920064617?text=' + encodeURIComponent(msg);
+  }
+
+  function renderDestOptions(group) {
+    const listEl = destModal && destModal.querySelector('[data-dest-modal-list]');
+    if (!listEl) return;
+    const origin = destModalState.origin;
+    const sort = destModalState.sort || 'price';
+    let offers = group.offers.slice();
+    if (origin) offers = offers.filter(el => (el.getAttribute('data-origem') || '') === origin);
+    offers.sort((a, b) => {
+      if (sort === 'date') return tieBreak(a, b);
+      const pa = itemPrice(a);
+      const pb = itemPrice(b);
+      if (pa == null && pb == null) return tieBreak(a, b);
+      if (pa == null) return 1;
+      if (pb == null) return -1;
+      return (pa - pb) || tieBreak(a, b);
+    });
+    const countElModal = destModal.querySelector('[data-dest-modal-count]');
+    const n = offers.length;
+    if (countElModal) {
+      countElModal.textContent = n === 1 ? '1 opção encontrada' : n + ' opções encontradas';
+    }
+    listEl.innerHTML = offers.map(el => {
+      const title = offerOptionTitle(el, group.label);
+      const hotelLine = offerHotelLine(el);
+      const extra = offerExtras(el);
+      const price = itemPrice(el);
+      const dates = itemDates(el);
+      const href = optionWaHref(el, group.label, title, dates[0] ? formatIso(dates[0]) : '');
+      return (
+        '<article class="dest-option" data-destino="' + escapeHtml(el.getAttribute('data-destino') || title) + '" data-categoria="' + escapeHtml(el.getAttribute('data-categoria') || '') + '">' +
+          '<div class="dest-option__main">' +
+            '<h4 class="dest-option__title">' + escapeHtml(title) + '</h4>' +
+            '<p class="dest-option__origin">' + escapeHtml(originLabel(el)) + '</p>' +
+            optionDatesHtml(el) +
+            (hotelLine ? '<p class="dest-option__hotel">' + escapeHtml(hotelLine) + '</p>' : '') +
+            (extra ? '<p class="dest-option__extra">' + escapeHtml(extra) + '</p>' : '') +
+          '</div>' +
+          '<div class="dest-option__price">' +
+            '<div>' +
+              (price != null ? '<p class="dest-option__total">' + escapeHtml(moneyLabel(price)) + '</p>' : '') +
+              (offerParcela(el) ? '<p class="dest-option__parcela">' + escapeHtml(offerParcela(el)) + '</p>' : '') +
+              (offerTaxas(el) ? '<p class="dest-option__taxas">' + escapeHtml(offerTaxas(el)) + '</p>' : '') +
+            '</div>' +
+            '<a class="btn btn--whatsapp dest-option__cta" href="' + escapeHtml(href) + '" target="_blank" rel="noopener noreferrer">' +
+              '<i class="fab fa-whatsapp"></i> Tenho interesse' +
+            '</a>' +
+          '</div>' +
+        '</article>'
+      );
+    }).join('');
+  }
+
+  function renderOriginChips(group) {
+    const wrap = destModal && destModal.querySelector('[data-dest-origin-chips]');
+    if (!wrap) return;
+    const counts = {};
+    group.offers.forEach(el => {
+      const bucket = el.getAttribute('data-origem') || '';
+      if (!bucket) return;
+      counts[bucket] = (counts[bucket] || 0) + 1;
+    });
+    const keys = Object.keys(counts);
+    if (keys.length < 2) {
+      wrap.innerHTML = '';
+      destModalState.origin = '';
+      return;
+    }
+    const chips = ['<button type="button" class="dest-modal__chip' + (!destModalState.origin ? ' is-active' : '') + '" data-dest-origin="" aria-pressed="' + (!destModalState.origin ? 'true' : 'false') + '">Todas (' + group.offers.length + ')</button>'];
+    keys.forEach(bucket => {
+      const active = destModalState.origin === bucket;
+      chips.push(
+        '<button type="button" class="dest-modal__chip' + (active ? ' is-active' : '') + '" data-dest-origin="' + escapeHtml(bucket) + '" aria-pressed="' + (active ? 'true' : 'false') + '">' +
+          escapeHtml(originBucketLabel(bucket)) + ' (' + counts[bucket] + ')' +
+        '</button>'
+      );
+    });
+    wrap.innerHTML = chips.join('');
+  }
+
+  function fillDestModal(group) {
+    destModalState.offers = group.offers;
+    destModalState.key = group.key;
+    const title = destModal.querySelector('#destModalTitle');
+    if (title) title.textContent = group.label;
+    destModal.setAttribute('aria-label', group.label);
+    const sortSel = destModal.querySelector('[data-dest-modal-sort]');
+    if (sortSel) sortSel.value = destModalState.sort || 'price';
+    renderOriginChips(group);
+    renderDestOptions(group);
+  }
+
+  function openDestModal(key, opener) {
+    if (!destModal || !grouped) return;
+    const f = currentFilters();
+    const filtered = items.filter(el => matches(el, f) && groupKey(el) === key);
+    const groups = groupOffers(filtered);
+    const group = groups[0];
+    if (!group) return;
+    destModalState.opener = opener || destModalState.opener;
+    destModalState.origin = '';
+    destModalState.sort = 'price';
+    fillDestModal(group);
+    destModal.hidden = false;
+    destModal.classList.add('open');
+    syncBodyLock();
+    const closeBtn = destModal.querySelector('[data-dest-modal-close]');
+    closeBtn && closeBtn.focus();
+    track('destination_interest', { destination_slug: key, interaction_type: 'open_options' });
+  }
+
+  function closeDestModal() {
+    if (!destModal) return;
+    destModal.classList.remove('open');
+    destModal.hidden = true;
+    syncBodyLock();
+    if (destModalState.opener && typeof destModalState.opener.focus === 'function') {
+      destModalState.opener.focus();
+    }
+    destModalState.key = '';
   }
 
   function clearFilters() {
@@ -619,7 +1025,7 @@
     lastFocus = document.activeElement;
     modal.hidden = false;
     modal.classList.add('open');
-    document.body.classList.add('catalog-modal-open');
+    syncBodyLock();
     const first = modal.querySelector('select, input, button');
     first && first.focus();
     track('filter_packages_open');
@@ -629,12 +1035,22 @@
     if (!modal) return;
     modal.classList.remove('open');
     modal.hidden = true;
-    document.body.classList.remove('catalog-modal-open');
+    syncBodyLock();
     lastFocus && lastFocus.focus();
   }
 
   fillSelects();
+  if (grouped && destSelects[0]) {
+    const destParam = new URLSearchParams(window.location.search).get('destino');
+    if (destParam && Array.from(destSelects[0].options).some(opt => opt.value === destParam)) {
+      destSelects.forEach(sel => { sel.value = destParam; });
+    }
+  }
   apply();
+  if (grouped) {
+    const destParam = new URLSearchParams(window.location.search).get('destino');
+    if (destParam && destCards.has(destParam)) openDestModal(destParam);
+  }
 
   sortEl && sortEl.addEventListener('change', () => {
     shown = pageSize;
@@ -660,7 +1076,28 @@
     if (e.target === modal) closeModal();
   });
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && modal && modal.classList.contains('open')) closeModal();
+    if (e.key === 'Escape') {
+      if (destModal && destModal.classList.contains('open')) {
+        e.preventDefault();
+        closeDestModal();
+        return;
+      }
+      if (modal && modal.classList.contains('open')) closeModal();
+      return;
+    }
+    if (e.key === 'Tab' && destModal && destModal.classList.contains('open')) {
+      const nodes = destFocusable();
+      if (!nodes.length) return;
+      const first = nodes[0];
+      const last = nodes[nodes.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    }
   });
 
   const form = modal && modal.querySelector('[data-catalog-form]');
@@ -706,6 +1143,37 @@
         if (!opt.value) return;
         opt.hidden = q ? opt.textContent.toLowerCase().indexOf(q) === -1 : false;
       });
+    });
+  }
+
+  if (grouped) {
+    list.addEventListener('click', (e) => {
+      if (e.target.closest('[data-lightbox]')) return;
+      const destCard = e.target.closest('.catalog-dest-card');
+      if (!destCard || destCard.hidden) return;
+      const key = destCard.getAttribute('data-group-key');
+      if (!key) return;
+      const opener = e.target.closest('[data-open-destination]') || destCard.querySelector('[data-open-destination]') || destCard;
+      openDestModal(key, opener);
+    });
+    destModal && destModal.querySelector('[data-dest-modal-close]') &&
+      destModal.querySelector('[data-dest-modal-close]').addEventListener('click', closeDestModal);
+    destModal && destModal.addEventListener('click', (e) => {
+      if (e.target === destModal) closeDestModal();
+    });
+    destModal && destModal.addEventListener('click', (e) => {
+      const chip = e.target.closest('[data-dest-origin]');
+      if (!chip || !destModal.contains(chip)) return;
+      destModalState.origin = chip.getAttribute('data-dest-origin') || '';
+      const current = { key: destModalState.key, label: (destModal.querySelector('#destModalTitle') || {}).textContent || '', offers: destModalState.offers };
+      renderOriginChips(current);
+      renderDestOptions(current);
+    });
+    const destSort = destModal && destModal.querySelector('[data-dest-modal-sort]');
+    destSort && destSort.addEventListener('change', () => {
+      destModalState.sort = destSort.value || 'price';
+      const current = { key: destModalState.key, label: (destModal.querySelector('#destModalTitle') || {}).textContent || '', offers: destModalState.offers };
+      renderDestOptions(current);
     });
   }
 })();

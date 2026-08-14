@@ -2040,6 +2040,9 @@ ul  { list-style: none; }
 .catalog-item.is-paged-out {
   display: none;
 }
+[data-catalog-root][data-grouped] .catalog-offer {
+  display: none !important;
+}
 
 body.catalog-modal-open {
   overflow: hidden;
@@ -2197,3 +2200,213 @@ body.catalog-modal-open {
     flex: 1;
   }
 }
+
+/* ──────────────────────────────────────────────────
+   CATÁLOGO: cards de destino e modal de opções
+────────────────────────────────────────────────── */
+.catalog-dest-card .card__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.catalog-dest-card .card__count {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--clr-dark);
+}
+.catalog-dest-card .card__origins,
+.catalog-dest-card .card__next-date {
+  font-size: 0.9rem;
+  color: var(--clr-muted);
+}
+.catalog-dest-card .card__total {
+  order: 0;
+}
+.catalog-dest-card [data-open-destination] {
+  background: var(--clr-primary-d);
+  color: var(--clr-white);
+}
+
+.dest-modal-overlay {
+  z-index: 1120;
+  align-items: stretch;
+  justify-content: center;
+}
+.dest-modal-overlay[hidden] {
+  display: none;
+}
+.dest-modal {
+  max-width: 760px;
+  width: min(760px, 100%);
+  max-height: min(92vh, 920px);
+  height: auto;
+  padding: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.dest-modal__header {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: var(--clr-white);
+  padding: 22px 52px 16px 24px;
+  border-bottom: 1px solid var(--clr-primary-l);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.dest-modal__header h3 {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--clr-dark);
+  margin: 0;
+}
+.dest-modal__count {
+  margin: 2px 0 0;
+  color: var(--clr-muted);
+  font-size: 0.92rem;
+  font-weight: 700;
+}
+.dest-modal__toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 14px;
+  align-items: center;
+  justify-content: space-between;
+}
+.dest-modal__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.dest-modal__chip {
+  border: 1px solid #c5d9d6;
+  background: var(--clr-white);
+  color: var(--clr-dark);
+  font-family: inherit;
+  font-size: 0.82rem;
+  font-weight: 800;
+  padding: 6px 10px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+.dest-modal__chip.is-active {
+  border-color: var(--clr-primary);
+  background: var(--clr-primary-l);
+  color: var(--clr-primary-d);
+}
+.dest-modal__sort {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: var(--clr-muted);
+}
+.dest-modal__sort select {
+  font-family: inherit;
+  font-size: 0.9rem;
+  padding: 6px 10px;
+  border: 1px solid #c5d9d6;
+  border-radius: var(--radius-sm);
+  min-height: 38px;
+  color: var(--clr-dark);
+  background: var(--clr-white);
+}
+.dest-modal__list {
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 12px 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  -webkit-overflow-scrolling: touch;
+}
+.dest-option {
+  border: 1px solid #d7e8e6;
+  border-radius: var(--radius-md);
+  padding: 16px 18px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 8px 20px;
+  background: var(--clr-white);
+}
+.dest-option__main {
+  min-width: 0;
+}
+.dest-option__title {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--clr-dark);
+  line-height: 1.3;
+}
+.dest-option__origin,
+.dest-option__hotel,
+.dest-option__extra {
+  font-size: 0.9rem;
+  color: var(--clr-muted);
+  margin-top: 2px;
+}
+.dest-option__dates {
+  margin-top: 6px;
+  font-size: 0.9rem;
+  color: var(--clr-text);
+}
+.dest-option__dates summary {
+  cursor: pointer;
+  font-weight: 700;
+}
+.dest-option__dates ul {
+  margin: 8px 0 0;
+  padding-left: 18px;
+  list-style: disc;
+}
+.dest-option__price {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 10px;
+  text-align: right;
+}
+.dest-option__total {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--clr-primary-d);
+  white-space: nowrap;
+}
+.dest-option__parcela,
+.dest-option__taxas {
+  font-size: 0.8rem;
+  color: var(--clr-muted);
+}
+.dest-option__cta {
+  white-space: nowrap;
+}
+
+@media (max-width: 720px) {
+  .dest-modal-overlay {
+    padding: 0;
+  }
+  .dest-modal {
+    max-width: 100%;
+    width: 100%;
+    height: 100%;
+    max-height: 100%;
+    border-radius: 0;
+  }
+  .dest-option {
+    grid-template-columns: 1fr;
+  }
+  .dest-option__price {
+    align-items: stretch;
+    text-align: left;
+  }
+  .dest-option__cta {
+    width: 100%;
+    justify-content: center;
+  }
+}
+

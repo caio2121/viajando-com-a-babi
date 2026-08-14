@@ -1,13 +1,13 @@
 """HTML compartilhado de filtros, ordenação e estados vazios do catálogo."""
 
-CSS_VERSION = "29"
-JS_VERSION = "26"
-ANALYTICS_VERSION = "14"
+CSS_VERSION = "30"
+JS_VERSION = "28"
+ANALYTICS_VERSION = "15"
 
 
 def toolbar(kind: str, page_size: int = 24) -> str:
     labels = {
-        "pacotes": ("Filtrar pacotes", "Mostrar mais pacotes", "pacote", "pacotes"),
+        "pacotes": ("Filtrar pacotes", "Mostrar mais destinos", "destino", "destinos"),
         "voos": ("Filtrar voos", "Mostrar mais ofertas", "promoção", "promoções"),
         "campanhas": ("Filtrar campanhas", "Mostrar mais campanhas", "campanha", "campanhas"),
     }
@@ -99,7 +99,7 @@ def toolbar(kind: str, page_size: int = 24) -> str:
 def empty_state(kind: str) -> str:
     copy = {
         "pacotes": (
-            "Nenhum pacote encontrado com esses filtros.",
+            "Nenhum destino encontrado com esses filtros.",
             "Tente alterar o destino, as datas ou a faixa de preço.",
         ),
         "voos": (
@@ -113,7 +113,7 @@ def empty_state(kind: str) -> str:
     }
     title, hint = copy[kind]
     more = {
-        "pacotes": "Mostrar mais pacotes",
+        "pacotes": "Mostrar mais destinos",
         "voos": "Mostrar mais ofertas",
         "campanhas": "Mostrar mais campanhas",
     }[kind]
@@ -186,6 +186,35 @@ def filter_modal() -> str:
           <button type="submit" class="btn btn--md">Aplicar filtros</button>
         </div>
       </form>
+    </div>
+  </div>
+"""
+
+
+def destination_modal() -> str:
+    return """
+  <div class="modal-overlay dest-modal-overlay" id="modalDestinationOffers" role="dialog" aria-modal="true" aria-labelledby="destModalTitle" hidden>
+    <div class="modal dest-modal">
+      <button class="modal__close" type="button" data-dest-modal-close aria-label="Fechar opções do destino">
+        <i class="fas fa-times"></i>
+      </button>
+      <div class="dest-modal__header">
+        <div>
+          <h3 id="destModalTitle">Destino</h3>
+          <p class="dest-modal__count" data-dest-modal-count></p>
+        </div>
+        <div class="dest-modal__toolbar">
+          <div class="dest-modal__chips" data-dest-origin-chips></div>
+          <label class="dest-modal__sort">
+            <span>Ordenar</span>
+            <select data-dest-modal-sort>
+              <option value="price">Menor preço</option>
+              <option value="date">Data</option>
+            </select>
+          </label>
+        </div>
+      </div>
+      <div class="dest-modal__list" data-dest-modal-list></div>
     </div>
   </div>
 """

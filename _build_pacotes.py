@@ -6,12 +6,13 @@ Executar após alterar pacotes na home ou após python _sync_operator.py.
 from __future__ import annotations
 
 import html
+import json
 import re
-import unicodedata
 from pathlib import Path
 
 import _catalog_ui as ui
 import _dates as dates
+import _destination as destmod
 import _money as money
 
 root = Path(__file__).parent
@@ -20,14 +21,23 @@ ARTICLE_RE = re.compile(r"<article\b[^>]*class=\"[^\"]*card[\s\S]*?</article>", 
 
 
 def normalize(text: str) -> str:
-    text = unicodedata.normalize("NFD", text or "")
-    text = "".join(ch for ch in text if unicodedata.category(ch) != "Mn")
-    return text.lower().strip()
+    return destmod.normalize(text)
 
 
 def slugify(text: str) -> str:
-    base = normalize(text)
-    return re.sub(r"[^a-z0-9]+", "-", base).strip("-")
+    return destmod.slugify(text)
+
+
+def get_attr(card: str, name: str) -> str:
+    m = re.search(rf'\b{re.escape(name)}="([^"]*)"', card)
+    return html.unescape(m.group(1)) if m else ""
+
+
+def set_attr(card: str, name: str, value: str) -> str:
+    quoted = html.escape(value or "", quote=True)
+    if re.search(rf'\b{re.escape(name)}="', card):
+        return re.sub(rf'\b{re.escape(name)}="[^"]*"', f'{name}="{quoted}"', card, count=1)
+    return card.replace("<article", f'<article {name}="{quoted}"', 1)
 
 
 def money_to_float(text: str) -> float:
@@ -59,26 +69,32 @@ def card_id(card: str) -> str:
 
 
 def card_destino(card: str) -> str:
-    m = re.search(r'data-destino="([^"]+)"', card)
-    return m.group(1) if m else ""
+    return get_attr(card, "data-destino")
 
 
-def dest_overlap(sync_dest: str, manual_ids: set[str], manual_destinos: set[str]) -> bool:
-    key = slugify(sync_dest)
-    if not key:
-        return False
-    for mid in manual_ids:
-        midk = mid.replace("pacote-", "")
-        if key == midk or key in midk or midk in key:
-            return True
-    for dest in manual_destinos:
-        dk = slugify(dest)
-        if key == dk or key in dk or dk in key:
-            return True
-    return False
+def card_title_main(card: str) -> str:
+    m = re.search(r'<h4 class="card__title">\s*([^<]+)', card)
+    return (m.group(1) if m else "").strip()
 
 
-def enrich_card(card: str, source: str = "manual") -> str:
+def card_title_sub(card: str) -> str:
+    m = re.search(r'<h4 class="card__title">[^<]*<span>([^<]*)</span>', card)
+    return (m.group(1) if m else "").strip()
+
+
+def load_known_labels() -> list[str]:
+    path = root / "data" / "operator-sync.json"
+    offers = []
+    if path.exists():
+        try:
+            data = json.loads(path.read_text(encoding="utf-8"))
+            offers = (data.get("offers") or {}).get("pacotes") or []
+        except (OSError, json.JSONDecodeError):
+            offers = []
+    return destmod.known_labels_from_offers(offers)
+
+
+def enrich_card(card: str, source: str = "manual", known_labels: list[str] | None = None) -> str:
     if "catalog-item" not in card:
         card = card.replace('class="card reveal"', 'class="card reveal catalog-item"', 1)
         card = card.replace("class='card reveal'", "class='card reveal catalog-item'", 1)
@@ -86,7 +102,7 @@ def enrich_card(card: str, source: str = "manual") -> str:
     categoria_m = re.search(r'data-categoria="([^"]+)"', card)
     categoria = categoria_m.group(1) if categoria_m else ""
     origem, iata = infer_origin(card)
-    tipo = infer_tipo(card, categoria)
+    tipo = get_attr(card, "data-tipo") or infer_tipo(card, categoria)
     badge = re.search(r'class="card__badge">([^<]+)', card)
     total = re.search(r"Total a partir de R\$\s*([\d.]+(?:,\d{2})?)", card)
     valor_attr = re.search(r'data-valor-total="([^"]+)"', card)
@@ -109,12 +125,33 @@ def enrich_card(card: str, source: str = "manual") -> str:
         card = card.replace("<article", f'<article data-sort-price="{price_txt}"', 1)
     if "data-origem=" not in card:
         card = card.replace("<article", f'<article data-origem="{origem}" data-origem-iata="{iata}"', 1)
-    if "data-destino-key=" not in card:
-        card = card.replace("<article", f'<article data-destino-key="{slugify(destino)}"', 1)
+    elif get_attr(card, "data-origem") == "sem_aereo":
+        card = set_attr(card, "data-origem", "sem-aereo")
     if "data-tipo=" not in card:
         card = card.replace("<article", f'<article data-tipo="{tipo}"', 1)
     if "data-source=" not in card:
         card = card.replace("<article", f'<article data-source="{source}"', 1)
+
+    structured_dest = get_attr(card, "data-destination") or (card_title_main(card) if source == "operator" else "")
+    product_title = destino or card_title_main(card)
+    evento = get_attr(card, "data-evento") in ("1", "true")
+    group_key, group_label = destmod.group_identity(
+        destination=structured_dest if source == "operator" else destino,
+        title=product_title,
+        tipo=tipo,
+        evento=evento,
+        known_labels=known_labels,
+        is_manual=source == "manual",
+    )
+    card = set_attr(card, "data-destino-key", group_key)
+    card = set_attr(card, "data-group-label", group_label)
+    if source == "operator" and structured_dest and not get_attr(card, "data-destination"):
+        card = set_attr(card, "data-destination", structured_dest)
+    offer_name = destmod.offer_name(product_title, structured_dest if source == "operator" else "", group_label)
+    if group_key.startswith("evento:") or not offer_name:
+        offer_name = product_title or card_title_sub(card)
+    if offer_name:
+        card = set_attr(card, "data-offer-name", offer_name[:80])
     return card
 
 
@@ -125,22 +162,18 @@ cta_end = index.find("</div>", cta_start) + len("</div>")
 blocks = index[start:cta_start]
 cta_block = index[cta_start:cta_end]
 
-manual_cards = [enrich_card(c, "manual") for c in ARTICLE_RE.findall(blocks)]
+known_labels = load_known_labels()
+manual_cards = [enrich_card(c, "manual", known_labels) for c in ARTICLE_RE.findall(blocks)]
 manual_ids = {card_id(c) for c in manual_cards}
-manual_destinos = {card_destino(c) for c in manual_cards}
 
 sync_cards: list[str] = []
 sync_file = root / "data" / "generated" / "pacotes-sync.html"
 if sync_file.exists():
     for card in ARTICLE_RE.findall(sync_file.read_text(encoding="utf-8")):
-        dest = card_destino(card)
         cid = card_id(card)
-        stem = re.sub(r"-(gig|sdu|gru|cgh|vcp|rio|sp|sem-aereo|na)$", "", cid, flags=re.I)
-        if cid in manual_ids or stem in manual_ids:
+        if cid in manual_ids:
             continue
-        if dest_overlap(dest, manual_ids, manual_destinos):
-            continue
-        sync_cards.append(enrich_card(card, "operator"))
+        sync_cards.append(enrich_card(card, "operator", known_labels))
 
 all_cards = manual_cards + sync_cards
 
@@ -190,7 +223,7 @@ main = f"""<main id="conteudo-principal">
       <p class="section-sub">Pacotes com aéreo, hospedagem e serviços principais, além de cruzeiros e roteiros em grupo. Quer algo sob medida? <a href="roteiro-personalizado.html">Monte um roteiro personalizado</a>.</p>
     </div>
     <div class="container" data-catalog-root="pacotes">
-{ui.toolbar("pacotes", 24)}
+{ui.toolbar("pacotes", 16)}
       <div class="pacotes__grid" data-catalog-list>
 {"".join(all_cards)}
       </div>
@@ -201,6 +234,7 @@ main = f"""<main id="conteudo-principal">
   </section>
 </main>
 {ui.filter_modal()}
+{ui.destination_modal()}
 """
 
 hub_footer = (root / "_partials/hub-footer.html").read_text(encoding="utf-8")
@@ -215,4 +249,7 @@ cookie_idx = hub_footer.find('<div id="cookieBanner"')
 template_tail = hub_footer[:cookie_idx] + lightbox + hub_footer[cookie_idx:]
 
 (root / "pacotes.html").write_text(head + hub_header + main + template_tail, encoding="utf-8")
-print(f"pacotes.html atualizado ({len(manual_cards)} manuais + {len(sync_cards)} sincronizados)")
+print(
+    f"pacotes.html atualizado ({len(manual_cards)} manuais + {len(sync_cards)} sincronizados; "
+    f"{len({get_attr(c, 'data-destino-key') for c in all_cards})} destinos)"
+)
