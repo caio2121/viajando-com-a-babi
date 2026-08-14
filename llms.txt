@@ -38,6 +38,8 @@ Viajantes que querem economizar tempo, evitar erros de planejamento e ter suport
 
 - Home: https://viajandocomababi.com.br/
 - Pacotes de viagem: https://viajandocomababi.com.br/pacotes.html
+- Promoções de voos: https://viajandocomababi.com.br/promo-voos.html
+- Campanhas e ofertas: https://viajandocomababi.com.br/campanhas.html
 - Sobre a Babi: https://viajandocomababi.com.br/sobre.html
 - Como funciona: https://viajandocomababi.com.br/como-funciona.html
 - Serviços: https://viajandocomababi.com.br/servicos.html

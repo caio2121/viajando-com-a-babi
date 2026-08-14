@@ -1532,6 +1532,24 @@ ul  { list-style: none; }
 
 .card__img-wrap img[data-lightbox] { cursor: zoom-in; }
 
+.card__img-wrap--icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+  background: linear-gradient(145deg, rgba(58, 175, 169, 0.12), rgba(31, 56, 100, 0.08));
+}
+
+.card__icon-placeholder {
+  font-size: 3rem;
+  color: var(--color-primary, #3AAFA9);
+  opacity: 0.85;
+}
+
+.ofertas-page .pacotes__grid {
+  margin-top: 8px;
+}
+
 /* ──────────────────────────────────────────────────
    MODAL FORMULÁRIO DE VIAGEM
 ────────────────────────────────────────────────── */

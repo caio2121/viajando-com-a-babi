@@ -11,7 +11,7 @@
   const viewedPackages = new Set();
   const viewedCategories = new Set();
   const viewedSections = new Set();
-  const PACKAGE_CARD_SELECTOR = '#pacotes .card[data-destino], .pacotes-page .card[data-destino]';
+  const PACKAGE_CARD_SELECTOR = '#pacotes .card[data-destino], .pacotes-page .card[data-destino], .ofertas-page .card[data-destino]';
 
   /* ── Helpers ─────────────────────────────────────── */
 
@@ -62,7 +62,9 @@
     const map = {
       'grupo-guia': 'grupos_com_guia',
       'completo': 'pacote_completo',
-      'sem-aereo': 'cruzeiro'
+      'sem-aereo': 'cruzeiro',
+      'promo-voo': 'promo_voo',
+      'campanha': 'campanha'
     };
     return map[categoria] || categoria || 'outros';
   }

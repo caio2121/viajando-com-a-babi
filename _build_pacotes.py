@@ -1,4 +1,5 @@
 """Regenera pacotes.html a partir dos cards em index.html. Executar após alterar pacotes na home."""
+import re
 from pathlib import Path
 
 root = Path(__file__).parent
@@ -10,6 +11,24 @@ cta_end = index.find("</div>", cta_start) + len("</div>")
 
 blocks = index[start:cta_start]
 cta_block = index[cta_start:cta_end]
+
+existing_ids = set(re.findall(r'<article class="card[^"]*" id="([^"]+)"', blocks))
+sync_file = root / "data" / "generated" / "pacotes-sync.html"
+sync_extra = ""
+if sync_file.exists():
+    sync_html = sync_file.read_text(encoding="utf-8")
+    sync_cards = re.findall(r"(<article class=\"card[\s\S]*?</article>)", sync_html)
+    filtered = [c for c in sync_cards if re.search(r'id="([^"]+)"', c) and re.search(r'id="([^"]+)"', c).group(1) not in existing_ids]
+    if filtered:
+        sync_extra = """
+      <div class="pacotes__category" id="pacotes-sincronizados">
+        <h3 class="pacotes__subhead"><i class="fas fa-sync-alt" aria-hidden="true"></i> Mais ofertas</h3>
+        <p class="pacotes__category-desc">Pacotes adicionais com saída do Rio, São Paulo ou sem aéreo.</p>
+        <div class="pacotes__grid">
+""" + "\n".join(filtered) + """
+        </div>
+      </div>
+"""
 
 head_assets = (root / "_partials/head-assets.html").read_text(encoding="utf-8")
 ga4 = (root / "_partials/ga4.html").read_text(encoding="utf-8")
@@ -31,7 +50,7 @@ head = f"""<!DOCTYPE html>
   <meta property="og:locale" content="pt_BR" />
   <meta name="twitter:card" content="summary_large_image" />
   <link rel="icon" type="image/png" href="assets/logo-vcb.png" />
-{head_assets}  <link rel="stylesheet" href="style.css?v=26" />
+{head_assets}  <link rel="stylesheet" href="style.css?v=27" />
   <script type="application/ld+json">
   {{
     "@context": "https://schema.org",
@@ -57,7 +76,7 @@ main = f"""<main id="conteudo-principal">
       <p class="section-sub">Pacotes com aéreo, hospedagem e serviços principais, além de cruzeiros e roteiros em grupo. Quer algo sob medida? <a href="roteiro-personalizado.html">Monte um roteiro personalizado</a>.</p>
     </div>
     <div class="container">
-{blocks}{cta_block}
+{blocks}{sync_extra}{cta_block}
 
     </div>
   </section>
