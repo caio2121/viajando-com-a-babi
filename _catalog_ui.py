@@ -1,7 +1,7 @@
 """HTML compartilhado de filtros, ordenação e estados vazios do catálogo."""
 
 CSS_VERSION = "28"
-JS_VERSION = "24"
+JS_VERSION = "25"
 ANALYTICS_VERSION = "14"
 
 
@@ -12,11 +12,19 @@ def toolbar(kind: str, page_size: int = 24) -> str:
         "campanhas": ("Filtrar campanhas", "Mostrar mais campanhas", "campanha", "campanhas"),
     }
     filter_label, more_label, one, many = labels[kind]
-    sort_price = ""
+    sort_block = ""
     if kind != "campanhas":
         sort_price = """
             <option value="price">Preço</option>
             <option value="price-desc">Maior preço</option>"""
+        sort_block = f"""
+        <label class="catalog-bar__sort">
+          <span>Ordenar por</span>
+          <select data-catalog-sort>
+            <option value="date">Data</option>
+            {sort_price}
+          </select>
+        </label>"""
     inline_filters = ""
     if kind in ("voos", "campanhas"):
         dest_filter = """
@@ -27,7 +35,17 @@ def toolbar(kind: str, page_size: int = 24) -> str:
         </select>
       </label>"""
         origin_filter = ""
+        dest_type_filter = ""
         if kind == "voos":
+            dest_type_filter = """
+      <label class="catalog-bar__field">
+        <span>Tipo de destino</span>
+        <select data-catalog-dest-type>
+          <option value="">Todos</option>
+          <option value="nacional">Nacionais</option>
+          <option value="internacional">Internacionais</option>
+        </select>
+      </label>"""
             origin_filter = """
       <label class="catalog-bar__field">
         <span>Origem</span>
@@ -53,7 +71,7 @@ def toolbar(kind: str, page_size: int = 24) -> str:
       </label>"""
         inline_filters = f"""
     <form class="catalog-bar__filters" data-catalog-inline novalidate>
-      {origin_filter}{dest_filter}{price_filter}
+      {dest_type_filter}{origin_filter}{dest_filter}{price_filter}
       <button type="submit" class="btn btn--md">Pesquisar</button>
       <button type="button" class="btn btn--outline btn--md" data-catalog-clear hidden>Limpar filtros</button>
     </form>"""
@@ -69,13 +87,7 @@ def toolbar(kind: str, page_size: int = 24) -> str:
     <div class="catalog-bar" data-catalog="{kind}" data-page-size="{page_size}">
       <div class="catalog-bar__row">
         {filter_btn}
-        <label class="catalog-bar__sort">
-          <span>Ordenar por</span>
-          <select data-catalog-sort>
-            <option value="date">Data</option>
-            {sort_price}
-          </select>
-        </label>
+        {sort_block}
         <p class="catalog-bar__count" data-catalog-count></p>
       </div>
       {inline_filters}

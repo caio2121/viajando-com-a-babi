@@ -371,6 +371,7 @@
   const fromInputs = document.querySelectorAll('[data-catalog-root] [data-catalog-from], #modalCatalogFilter [data-catalog-from]');
   const toInputs = document.querySelectorAll('[data-catalog-root] [data-catalog-to], #modalCatalogFilter [data-catalog-to]');
   const tipoSelect = modal && modal.querySelector('[data-catalog-tipo]');
+  const destTypeSelects = document.querySelectorAll('[data-catalog-root] [data-catalog-dest-type], #modalCatalogFilter [data-catalog-dest-type]');
 
   let shown = pageSize;
   let lastFocus = null;
@@ -385,17 +386,27 @@
     return 'R$ ' + Math.round(value).toLocaleString('pt-BR');
   }
 
+  function itemDates(el) {
+    return (el.getAttribute('data-dates') || '')
+      .split(',')
+      .map(v => v.trim())
+      .filter(Boolean);
+  }
+
   function itemDate(el) {
     return el.getAttribute('data-sort-date') || '9999-12-31';
   }
 
   function itemPrice(el) {
-    const n = parseFloat(el.getAttribute('data-sort-price') || '0');
-    return Number.isFinite(n) ? n : 0;
+    const raw = el.getAttribute('data-sort-price');
+    if (raw === null || raw === '') return null;
+    const n = parseFloat(raw);
+    return Number.isFinite(n) && n > 0 ? n : null;
   }
 
   function originKey(el) {
     const bucket = el.getAttribute('data-origem') || '';
+    if (kind === 'voos') return bucket;
     const iata = el.getAttribute('data-origem-iata') || '';
     return iata ? bucket + ':' + iata : bucket;
   }
@@ -405,6 +416,7 @@
     const iata = el.getAttribute('data-origem-iata') || '';
     const names = { rio: 'Rio de Janeiro', sp: 'São Paulo', 'sem-aereo': 'Sem aéreo' };
     const base = names[bucket] || bucket;
+    if (kind === 'voos') return base || 'Outras';
     if (iata) return base + ' (' + iata + ')';
     return base || 'Outras';
   }
@@ -419,7 +431,8 @@
       const dk = el.getAttribute('data-destino-key') || '';
       const title = (el.querySelector('.card__title, .oferta-row__title') || {}).textContent || el.getAttribute('data-destino') || '';
       if (dk) dests.set(dk, title.replace(/\s+/g, ' ').trim().split('\n')[0]);
-      maxPrice = Math.max(maxPrice, itemPrice(el));
+      const price = itemPrice(el);
+      if (price != null) maxPrice = Math.max(maxPrice, price);
     });
     originSelects.forEach(sel => {
       const current = sel.value;
@@ -443,11 +456,12 @@
       });
       sel.value = current;
     });
-    const ceiling = Math.ceil((maxPrice || 1000) / 100) * 100;
+    const calculatedCeiling = Math.ceil((maxPrice || 0) / 100) * 100;
+    const ceiling = Math.max(10000, calculatedCeiling);
     priceInputs.forEach(input => {
       input.min = '0';
       input.max = String(ceiling);
-      if (!input.value || Number(input.value) > ceiling) input.value = String(ceiling);
+      input.value = String(ceiling);
     });
     syncPriceLabels();
     if (tipoSelect) {
@@ -475,7 +489,8 @@
     const max = priceInput ? Number(priceInput.max) : 0;
     const price = priceInput ? Number(priceInput.value) : max;
     const tipo = (tipoSelect && tipoSelect.value) || '';
-    return { origin, dest, from, to, price, max, tipo };
+    const destType = (destTypeSelects[0] && destTypeSelects[0].value) || '';
+    return { origin, dest, from, to, price, max, tipo, destType };
   }
 
   function activeFilterCount(f) {
@@ -485,6 +500,7 @@
     if (f.from) n += 1;
     if (f.to) n += 1;
     if (f.tipo) n += 1;
+    if (f.destType) n += 1;
     if (f.price && f.max && f.price < f.max) n += 1;
     return n;
   }
@@ -497,12 +513,17 @@
     }
     if (f.dest && el.getAttribute('data-destino-key') !== f.dest) return false;
     if (f.tipo && el.getAttribute('data-tipo') !== f.tipo) return false;
-    const d = itemDate(el);
-    if (f.from && d !== '9999-12-31' && d < f.from) return false;
-    if (f.to && d !== '9999-12-31' && d > f.to) return false;
+    if (f.destType && el.getAttribute('data-destino-tipo') !== f.destType) return false;
+    const dateFilterOn = !!(f.from || f.to);
+    const listed = itemDates(el);
+    if (dateFilterOn) {
+      if (!listed.length) return false;
+      const inRange = listed.some(date => (!f.from || date >= f.from) && (!f.to || date <= f.to));
+      if (!inRange) return false;
+    }
     if (f.price && f.max && f.price < f.max) {
       const p = itemPrice(el);
-      if (p > f.price) return false;
+      if (p == null || p > f.price) return false;
     }
     return true;
   }
@@ -510,9 +531,18 @@
   function sortItems(arr) {
     const mode = (sortEl && sortEl.value) || 'date';
     return arr.slice().sort((a, b) => {
-      if (mode === 'price-desc') return itemPrice(b) - itemPrice(a) || itemDate(a).localeCompare(itemDate(b));
-      if (mode === 'price') return itemPrice(a) - itemPrice(b) || itemDate(a).localeCompare(itemDate(b));
-      return itemDate(a).localeCompare(itemDate(b)) || itemPrice(a) - itemPrice(b);
+      const pa = itemPrice(a);
+      const pb = itemPrice(b);
+      const da = itemDate(a);
+      const db = itemDate(b);
+      if (mode === 'price' || mode === 'price-desc') {
+        if (pa == null && pb == null) return da.localeCompare(db);
+        if (pa == null) return 1;
+        if (pb == null) return -1;
+        const diff = mode === 'price-desc' ? pb - pa : pa - pb;
+        return diff || da.localeCompare(db);
+      }
+      return da.localeCompare(db) || (pa == null ? 1e12 : pa) - (pb == null ? 1e12 : pb);
     });
   }
 
@@ -562,6 +592,7 @@
   function clearFilters() {
     originSelects.forEach(sel => { sel.value = ''; });
     destSelects.forEach(sel => { sel.value = ''; });
+    destTypeSelects.forEach(sel => { sel.value = ''; });
     fromInputs.forEach(el => { el.value = ''; });
     toInputs.forEach(el => { el.value = ''; });
     if (tipoSelect) tipoSelect.value = '';
@@ -640,6 +671,23 @@
   });
 
   priceInputs.forEach(input => input.addEventListener('input', syncPriceLabels));
+
+  if (kind === 'voos') {
+    const liveApply = () => { shown = pageSize; apply(); };
+    originSelects.forEach(el => el.addEventListener('change', liveApply));
+    destSelects.forEach(el => el.addEventListener('change', liveApply));
+    destTypeSelects.forEach(el => el.addEventListener('change', liveApply));
+    fromInputs.forEach(el => el.addEventListener('change', liveApply));
+    toInputs.forEach(el => el.addEventListener('change', liveApply));
+    let priceFrame = 0;
+    priceInputs.forEach(el => el.addEventListener('input', () => {
+      if (priceFrame) cancelAnimationFrame(priceFrame);
+      priceFrame = requestAnimationFrame(() => {
+        priceFrame = 0;
+        apply();
+      });
+    }));
+  }
 
   if (destSearch && destSelects[0]) {
     destSearch.addEventListener('input', () => {

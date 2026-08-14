@@ -8,13 +8,13 @@ from __future__ import annotations
 import html
 import re
 import unicodedata
-from datetime import date, datetime
 from pathlib import Path
 
 import _catalog_ui as ui
+import _dates as dates
 
 root = Path(__file__).parent
-TODAY = date.today()
+TODAY = dates.TODAY
 ARTICLE_RE = re.compile(r"<article\b[^>]*class=\"[^\"]*card[\s\S]*?</article>", re.I)
 
 
@@ -27,51 +27,6 @@ def normalize(text: str) -> str:
 def slugify(text: str) -> str:
     base = normalize(text)
     return re.sub(r"[^a-z0-9]+", "-", base).strip("-")
-
-
-def parse_br_date(text: str) -> date | None:
-    if not text:
-        return None
-    text = text.strip()
-    for fmt in ("%d/%m/%Y", "%d/%m/%y"):
-        try:
-            return datetime.strptime(text, fmt).date()
-        except ValueError:
-            pass
-    m = re.search(r"(\d{1,2})/(\d{1,2})(?:/(\d{2,4}))?", text)
-    if not m:
-        return None
-    day, month, year = int(m.group(1)), int(m.group(2)), m.group(3)
-    if month < 1 or month > 12 or day < 1 or day > 31:
-        return None
-    if year is None:
-        year = TODAY.year
-        try:
-            parsed = date(year, month, day)
-        except ValueError:
-            return None
-        if parsed < TODAY:
-            year += 1
-    else:
-        year = int(year)
-        if year < 100:
-            year += 2000
-    try:
-        return date(year, month, day)
-    except ValueError:
-        return None
-
-
-def next_future_iso(text: str) -> str:
-    candidates = []
-    compact = re.search(r"(\d{1,2})\s+a\s+(\d{1,2})/(\d{1,2})", text or "", re.I)
-    if compact:
-        text = f"{compact.group(1)}/{compact.group(3)}, {compact.group(2)}/{compact.group(3)}"
-    for part in re.split(r"[,;]| a | até ", text or "", flags=re.I):
-        parsed = parse_br_date(part.strip())
-        if parsed and parsed >= TODAY:
-            candidates.append(parsed)
-    return min(candidates).isoformat() if candidates else ""
 
 
 def money_to_float(text: str) -> float:
@@ -147,9 +102,14 @@ def enrich_card(card: str, source: str = "manual") -> str:
     badge = re.search(r'class="card__badge">([^<]+)', card)
     total = re.search(r"Total a partir de R\$\s*([\d.]+(?:,\d{2})?)", card)
     valor_attr = re.search(r'data-valor-total="([^"]+)"', card)
+    iso_dates = dates.future_iso_dates(dates.extract_departure_dates(badge.group(1) if badge else ""))
+    if "data-dates=" not in card:
+        card = card.replace("<article", f'<article data-dates="{html.escape(dates.dates_attr(iso_dates), quote=True)}"', 1)
     if "data-sort-date=" not in card:
-        sort_date = next_future_iso(badge.group(1) if badge else "")
+        sort_date = dates.next_sort_date(iso_dates)
         card = card.replace("<article", f'<article data-sort-date="{html.escape(sort_date, quote=True)}"', 1)
+    if badge and dates.sanitize_date_text(badge.group(1)) != badge.group(1):
+        card = card.replace(badge.group(0), f'class="card__badge">{html.escape(dates.sanitize_date_text(badge.group(1))[:70])}', 1)
     if "data-sort-price=" not in card:
         if valor_attr:
             price = money_to_float(valor_attr.group(1))
@@ -157,7 +117,8 @@ def enrich_card(card: str, source: str = "manual") -> str:
             price = money_to_float(total.group(1))
         else:
             price = money_to_float(re.search(r"R\$\s*([\d.]+(?:,\d{2})?)", card).group(0) if re.search(r"R\$\s*[\d.]+", card) else "")
-        card = card.replace("<article", f'<article data-sort-price="{price:.2f}"', 1)
+        price_txt = f"{price:.2f}" if price > 0 else ""
+        card = card.replace("<article", f'<article data-sort-price="{price_txt}"', 1)
     if "data-origem=" not in card:
         card = card.replace("<article", f'<article data-origem="{origem}" data-origem-iata="{iata}"', 1)
     if "data-destino-key=" not in card:

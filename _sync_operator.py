@@ -26,17 +26,20 @@ import urllib.request
 from datetime import date, datetime
 from pathlib import Path
 
+import _dates as dates
+
 ROOT = Path(__file__).parent
 DATA = ROOT / "data"
 GENERATED = DATA / "generated"
 SYNC_FILE = DATA / "operator-sync.json"
 SOURCE_URL = "https://viajandocomdesconto.com/"
 WA_NUMBER = "5521920064617"
-TODAY = date.today()
+TODAY = dates.TODAY
 
-RIO_IATA = {"GIG", "SDU"}
-SP_IATA = {"GRU", "CGH", "VCP"}
+RIO_IATA = {"GIG", "SDU", "RIO"}
+SP_IATA = {"GRU", "CGH", "VCP", "SAO"}
 ORIGIN_PRIORITY = ("rio", "sp")
+JS_LEAK_RE = re.compile(r"GMT[+-]|Horário Padrão|Invalid Date|\bNaN\b|\bundefined\b|\bnull\b", re.I)
 
 USER_AGENT = "ViajandoComABabi-Sync/1.0 (+https://viajandocomababi.com.br/)"
 
@@ -66,6 +69,36 @@ def extract_json_array(html: str, name: str) -> list:
     return json.loads(match.group(1))
 
 
+def extract_js_object(html: str, needle: str) -> dict:
+    idx = html.find(needle)
+    if idx < 0:
+        raise RuntimeError(f"{needle} não encontrado na fonte")
+    start = html.find("{", idx)
+    if start < 0:
+        raise RuntimeError(f"Objeto após {needle} não encontrado")
+    depth = 0
+    in_str = False
+    esc = False
+    for i, ch in enumerate(html[start:], start):
+        if in_str:
+            if esc:
+                esc = False
+            elif ch == "\\":
+                esc = True
+            elif ch == '"':
+                in_str = False
+            continue
+        if ch == '"':
+            in_str = True
+        elif ch == "{":
+            depth += 1
+        elif ch == "}":
+            depth -= 1
+            if depth == 0:
+                return json.loads(html[start : i + 1])
+    raise RuntimeError(f"Objeto {needle} desbalanceado")
+
+
 def extract_dados(html: str) -> dict:
     match = re.search(r'id="dados"[^>]*>(\{.*?\})</script>', html, re.S)
     if not match:
@@ -73,59 +106,27 @@ def extract_dados(html: str) -> dict:
     return json.loads(match.group(1))
 
 
-def parse_br_date(text: str) -> date | None:
-    if not text:
+def extract_pvoo_payload(html: str) -> dict:
+    return extract_js_object(html, "window.__PVOO_PAYLOAD = ")
+
+
+def as_text(value) -> str:
+    if isinstance(value, list):
+        return ", ".join(str(v) for v in value if v)
+    return str(value or "")
+
+
+def parse_number(text: str | None) -> float | None:
+    if text is None or text == "":
         return None
-    text = text.strip()
-    for fmt in ("%d/%m/%Y", "%d/%m/%y"):
-        try:
-            return datetime.strptime(text, fmt).date()
-        except ValueError:
-            pass
-    m = re.search(r"(\d{1,2})/(\d{1,2})(?:/(\d{2,4}))?", text)
-    if not m:
-        return None
-    day, month, year = int(m.group(1)), int(m.group(2)), m.group(3)
-    if month < 1 or month > 12 or day < 1 or day > 31:
-        return None
-    if year is None:
-        year = TODAY.year
-        parsed = date(year, month, day)
-        if parsed < TODAY:
-            year += 1
-    else:
-        year = int(year)
-        if year < 100:
-            year += 2000
     try:
-        return date(year, month, day)
-    except ValueError:
+        return float(text)
+    except (TypeError, ValueError):
         return None
-
-
-def parse_date_range(text: str) -> tuple[date | None, date | None]:
-    if not text:
-        return None, None
-    cleaned = re.sub(r"\s*(até|ate)\s*", " a ", text, flags=re.I)
-    m = re.search(r"(\d{1,2})\s+a\s+(\d{1,2})/(\d{1,2})(?:/(\d{2,4}))?", cleaned, re.I)
-    if m and "/" not in m.group(1):
-        year = m.group(4)
-        start = parse_br_date(f"{m.group(1)}/{m.group(3)}" + (f"/{year}" if year else ""))
-        end = parse_br_date(f"{m.group(2)}/{m.group(3)}" + (f"/{year}" if year else ""))
-        return start, end
-    parts = re.split(r"\s+a\s+|\s*-\s*", cleaned, maxsplit=1, flags=re.I)
-    start = parse_br_date(parts[0]) if parts else None
-    end = parse_br_date(parts[1]) if len(parts) > 1 else start
-    return start, end
 
 
 def is_range_valid(text: str) -> bool:
-    start, end = parse_date_range(text)
-    if end:
-        return end >= TODAY
-    if start:
-        return start >= TODAY
-    return True
+    return is_sale_period_valid(text)
 
 
 def classify_origin(iata: str | None, cidade: str | None) -> str | None:
@@ -133,7 +134,7 @@ def classify_origin(iata: str | None, cidade: str | None) -> str | None:
     city = normalize(cidade or "")
     if code in RIO_IATA or "rio de janeiro" in city:
         return "rio"
-    if code in SP_IATA or "sao paulo" in city:
+    if code in SP_IATA or "sao paulo" in city or city == "campinas":
         return "sp"
     return None
 
@@ -156,30 +157,37 @@ def attr(value: str) -> str:
     return html.escape(str(value or ""), quote=True)
 
 
-def nights_from_range(text: str) -> int | None:
-    start, end = parse_date_range(text)
-    if start and end and end >= start:
-        delta = (end - start).days
-        return delta if delta > 0 else None
-    return None
+def package_departure_dates(*texts: str) -> list[str]:
+    return dates.future_iso_dates(dates.extract_departure_dates(*texts))
 
 
 def next_future_iso(*texts: str) -> str:
-    candidates: list[date] = []
-    for text in texts:
-        if not text:
-            continue
-        start, end = parse_date_range(str(text))
-        for parsed in (start, end):
-            if parsed and parsed >= TODAY:
-                candidates.append(parsed)
-        for part in re.split(r"[,;]", str(text)):
-            parsed = parse_br_date(part.strip())
-            if parsed and parsed >= TODAY:
-                candidates.append(parsed)
-    if not candidates:
+    return dates.next_sort_date(package_departure_dates(*texts))
+
+
+def is_sale_period_valid(text: str) -> bool:
+    start, end = dates.parse_date_range(text)
+    if end:
+        return end >= TODAY
+    if start:
+        return start >= TODAY
+    return True
+
+
+def format_money(value: float | None, currency: str = "BRL") -> str:
+    if value is None:
         return ""
-    return min(candidates).isoformat()
+    rounded = int(round(value))
+    formatted = f"{rounded:,}".replace(",", ".")
+    prefix = "US$" if currency == "USD" else "R$"
+    return f"{prefix}&nbsp;{formatted}"
+
+
+def mapa_names(mapa: dict, iata: str) -> tuple[str, str]:
+    entry = mapa.get(iata) or []
+    origin_name = entry[0] if len(entry) > 0 else iata
+    dest_name = entry[1] if len(entry) > 1 else (entry[0] if entry else iata)
+    return origin_name, dest_name
 
 
 def tipo_from_offer(offer: dict) -> str:
@@ -325,13 +333,19 @@ def filter_pacotes(raw: list[dict]) -> tuple[list[dict], dict]:
             ordered = [("sem_aereo", origin)]
 
         for bucket, origin in ordered[:2 if flight else 1]:
-            if not is_range_valid(origin.get("data", "")):
+            parsed_dates = dates.extract_departure_dates(
+                as_text(origin.get("data")),
+                as_text(origin.get("outras")),
+            )
+            departure_dates = dates.future_iso_dates(parsed_dates)
+            if parsed_dates and not departure_dates:
                 stats["ignored_expired"] += 1
                 continue
             hotel = pick_cheapest_hotel(origin.get("hoteis"))
             total = hotel.get("preco") if hotel else origin.get("por") or origin.get("de") or ""
             parcela = hotel.get("parcela") if hotel else origin.get("min_parcela") or ""
             offer_id = f"pacote:{slug}:{origin.get('iata') or bucket}"
+            sort_price = round(money_to_float(total), 2)
             offer = {
                 "id": offer_id,
                 "fingerprint": fingerprint("pacote", slug, origin.get("iata", ""), origin.get("data", "")),
@@ -342,8 +356,9 @@ def filter_pacotes(raw: list[dict]) -> tuple[list[dict], dict]:
                 "origin_city": origin.get("cidade") or "",
                 "origin_airport": origin.get("iata") or "",
                 "origin_bucket": bucket,
-                "departure_date": origin.get("data") or "",
-                "additional_dates": origin.get("outras") or "",
+                "departure_date": dates.sanitize_date_text(as_text(origin.get("data"))),
+                "additional_dates": dates.sanitize_date_text(as_text(origin.get("outras"))),
+                "departure_dates": departure_dates,
                 "flight_included": flight,
                 "categoria_site": "sem-aereo" if not flight else "completo",
                 "capa": pkg.get("capa") or "",
@@ -356,8 +371,8 @@ def filter_pacotes(raw: list[dict]) -> tuple[list[dict], dict]:
                 "total_price": total,
                 "evento": bool(pkg.get("evento")),
                 "pacote_categoria": pkg.get("categoria") or "",
-                "sort_date": next_future_iso(origin.get("data", ""), origin.get("outras") or ""),
-                "sort_price": round(money_to_float(total), 2),
+                "sort_date": dates.next_sort_date(departure_dates),
+                "sort_price": sort_price if sort_price > 0 else None,
             }
             offer["tipo"] = tipo_from_offer(offer)
             selected.append(offer)
@@ -369,46 +384,165 @@ def filter_pacotes(raw: list[dict]) -> tuple[list[dict], dict]:
     return selected, stats
 
 
-def filter_promo_voos(raw: list[dict]) -> tuple[list[dict], dict]:
-    selected: list[dict] = []
-    stats = {"total": len(raw), "rio": 0, "sp": 0, "ignored_origin": 0, "ignored_expired": 0}
+def parse_pvoo_row(fields: list[str], mapa: dict, usd_rate: float | None) -> dict | None:
+    if len(fields) < 7:
+        return None
+    origin_iata = (fields[0] or "").upper()
+    dest_iata = (fields[1] or "").upper()
+    departure = dates.parse_yymmdd(fields[2] if len(fields) > 2 else "")
+    returning = dates.parse_yymmdd(fields[3] if len(fields) > 3 else "")
+    nights_raw = parse_number(fields[4] if len(fields) > 4 else "")
+    seats_raw = parse_number(fields[5] if len(fields) > 5 else "")
+    price_raw = parse_number(fields[6] if len(fields) > 6 else "")
+    currency_flag = parse_number(fields[7] if len(fields) > 7 else "") or 0
+    deadline = dates.parse_yymmdd(fields[8] if len(fields) > 8 else "")
+    dep_time = dates.parse_hhmm(fields[9] if len(fields) > 9 else "")
+    ret_time = dates.parse_hhmm(fields[11] if len(fields) > 11 else "")
+    tax_raw = parse_number(fields[13] if len(fields) > 13 else "")
+    dest_flag = fields[14].strip() if len(fields) > 14 and fields[14] else ""
+    airline = (fields[15] or "").strip() if len(fields) > 15 else ""
 
-    for item in raw:
-        bucket = classify_origin(item.get("origem_iata"), item.get("origem_cidade"))
-        if not bucket:
+    origin_city, _ = mapa_names(mapa, origin_iata)
+    _, destination = mapa_names(mapa, dest_iata)
+    bucket = classify_origin(origin_iata, origin_city)
+    currency = "USD" if currency_flag else "BRL"
+    nights = int(nights_raw) if nights_raw else dates.nights_between(departure, returning)
+    seats = int(seats_raw) if seats_raw is not None else None
+    tax = tax_raw if tax_raw is not None else None
+    sort_price = None
+    if price_raw is not None:
+        if currency == "USD" and usd_rate:
+            sort_price = round(price_raw * usd_rate, 2)
+        else:
+            sort_price = round(price_raw, 2)
+
+    destination_type = "nacional" if dest_flag == "1" else "internacional" if dest_flag == "0" else None
+    return {
+        "origin_iata": origin_iata,
+        "dest_iata": dest_iata,
+        "origin_city": origin_city,
+        "destination": destination,
+        "origin_bucket": bucket,
+        "departure": departure,
+        "returning": returning,
+        "departure_time": dep_time,
+        "return_time": ret_time,
+        "nights": nights,
+        "seats": seats,
+        "price": price_raw,
+        "tax": tax,
+        "currency": currency,
+        "deadline": deadline,
+        "destination_type": destination_type,
+        "airline": airline or None,
+        "sort_price": sort_price,
+        "raw": fields,
+    }
+
+
+def filter_promo_voos(payload: dict) -> tuple[list[dict], dict]:
+    blob = payload.get("blob") or ""
+    mapa = payload.get("mapa") or {}
+    usd_rate = payload.get("usd")
+    try:
+        usd_rate = float(usd_rate) if usd_rate else None
+    except (TypeError, ValueError):
+        usd_rate = None
+
+    lines = [ln.strip() for ln in blob.split("\n") if ln.strip()]
+    selected: list[dict] = []
+    seen: set[str] = set()
+    stats = {
+        "total": len(lines),
+        "rio": 0,
+        "sp": 0,
+        "nacional": 0,
+        "internacional": 0,
+        "ignored_origin": 0,
+        "ignored_expired": 0,
+        "ignored_invalid_date": 0,
+        "duplicates_removed": 0,
+    }
+
+    for line in lines:
+        parsed = parse_pvoo_row(line.split("|"), mapa, usd_rate)
+        if not parsed:
+            stats["ignored_invalid_date"] += 1
+            continue
+        if not parsed["origin_bucket"]:
             stats["ignored_origin"] += 1
             continue
-        if not is_range_valid(item.get("data", "")):
+        dep = parsed["departure"]
+        ret = parsed["returning"]
+        if dep is None:
+            stats["ignored_invalid_date"] += 1
+            continue
+        if parsed["deadline"] and parsed["deadline"] < TODAY:
             stats["ignored_expired"] += 1
             continue
-        offer_id = f"voo:{item.get('origem_iata')}:{normalize(item.get('destino',''))}:{item.get('data','')}"
-        preco = item.get("por") or item.get("de") or ""
-        selected.append(
-            {
-                "id": offer_id,
-                "fingerprint": fingerprint("voo", item.get("origem_iata", ""), item.get("destino", ""), item.get("data", "")),
-                "category": "promo-voo",
-                "title": item.get("nome") or item.get("destino") or "",
-                "destination": item.get("destino") or "",
-                "origin_city": item.get("origem_cidade") or "",
-                "origin_airport": item.get("origem_iata") or "",
-                "origin_bucket": bucket,
-                "departure_date": item.get("data") or "",
-                "additional_dates": ", ".join(item.get("outras") or []),
-                "de": item.get("de") or "",
-                "por": item.get("por") or "",
-                "taxas": item.get("taxas") or "",
-                "inclui": item.get("inclui") or [],
-                "installments": item.get("min_label") or "",
-                "obs": item.get("obs") or "",
-                "nights": nights_from_range(item.get("data") or ""),
-                "sort_date": next_future_iso(item.get("data", ""), ", ".join(item.get("outras") or [])),
-                "sort_price": round(money_to_float(preco), 2),
-            }
-        )
-        stats[bucket] += 1
+        if dep < TODAY:
+            stats["ignored_expired"] += 1
+            continue
+        if not dates.itinerary_valid(dep, ret, parsed["departure_time"], parsed["return_time"]):
+            stats["ignored_invalid_date"] += 1
+            continue
 
-    selected.sort(key=lambda o: (parse_date_range(o["departure_date"])[0] or TODAY, o["destination"]))
+        fp = fingerprint(
+            "voo",
+            parsed["origin_iata"],
+            parsed["dest_iata"],
+            dep.isoformat(),
+            ret.isoformat() if ret else "",
+            parsed["departure_time"] or "",
+            parsed["return_time"] or "",
+            str(parsed["price"] if parsed["price"] is not None else ""),
+            str(parsed["tax"] if parsed["tax"] is not None else ""),
+        )
+        if fp in seen:
+            stats["duplicates_removed"] += 1
+            continue
+        seen.add(fp)
+
+        source_id = (
+            f"voo:{parsed['origin_iata']}:{parsed['dest_iata']}:"
+            f"{dep.isoformat()}:{(ret.isoformat() if ret else '')}:"
+            f"{parsed['price']}:{parsed['tax']}:{parsed['departure_time'] or ''}"
+        )
+        iso_dates = [dep.isoformat()]
+        offer = {
+            "id": source_id,
+            "fingerprint": fp,
+            "category": "promo-voo",
+            "title": parsed["destination"],
+            "destination": parsed["destination"],
+            "destination_type": parsed["destination_type"],
+            "destination_airport": parsed["dest_iata"] or None,
+            "origin_city": parsed["origin_city"],
+            "origin_airport": parsed["origin_iata"],
+            "origin_bucket": parsed["origin_bucket"],
+            "departure_date": dep.isoformat(),
+            "departure_time": parsed["departure_time"],
+            "return_date": ret.isoformat() if ret else None,
+            "return_time": parsed["return_time"],
+            "departure_dates": iso_dates,
+            "nights": parsed["nights"],
+            "price": parsed["price"],
+            "tax": parsed["tax"],
+            "currency": parsed["currency"],
+            "seats": parsed["seats"],
+            "last_seats": None,
+            "airline": parsed["airline"],
+            "sort_date": dep.isoformat(),
+            "sort_price": parsed["sort_price"],
+        }
+        selected.append(offer)
+        stats[parsed["origin_bucket"]] += 1
+        if parsed["destination_type"] == "nacional":
+            stats["nacional"] += 1
+        elif parsed["destination_type"] == "internacional":
+            stats["internacional"] += 1
+
+    selected.sort(key=lambda o: (o.get("sort_date") or "9999-12-31", o.get("destination") or "", o.get("origin_airport") or ""))
     return selected, stats
 
 
@@ -457,9 +591,10 @@ def render_pacote_card(offer: dict) -> str:
     suffix = offer.get("origin_airport") or offer.get("origin_bucket") or "na"
     card_id = slugify(f"{stem}-{suffix}")
     destino_label = offer["title"][:80]
-    badge = offer["departure_date"]
-    if offer.get("additional_dates"):
-        badge = f"{badge} · {offer['additional_dates']}" if badge else str(offer["additional_dates"])
+    badge = dates.sanitize_date_text(as_text(offer.get("departure_date")))
+    extra = dates.sanitize_date_text(as_text(offer.get("additional_dates")))
+    if extra:
+        badge = f"{badge} · {extra}" if badge else extra
 
     features = []
     if offer["flight_included"] and offer["origin_airport"]:
@@ -501,11 +636,13 @@ def render_pacote_card(offer: dict) -> str:
     origem = offer.get("origin_bucket") or "sem-aereo"
     tipo = offer.get("tipo") or tipo_from_offer(offer)
     alt = f"{offer['destination']}: {offer['title']}"
+    price_attr = "" if offer.get("sort_price") in (None, "") else str(offer.get("sort_price"))
+    dates_attr = dates.dates_attr(offer.get("departure_dates") or [])
     attrs = (
         f'id="{attr(card_id)}" data-destino="{attr(destino_label)}" '
         f'data-categoria="{attr(offer["categoria_site"])}" data-source="operator" '
         f'data-source-id="{attr(offer["id"])}" data-sort-date="{attr(offer.get("sort_date", ""))}" '
-        f'data-sort-price="{offer.get("sort_price") or 0}" data-origem="{attr(origem)}" '
+        f'data-dates="{attr(dates_attr)}" data-sort-price="{attr(price_attr)}" data-origem="{attr(origem)}" '
         f'data-origem-iata="{attr(offer.get("origin_airport", ""))}" '
         f'data-destino-key="{attr(slugify(offer["destination"]))}" data-tipo="{attr(tipo)}"'
     )
@@ -535,46 +672,73 @@ def render_pacote_card(offer: dict) -> str:
         </article>"""
 
 
+def _iso_to_date(value: str | None) -> date | None:
+    if not value:
+        return None
+    try:
+        return date.fromisoformat(value)
+    except ValueError:
+        return None
+
+
+def _leg_label(day: date | None, hhmm: str | None) -> str:
+    label = dates.format_short_pt(day)
+    if hhmm:
+        label = f"{label} · {hhmm}" if label else hhmm
+    return label
+
+
+def _route_label(origin: str | None, dest: str | None) -> str:
+    left = origin or ""
+    right = dest or ""
+    if left and right:
+        return f"{left} → {right}"
+    return left or right
+
+
 def render_voo_row(offer: dict) -> str:
-    card_id = slugify(f"voo-{offer['origin_airport']}-{offer['destination']}", "promo-")
+    dep_day = _iso_to_date(offer.get("departure_date"))
+    ret_day = _iso_to_date(offer.get("return_date"))
+    card_id = slugify(
+        f"voo-{offer.get('origin_airport')}-{offer.get('destination')}-{offer.get('departure_date')}-{offer.get('return_date')}",
+        "promo-",
+    )
     destino_label = offer["title"]
     msg = f"Olá, Babi! Tenho interesse na promoção de voo {destino_label}."
-    start, end = parse_date_range(offer.get("departure_date") or "")
     nights = offer.get("nights")
     nights_html = f" · {nights} noites" if nights else ""
-    preco = offer.get("por") or offer.get("de") or ""
-    taxas = offer.get("taxas") or ""
-    ida = start.strftime("%d/%m") if start else (offer.get("departure_date") or "")
-    volta = end.strftime("%d/%m") if end and end != start else ""
-    extras = []
-    if offer.get("additional_dates"):
-        extras.append(f"Outras saídas: {html.escape(offer['additional_dates'])}")
-    if offer.get("obs"):
-        extras.append(html.escape(offer["obs"]))
-    if offer.get("installments"):
-        extras.append(html.escape(offer["installments"]))
-    conditions = ""
-    if extras:
-        conditions = (
-            '<details class="oferta-row__details">'
-            "<summary>Ver condições</summary>"
-            f'<p>{" · ".join(extras)}</p>'
-            "</details>"
-        )
-    origem_txt = f"{offer['origin_city']} ({offer['origin_airport']})" if offer.get("origin_airport") else offer.get("origin_city") or ""
+    preco = format_money(offer.get("price"), offer.get("currency") or "BRL")
+    tax_value = offer.get("tax")
+    taxas = format_money(tax_value, "BRL") if tax_value else ""
+    origin_iata = offer.get("origin_airport") or ""
+    dest_iata = offer.get("destination_airport") or ""
+    dest_name = offer.get("destination") or ""
+    dest_leg = dest_iata or dest_name
+    ida_label = _leg_label(dep_day, offer.get("departure_time"))
+    volta_label = _leg_label(ret_day, offer.get("return_time"))
+    origem_txt = (
+        f"{offer['origin_city']} ({origin_iata})"
+        if origin_iata
+        else (offer.get("origin_city") or "")
+    )
+    dest_type = offer.get("destination_type") or ""
+    price_attr = "" if offer.get("sort_price") in (None, "") else str(offer.get("sort_price"))
+    dates_attr = dates.dates_attr(offer.get("departure_dates") or ([offer.get("departure_date")] if offer.get("departure_date") else []))
     attrs = (
         f'id="{attr(card_id)}" data-destino="{attr(destino_label)}" data-categoria="promo-voo" '
         f'data-source="operator" data-source-id="{attr(offer["id"])}" '
-        f'data-sort-date="{attr(offer.get("sort_date", ""))}" data-sort-price="{offer.get("sort_price") or 0}" '
-        f'data-origem="{attr(offer.get("origin_bucket", ""))}" data-origem-iata="{attr(offer.get("origin_airport", ""))}" '
-        f'data-destino-key="{attr(slugify(offer["destination"]))}"'
+        f'data-sort-date="{attr(offer.get("sort_date", ""))}" data-dates="{attr(dates_attr)}" '
+        f'data-sort-price="{attr(price_attr)}" data-origem="{attr(offer.get("origin_bucket", ""))}" '
+        f'data-origem-iata="{attr(origin_iata)}" data-destino-key="{attr(slugify(offer["destination"]))}" '
+        f'data-destino-tipo="{attr(dest_type)}"'
     )
-    volta_cell = (
-        f'<div class="oferta-row__leg"><span class="oferta-row__kicker">Volta</span>'
-        f'<strong>{html.escape(volta)}</strong>'
-        f'<span>{html.escape(offer["destination"])} → {html.escape(offer["origin_airport"])}</span></div>'
-        if volta else ""
-    )
+    volta_cell = ""
+    if ret_day or dest_leg:
+        volta_cell = (
+            f'<div class="oferta-row__leg"><span class="oferta-row__kicker">Volta</span>'
+            f'<strong>{html.escape(volta_label)}</strong>'
+            f'<span>{html.escape(_route_label(dest_leg, origin_iata))}</span></div>'
+        )
     return f"""
         <article class="oferta-row catalog-item" {attrs}>
           <div class="oferta-row__main">
@@ -583,16 +747,15 @@ def render_voo_row(offer: dict) -> str:
             <div class="oferta-row__legs">
               <div class="oferta-row__leg">
                 <span class="oferta-row__kicker">Ida</span>
-                <strong>{html.escape(ida)}</strong>
-                <span>{html.escape(offer["origin_airport"])} → {html.escape(offer["destination"])}</span>
+                <strong>{html.escape(ida_label)}</strong>
+                <span>{html.escape(_route_label(origin_iata, dest_leg))}</span>
               </div>
               {volta_cell}
             </div>
-            {conditions}
           </div>
           <div class="oferta-row__price">
-            {'<span class="oferta-row__value">' + br_money_html(preco) + '</span>' if preco else ''}
-            {'<span class="oferta-row__tax">+ taxa ' + br_money_html(taxas) + '</span>' if taxas else ''}
+            {'<span class="oferta-row__value">' + preco + '</span>' if preco else ''}
+            {'<span class="oferta-row__tax">+ taxa ' + taxas + '</span>' if taxas else ''}
             <a href="{wa_link(msg)}" target="_blank" rel="noopener noreferrer" class="btn btn--whatsapp btn--sm">
               <i class="fab fa-whatsapp"></i> Tenho interesse
             </a>
@@ -702,7 +865,65 @@ def save_sync_state(
         "stats": stats,
         "offers": {"pacotes": pacotes, "promo_voos": voos, "campanhas": campanhas},
     }
+    if SYNC_FILE.exists():
+        try:
+            old = json.loads(SYNC_FILE.read_text(encoding="utf-8"))
+            if old.get("offers") == payload["offers"] and old.get("stats") == stats and old.get("cotado_em") == cotado_em:
+                payload["last_sync"] = old.get("last_sync") or payload["last_sync"]
+        except (OSError, json.JSONDecodeError):
+            pass
     SYNC_FILE.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
+
+
+def validate_voos(voos: list[dict]) -> dict:
+    inverted = 0
+    for offer in voos:
+        dep = _iso_to_date(offer.get("departure_date"))
+        ret = _iso_to_date(offer.get("return_date"))
+        if dep and ret and not dates.itinerary_valid(dep, ret, offer.get("departure_time"), offer.get("return_time")):
+            inverted += 1
+    leaks = []
+    html_path = GENERATED / "promo-voos-cards.html"
+    if html_path.exists():
+        text = html_path.read_text(encoding="utf-8")
+        leaks = JS_LEAK_RE.findall(text)
+    if inverted:
+        raise RuntimeError(f"Voos com retorno anterior à ida: {inverted}")
+    if leaks:
+        raise RuntimeError(f"Datas JS brutas no HTML: {sorted(set(leaks))}")
+    return {
+        "inverted": inverted,
+        "js_leaks": len(leaks),
+        "sem_preco": sum(1 for o in voos if o.get("price") in (None, "")),
+        "sem_taxa": sum(1 for o in voos if not o.get("tax")),
+        "com_horario": sum(1 for o in voos if o.get("departure_time") or o.get("return_time")),
+        "com_aeroporto_destino": sum(1 for o in voos if o.get("destination_airport")),
+    }
+
+
+def print_report(voos: list[dict], voo_stats: dict, pacotes: list[dict], campanhas: list[dict], checks: dict) -> None:
+    multi = sum(1 for o in pacotes if len(o.get("departure_dates") or []) > 1)
+    print("\nPROMO DE VOOS")
+    print(f"Bloqueios encontrados na fonte: {voo_stats.get('total', 0)}")
+    print(f"Bloqueios Rio: {voo_stats.get('rio', 0)}")
+    print(f"Bloqueios São Paulo: {voo_stats.get('sp', 0)}")
+    print(f"Nacionais: {voo_stats.get('nacional', 0)}")
+    print(f"Internacionais: {voo_stats.get('internacional', 0)}")
+    print(f"Descartados por data inválida: {voo_stats.get('ignored_invalid_date', 0)}")
+    print(f"Duplicatas removidas: {voo_stats.get('duplicates_removed', 0)}")
+    print(f"Itens publicados: {len(voos)}")
+    print("\nVALIDAÇÃO")
+    print(f"Voos com retorno < ida: {checks['inverted']}")
+    print(f"Datas JS brutas no HTML: {checks['js_leaks']}")
+    print(f"Itens sem preço: {checks['sem_preco']}")
+    print(f"Itens sem taxa: {checks['sem_taxa']}")
+    print(f"Itens com horários: {checks['com_horario']}")
+    print(f"Itens com aeroporto de destino: {checks['com_aeroporto_destino']}")
+    print("\nPACOTES")
+    print(f"Total: {len(pacotes)}")
+    print(f"Com múltiplas saídas: {multi}")
+    print("\nCAMPANHAS")
+    print(f"Publicadas: {len(campanhas)}")
 
 
 def main() -> None:
@@ -715,12 +936,12 @@ def main() -> None:
     html = fetch_html()
     dados = extract_dados(html)
     pacotes_raw = extract_json_array(html, "PACOTES")
-    voos_raw = extract_json_array(html, "PV_SNAPSHOT")
+    pvoo_payload = extract_pvoo_payload(html)
     promos_raw = dados.get("promos") or []
-    cotado_em = dados.get("cotado_em") or ""
+    cotado_em = dados.get("cotado_em") or pvoo_payload.get("ger") or ""
 
     pacotes, pacote_stats = filter_pacotes(pacotes_raw)
-    voos, voo_stats = filter_promo_voos(voos_raw)
+    voos, voo_stats = filter_promo_voos(pvoo_payload)
     campanhas, camp_stats = filter_campanhas(promos_raw)
 
     if args.download_images:
@@ -733,6 +954,7 @@ def main() -> None:
             download_image(offer.get("capa", ""), stem)
 
     write_fragments(pacotes, voos, campanhas)
+    checks = validate_voos(voos)
 
     index_ids = existing_card_ids((ROOT / "index.html").read_text(encoding="utf-8"))
     matched = sum(1 for o in pacotes if match_offer_to_card(o, index_ids))
@@ -740,7 +962,7 @@ def main() -> None:
     stats = {
         "coleta": {
             "pacotes_fonte": len(pacotes_raw),
-            "promo_voos_fonte": len(voos_raw),
+            "promo_voos_fonte": voo_stats.get("total", 0),
             "campanhas_fonte": len(promos_raw),
         },
         "filtro_pacotes": pacote_stats,
@@ -752,10 +974,12 @@ def main() -> None:
             "campanhas": len(campanhas),
         },
         "reconciliacao_index": {"cards_existentes": len(index_ids), "pacotes_correspondidos": matched},
+        "validacao_voos": checks,
     }
     save_sync_state(pacotes, voos, campanhas, stats, cotado_em)
 
     print(json.dumps(stats, ensure_ascii=False, indent=2))
+    print_report(voos, voo_stats, pacotes, campanhas, checks)
     print(f"\nArquivos gerados em {GENERATED} e {SYNC_FILE}")
     if args.apply:
         print("Nota: cards da home permanecem curados; catálogo expandido vai para pacotes.html via _build_pacotes.py")
