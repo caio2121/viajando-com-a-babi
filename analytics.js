@@ -12,7 +12,27 @@
   const viewedCategories = new Set();
   const viewedSections = new Set();
   const PACKAGE_CARD_SELECTOR = '#pacotes .card[data-destino], .pacotes-page .card[data-destino], .ofertas-page .card[data-destino], .oferta-row[data-destino], .dest-option[data-destino]';
+  const CONTATO_DEBOUNCE_MS = 3000;
+  const recentContatoKeys = new Map();
   let packageObserver = null;
+
+  /** Debounce Contato Ads + purchase intent (same key within window = skip). */
+  function claimContatoFire(key) {
+    const now = Date.now();
+    const prev = recentContatoKeys.get(key) || 0;
+    if (now - prev < CONTATO_DEBOUNCE_MS) return false;
+    recentContatoKeys.set(key, now);
+    return true;
+  }
+
+  function isHighIntentWaCta(wa, card) {
+    if (!card || !wa) return false;
+    return !!(
+      wa.closest('.card__footer .btn--whatsapp') ||
+      wa.closest('.dest-option__cta') ||
+      wa.closest('.oferta-row__price .btn--whatsapp')
+    );
+  }
 
   /* ── Helpers ─────────────────────────────────────── */
 
@@ -146,6 +166,15 @@
       if (parcela > 0) return parcela * 12;
     }
 
+    const rowVal = card.querySelector('.oferta-row__value, .oferta-row__price .oferta-row__value');
+    if (rowVal) {
+      const fromRow = parseBrlAmount(rowVal.textContent);
+      if (fromRow > 0) return fromRow;
+    }
+
+    const sortPrice = parseFloat(card.getAttribute('data-sort-price') || '');
+    if (Number.isFinite(sortPrice) && sortPrice > 0) return sortPrice;
+
     return 0;
   }
 
@@ -236,14 +265,15 @@
     });
   }
 
-  function trackPackagePurchaseIntent(card) {
+  function trackPackagePurchaseIntent(card, transactionId) {
     const meta = getPackageMeta(card);
-    if (!meta) return;
+    if (!meta) return null;
 
     const value = parsePackageValue(card);
+    const txId = transactionId || ('pkg_' + meta.package_slug + '_' + Date.now());
 
     trackEvent('purchase', {
-      transaction_id: 'intent_' + meta.package_slug + '_' + Date.now(),
+      transaction_id: txId,
       value: value,
       currency: 'BRL',
       items: packageItemsWithPrice(meta, value),
@@ -253,6 +283,7 @@
       package_category: meta.package_category,
       package_region: meta.package_region
     });
+    return txId;
   }
 
   function trackCategoryView(categoryEl) {
@@ -349,7 +380,9 @@
         cta_text: 'Enviar pelo WhatsApp',
         interest_level: 'high'
       });
-    }
+    },
+
+    claimContatoFire: claimContatoFire
   };
 
   /* ── Impressões de pacotes (viewport) ──────────── */
@@ -464,34 +497,40 @@
     if (wa) {
       e.preventDefault();
       const card = wa.closest('.card[data-destino], .oferta-row[data-destino], .dest-option[data-destino]');
-      if (card && (wa.closest('.card__footer .btn--whatsapp') || wa.closest('.dest-option__cta'))) {
-        trackPackagePurchaseIntent(card);
+      const highIntent = isHighIntentWaCta(wa, card);
+      const pkgMeta = card ? getPackageMeta(card) : null;
+      const debounceKey = highIntent
+        ? ('wa:' + (pkgMeta ? pkgMeta.package_slug : 'offer') + ':' + (card && card.getAttribute('data-categoria') || ''))
+        : '';
+      const allowContato = !highIntent || claimContatoFire(debounceKey);
+      let txId = null;
+
+      if (highIntent && allowContato && card) {
+        txId = 'pkg_' + (pkgMeta ? pkgMeta.package_slug : 'intent') + '_' + Date.now();
+        trackPackagePurchaseIntent(card, txId);
       }
-      if (card) {
-        const meta = getPackageMeta(card);
+      if (card && pkgMeta) {
         const categoria = card.getAttribute('data-categoria') || '';
-        if (categoria === 'promo-voo') trackEvent('flight_whatsapp_click', { package_slug: meta.package_slug, package_category: meta.package_category });
-        else if (categoria === 'campanha') trackEvent('campaign_whatsapp_click', { package_slug: meta.package_slug, package_category: meta.package_category });
-        else trackEvent('package_whatsapp_click', { package_slug: meta.package_slug, package_category: meta.package_category });
+        if (categoria === 'promo-voo') trackEvent('flight_whatsapp_click', { package_slug: pkgMeta.package_slug, package_category: pkgMeta.package_category });
+        else if (categoria === 'campanha') trackEvent('campaign_whatsapp_click', { package_slug: pkgMeta.package_slug, package_category: pkgMeta.package_category });
+        else trackEvent('package_whatsapp_click', { package_slug: pkgMeta.package_slug, package_category: pkgMeta.package_category });
         trackEvent('service_click', {
-          service_name: meta.package_name,
-          service_category: meta.package_category,
-          package_region: meta.package_region,
-          package_slug: meta.package_slug,
+          service_name: pkgMeta.package_name,
+          service_category: pkgMeta.package_category,
+          package_region: pkgMeta.package_region,
+          package_slug: pkgMeta.package_slug,
           cta_text: getCtaText(wa),
           interaction_type: 'whatsapp_cta'
         });
       }
       trackGenerateLead(wa);
-      // Google Ads "Contato": só intenção alta (botão do pacote).
+      // Google Ads "Contato": WA comercial (pacote, modal, promo-voo, campanha).
       // FAB/navbar/hero/footer = generate_lead no GA4, sem conversion Ads.
       // Contato real confirmado: planilha → working_lead (docs/funil-offline.md).
       const href = wa.getAttribute('href');
-      const highIntentPackageCta = !!(card && (wa.closest('.card__footer .btn--whatsapp') || wa.closest('.dest-option__cta')));
-      if (highIntentPackageCta && typeof window.gtag_report_conversion === 'function') {
-        const pkgMeta = getPackageMeta(card);
+      if (highIntent && allowContato && typeof window.gtag_report_conversion === 'function') {
         window.gtag_report_conversion(href, {
-          transaction_id: 'pkg_' + (pkgMeta ? pkgMeta.package_slug : 'intent') + '_' + Date.now()
+          transaction_id: txId || ('pkg_' + (pkgMeta ? pkgMeta.package_slug : 'intent') + '_' + Date.now())
         });
       } else {
         window.open(href, '_blank', 'noopener,noreferrer');
@@ -537,7 +576,10 @@
 
     const cardBody = e.target.closest(PACKAGE_CARD_SELECTOR);
     if (cardBody && !e.target.closest('a')) {
-      trackPackageSelect(cardBody, 'card_explore');
+      // catalog-dest-card: script.js openDestModal already fires destination_interest (open_options)
+      if (!cardBody.classList.contains('catalog-dest-card')) {
+        trackPackageSelect(cardBody, 'card_explore');
+      }
       return;
     }
 

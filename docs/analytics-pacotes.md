@@ -12,22 +12,26 @@ Guia para ler no GA4 quais pacotes e categorias geram mais interesse.
 | Viu a categoria | `package_category_view` | Grupos com guia / Pacote completo / Cruzeiros |
 | Clicou no card ou imagem | `select_item` + `destination_interest` | Exploração ativa |
 | Clicou "Tenho interesse" na opção do destino | `purchase` + `package_lead` + Ads `conversion` | Mesma intenção alta, a partir do modal de opções |
+| Clicou "Tenho interesse" / WA em promo-voo ou campanha | `purchase` + `package_lead` + Ads Contato | Intenção alta em `.oferta-row__price` |
 | Clicou WhatsApp genérico (FAB, navbar, hero, footer) | `generate_lead` | Engajamento GA4 **sem** conversão Ads |
 | Abriu formulário | `form_start` | Interesse em roteiro personalizado |
 | Enviou formulário | `form_submit` + `generate_lead` + Ads `conversion` | Lead qualificado (sem PII) + conversão Ads |
 | Filtrou/ordenou catálogo | `filter_packages_*`, `sort_packages`, `sort_flights` | Uso de filtros (sem texto digitado) |
-| WhatsApp de voo/campanha | `flight_whatsapp_click` / `campaign_whatsapp_click` | Lead de oferta compacta |
-| Contato real (mensagem chegou) | `working_lead` (planilha) | Conversão confiável; ver [`funil-offline.md`](funil-offline.md) |
+| WhatsApp de voo/campanha (diagnóstico) | `flight_whatsapp_click` / `campaign_whatsapp_click` | Complementar ao Contato |
+| Contato real (mensagem chegou) | `working_lead` (planilha) | Verdade de negócio; ver [`funil-offline.md`](funil-offline.md) |
 | Clicou CTA interno (catálogo, FAQ, serviços) | `cta_click` | Exploração sem contato direto |
 
 ## Google Ads "Contato" (`gtag_report_conversion`)
 
-Dispara **apenas** em:
+Dispara em CTAs WhatsApp **comerciais**:
 
-1. Botão **Quero esse pacote!** no card (`.card__footer .btn--whatsapp`) ou **Tenho interesse** no modal de opções (`.dest-option__cta`)
-2. Envio do formulário de roteiro personalizado (`script.js`)
+1. Botão **Quero esse pacote!** (`.card__footer .btn--whatsapp`) ou **Tenho interesse** no modal (`.dest-option__cta`)
+2. **Tenho interesse** / WA em promo-voo e campanha (`.oferta-row__price .btn--whatsapp`)
+3. Envio do formulário de roteiro personalizado (`script.js`)
 
-Não dispara em FAB, navbar, hero ou footer. Meta principal no Ads: `working_lead` (planilha). **Contato** (tag): secundária / intenção alta.
+Não dispara em FAB, navbar, hero ou footer. Debounce 3s; mesmo `transaction_id` no Contato Ads e no `purchase` GA4 (`pkg_{slug}_{ts}`).
+
+**Meta de otimização Ads:** Contato (maximizar contatos WA). `working_lead` (planilha) = qualificação offline, não bid principal até volume estável. `purchase` no site = intenção, **não** receita.
 
 ### Conversões otimizadas (alerta do Ads)
 
@@ -69,9 +73,10 @@ Sem e-mail/telefone no formulário: não enviamos PII ao Ads; o alerta de cobert
 Ordem de leitura em `analytics.js`:
 
 1. `data-valor-total="2712"` no card (recomendado para cruzeiros sem total fixo)
-2. Texto `.card__total` — ex.: "Total a partir de R$ 2.712"
+2. Texto `.dest-option__total` / `.card__total`
 3. `.card__parcela strong` × 12
-4. `0` se não houver valor parseável
+4. `.oferta-row__value` ou `data-sort-price` (promo-voo / campanha)
+5. `0` se não houver valor parseável
 
 ## Como configurar no GA4 (Admin)
 

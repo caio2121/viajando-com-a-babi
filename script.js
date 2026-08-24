@@ -274,9 +274,13 @@
       window.VCBAnalytics.trackFormLead();
     }
 
-    if (typeof window.gtag_report_conversion === 'function') {
+    const formTxId = 'form_' + Date.now();
+    const allowContato = !(window.VCBAnalytics && typeof window.VCBAnalytics.claimContatoFire === 'function')
+      || window.VCBAnalytics.claimContatoFire('form:roteiro');
+
+    if (allowContato && typeof window.gtag_report_conversion === 'function') {
       window.gtag_report_conversion(waUrl, {
-        transaction_id: 'form_' + Date.now()
+        transaction_id: formTxId
       });
     } else {
       window.open(waUrl, '_blank', 'noopener,noreferrer');
@@ -723,6 +727,13 @@
     card.setAttribute('data-destino-key', group.key);
     card.setAttribute('data-sort-price', group.sortPrice != null ? String(group.sortPrice) : '');
     card.setAttribute('data-sort-date', group.sortDate || '');
+    const sample = group.offers && group.offers[0];
+    if (sample) {
+      const cat = sample.getAttribute('data-categoria');
+      if (cat) card.setAttribute('data-categoria', cat);
+      const reg = sample.getAttribute('data-regiao');
+      if (reg) card.setAttribute('data-regiao', reg);
+    }
     const imgWrap = (group.imageSource && group.imageSource.querySelector('.card__img-wrap'))
       ? group.imageSource.querySelector('.card__img-wrap').cloneNode(true)
       : null;
@@ -912,8 +923,14 @@
       const price = itemPrice(el);
       const dates = itemDates(el);
       const href = optionWaHref(el, group.label, title, dates[0] ? formatIso(dates[0]) : '');
+      const destAttr = escapeHtml(el.getAttribute('data-destino') || title);
+      const catAttr = escapeHtml(el.getAttribute('data-categoria') || '');
+      const regAttr = escapeHtml(el.getAttribute('data-regiao') || '');
+      const sortPrice = el.getAttribute('data-sort-price') || (price != null ? String(price) : '');
       return (
-        '<article class="dest-option" data-destino="' + escapeHtml(el.getAttribute('data-destino') || title) + '" data-categoria="' + escapeHtml(el.getAttribute('data-categoria') || '') + '">' +
+        '<article class="dest-option" data-destino="' + destAttr + '" data-categoria="' + catAttr + '"' +
+          (regAttr ? ' data-regiao="' + regAttr + '"' : '') +
+          (sortPrice ? ' data-sort-price="' + escapeHtml(sortPrice) + '"' : '') + '>' +
           '<div class="dest-option__main">' +
             '<h4 class="dest-option__title">' + escapeHtml(title) + '</h4>' +
             '<p class="dest-option__origin">' + escapeHtml(originLabel(el)) + '</p>' +

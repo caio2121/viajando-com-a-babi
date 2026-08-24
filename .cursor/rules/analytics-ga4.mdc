@@ -6,7 +6,7 @@ alwaysApply: false
 
 # Analytics GA4 — Viajando com a Babi
 
-Measurement ID: `G-WGDNTSY8WM`. Google Ads: `AW-18242129651` (config + conversão **Contato** `AW-18242129651/_fe6COee7sscEPOdw_pD` via `gtag_report_conversion` **somente** em CTA de pacote "Quero esse pacote!" e envio do formulário). Tag com `allow_enhanced_conversions`, `gtag('set','user_data')` in-page e `transport_type: beacon`. Clique genérico WhatsApp dispara `generate_lead` no GA4, **sem** Ads conversion. Contato real: planilha → `working_lead` ([`docs/funil-offline.md`](docs/funil-offline.md)).
+Measurement ID: `G-WGDNTSY8WM`. Google Ads: `AW-18242129651` (config + conversão **Contato** `AW-18242129651/_fe6COee7sscEPOdw_pD` via `gtag_report_conversion` em CTA WA **comercial**: pacote, modal “Tenho interesse”, promo-voo, campanha, e envio do formulário). Tag com `allow_enhanced_conversions`, `gtag('set','user_data')` in-page e `transport_type: beacon`. Clique genérico WhatsApp (FAB/nav/hero/footer) dispara `generate_lead` no GA4, **sem** Ads conversion. Contato real: planilha → `working_lead` ([`docs/funil-offline.md`](docs/funil-offline.md)).
 
 ## Regras obrigatórias
 
@@ -14,6 +14,7 @@ Measurement ID: `G-WGDNTSY8WM`. Google Ads: `AW-18242129651` (config + conversã
 - Novos eventos: usar `trackEvent()` ou métodos em `window.VCBAnalytics`.
 - Leads comerciais: preferir `generate_lead` e `package_lead` (pacote específico).
 - Ao abrir modal/form externo ao click delegado, chamar hook em `script.js` (ex.: `trackFormOpen`).
+- Contato/`purchase`: debounce 3s; mesmo `transaction_id` no clique Ads + GA4 (`pkg_{slug}_{ts}`).
 
 ## Eventos do catálogo (não remover sem atualizar docs)
 
@@ -22,7 +23,7 @@ Measurement ID: `G-WGDNTSY8WM`. Google Ads: `AW-18242129651` (config + conversã
 | `view_item` / `package_impression` | Card visível no viewport |
 | `select_item` / `destination_interest` | Clique no card/imagem |
 | `package_lead` | Lead WhatsApp de um pacote |
-| `purchase` | Tentativa de compra ("Quero esse pacote!") — coluna Itens comprados |
+| `purchase` | Intenção WA comercial (`purchase_type: whatsapp_intent`) — **não** receita |
 | `package_category_view` | Categoria vista |
 | `form_start` / `form_submit` | Funil do formulário |
 | `filter_packages_open` / `filter_packages_apply` / `filter_packages_clear` | Modal/filtros do catálogo (sem texto digitado) |
@@ -33,10 +34,10 @@ Measurement ID: `G-WGDNTSY8WM`. Google Ads: `AW-18242129651` (config + conversã
 
 Sempre que o evento for de pacote: `package_name`, `package_slug`, `package_category`, `package_region`.
 
-Evento `purchase` em clique no botão do card: incluir `purchase_type: whatsapp_intent`, `value`, `currency: BRL`, `transaction_id` único. **Não** marcar `purchase` como conversão principal — preferir `generate_lead` no GA4 e `working_lead` (planilha) / import Ads como contato real.
+Evento `purchase` em CTA WA comercial: incluir `purchase_type: whatsapp_intent`, `value`, `currency: BRL`, `transaction_id` único compartilhado com Contato Ads. **Não** otimizar Ads por `purchase` como receita — meta = Contato; verdade = `working_lead` offline.
 
 ## Ao alterar analytics.js
 
-1. Atualizar `docs/analytics-pacotes.md`
-2. Bump `analytics.js?v=N` em `index.html`
-3. Validar no GA4 DebugView (clique pacote → `view_item`, "Quero esse pacote!" → `purchase` + `generate_lead`)
+1. Atualizar `docs/analytics-pacotes.md` (se existir no site) / AutoAds `docs/measurement-plan.md`
+2. Bump `analytics.js?v=N` em `_partials/hub-footer.html` e `index.html` (e hubs)
+3. Validar no GA4 DebugView (1 CTA comercial → 1 Contato + 1 `purchase` mesmo `transaction_id` + `generate_lead`)
