@@ -6,7 +6,7 @@ alwaysApply: false
 
 # Analytics GA4 — Viajando com a Babi
 
-Measurement ID: `G-WGDNTSY8WM`. Google Ads: `AW-18242129651` (config + conversão **Contato** `AW-18242129651/_fe6COee7sscEPOdw_pD` via `gtag_report_conversion` em CTA WA **comercial**: pacote, modal “Tenho interesse”, promo-voo, campanha, e envio do formulário). Tag com `allow_enhanced_conversions`, `gtag('set','user_data')` in-page e `transport_type: beacon`. Clique genérico WhatsApp (FAB/nav/hero/footer) dispara `generate_lead` no GA4, **sem** Ads conversion. Contato real: planilha → `working_lead` ([`docs/funil-offline.md`](docs/funil-offline.md)).
+Measurement ID: `G-WGDNTSY8WM`. Google Ads: `AW-18242129651` (config + conversão **Contato** `AW-18242129651/_fe6COee7sscEPOdw_pD` via `gtag_report_conversion` em **qualquer** clique WhatsApp do site: FAB, nav, hero, footer, pacote, modal, promo-voo, campanha e formulário). Tag com `allow_enhanced_conversions`, `gtag('set','user_data')` in-page e `transport_type: beacon`. `purchase` GA4 continua só em CTA comercial. Contato real offline: planilha → `working_lead` ([`docs/funil-offline.md`](docs/funil-offline.md)).
 
 ## Regras obrigatórias
 
@@ -40,4 +40,4 @@ Evento `purchase` em CTA WA comercial: incluir `purchase_type: whatsapp_intent`,
 
 1. Atualizar `docs/analytics-pacotes.md` (se existir no site) / AutoAds `docs/measurement-plan.md`
 2. Bump `analytics.js?v=N` em `_partials/hub-footer.html` e `index.html` (e hubs)
-3. Validar no GA4 DebugView (1 CTA comercial → 1 Contato + 1 `purchase` mesmo `transaction_id` + `generate_lead`)
+3. Validar no GA4 DebugView (FAB → Contato + `generate_lead`; CTA comercial → Contato + `purchase` + `generate_lead`, mesmo `transaction_id`)

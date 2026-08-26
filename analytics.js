@@ -501,8 +501,8 @@
       const pkgMeta = card ? getPackageMeta(card) : null;
       const debounceKey = highIntent
         ? ('wa:' + (pkgMeta ? pkgMeta.package_slug : 'offer') + ':' + (card && card.getAttribute('data-categoria') || ''))
-        : '';
-      const allowContato = !highIntent || claimContatoFire(debounceKey);
+        : ('wa:generic:' + getCtaLocation(wa));
+      const allowContato = claimContatoFire(debounceKey);
       let txId = null;
 
       if (highIntent && allowContato && card) {
@@ -524,13 +524,12 @@
         });
       }
       trackGenerateLead(wa);
-      // Google Ads "Contato": WA comercial (pacote, modal, promo-voo, campanha).
-      // FAB/navbar/hero/footer = generate_lead no GA4, sem conversion Ads.
-      // Contato real confirmado: planilha → working_lead (docs/funil-offline.md).
+      // Google Ads "Contato" = qualquer clique WA do site (FAB/nav/hero/footer/pacote/form).
+      // Meta de negócio: pessoa falar no WhatsApp. purchase GA4 continua só em CTA comercial.
       const href = wa.getAttribute('href');
-      if (highIntent && allowContato && typeof window.gtag_report_conversion === 'function') {
+      if (allowContato && typeof window.gtag_report_conversion === 'function') {
         window.gtag_report_conversion(href, {
-          transaction_id: txId || ('pkg_' + (pkgMeta ? pkgMeta.package_slug : 'intent') + '_' + Date.now())
+          transaction_id: txId || ('wa_' + getCtaLocation(wa) + '_' + Date.now())
         });
       } else {
         window.open(href, '_blank', 'noopener,noreferrer');
