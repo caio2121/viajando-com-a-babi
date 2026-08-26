@@ -95,21 +95,22 @@ Site estático de conversão para a agência de viagens **Viajando com a Babi**,
 
 ### Ao adicionar ou alterar um pacote
 
-1. Card em `index.html` com `id`, `data-destino` e `data-categoria` (`grupo-guia`, `completo`, `sem-aereo`).
-2. Imagem em `pacotes/` com `alt` descritivo, `<picture>` (WebP + JPEG) e `data-lightbox` na imagem.
-3. CTA WhatsApp com mensagem citando o nome do pacote.
-4. **Regenerar o catálogo:** `python _build_pacotes.py` (une a home às ofertas sincronizadas num catálogo único, com filtros. Não editar `pacotes.html` manualmente).
-5. Validar no GA4 DebugView: `view_item` (impressão), `purchase` (clique "Quero esse pacote!") e `generate_lead`.
+Os destaques da home vêm do sync (até 30). Para atualizar:
+
+1. `python _sync_operator.py --apply` (ou `--from-json --apply` se o JSON já estiver atualizado)
+2. Imagens ausentes: `--download-images` na coleta
+3. **Regenerar o catálogo:** `python _build_ofertas.py` e `python _build_pacotes.py`
+4. Validar no GA4 DebugView: `view_item`, `purchase` ("Quero esse pacote!") e `generate_lead`
 
 ### Sincronização mensal da operadora
 
 ```bash
-python _sync_operator.py --download-images
+python _sync_operator.py --download-images --apply
 python _build_ofertas.py
 python _build_pacotes.py
 ```
 
-Isso atualiza `promo-voos.html`, `campanhas.html` e o catálogo unificado em `pacotes.html`, preservando lista compacta, filtros e ordenação.
+Isso atualiza a home (top 30 do sync), `promo-voos.html`, `campanhas.html` e o catálogo unificado em `pacotes.html`.
 
 ### Ao alterar eventos GA4
 

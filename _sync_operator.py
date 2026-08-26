@@ -4,8 +4,9 @@ Sincroniza ofertas de viajandocomdesconto.com com o site Viajando com a Babi.
 
 Uso:
   python _sync_operator.py              # coleta, filtra, gera fragments e operator-sync.json
-  python _sync_operator.py --apply      # também atualiza cards existentes em index.html
+  python _sync_operator.py --apply      # injeta até HOME_LIMIT pacotes do sync em index.html
   python _sync_operator.py --from-json  # regenera fragments a partir de data/operator-sync.json
+  python _sync_operator.py --from-json --apply  # fragments + home a partir do JSON
 
 Depois:
   python _build_ofertas.py
@@ -41,6 +42,9 @@ TODAY = dates.TODAY
 RIO_IATA = {"GIG", "SDU", "RIO"}
 SP_IATA = {"GRU", "CGH", "VCP", "SAO"}
 ORIGIN_PRIORITY = ("rio", "sp")
+HOME_LIMIT = 30
+HOME_PACOTES_MARKER = '<div class="pacotes__category" id="pacotes-completos">'
+HOME_CTA_MARKER = '<div class="pacotes__cta-extra">'
 JS_LEAK_RE = re.compile(r"GMT[+-]|Horário Padrão|Invalid Date|\bNaN\b|\bundefined\b|\bnull\b", re.I)
 
 USER_AGENT = "ViajandoComABabi-Sync/1.0 (+https://viajandocomababi.com.br/)"
@@ -919,6 +923,189 @@ def write_fragments(pacotes: list[dict], voos: list[dict], campanhas: list[dict]
         "\n".join(render_campanha_row(o) for o in campanhas), encoding="utf-8"
     )
 
+
+def _origin_rank(bucket: str | None) -> int:
+    b = (bucket or "").replace("_", "-")
+    if b == "rio":
+        return 0
+    if b == "sp":
+        return 1
+    return 2
+
+
+def _offer_price(offer: dict) -> float | None:
+    price = offer.get("package_total_price")
+    if price is None:
+        price = offer.get("sort_price")
+    if isinstance(price, (int, float)) and price > 0:
+        return float(price)
+    return None
+
+
+def select_home_offers(pacotes: list[dict], limit: int = HOME_LIMIT) -> list[dict]:
+    """Escolhe até `limit` ofertas do sync para a home (fonte de verdade = sync).
+
+    Preferência: origem Rio, pacote completo, partida mais próxima, preço menor.
+    Diversifica por destino na 1ª passagem; completa o limite na 2ª.
+    """
+    candidates = [o for o in pacotes if _offer_price(o) is not None]
+
+    def sort_key(o: dict) -> tuple:
+        cat = 0 if (o.get("categoria_site") or "") != "sem-aereo" else 1
+        return (
+            _origin_rank(o.get("origin_bucket")),
+            cat,
+            o.get("sort_date") or "9999-99-99",
+            _offer_price(o) or 9e9,
+            o.get("destination") or "",
+            o.get("id") or "",
+        )
+
+    candidates.sort(key=sort_key)
+    selected: list[dict] = []
+    seen_dest: set[str] = set()
+    for o in candidates:
+        key = normalize(o.get("destination") or "")
+        if not key or key in seen_dest:
+            continue
+        seen_dest.add(key)
+        selected.append(o)
+        if len(selected) >= limit:
+            return selected
+
+    selected_ids = {o["id"] for o in selected}
+    for o in candidates:
+        if o["id"] in selected_ids:
+            continue
+        selected.append(o)
+        selected_ids.add(o["id"])
+        if len(selected) >= limit:
+            break
+    return selected
+
+
+def _home_category_block(
+    category_id: str,
+    heading_icon: str,
+    heading: str,
+    description: str,
+    offers: list[dict],
+) -> str:
+    cards = "\n".join(render_pacote_card(o) for o in offers)
+    return f"""      <div class="pacotes__category" id="{category_id}">
+        <h3 class="pacotes__subhead"><i class="{heading_icon}" aria-hidden="true"></i> {heading}</h3>
+        <p class="pacotes__category-desc">{description}</p>
+        <div class="pacotes__grid">
+{cards}
+        </div>
+      </div>
+"""
+
+
+def build_home_pacotes_html(offers: list[dict]) -> str:
+    completo = [o for o in offers if (o.get("categoria_site") or "") != "sem-aereo"]
+    sem = [o for o in offers if (o.get("categoria_site") or "") == "sem-aereo"]
+    parts: list[str] = []
+    if completo:
+        parts.append(
+            _home_category_block(
+                "pacotes-completos",
+                "fas fa-plane-departure",
+                "Pacote completo",
+                "Aéreo, hospedagem e serviços principais inclusos.",
+                completo,
+            )
+        )
+    if sem:
+        parts.append(
+            _home_category_block(
+                "pacotes-sem-aereo",
+                "fas fa-ship",
+                "Cruzeiros e sem aéreo",
+                "Opções de cruzeiro e pacotes sem aéreo incluso.",
+                sem,
+            )
+        )
+    if not parts:
+        parts.append(
+            _home_category_block(
+                "pacotes-completos",
+                "fas fa-plane-departure",
+                "Pacote completo",
+                "Aéreo, hospedagem e serviços principais inclusos.",
+                [],
+            )
+        )
+    return "\n".join(parts)
+
+
+def build_home_cta_html() -> str:
+    return """      <div class="pacotes__cta-extra">
+        <p>Quer ver todos os pacotes disponíveis?</p>
+        <a href="pacotes.html" class="btn btn--outline btn--md">
+          Ver todos os pacotes
+        </a>
+        <a href="https://wa.me/5521920064617?text=Ol%C3%A1%20Babi!%20Vim%20pelo%20site%20e%20quero%20montar%20um%20roteiro%20personalizado"
+           target="_blank" rel="noopener noreferrer"
+           class="btn btn--outline btn--md" style="margin-left:8px">
+          <i class="fab fa-whatsapp"></i> Montar roteiro personalizado
+        </a>
+        <a href="roteiro-personalizado.html" class="btn btn--outline btn--md" style="margin-left:8px">
+          Saiba mais sobre roteiros sob medida
+        </a>
+      </div>
+"""
+
+
+def apply_home_from_sync(pacotes: list[dict], *, limit: int = HOME_LIMIT) -> dict:
+    """Substitui os cards de #pacotes na home pelos top N do sync."""
+    selected = select_home_offers(pacotes, limit=limit)
+    index_path = ROOT / "index.html"
+    text = index_path.read_text(encoding="utf-8")
+    start = text.find(HOME_PACOTES_MARKER)
+    cta_start = text.find(HOME_CTA_MARKER)
+    if start < 0 or cta_start < 0 or cta_start <= start:
+        raise SystemExit(
+            "Marcadores da seção #pacotes não encontrados em index.html "
+            "(pacotes-completos / pacotes__cta-extra)"
+        )
+    cta_end = text.find("</div>", cta_start)
+    if cta_end < 0:
+        raise SystemExit("Fechamento de pacotes__cta-extra não encontrado")
+    cta_end += len("</div>")
+
+    section_sub = (
+        'Catálogo com ofertas atuais da operadora (destaques na home). '
+        '<a href="pacotes.html">Ver catálogo completo de pacotes</a> · '
+        '<a href="promo-voos.html">Promo de voos</a> · '
+        '<a href="campanhas.html">Campanhas</a>.'
+    )
+    text = re.sub(
+        r'(<section id="pacotes"[\s\S]*?<p class="section-sub">)([\s\S]*?)(</p>)',
+        rf"\1{section_sub}\3",
+        text,
+        count=1,
+    )
+    # Re-find markers after section-sub edit (offsets may shift slightly but markers unchanged)
+    start = text.find(HOME_PACOTES_MARKER)
+    cta_start = text.find(HOME_CTA_MARKER)
+    cta_end = text.find("</div>", cta_start) + len("</div>")
+    new_mid = build_home_pacotes_html(selected) + "\n" + build_home_cta_html()
+    updated = text[:start] + new_mid + text[cta_end:]
+    index_path.write_text(updated, encoding="utf-8")
+
+    by_origin = {}
+    for o in selected:
+        bucket = (o.get("origin_bucket") or "outro").replace("_", "-")
+        by_origin[bucket] = by_origin.get(bucket, 0) + 1
+    return {
+        "home_limit": limit,
+        "selected": len(selected),
+        "by_origin": by_origin,
+        "destinations": [o.get("destination") or o.get("title") for o in selected],
+        "ids": [o.get("id") for o in selected],
+    }
+
 def save_sync_state(
     pacotes: list[dict],
     voos: list[dict],
@@ -1084,9 +1271,20 @@ def print_report(voos: list[dict], voo_stats: dict, pacotes: list[dict], campanh
     print(f"Publicadas: {len(campanhas)}")
 
 
+def _print_home_preview(pacotes: list[dict]) -> None:
+    preview = select_home_offers(pacotes)
+    print(f"\nHOME preview (sem --apply): {len(preview)} de até {HOME_LIMIT}")
+    for o in preview:
+        print(f"  - {o.get('origin_bucket')}: {o.get('destination')} · {o.get('title')}")
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description="Sincroniza ofertas da operadora")
-    parser.add_argument("--apply", action="store_true", help="Reservado para futuras atualizações in-place em index.html")
+    parser.add_argument(
+        "--apply",
+        action="store_true",
+        help=f"Injeta até {HOME_LIMIT} pacotes do sync em index.html (#pacotes)",
+    )
     parser.add_argument("--download-images", action="store_true", help="Baixa imagens ausentes dos pacotes")
     parser.add_argument("--from-json", action="store_true", help="Regenera fragments a partir de data/operator-sync.json, sem coletar a fonte")
     args = parser.parse_args()
@@ -1103,6 +1301,12 @@ def main() -> None:
         price_audit = validate_pacotes(pacotes)
         print(f"Fragments regenerados de {SYNC_FILE} ({len(pacotes)} pacotes, {len(voos)} voos, {len(campanhas)} campanhas)")
         print_report(voos, payload.get("stats", {}).get("filtro_voos") or {}, pacotes, campanhas, checks, price_audit)
+        if args.apply:
+            home = apply_home_from_sync(pacotes)
+            print("\nHOME (apply)")
+            print(json.dumps(home, ensure_ascii=False, indent=2))
+        else:
+            _print_home_preview(pacotes)
         return
 
     print("Coletando fonte…")
@@ -1163,7 +1367,11 @@ def main() -> None:
     print_report(voos, voo_stats, pacotes, campanhas, checks, price_audit)
     print(f"\nArquivos gerados em {GENERATED} e {SYNC_FILE}")
     if args.apply:
-        print("Nota: cards da home permanecem curados; catálogo expandido vai para pacotes.html via _build_pacotes.py")
+        home = apply_home_from_sync(pacotes)
+        print("\nHOME (apply)")
+        print(json.dumps(home, ensure_ascii=False, indent=2))
+    else:
+        _print_home_preview(pacotes)
 
 
 if __name__ == "__main__":

@@ -1,7 +1,8 @@
 """Regenera pacotes.html a partir dos cards em index.html + ofertas sincronizadas.
 
-Unifica pacotes manuais e sincronizados no mesmo catálogo (sem seção 'Mais ofertas').
-Executar após alterar pacotes na home ou após python _sync_operator.py.
+Unifica destaques da home (top N do sync) e o restante sincronizado no mesmo catálogo
+(sem seção 'Mais ofertas').
+Executar após python _sync_operator.py [--apply] ou alteração em index.html.
 """
 from __future__ import annotations
 
@@ -163,19 +164,24 @@ blocks = index[start:cta_start]
 cta_block = index[cta_start:cta_end]
 
 known_labels = load_known_labels()
-manual_cards = [enrich_card(c, "manual", known_labels) for c in ARTICLE_RE.findall(blocks)]
-manual_ids = {card_id(c) for c in manual_cards}
+home_cards = []
+for c in ARTICLE_RE.findall(blocks):
+    existing_source = get_attr(c, "data-source") or "manual"
+    if existing_source not in ("manual", "operator"):
+        existing_source = "manual"
+    home_cards.append(enrich_card(c, existing_source, known_labels))
+home_ids = {card_id(c) for c in home_cards}
 
 sync_cards: list[str] = []
 sync_file = root / "data" / "generated" / "pacotes-sync.html"
 if sync_file.exists():
     for card in ARTICLE_RE.findall(sync_file.read_text(encoding="utf-8")):
         cid = card_id(card)
-        if cid in manual_ids:
+        if cid in home_ids:
             continue
         sync_cards.append(enrich_card(card, "operator", known_labels))
 
-all_cards = manual_cards + sync_cards
+all_cards = home_cards + sync_cards
 
 head_assets = (root / "_partials/head-assets.html").read_text(encoding="utf-8")
 ga4 = (root / "_partials/ga4.html").read_text(encoding="utf-8")
@@ -250,6 +256,6 @@ template_tail = hub_footer[:cookie_idx] + lightbox + hub_footer[cookie_idx:]
 
 (root / "pacotes.html").write_text(head + hub_header + main + template_tail, encoding="utf-8")
 print(
-    f"pacotes.html atualizado ({len(manual_cards)} manuais + {len(sync_cards)} sincronizados; "
+    f"pacotes.html atualizado ({len(home_cards)} home + {len(sync_cards)} sincronizados extras; "
     f"{len({get_attr(c, 'data-destino-key') for c in all_cards})} destinos)"
 )
