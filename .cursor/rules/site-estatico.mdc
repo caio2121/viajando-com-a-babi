@@ -17,10 +17,9 @@ Manter atualizados: `robots.txt`, `sitemap.xml` (novas páginas como `privacidad
 
 ## Catálogo de pacotes
 
-- Cards curados na home: `index.html`. A página [`pacotes.html`](pacotes.html) une esses cards às ofertas sincronizadas num **catálogo único** (sem seção "Mais ofertas").
+- Cards na home: até 30 ofertas do sync (`python _sync_operator.py --apply`). A página [`pacotes.html`](pacotes.html) une esses destaques ao restante sincronizado num **catálogo único** (sem seção "Mais ofertas").
 - Filtros e ordenação são gerados por `_build_pacotes.py`. Não editar `pacotes.html` à mão.
-- Após alterar pacotes na home: `python _build_pacotes.py`.
-- Após sincronizar a operadora: `python _sync_operator.py` → `python _build_ofertas.py` → `python _build_pacotes.py`.
+- Após sincronizar a operadora: `python _sync_operator.py` → `python _build_ofertas.py` → `python _build_pacotes.py`. Com home atualizada: incluir `--apply` no sync.
 
 ## Organização de scripts
 

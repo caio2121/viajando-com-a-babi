@@ -1,6 +1,6 @@
 ---
 description: Adicionar ou editar cards de pacotes no index.html
-globs: index.html,_build_pacotes.py,pacotes.html
+globs: index.html,_build_pacotes.py,pacotes.html,_sync_operator.py
 alwaysApply: false
 ---
 
@@ -8,56 +8,55 @@ alwaysApply: false
 
 Cada pacote é um `<article class="card">` dentro de `#pacotes`.
 
-**Fonte de verdade da home:** os cards ficam em `index.html`. A página [`pacotes.html`](pacotes.html) é gerada a partir deles **mais** as ofertas sincronizadas da operadora, num catálogo único com filtros. **Não editar `pacotes.html` à mão.**
+**Fonte de verdade dos pacotes:** `data/operator-sync.json` (sync da operadora). A home recebe até **30** destaques via `python _sync_operator.py --apply`. A página [`pacotes.html`](pacotes.html) une esses destaques ao restante do sync num catálogo único com filtros. **Não editar `pacotes.html` à mão.**
 
-A home preserva as categorias visuais (`#pacotes-completos`, cruzeiros). Em `pacotes.html` não existe agrupamento "manual vs sincronizado".
+Em `pacotes.html` não existe agrupamento "manual vs sincronizado".
+
+## Atualizar a home a partir do sync
+
+```bash
+python _sync_operator.py --from-json --apply   # ou coleta completa + --apply
+python _build_ofertas.py
+python _build_pacotes.py
+```
+
+Seleção dos 30: preferência Rio (GIG/SDU), pacote completo, partida próxima, preço menor, com diversidade de destino.
 
 ## Atributos obrigatórios no card
 
 ```html
 <article class="card reveal" id="pacote-slug"
   data-destino="Nome legível do pacote"
-  data-categoria="grupo-guia|completo|sem-aereo">
+  data-categoria="grupo-guia|completo|sem-aereo"
+  data-source="operator">
 ```
 
-- `id`: slug único para âncora (ex.: `pacote-aracaju`) — usado em links de `pacotes.html` e SEO.
+- `id`: slug único para âncora — usado em links de `pacotes.html` e SEO.
 - `data-destino`: nome exato usado no WhatsApp e nos relatórios GA4.
 - `data-categoria`: `grupo-guia`, `completo` ou `sem-aereo` (cruzeiros).
-- Opcional `data-regiao`: só se a inferência automática em `analytics.js` falhar (ex.: `data-regiao="caribe"`).
-- Opcional `data-valor-total`: valor numérico em BRL para o evento `purchase` quando o preço não estiver em "Total a partir de R$ …" (ex.: cruzeiros).
+- `data-source="operator"` nos cards vindos do sync.
+- Opcional `data-regiao`: só se a inferência automática em `analytics.js` falhar.
+- Opcional `data-valor-total`: valor numérico em BRL para `purchase` quando o preço não estiver em "Total a partir de R$ …".
 
 ## Estrutura do card
 
 - Título do destino: `<h4 class="card__title">` (não h3).
-- Imagem com `<picture>` (WebP + JPEG), `data-lightbox` e `alt` descritivo (sem travessão longo `—`; ver regra de tipografia em `site-estatico.mdc`).
+- Imagem com `<picture>` (WebP + JPEG), `data-lightbox` e `alt` descritivo (sem travessão longo; ver tipografia em `site-estatico.mdc`).
 - CTA WhatsApp: `class="btn btn--whatsapp btn--full"` com mensagem citando o nome do pacote.
-- Não é necessário código extra de tracking — `analytics.js` lê `data-destino` e `data-categoria`.
+- Tracking: `analytics.js` lê `data-destino` e `data-categoria`.
 
 ## Categorias (containers) — ordem de exibição fixa
 
 1. `#pacotes-completos` → `data-categoria="completo"`
 2. `#pacotes-sem-aereo` → `data-categoria="sem-aereo"` (cruzeiros)
-3. `#pacotes-grupos-guia` → `data-categoria="grupo-guia"` (sempre por último, antes do CTA extra)
+3. `#pacotes-grupos-guia` → `data-categoria="grupo-guia"` (se houver)
 
-Novos cards: inserir no container da categoria correta; não alterar a ordem dos blocos.
+## Sincronizar `pacotes.html`
 
-## Sincronizar `pacotes.html` (obrigatório após alterar cards)
-
-Depois de adicionar, remover ou editar pacotes em `index.html`, regenerar o catálogo:
+Depois do sync/`--apply`, regenerar o catálogo:
 
 ```bash
 python _build_pacotes.py
 ```
 
-O script une os cards da home às ofertas em `data/generated/pacotes-sync.html`, injeta atributos de ordenação/filtro e o modal **Filtrar pacotes**. Não recria a seção "Mais ofertas".
-
-**Quando rodar:** qualquer mudança nos cards da home, ou depois de `python _sync_operator.py`.
-
-**Não commitar** `pacotes.html` desatualizado em relação a `index.html`.
-
-## Checklist ao publicar pacote novo
-
-1. Card em `index.html` com `id`, `data-destino` e `data-categoria` corretos
-2. Imagem em `pacotes/` com `alt` descritivo; gerar `.webp` se ainda não existir
-3. Executar `python _build_pacotes.py` e revisar `pacotes.html` no browser
-4. Testar no GA4 DebugView: `view_item` (impressão), `purchase` (clique "Quero esse pacote!") e `generate_lead`
+**Não commitar** `pacotes.html` desatualizado em relação a `index.html` + fragments do sync.

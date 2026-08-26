@@ -57,20 +57,23 @@ def main() -> None:
         print("  total", strip_tags(tot.group(1)) if tot else None)
         print("  parc", strip_tags(par.group(1)) if par else None)
 
-    for dest, expect_total in [
-        ("Salvador Imperdível", 1650),
-        ("Porto de Galinhas Carneiros Maragogi", 2700),
-        ("João Pessoa Pôr do Sol Jacaré", 2270),
-    ]:
-        found = False
-        for a in arts:
-            if f'data-destino="{dest}"' in a and 'data-source="manual"' in a:
-                sp = float(re.search(r'data-sort-price="([^"]+)"', a).group(1))
-                print("manual", dest, "sort", sp, "OK" if abs(sp - expect_total) < 0.01 else "FAIL")
-                found = True
-                break
-        if not found:
-            print("manual", dest, "NOT FOUND")
+    # Home agora vem do sync (data-source=operator); checa presença e preço nos destaques
+    index_html = (ROOT / "index.html").read_text(encoding="utf-8")
+    home_arts = ARTICLE_RE.findall(index_html)
+    home_ops = [a for a in home_arts if 'data-source="operator"' in a]
+    print("HOME", "cards", len(home_arts), "operator", len(home_ops))
+    if len(home_ops) == 0:
+        print("HOME FAIL: nenhum card data-source=operator")
+    elif len(home_ops) > 30:
+        print("HOME WARN: mais de 30 cards operator na home", len(home_ops))
+    else:
+        print("HOME OK: até 30 destaques do sync")
+    missing_price = 0
+    for a in home_ops:
+        sp = re.search(r'data-sort-price="([^"]*)"', a)
+        if not sp or not sp.group(1):
+            missing_price += 1
+    print("HOME sem data-sort-price", missing_price)
 
     # Ordenação programática sobre data-sort-price
     priced = []
