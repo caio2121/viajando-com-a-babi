@@ -13,7 +13,7 @@ Guia para ler no GA4 quais pacotes e categorias geram mais interesse.
 | Clicou no card ou imagem | `select_item` + `destination_interest` | Exploração ativa |
 | Clicou "Tenho interesse" na opção do destino | `purchase` + `package_lead` + Ads `conversion` | Mesma intenção alta, a partir do modal de opções |
 | Clicou "Tenho interesse" / WA em promo-voo ou campanha | `purchase` + `package_lead` + Ads Contato | Intenção alta em `.oferta-row__price` |
-| Clicou WhatsApp genérico (FAB, navbar, hero, footer) | `generate_lead` | Engajamento GA4 **sem** conversão Ads |
+| Clicou WhatsApp genérico (FAB, navbar, hero, footer) | `generate_lead` + Ads Contato | Meta de negócio: qualquer WA |
 | Abriu formulário | `form_start` | Interesse em roteiro personalizado |
 | Enviou formulário | `form_submit` + `generate_lead` + Ads `conversion` | Lead qualificado (sem PII) + conversão Ads |
 | Filtrou/ordenou catálogo | `filter_packages_*`, `sort_packages`, `sort_flights` | Uso de filtros (sem texto digitado) |
@@ -23,13 +23,14 @@ Guia para ler no GA4 quais pacotes e categorias geram mais interesse.
 
 ## Google Ads "Contato" (`gtag_report_conversion`)
 
-Dispara em CTAs WhatsApp **comerciais**:
+Dispara em **qualquer** clique WhatsApp do site (desde 2026-08-26 / `analytics.js?v=17`):
 
 1. Botão **Quero esse pacote!** (`.card__footer .btn--whatsapp`) ou **Tenho interesse** no modal (`.dest-option__cta`)
 2. **Tenho interesse** / WA em promo-voo e campanha (`.oferta-row__price .btn--whatsapp`)
 3. Envio do formulário de roteiro personalizado (`script.js`)
+4. FAB, navbar, hero, footer e demais links `wa.me`
 
-Não dispara em FAB, navbar, hero ou footer. Debounce 3s; mesmo `transaction_id` no Contato Ads e no `purchase` GA4 (`pkg_{slug}_{ts}`).
+`purchase` GA4 continua **só** em CTA comercial (pacote/modal/promo). Debounce 3s; `transaction_id` `pkg_*` / `form_*` / `wa_{location}_*`.
 
 **Meta de otimização Ads:** Contato (maximizar contatos WA). `working_lead` (planilha) = qualificação offline, não bid principal até volume estável. `purchase` no site = intenção, **não** receita.
 
