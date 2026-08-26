@@ -1,8 +1,8 @@
 """HTML compartilhado de filtros, ordenação e estados vazios do catálogo."""
 
 CSS_VERSION = "30"
-JS_VERSION = "28"
-ANALYTICS_VERSION = "15"
+JS_VERSION = "29"
+ANALYTICS_VERSION = "17"
 
 
 def toolbar(kind: str, page_size: int = 24) -> str:
