@@ -36,8 +36,19 @@
 
   /* ── Helpers ─────────────────────────────────────── */
 
+  const VCB_CONSENT_KEY = 'vcb_consent_analytics';
+
   function canTrack() {
     return typeof gtag === 'function';
+  }
+
+  /** Espelha gtag_report_conversion em ga4.html — só mede leads/purchase com consent. */
+  function canTrackAds() {
+    try {
+      return localStorage.getItem(VCB_CONSENT_KEY) === 'granted';
+    } catch (e) {
+      return false;
+    }
   }
 
   function pageMeta() {
@@ -272,6 +283,8 @@
     const value = parsePackageValue(card);
     const txId = transactionId || ('pkg_' + meta.package_slug + '_' + Date.now());
 
+    if (!canTrackAds()) return txId;
+
     trackEvent('purchase', {
       transaction_id: txId,
       value: value,
@@ -314,6 +327,8 @@
   /* ── Leads ─────────────────────────────────────── */
 
   function trackGenerateLead(el, overrides) {
+    if (!canTrackAds()) return;
+
     const href = el.getAttribute('href') || '';
     const meta = getPackageMeta(el);
     const channel = href.startsWith('mailto:') ? 'email'
@@ -370,6 +385,7 @@
         form_name: 'viagem_personalizada',
         form_location: 'contact_form'
       });
+      if (!canTrackAds()) return;
       trackEvent('generate_lead', {
         lead_source: 'website',
         lead_channel: 'form',

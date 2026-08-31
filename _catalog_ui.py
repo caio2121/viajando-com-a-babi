@@ -2,7 +2,7 @@
 
 CSS_VERSION = "30"
 JS_VERSION = "29"
-ANALYTICS_VERSION = "17"
+ANALYTICS_VERSION = "18"
 
 
 def toolbar(kind: str, page_size: int = 24) -> str:
