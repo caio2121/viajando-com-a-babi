@@ -28,7 +28,7 @@ O processo deve ser:
 * seguro;
 * incremental;
 * baseado nos dados atuais da operadora;
-* compatível com futuras execuções periódicas, aproximadamente uma vez por mês.
+* compatível com futuras execuções periódicas, a cada 3 dias.
 
 Você NÃO deve apenas analisar ou sugerir alterações.
 

@@ -19,7 +19,7 @@ Manter atualizados: `robots.txt`, `sitemap.xml` (novas páginas como `privacidad
 
 - Cards na home: até 30 ofertas do sync (`python _sync_operator.py --apply`). A página [`pacotes.html`](pacotes.html) une esses destaques ao restante sincronizado num **catálogo único** (sem seção "Mais ofertas").
 - Filtros e ordenação são gerados por `_build_pacotes.py`. Não editar `pacotes.html` à mão.
-- Após sincronizar a operadora: `python _sync_operator.py` → `python _build_ofertas.py` → `python _build_pacotes.py`. Com home atualizada: incluir `--apply` no sync.
+- Após sincronizar a operadora (cadência alvo: a cada 3 dias): `python _sync_operator.py` → `python _build_ofertas.py` → `python _build_pacotes.py`. Com home atualizada: incluir `--apply` no sync.
 
 ## Organização de scripts
 

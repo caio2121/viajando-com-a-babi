@@ -102,7 +102,7 @@ Os destaques da home vêm do sync (até 30). Para atualizar:
 3. **Regenerar o catálogo:** `python _build_ofertas.py` e `python _build_pacotes.py`
 4. Validar no GA4 DebugView: `view_item`, `purchase` ("Quero esse pacote!") e `generate_lead`
 
-### Sincronização mensal da operadora
+### Sincronização da operadora (a cada 3 dias)
 
 ```bash
 python _sync_operator.py --download-images --apply
@@ -110,7 +110,7 @@ python _build_ofertas.py
 python _build_pacotes.py
 ```
 
-Isso atualiza a home (top 30 do sync), `promo-voos.html`, `campanhas.html` e o catálogo unificado em `pacotes.html`.
+Isso atualiza a home (top 30 do sync), `promo-voos.html`, `campanhas.html` e o catálogo unificado em `pacotes.html`. Cadência alvo: a cada 3 dias (`last_sync` em `data/operator-sync.json` + 3 dias).
 
 ### Ao alterar eventos GA4
 

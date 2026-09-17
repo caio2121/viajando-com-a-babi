@@ -1,6 +1,6 @@
 """Aplica head-assets, GA4+consent e footer scripts nas páginas HTML estáticas.
 
-Fora do pipeline mensal de sync (_sync_operator → _build_ofertas → _build_pacotes).
+Fora do pipeline de sync a cada 3 dias (_sync_operator → _build_ofertas → _build_pacotes).
 Usa as versões canônicas de `_catalog_ui` para não regredir cache-bust de CSS/JS/analytics.
 """
 import re
