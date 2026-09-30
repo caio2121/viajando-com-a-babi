@@ -1,5 +1,5 @@
 {
-  "last_sync": "2026-09-29T12:58:30",
+  "last_sync": "2026-09-30T12:40:26",
   "source": "https://viajandocomdesconto.com/",
   "cotado_em": "29/09/2026",
   "stats": {
@@ -18,12 +18,12 @@
     },
     "filtro_voos": {
       "total": 9915,
-      "rio": 912,
-      "sp": 1625,
-      "nacional": 2147,
-      "internacional": 390,
+      "rio": 905,
+      "sp": 1615,
+      "nacional": 2132,
+      "internacional": 388,
       "ignored_origin": 7377,
-      "ignored_expired": 0,
+      "ignored_expired": 17,
       "ignored_invalid_date": 0,
       "duplicates_removed": 1
     },
@@ -34,20 +34,20 @@
     },
     "publicados": {
       "pacotes": 488,
-      "promo_voos": 2537,
+      "promo_voos": 2520,
       "campanhas": 281
     },
     "reconciliacao_index": {
       "cards_existentes": 30,
-      "pacotes_correspondidos": 126
+      "pacotes_correspondidos": 111
     },
     "validacao_voos": {
       "inverted": 0,
       "js_leaks": 0,
       "sem_preco": 0,
       "sem_taxa": 2,
-      "com_horario": 2537,
-      "com_aeroporto_destino": 2537
+      "com_horario": 2520,
+      "com_aeroporto_destino": 2520
     },
     "validacao_precos_pacotes": {
       "analisados": 488,
@@ -2291,7 +2291,6 @@
         "departure_date": "29/09/2026 a 05/10/2026",
         "additional_dates": "24/07, 11/08, 02/09",
         "departure_dates": [
-          "2026-09-29",
           "2027-07-24",
           "2027-08-11",
           "2027-09-02"
@@ -2350,7 +2349,7 @@
         "currency": "BRL",
         "evento": false,
         "pacote_categoria": "Nacional",
-        "sort_date": "2026-09-29",
+        "sort_date": "2027-07-24",
         "sort_price": 3150.0,
         "tipo": "com-aereo"
       },
@@ -10595,12 +10594,12 @@
         "departure_date": "09/12/2026 a 16/12/2026",
         "additional_dates": "29/09; 28/10; 12/11; 01/12; 14/01",
         "departure_dates": [
-          "2026-09-29",
           "2026-10-28",
           "2026-11-12",
           "2026-12-01",
           "2026-12-09",
-          "2027-01-14"
+          "2027-01-14",
+          "2027-09-29"
         ],
         "flight_included": true,
         "categoria_site": "completo",
@@ -10638,7 +10637,7 @@
         "currency": "BRL",
         "evento": false,
         "pacote_categoria": "Nacional",
-        "sort_date": "2026-09-29",
+        "sort_date": "2026-10-28",
         "sort_price": 7710.0,
         "tipo": "com-aereo"
       },
@@ -11839,12 +11838,12 @@
         "departure_date": "20/02/2027 a 27/02/2027",
         "additional_dates": "29/09; 03/11; 06/03; 03/04; 04/05",
         "departure_dates": [
-          "2026-09-29",
           "2026-11-03",
           "2027-02-20",
           "2027-03-06",
           "2027-04-03",
-          "2027-05-04"
+          "2027-05-04",
+          "2027-09-29"
         ],
         "flight_included": true,
         "categoria_site": "completo",
@@ -11899,7 +11898,7 @@
         "currency": "BRL",
         "evento": false,
         "pacote_categoria": "Nacional",
-        "sort_date": "2026-09-29",
+        "sort_date": "2026-11-03",
         "sort_price": 3210.0,
         "tipo": "com-aereo"
       },
@@ -15595,7 +15594,7 @@
         ],
         "flight_included": true,
         "categoria_site": "completo",
-        "capa": "",
+        "capa": "img/2eb390818711eaf4.png",
         "inclui": [
           "Passagem aérea com destino a Caldas Novas",
           "Noite de Hospedagem (consulte o regime de alimentação)",
@@ -15669,7 +15668,7 @@
         ],
         "flight_included": true,
         "categoria_site": "completo",
-        "capa": "",
+        "capa": "img/2eb390818711eaf4.png",
         "inclui": [
           "Passagem aérea com destino a Caldas Novas",
           "Noite de Hospedagem (consulte o regime de alimentação)",
@@ -15743,7 +15742,7 @@
         ],
         "flight_included": true,
         "categoria_site": "completo",
-        "capa": "",
+        "capa": "img/1b43143a1504f233.png",
         "inclui": [
           "Passagem aérea",
           "Transfer aeroporto / hotel / aeroporto",
@@ -15798,7 +15797,7 @@
         ],
         "flight_included": true,
         "categoria_site": "completo",
-        "capa": "",
+        "capa": "img/761195677d577bd1.png",
         "inclui": [
           "Passagem aérea",
           "Transfer Aeroporto / Hotel / Aeroporto",
@@ -15870,7 +15869,7 @@
         ],
         "flight_included": true,
         "categoria_site": "completo",
-        "capa": "",
+        "capa": "img/761195677d577bd1.png",
         "inclui": [
           "Passagem aérea",
           "Transfer Aeroporto / Hotel / Aeroporto",
@@ -15945,7 +15944,7 @@
         ],
         "flight_included": true,
         "categoria_site": "completo",
-        "capa": "",
+        "capa": "img/12000247ee0c2235.png",
         "inclui": [
           "Passagem aérea",
           "Transfer In/out",
@@ -16023,7 +16022,7 @@
         ],
         "flight_included": true,
         "categoria_site": "completo",
-        "capa": "",
+        "capa": "img/12000247ee0c2235.png",
         "inclui": [
           "Passagem aérea",
           "Transfer In/out",
@@ -31113,7 +31112,7 @@
         ],
         "flight_included": false,
         "categoria_site": "sem-aereo",
-        "capa": "",
+        "capa": "img/45656eb6e2511075.png",
         "inclui": [
           "Hospedagem: 9 noites",
           "Roteiro: CIDADE DE ORIGEM → LISBOA → NAZARÉ → BATALHA → AVEIRO → PORTO → SOLAR MATEUS → COIMBRA → FÁTIMA → de → TOMAR → ÓBIDOS → MÉRIDA → MADRI",
@@ -37780,34 +37779,6 @@
         "sort_price": 680.0
       },
       {
-        "id": "voo:CGH:CLV:2026-11-29:2026-12-04:439.0:186.0:09:30",
-        "fingerprint": "af07077f9ebf9aba",
-        "category": "promo-voo",
-        "title": "Caldas Novas",
-        "destination": "Caldas Novas",
-        "destination_type": "nacional",
-        "destination_airport": "CLV",
-        "origin_city": "São Paulo",
-        "origin_airport": "CGH",
-        "origin_bucket": "sp",
-        "departure_date": "2026-11-29",
-        "departure_time": "09:30",
-        "return_date": "2026-12-04",
-        "return_time": "18:00",
-        "departure_dates": [
-          "2026-11-29"
-        ],
-        "nights": 5,
-        "price": 439.0,
-        "tax": 186.0,
-        "currency": "BRL",
-        "seats": 10,
-        "last_seats": null,
-        "airline": "GOL",
-        "sort_date": "2026-11-29",
-        "sort_price": 439.0
-      },
-      {
         "id": "voo:CGH:IOS:2026-11-29:2026-12-05:619.0:186.0:10:40",
         "fingerprint": "80809e4cfd039ba6",
         "category": "promo-voo",
@@ -37862,62 +37833,6 @@
         "airline": "GOL",
         "sort_date": "2026-11-29",
         "sort_price": 619.0
-      },
-      {
-        "id": "voo:GRU:PUJ:2026-11-29:2026-12-06:2282.0:934.0:09:30",
-        "fingerprint": "8cbb78b027085200",
-        "category": "promo-voo",
-        "title": "Punta Cana",
-        "destination": "Punta Cana",
-        "destination_type": "internacional",
-        "destination_airport": "PUJ",
-        "origin_city": "São Paulo",
-        "origin_airport": "GRU",
-        "origin_bucket": "sp",
-        "departure_date": "2026-11-29",
-        "departure_time": "09:30",
-        "return_date": "2026-12-06",
-        "return_time": "22:00",
-        "departure_dates": [
-          "2026-11-29"
-        ],
-        "nights": 7,
-        "price": 2282.0,
-        "tax": 934.0,
-        "currency": "BRL",
-        "seats": 6,
-        "last_seats": null,
-        "airline": "GOL",
-        "sort_date": "2026-11-29",
-        "sort_price": 2282.0
-      },
-      {
-        "id": "voo:GRU:PUJ:2026-11-29:2026-12-06:2220.0:999.0:09:30",
-        "fingerprint": "2547ec80e1c6a257",
-        "category": "promo-voo",
-        "title": "Punta Cana",
-        "destination": "Punta Cana",
-        "destination_type": "internacional",
-        "destination_airport": "PUJ",
-        "origin_city": "São Paulo",
-        "origin_airport": "GRU",
-        "origin_bucket": "sp",
-        "departure_date": "2026-11-29",
-        "departure_time": "09:30",
-        "return_date": "2026-12-06",
-        "return_time": "22:00",
-        "departure_dates": [
-          "2026-11-29"
-        ],
-        "nights": 7,
-        "price": 2220.0,
-        "tax": 999.0,
-        "currency": "BRL",
-        "seats": 10,
-        "last_seats": null,
-        "airline": "GOL",
-        "sort_date": "2026-11-29",
-        "sort_price": 2220.0
       },
       {
         "id": "voo:GRU:JJD:2026-11-30:2026-12-07:862.0:186.0:08:40",
@@ -37976,34 +37891,6 @@
         "sort_price": 873.0
       },
       {
-        "id": "voo:GRU:JJD:2026-11-30:2026-12-07:945.0:186.0:08:40",
-        "fingerprint": "3ca999ee01515e0e",
-        "category": "promo-voo",
-        "title": "Jericoacoara",
-        "destination": "Jericoacoara",
-        "destination_type": "nacional",
-        "destination_airport": "JJD",
-        "origin_city": "São Paulo",
-        "origin_airport": "GRU",
-        "origin_bucket": "sp",
-        "departure_date": "2026-11-30",
-        "departure_time": "08:40",
-        "return_date": "2026-12-07",
-        "return_time": "12:40",
-        "departure_dates": [
-          "2026-11-30"
-        ],
-        "nights": 7,
-        "price": 945.0,
-        "tax": 186.0,
-        "currency": "BRL",
-        "seats": 10,
-        "last_seats": null,
-        "airline": "GOL",
-        "sort_date": "2026-11-30",
-        "sort_price": 945.0
-      },
-      {
         "id": "voo:GRU:SSA:2026-11-30:2026-12-05:823.0:186.0:11:00",
         "fingerprint": "954931b8dfca3ca9",
         "category": "promo-voo",
@@ -38058,34 +37945,6 @@
         "airline": "LATAM",
         "sort_date": "2026-12-01",
         "sort_price": 2010.0
-      },
-      {
-        "id": "voo:GIG:FOR:2026-12-01:2026-12-06:1243.0:186.0:13:00",
-        "fingerprint": "906a289920800b33",
-        "category": "promo-voo",
-        "title": "Fortaleza",
-        "destination": "Fortaleza",
-        "destination_type": "nacional",
-        "destination_airport": "FOR",
-        "origin_city": "Rio de Janeiro",
-        "origin_airport": "GIG",
-        "origin_bucket": "rio",
-        "departure_date": "2026-12-01",
-        "departure_time": "13:00",
-        "return_date": "2026-12-06",
-        "return_time": "17:00",
-        "departure_dates": [
-          "2026-12-01"
-        ],
-        "nights": 5,
-        "price": 1243.0,
-        "tax": 186.0,
-        "currency": "BRL",
-        "seats": 6,
-        "last_seats": null,
-        "airline": "GOL",
-        "sort_date": "2026-12-01",
-        "sort_price": 1243.0
       },
       {
         "id": "voo:GIG:FOR:2026-12-01:2026-12-08:1050.0:186.0:10:10",
@@ -38508,62 +38367,6 @@
         "sort_price": 787.0
       },
       {
-        "id": "voo:SDU:CLV:2026-12-02:2026-12-09:972.0:186.0:11:50",
-        "fingerprint": "d89d733cfeec1e42",
-        "category": "promo-voo",
-        "title": "Caldas Novas",
-        "destination": "Caldas Novas",
-        "destination_type": "nacional",
-        "destination_airport": "CLV",
-        "origin_city": "Rio de Janeiro",
-        "origin_airport": "SDU",
-        "origin_bucket": "rio",
-        "departure_date": "2026-12-02",
-        "departure_time": "11:50",
-        "return_date": "2026-12-09",
-        "return_time": "18:00",
-        "departure_dates": [
-          "2026-12-02"
-        ],
-        "nights": 7,
-        "price": 972.0,
-        "tax": 186.0,
-        "currency": "BRL",
-        "seats": 5,
-        "last_seats": null,
-        "airline": "GOL",
-        "sort_date": "2026-12-02",
-        "sort_price": 972.0
-      },
-      {
-        "id": "voo:GIG:FLN:2026-12-02:2026-12-06:591.0:186.0:08:30",
-        "fingerprint": "a532eb3db8500b1e",
-        "category": "promo-voo",
-        "title": "Florianópolis",
-        "destination": "Florianópolis",
-        "destination_type": "nacional",
-        "destination_airport": "FLN",
-        "origin_city": "Rio de Janeiro",
-        "origin_airport": "GIG",
-        "origin_bucket": "rio",
-        "departure_date": "2026-12-02",
-        "departure_time": "08:30",
-        "return_date": "2026-12-06",
-        "return_time": "10:50",
-        "departure_dates": [
-          "2026-12-02"
-        ],
-        "nights": 4,
-        "price": 591.0,
-        "tax": 186.0,
-        "currency": "BRL",
-        "seats": 1,
-        "last_seats": null,
-        "airline": "GOL",
-        "sort_date": "2026-12-02",
-        "sort_price": 591.0
-      },
-      {
         "id": "voo:GIG:FOR:2026-12-02:2026-12-09:1050.0:186.0:10:10",
         "fingerprint": "a823a2b6bbed5737",
         "category": "promo-voo",
@@ -38676,90 +38479,6 @@
         "sort_price": 527.0
       },
       {
-        "id": "voo:GIG:POA:2026-12-02:2026-12-06:556.0:186.0:07:15",
-        "fingerprint": "2c87b193e6e67039",
-        "category": "promo-voo",
-        "title": "Gramado",
-        "destination": "Gramado",
-        "destination_type": "nacional",
-        "destination_airport": "POA",
-        "origin_city": "Rio de Janeiro",
-        "origin_airport": "GIG",
-        "origin_bucket": "rio",
-        "departure_date": "2026-12-02",
-        "departure_time": "07:15",
-        "return_date": "2026-12-06",
-        "return_time": "16:15",
-        "departure_dates": [
-          "2026-12-02"
-        ],
-        "nights": 4,
-        "price": 556.0,
-        "tax": 186.0,
-        "currency": "BRL",
-        "seats": 10,
-        "last_seats": null,
-        "airline": "GOL",
-        "sort_date": "2026-12-02",
-        "sort_price": 556.0
-      },
-      {
-        "id": "voo:GIG:POA:2026-12-02:2026-12-06:612.0:186.0:07:15",
-        "fingerprint": "84ea92e2428ec5c2",
-        "category": "promo-voo",
-        "title": "Gramado",
-        "destination": "Gramado",
-        "destination_type": "nacional",
-        "destination_airport": "POA",
-        "origin_city": "Rio de Janeiro",
-        "origin_airport": "GIG",
-        "origin_bucket": "rio",
-        "departure_date": "2026-12-02",
-        "departure_time": "07:15",
-        "return_date": "2026-12-06",
-        "return_time": "16:15",
-        "departure_dates": [
-          "2026-12-02"
-        ],
-        "nights": 4,
-        "price": 612.0,
-        "tax": 186.0,
-        "currency": "BRL",
-        "seats": 14,
-        "last_seats": null,
-        "airline": "GOL",
-        "sort_date": "2026-12-02",
-        "sort_price": 612.0
-      },
-      {
-        "id": "voo:GIG:POA:2026-12-02:2026-12-06:671.0:186.0:08:30",
-        "fingerprint": "694ceafa00ab2815",
-        "category": "promo-voo",
-        "title": "Gramado",
-        "destination": "Gramado",
-        "destination_type": "nacional",
-        "destination_airport": "POA",
-        "origin_city": "Rio de Janeiro",
-        "origin_airport": "GIG",
-        "origin_bucket": "rio",
-        "departure_date": "2026-12-02",
-        "departure_time": "08:30",
-        "return_date": "2026-12-06",
-        "return_time": "10:50",
-        "departure_dates": [
-          "2026-12-02"
-        ],
-        "nights": 4,
-        "price": 671.0,
-        "tax": 186.0,
-        "currency": "BRL",
-        "seats": 10,
-        "last_seats": null,
-        "airline": "GOL",
-        "sort_date": "2026-12-02",
-        "sort_price": 671.0
-      },
-      {
         "id": "voo:GRU:IOS:2026-12-02:2026-12-07:860.0:186.0:07:20",
         "fingerprint": "4dd68d1c7362b83a",
         "category": "promo-voo",
@@ -38842,34 +38561,6 @@
         "airline": "LATAM",
         "sort_date": "2026-12-02",
         "sort_price": 757.0
-      },
-      {
-        "id": "voo:CGH:REC:2026-12-02:2026-12-09:883.0:186.0:11:40",
-        "fingerprint": "1ffb6c9740981272",
-        "category": "promo-voo",
-        "title": "Porto de Galinhas",
-        "destination": "Porto de Galinhas",
-        "destination_type": "nacional",
-        "destination_airport": "REC",
-        "origin_city": "São Paulo",
-        "origin_airport": "CGH",
-        "origin_bucket": "sp",
-        "departure_date": "2026-12-02",
-        "departure_time": "11:40",
-        "return_date": "2026-12-09",
-        "return_time": "18:15",
-        "departure_dates": [
-          "2026-12-02"
-        ],
-        "nights": 7,
-        "price": 883.0,
-        "tax": 186.0,
-        "currency": "BRL",
-        "seats": 10,
-        "last_seats": null,
-        "airline": "GOL",
-        "sort_date": "2026-12-02",
-        "sort_price": 883.0
       },
       {
         "id": "voo:CGH:REC:2026-12-02:2026-12-07:888.0:186.0:07:20",
@@ -39208,62 +38899,6 @@
         "sort_price": 359.0
       },
       {
-        "id": "voo:CGH:POA:2026-12-03:2026-12-07:363.0:186.0:06:55",
-        "fingerprint": "7771757d0fb1b5b7",
-        "category": "promo-voo",
-        "title": "Gramado",
-        "destination": "Gramado",
-        "destination_type": "nacional",
-        "destination_airport": "POA",
-        "origin_city": "São Paulo",
-        "origin_airport": "CGH",
-        "origin_bucket": "sp",
-        "departure_date": "2026-12-03",
-        "departure_time": "06:55",
-        "return_date": "2026-12-07",
-        "return_time": "20:05",
-        "departure_dates": [
-          "2026-12-03"
-        ],
-        "nights": 4,
-        "price": 363.0,
-        "tax": 186.0,
-        "currency": "BRL",
-        "seats": 10,
-        "last_seats": null,
-        "airline": "GOL",
-        "sort_date": "2026-12-03",
-        "sort_price": 363.0
-      },
-      {
-        "id": "voo:GIG:POA:2026-12-03:2026-12-07:527.0:186.0:09:30",
-        "fingerprint": "6f8dff658cd4ff1f",
-        "category": "promo-voo",
-        "title": "Gramado",
-        "destination": "Gramado",
-        "destination_type": "nacional",
-        "destination_airport": "POA",
-        "origin_city": "Rio de Janeiro",
-        "origin_airport": "GIG",
-        "origin_bucket": "rio",
-        "departure_date": "2026-12-03",
-        "departure_time": "09:30",
-        "return_date": "2026-12-07",
-        "return_time": "19:40",
-        "departure_dates": [
-          "2026-12-03"
-        ],
-        "nights": 4,
-        "price": 527.0,
-        "tax": 186.0,
-        "currency": "BRL",
-        "seats": 64,
-        "last_seats": null,
-        "airline": "GOL",
-        "sort_date": "2026-12-03",
-        "sort_price": 527.0
-      },
-      {
         "id": "voo:GIG:POA:2026-12-03:2026-12-07:527.0:186.0:09:30",
         "fingerprint": "0292f131d5c6a47f",
         "category": "promo-voo",
@@ -39430,62 +39065,6 @@
         "airline": "LATAM",
         "sort_date": "2026-12-03",
         "sort_price": 757.0
-      },
-      {
-        "id": "voo:CGH:REC:2026-12-03:2026-12-08:884.0:186.0:11:40",
-        "fingerprint": "a30a4f1dae6de942",
-        "category": "promo-voo",
-        "title": "Porto de Galinhas",
-        "destination": "Porto de Galinhas",
-        "destination_type": "nacional",
-        "destination_airport": "REC",
-        "origin_city": "São Paulo",
-        "origin_airport": "CGH",
-        "origin_bucket": "sp",
-        "departure_date": "2026-12-03",
-        "departure_time": "11:40",
-        "return_date": "2026-12-08",
-        "return_time": "18:15",
-        "departure_dates": [
-          "2026-12-03"
-        ],
-        "nights": 5,
-        "price": 884.0,
-        "tax": 186.0,
-        "currency": "BRL",
-        "seats": 6,
-        "last_seats": null,
-        "airline": "GOL",
-        "sort_date": "2026-12-03",
-        "sort_price": 884.0
-      },
-      {
-        "id": "voo:CGH:REC:2026-12-03:2026-12-08:894.0:186.0:11:40",
-        "fingerprint": "e4d0dfc6db1df4f8",
-        "category": "promo-voo",
-        "title": "Porto de Galinhas",
-        "destination": "Porto de Galinhas",
-        "destination_type": "nacional",
-        "destination_airport": "REC",
-        "origin_city": "São Paulo",
-        "origin_airport": "CGH",
-        "origin_bucket": "sp",
-        "departure_date": "2026-12-03",
-        "departure_time": "11:40",
-        "return_date": "2026-12-08",
-        "return_time": "18:15",
-        "departure_dates": [
-          "2026-12-03"
-        ],
-        "nights": 5,
-        "price": 894.0,
-        "tax": 186.0,
-        "currency": "BRL",
-        "seats": 8,
-        "last_seats": null,
-        "airline": "GOL",
-        "sort_date": "2026-12-03",
-        "sort_price": 894.0
       },
       {
         "id": "voo:CGH:REC:2026-12-03:2026-12-10:905.0:186.0:10:45",
@@ -39822,34 +39401,6 @@
         "airline": "AZUL",
         "sort_date": "2026-12-04",
         "sort_price": 349.0
-      },
-      {
-        "id": "voo:CGH:POA:2026-12-04:2026-12-08:359.0:186.0:06:55",
-        "fingerprint": "e1ffefb745f93b54",
-        "category": "promo-voo",
-        "title": "Gramado",
-        "destination": "Gramado",
-        "destination_type": "nacional",
-        "destination_airport": "POA",
-        "origin_city": "São Paulo",
-        "origin_airport": "CGH",
-        "origin_bucket": "sp",
-        "departure_date": "2026-12-04",
-        "departure_time": "06:55",
-        "return_date": "2026-12-08",
-        "return_time": "20:05",
-        "departure_dates": [
-          "2026-12-04"
-        ],
-        "nights": 4,
-        "price": 359.0,
-        "tax": 186.0,
-        "currency": "BRL",
-        "seats": 16,
-        "last_seats": null,
-        "airline": "GOL",
-        "sort_date": "2026-12-04",
-        "sort_price": 359.0
       },
       {
         "id": "voo:CGH:POA:2026-12-04:2026-12-09:536.0:186.0:06:55",
@@ -40382,34 +39933,6 @@
         "airline": "AZUL",
         "sort_date": "2026-12-05",
         "sort_price": 375.0
-      },
-      {
-        "id": "voo:CGH:POA:2026-12-05:2026-12-09:363.0:186.0:06:35",
-        "fingerprint": "e5873a0f7a15a858",
-        "category": "promo-voo",
-        "title": "Gramado",
-        "destination": "Gramado",
-        "destination_type": "nacional",
-        "destination_airport": "POA",
-        "origin_city": "São Paulo",
-        "origin_airport": "CGH",
-        "origin_bucket": "sp",
-        "departure_date": "2026-12-05",
-        "departure_time": "06:35",
-        "return_date": "2026-12-09",
-        "return_time": "20:05",
-        "departure_dates": [
-          "2026-12-05"
-        ],
-        "nights": 4,
-        "price": 363.0,
-        "tax": 186.0,
-        "currency": "BRL",
-        "seats": 9,
-        "last_seats": null,
-        "airline": "GOL",
-        "sort_date": "2026-12-05",
-        "sort_price": 363.0
       },
       {
         "id": "voo:GIG:POA:2026-12-05:2026-12-09:645.0:186.0:07:15",
@@ -102764,7 +102287,7 @@
         "nota": "Café · 5% de desconto para reservas com 60 dias de antecedência. 10% de desconto para reservas com 90 dias de antecedência. 15% de desconto para reservas com 120 dias de antecedência.",
         "fornecedor": "",
         "exclusivo": "",
-        "sort_date": "2026-09-29",
+        "sort_date": "2027-09-29",
         "sort_price": 0
       },
       {
