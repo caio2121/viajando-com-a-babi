@@ -1,5 +1,5 @@
 {
-  "last_sync": "2026-10-02T12:42:04",
+  "last_sync": "2026-10-03T11:43:59",
   "source": "https://viajandocomdesconto.com/",
   "cotado_em": "29/09/2026",
   "stats": {
@@ -14,16 +14,16 @@
       "sp": 195,
       "sem_aereo": 195,
       "ignored_origin": 54,
-      "ignored_expired": 17
+      "ignored_expired": 18
     },
     "filtro_voos": {
       "total": 9995,
-      "rio": 922,
-      "sp": 1758,
-      "nacional": 2287,
-      "internacional": 393,
+      "rio": 921,
+      "sp": 1744,
+      "nacional": 2273,
+      "internacional": 392,
       "ignored_origin": 7314,
-      "ignored_expired": 0,
+      "ignored_expired": 15,
       "ignored_invalid_date": 0,
       "duplicates_removed": 1
     },
@@ -33,8 +33,8 @@
       "ignored_expired": 0
     },
     "publicados": {
-      "pacotes": 488,
-      "promo_voos": 2680,
+      "pacotes": 487,
+      "promo_voos": 2665,
       "campanhas": 132
     },
     "reconciliacao_index": {
@@ -46,12 +46,12 @@
       "js_leaks": 0,
       "sem_preco": 0,
       "sem_taxa": 2,
-      "com_horario": 2680,
-      "com_aeroporto_destino": 2680
+      "com_horario": 2665,
+      "com_aeroporto_destino": 2665
     },
     "validacao_precos_pacotes": {
-      "analisados": 488,
-      "com_preco_total": 487,
+      "analisados": 487,
+      "com_preco_total": 486,
       "sem_preco_total": 1,
       "inconsistencias": 0,
       "aereo_como_total": 0
@@ -6587,11 +6587,11 @@
         "departure_date": "18/09/2026 a 25/09/2026",
         "additional_dates": "15/09; 02/10; 10/12; 24/01; 12/04",
         "departure_dates": [
-          "2026-10-02",
           "2026-12-10",
           "2027-01-24",
           "2027-04-12",
-          "2027-09-15"
+          "2027-09-15",
+          "2027-10-02"
         ],
         "flight_included": true,
         "categoria_site": "completo",
@@ -6646,7 +6646,7 @@
         "currency": "BRL",
         "evento": false,
         "pacote_categoria": "Nacional",
-        "sort_date": "2026-10-02",
+        "sort_date": "2026-12-10",
         "sort_price": 2190.0,
         "tipo": "com-aereo"
       },
@@ -7657,11 +7657,11 @@
         "departure_date": "26/09/2026 a 30/09/2026",
         "additional_dates": "21/09; 02/10; 21/10; 08/11; 26/11",
         "departure_dates": [
-          "2026-10-02",
           "2026-10-21",
           "2026-11-08",
           "2026-11-26",
-          "2027-09-21"
+          "2027-09-21",
+          "2027-10-02"
         ],
         "flight_included": true,
         "categoria_site": "completo",
@@ -7715,7 +7715,7 @@
         "currency": "BRL",
         "evento": false,
         "pacote_categoria": "Nacional",
-        "sort_date": "2026-10-02",
+        "sort_date": "2026-10-21",
         "sort_price": 2240.0,
         "tipo": "com-aereo"
       },
@@ -17372,63 +17372,6 @@
         "sort_date": "2026-11-18",
         "sort_price": 16450.0,
         "tipo": "com-aereo"
-      },
-      {
-        "id": "pacote:classicosdaturquiagrecia:sem_aereo",
-        "fingerprint": "8a6a5e7aa4cc8c0f",
-        "category": "pacote",
-        "source_slug": "classicosdaturquiagrecia",
-        "title": "Clássicos da Turquia & Grécia - 13 Dias",
-        "destination": "",
-        "origin_city": "",
-        "origin_airport": "",
-        "origin_bucket": "sem_aereo",
-        "departure_date": "02/10/2026 a 14/10/2026",
-        "additional_dates": "",
-        "departure_dates": [
-          "2026-10-02"
-        ],
-        "flight_included": false,
-        "categoria_site": "sem-aereo",
-        "capa": "img/2e4eb3a64a2e1e90.png",
-        "inclui": [
-          "Traslados de chegada e saída nos dias previstos do roteiro, unicamente para o Aeroporto de Istambul (IST).",
-          "Hospedagem em hotéis categoria 4 estrelas, com café da manhã buffet. Os hotéis utilizados não ficam nas regiões centrais das cidades.",
-          "Regime de hospedagem por cidade: 3 noites em Istambul com café da manhã; 1 noite em Ancara com café da manhã; 2 noites na Capadócia com café da manhã e jantar; 1 noite em Pamukkale com café da manhã e jantar; 1 noite em Kusadasi ou Izmir com café da manhã e jantar; 2 noites de cruzeiro em cabine standard interna (sem vista), com pensão completa (sem bebidas); 2 noites em Atenas com café da manhã.",
-          "Guia no destino falando espanhol ou português.",
-          "Passeios inclusos mencionados na programação.",
-          "Transporte terrestre na Turquia em veículos com ar-condicionado, com paradas a cada 2 horas nos trechos mais longos.",
-          "Taxas portuárias.",
-          "A ordem de visitação das cidades pode ser alterada conforme a data de embarque de cada grupo."
-        ],
-        "hoteis": [
-          {
-            "nome": "by infotera CATIVA OPERADORA - Orcamento: 5784288 2/6 HOTÉIS Clássicos da Turquia & Grécia",
-            "preco": "R$ 13.250,00",
-            "taxas": "R$ 1.135,00",
-            "regime": "Pensão completa",
-            "promo": "",
-            "parcela": "10x de R$ 1.325"
-          }
-        ],
-        "taxas": "R$ 1.135,00",
-        "fees": 1135.0,
-        "de": "",
-        "por": "",
-        "airfare_original_price": null,
-        "airfare_sale_price": null,
-        "installments": "10x de R$ 1.325",
-        "installment_count": 10,
-        "installment_value": 1325.0,
-        "total_price": "R$ 13.250",
-        "package_total_price": 13250.0,
-        "price_source": "explicit_total",
-        "currency": "BRL",
-        "evento": false,
-        "pacote_categoria": "Internacional",
-        "sort_date": "2026-10-02",
-        "sort_price": 13250.0,
-        "tipo": "cruzeiro"
       },
       {
         "id": "pacote:vinhedosequebradas5dias4:sem_aereo",
@@ -31422,34 +31365,6 @@
     ],
     "promo_voos": [
       {
-        "id": "voo:GIG:JPA:2026-10-06:2026-10-12:826.0:186.0:18:10",
-        "fingerprint": "a5b5dbe20dca8d1f",
-        "category": "promo-voo",
-        "title": "João Pessoa",
-        "destination": "João Pessoa",
-        "destination_type": "nacional",
-        "destination_airport": "JPA",
-        "origin_city": "Rio de Janeiro",
-        "origin_airport": "GIG",
-        "origin_bucket": "rio",
-        "departure_date": "2026-10-06",
-        "departure_time": "18:10",
-        "return_date": "2026-10-12",
-        "return_time": "12:50",
-        "departure_dates": [
-          "2026-10-06"
-        ],
-        "nights": 6,
-        "price": 826.0,
-        "tax": 186.0,
-        "currency": "BRL",
-        "seats": 1,
-        "last_seats": null,
-        "airline": "GOL",
-        "sort_date": "2026-10-06",
-        "sort_price": 826.0
-      },
-      {
         "id": "voo:CGH:POA:2026-10-10:2026-10-14:438.0:186.0:06:35",
         "fingerprint": "f97b2ff51a34625a",
         "category": "promo-voo",
@@ -32850,34 +32765,6 @@
         "sort_price": 1208.0
       },
       {
-        "id": "voo:GRU:REC:2026-11-05:2026-11-11:697.0:186.0:08:00",
-        "fingerprint": "970611991a0f3072",
-        "category": "promo-voo",
-        "title": "Porto de Galinhas",
-        "destination": "Porto de Galinhas",
-        "destination_type": "nacional",
-        "destination_airport": "REC",
-        "origin_city": "São Paulo",
-        "origin_airport": "GRU",
-        "origin_bucket": "sp",
-        "departure_date": "2026-11-05",
-        "departure_time": "08:00",
-        "return_date": "2026-11-11",
-        "return_time": "17:20",
-        "departure_dates": [
-          "2026-11-05"
-        ],
-        "nights": 6,
-        "price": 697.0,
-        "tax": 186.0,
-        "currency": "BRL",
-        "seats": 5,
-        "last_seats": null,
-        "airline": "GOL",
-        "sort_date": "2026-11-05",
-        "sort_price": 697.0
-      },
-      {
         "id": "voo:GRU:REC:2026-11-05:2026-11-11:856.0:186.0:05:00",
         "fingerprint": "57e625c665acd421",
         "category": "promo-voo",
@@ -34138,62 +34025,6 @@
         "sort_price": 527.0
       },
       {
-        "id": "voo:GRU:JPA:2026-11-13:2026-11-20:931.0:186.0:13:30",
-        "fingerprint": "58de63e7054b9c6b",
-        "category": "promo-voo",
-        "title": "João Pessoa",
-        "destination": "João Pessoa",
-        "destination_type": "nacional",
-        "destination_airport": "JPA",
-        "origin_city": "São Paulo",
-        "origin_airport": "GRU",
-        "origin_bucket": "sp",
-        "departure_date": "2026-11-13",
-        "departure_time": "13:30",
-        "return_date": "2026-11-20",
-        "return_time": "12:45",
-        "departure_dates": [
-          "2026-11-13"
-        ],
-        "nights": 7,
-        "price": 931.0,
-        "tax": 186.0,
-        "currency": "BRL",
-        "seats": 15,
-        "last_seats": null,
-        "airline": "GOL",
-        "sort_date": "2026-11-13",
-        "sort_price": 931.0
-      },
-      {
-        "id": "voo:GRU:JPA:2026-11-13:2026-11-20:931.0:199.0:13:30",
-        "fingerprint": "3aef19b5560b15af",
-        "category": "promo-voo",
-        "title": "João Pessoa",
-        "destination": "João Pessoa",
-        "destination_type": "nacional",
-        "destination_airport": "JPA",
-        "origin_city": "São Paulo",
-        "origin_airport": "GRU",
-        "origin_bucket": "sp",
-        "departure_date": "2026-11-13",
-        "departure_time": "13:30",
-        "return_date": "2026-11-20",
-        "return_time": "12:45",
-        "departure_dates": [
-          "2026-11-13"
-        ],
-        "nights": 7,
-        "price": 931.0,
-        "tax": 199.0,
-        "currency": "BRL",
-        "seats": 10,
-        "last_seats": null,
-        "airline": "GOL",
-        "sort_date": "2026-11-13",
-        "sort_price": 931.0
-      },
-      {
         "id": "voo:CGH:NVT:2026-11-13:2026-11-17:404.0:186.0:07:15",
         "fingerprint": "e5e9e0a669405221",
         "category": "promo-voo",
@@ -34866,34 +34697,6 @@
         "sort_price": 479.0
       },
       {
-        "id": "voo:GRU:JPA:2026-11-17:2026-11-24:931.0:186.0:08:50",
-        "fingerprint": "5eb6779948580049",
-        "category": "promo-voo",
-        "title": "João Pessoa",
-        "destination": "João Pessoa",
-        "destination_type": "nacional",
-        "destination_airport": "JPA",
-        "origin_city": "São Paulo",
-        "origin_airport": "GRU",
-        "origin_bucket": "sp",
-        "departure_date": "2026-11-17",
-        "departure_time": "08:50",
-        "return_date": "2026-11-24",
-        "return_time": "02:45",
-        "departure_dates": [
-          "2026-11-17"
-        ],
-        "nights": 7,
-        "price": 931.0,
-        "tax": 186.0,
-        "currency": "BRL",
-        "seats": 20,
-        "last_seats": null,
-        "airline": "GOL",
-        "sort_date": "2026-11-17",
-        "sort_price": 931.0
-      },
-      {
         "id": "voo:GRU:REC:2026-11-17:2026-11-24:919.0:186.0:14:15",
         "fingerprint": "7bc4a89484960181",
         "category": "promo-voo",
@@ -35340,34 +35143,6 @@
         "airline": "GOL",
         "sort_date": "2026-11-20",
         "sort_price": 1837.0
-      },
-      {
-        "id": "voo:GRU:JPA:2026-11-20:2026-11-27:986.0:186.0:23:10",
-        "fingerprint": "a8342b1fefd2f836",
-        "category": "promo-voo",
-        "title": "João Pessoa",
-        "destination": "João Pessoa",
-        "destination_type": "nacional",
-        "destination_airport": "JPA",
-        "origin_city": "São Paulo",
-        "origin_airport": "GRU",
-        "origin_bucket": "sp",
-        "departure_date": "2026-11-20",
-        "departure_time": "23:10",
-        "return_date": "2026-11-27",
-        "return_time": "02:45",
-        "departure_dates": [
-          "2026-11-20"
-        ],
-        "nights": 7,
-        "price": 986.0,
-        "tax": 186.0,
-        "currency": "BRL",
-        "seats": 10,
-        "last_seats": null,
-        "airline": "GOL",
-        "sort_date": "2026-11-20",
-        "sort_price": 986.0
       },
       {
         "id": "voo:GIG:AJU:2026-11-21:2026-11-26:753.0:186.0:10:05",
@@ -39038,34 +38813,6 @@
         "sort_price": 638.0
       },
       {
-        "id": "voo:GRU:IOS:2026-12-04:2026-12-11:757.0:186.0:10:25",
-        "fingerprint": "8ae27642966ba09b",
-        "category": "promo-voo",
-        "title": "Ilhéus",
-        "destination": "Ilhéus",
-        "destination_type": "nacional",
-        "destination_airport": "IOS",
-        "origin_city": "São Paulo",
-        "origin_airport": "GRU",
-        "origin_bucket": "sp",
-        "departure_date": "2026-12-04",
-        "departure_time": "10:25",
-        "return_date": "2026-12-11",
-        "return_time": "13:15",
-        "departure_dates": [
-          "2026-12-04"
-        ],
-        "nights": 7,
-        "price": 757.0,
-        "tax": 186.0,
-        "currency": "BRL",
-        "seats": 8,
-        "last_seats": null,
-        "airline": "LATAM",
-        "sort_date": "2026-12-04",
-        "sort_price": 757.0
-      },
-      {
         "id": "voo:GIG:JPA:2026-12-04:2026-12-11:930.0:186.0:22:40",
         "fingerprint": "ad2a3270d2b3ff29",
         "category": "promo-voo",
@@ -39456,34 +39203,6 @@
         "airline": "GOL",
         "sort_date": "2026-12-05",
         "sort_price": 363.0
-      },
-      {
-        "id": "voo:GRU:IOS:2026-12-05:2026-12-10:777.0:186.0:15:00",
-        "fingerprint": "71e88c65f1af22bb",
-        "category": "promo-voo",
-        "title": "Ilhéus",
-        "destination": "Ilhéus",
-        "destination_type": "nacional",
-        "destination_airport": "IOS",
-        "origin_city": "São Paulo",
-        "origin_airport": "GRU",
-        "origin_bucket": "sp",
-        "departure_date": "2026-12-05",
-        "departure_time": "15:00",
-        "return_date": "2026-12-10",
-        "return_time": "17:55",
-        "departure_dates": [
-          "2026-12-05"
-        ],
-        "nights": 5,
-        "price": 777.0,
-        "tax": 186.0,
-        "currency": "BRL",
-        "seats": 10,
-        "last_seats": null,
-        "airline": "LATAM",
-        "sort_date": "2026-12-05",
-        "sort_price": 777.0
       },
       {
         "id": "voo:CGH:BPS:2026-12-05:2026-12-10:895.0:186.0:14:25",
@@ -40240,34 +39959,6 @@
         "airline": "LATAM",
         "sort_date": "2026-12-08",
         "sort_price": 2544.0
-      },
-      {
-        "id": "voo:GRU:AUA:2026-12-08:2026-12-15:2016.0:543.0:06:30",
-        "fingerprint": "16e11671fd6ead8c",
-        "category": "promo-voo",
-        "title": "Aruba",
-        "destination": "Aruba",
-        "destination_type": "internacional",
-        "destination_airport": "AUA",
-        "origin_city": "São Paulo",
-        "origin_airport": "GRU",
-        "origin_bucket": "sp",
-        "departure_date": "2026-12-08",
-        "departure_time": "06:30",
-        "return_date": "2026-12-15",
-        "return_time": "19:10",
-        "departure_dates": [
-          "2026-12-08"
-        ],
-        "nights": 7,
-        "price": 2016.0,
-        "tax": 543.0,
-        "currency": "BRL",
-        "seats": 7,
-        "last_seats": null,
-        "airline": "LATAM",
-        "sort_date": "2026-12-08",
-        "sort_price": 2016.0
       },
       {
         "id": "voo:GIG:FOR:2026-12-08:2026-12-15:1072.0:186.0:05:10",
@@ -85714,34 +85405,6 @@
         "sort_price": 1087.0
       },
       {
-        "id": "voo:GRU:JPA:2027-04-09:2027-04-16:1055.0:199.0:08:40",
-        "fingerprint": "5cb143fac32202a3",
-        "category": "promo-voo",
-        "title": "João Pessoa",
-        "destination": "João Pessoa",
-        "destination_type": "nacional",
-        "destination_airport": "JPA",
-        "origin_city": "São Paulo",
-        "origin_airport": "GRU",
-        "origin_bucket": "sp",
-        "departure_date": "2027-04-09",
-        "departure_time": "08:40",
-        "return_date": "2027-04-16",
-        "return_time": "17:40",
-        "departure_dates": [
-          "2027-04-09"
-        ],
-        "nights": 7,
-        "price": 1055.0,
-        "tax": 199.0,
-        "currency": "BRL",
-        "seats": 20,
-        "last_seats": null,
-        "airline": "GOL",
-        "sort_date": "2027-04-09",
-        "sort_price": 1055.0
-      },
-      {
         "id": "voo:VCP:MCZ:2027-04-09:2027-04-15:944.0:186.0:11:20",
         "fingerprint": "a0a4e77f0554a717",
         "category": "promo-voo",
@@ -86610,34 +86273,6 @@
         "sort_price": 883.0
       },
       {
-        "id": "voo:GRU:REC:2027-04-10:2027-04-16:764.0:199.0:08:00",
-        "fingerprint": "f4eb56e5f93a1e95",
-        "category": "promo-voo",
-        "title": "Porto de Galinhas",
-        "destination": "Porto de Galinhas",
-        "destination_type": "nacional",
-        "destination_airport": "REC",
-        "origin_city": "São Paulo",
-        "origin_airport": "GRU",
-        "origin_bucket": "sp",
-        "departure_date": "2027-04-10",
-        "departure_time": "08:00",
-        "return_date": "2027-04-16",
-        "return_time": "17:20",
-        "departure_dates": [
-          "2027-04-10"
-        ],
-        "nights": 6,
-        "price": 764.0,
-        "tax": 199.0,
-        "currency": "BRL",
-        "seats": 30,
-        "last_seats": null,
-        "airline": "GOL",
-        "sort_date": "2027-04-10",
-        "sort_price": 764.0
-      },
-      {
         "id": "voo:GRU:REC:2027-04-10:2027-04-15:764.0:199.0:08:00",
         "fingerprint": "5f47faf0ec372834",
         "category": "promo-voo",
@@ -87252,34 +86887,6 @@
         "airline": "GOL",
         "sort_date": "2027-04-13",
         "sort_price": 894.0
-      },
-      {
-        "id": "voo:GRU:REC:2027-04-13:2027-04-19:764.0:199.0:08:00",
-        "fingerprint": "b40dc5dc617c899d",
-        "category": "promo-voo",
-        "title": "Porto de Galinhas",
-        "destination": "Porto de Galinhas",
-        "destination_type": "nacional",
-        "destination_airport": "REC",
-        "origin_city": "São Paulo",
-        "origin_airport": "GRU",
-        "origin_bucket": "sp",
-        "departure_date": "2027-04-13",
-        "departure_time": "08:00",
-        "return_date": "2027-04-19",
-        "return_time": "17:20",
-        "departure_dates": [
-          "2027-04-13"
-        ],
-        "nights": 6,
-        "price": 764.0,
-        "tax": 199.0,
-        "currency": "BRL",
-        "seats": 30,
-        "last_seats": null,
-        "airline": "GOL",
-        "sort_date": "2027-04-13",
-        "sort_price": 764.0
       },
       {
         "id": "voo:GRU:REC:2027-04-13:2027-04-18:764.0:199.0:08:00",
@@ -90556,34 +90163,6 @@
         "airline": "GOL",
         "sort_date": "2027-04-24",
         "sort_price": 947.0
-      },
-      {
-        "id": "voo:GRU:REC:2027-04-24:2027-04-30:764.0:199.0:08:00",
-        "fingerprint": "be1bd09598b58380",
-        "category": "promo-voo",
-        "title": "Porto de Galinhas",
-        "destination": "Porto de Galinhas",
-        "destination_type": "nacional",
-        "destination_airport": "REC",
-        "origin_city": "São Paulo",
-        "origin_airport": "GRU",
-        "origin_bucket": "sp",
-        "departure_date": "2027-04-24",
-        "departure_time": "08:00",
-        "return_date": "2027-04-30",
-        "return_time": "17:20",
-        "departure_dates": [
-          "2027-04-24"
-        ],
-        "nights": 6,
-        "price": 764.0,
-        "tax": 199.0,
-        "currency": "BRL",
-        "seats": 50,
-        "last_seats": null,
-        "airline": "GOL",
-        "sort_date": "2027-04-24",
-        "sort_price": 764.0
       },
       {
         "id": "voo:GRU:AJU:2027-04-25:2027-04-30:947.0:199.0:09:00",
@@ -96606,34 +96185,6 @@
         "sort_price": 969.0
       },
       {
-        "id": "voo:GRU:REC:2027-05-15:2027-05-21:764.0:199.0:08:00",
-        "fingerprint": "6d6a4f5e9a5a5614",
-        "category": "promo-voo",
-        "title": "Porto de Galinhas",
-        "destination": "Porto de Galinhas",
-        "destination_type": "nacional",
-        "destination_airport": "REC",
-        "origin_city": "São Paulo",
-        "origin_airport": "GRU",
-        "origin_bucket": "sp",
-        "departure_date": "2027-05-15",
-        "departure_time": "08:00",
-        "return_date": "2027-05-21",
-        "return_time": "17:20",
-        "departure_dates": [
-          "2027-05-15"
-        ],
-        "nights": 6,
-        "price": 764.0,
-        "tax": 199.0,
-        "currency": "BRL",
-        "seats": 50,
-        "last_seats": null,
-        "airline": "GOL",
-        "sort_date": "2027-05-15",
-        "sort_price": 764.0
-      },
-      {
         "id": "voo:GRU:REC:2027-05-15:2027-05-19:764.0:199.0:08:00",
         "fingerprint": "0417fd1578781f01",
         "category": "promo-voo",
@@ -97416,34 +96967,6 @@
         "airline": "GOL",
         "sort_date": "2027-05-18",
         "sort_price": 424.0
-      },
-      {
-        "id": "voo:GRU:REC:2027-05-18:2027-05-25:764.0:199.0:08:00",
-        "fingerprint": "903323dad43b1562",
-        "category": "promo-voo",
-        "title": "Porto de Galinhas",
-        "destination": "Porto de Galinhas",
-        "destination_type": "nacional",
-        "destination_airport": "REC",
-        "origin_city": "São Paulo",
-        "origin_airport": "GRU",
-        "origin_bucket": "sp",
-        "departure_date": "2027-05-18",
-        "departure_time": "08:00",
-        "return_date": "2027-05-25",
-        "return_time": "17:20",
-        "departure_dates": [
-          "2027-05-18"
-        ],
-        "nights": 7,
-        "price": 764.0,
-        "tax": 199.0,
-        "currency": "BRL",
-        "seats": 30,
-        "last_seats": null,
-        "airline": "GOL",
-        "sort_date": "2027-05-18",
-        "sort_price": 764.0
       },
       {
         "id": "voo:CGH:CLV:2027-05-19:2027-05-23:599.0:199.0:14:20",
