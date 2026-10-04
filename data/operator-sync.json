@@ -1,5 +1,5 @@
 {
-  "last_sync": "2026-10-03T11:43:59",
+  "last_sync": "2026-10-04T12:26:37",
   "source": "https://viajandocomdesconto.com/",
   "cotado_em": "29/09/2026",
   "stats": {
@@ -11,10 +11,10 @@
     "filtro_pacotes": {
       "total": 471,
       "rio": 108,
-      "sp": 195,
+      "sp": 193,
       "sem_aereo": 195,
       "ignored_origin": 54,
-      "ignored_expired": 18
+      "ignored_expired": 20
     },
     "filtro_voos": {
       "total": 9995,
@@ -33,7 +33,7 @@
       "ignored_expired": 0
     },
     "publicados": {
-      "pacotes": 487,
+      "pacotes": 485,
       "promo_voos": 2665,
       "campanhas": 132
     },
@@ -50,8 +50,8 @@
       "com_aeroporto_destino": 2665
     },
     "validacao_precos_pacotes": {
-      "analisados": 487,
-      "com_preco_total": 486,
+      "analisados": 485,
+      "com_preco_total": 484,
       "sem_preco_total": 1,
       "inconsistencias": 0,
       "aereo_como_total": 0
@@ -1358,12 +1358,12 @@
         "departure_date": "12/03/2027 a 17/03/2027",
         "additional_dates": "03/10; 19/11; 10/12; 18/01; 18/02",
         "departure_dates": [
-          "2026-10-03",
           "2026-11-19",
           "2026-12-10",
           "2027-01-18",
           "2027-02-18",
-          "2027-03-12"
+          "2027-03-12",
+          "2027-10-03"
         ],
         "flight_included": true,
         "categoria_site": "completo",
@@ -1419,7 +1419,7 @@
         "currency": "BRL",
         "evento": false,
         "pacote_categoria": "Nacional",
-        "sort_date": "2026-10-03",
+        "sort_date": "2026-11-19",
         "sort_price": 2750.0,
         "tipo": "com-aereo"
       },
@@ -1513,12 +1513,12 @@
         "departure_date": "29/01/2027 a 03/02/2027",
         "additional_dates": "03/10; 31/10; 19/11; 10/12; 17/01",
         "departure_dates": [
-          "2026-10-03",
           "2026-10-31",
           "2026-11-19",
           "2026-12-10",
           "2027-01-17",
-          "2027-01-29"
+          "2027-01-29",
+          "2027-10-03"
         ],
         "flight_included": true,
         "categoria_site": "completo",
@@ -1554,7 +1554,7 @@
         "currency": "BRL",
         "evento": false,
         "pacote_categoria": "Nacional",
-        "sort_date": "2026-10-03",
+        "sort_date": "2026-10-31",
         "sort_price": 4540.0,
         "tipo": "com-aereo"
       },
@@ -7278,11 +7278,11 @@
         "departure_date": "14/01/2027 a 21/01/2027",
         "additional_dates": "06/09; 03/10; 17/01; 01/02",
         "departure_dates": [
-          "2026-10-03",
           "2027-01-14",
           "2027-01-17",
           "2027-02-01",
-          "2027-09-06"
+          "2027-09-06",
+          "2027-10-03"
         ],
         "flight_included": true,
         "categoria_site": "completo",
@@ -7337,7 +7337,7 @@
         "currency": "BRL",
         "evento": false,
         "pacote_categoria": "Nacional",
-        "sort_date": "2026-10-03",
+        "sort_date": "2027-01-14",
         "sort_price": 3530.0,
         "tipo": "com-aereo"
       },
@@ -11155,12 +11155,12 @@
         "departure_date": "25/10/2026 a 29/10/2026",
         "additional_dates": "03/10; 11/11; 19/01; 23/02; 30/03",
         "departure_dates": [
-          "2026-10-03",
           "2026-10-25",
           "2026-11-11",
           "2027-01-19",
           "2027-02-23",
-          "2027-03-30"
+          "2027-03-30",
+          "2027-10-03"
         ],
         "flight_included": true,
         "categoria_site": "completo",
@@ -11213,7 +11213,7 @@
         "currency": "BRL",
         "evento": false,
         "pacote_categoria": "Nacional",
-        "sort_date": "2026-10-03",
+        "sort_date": "2026-10-25",
         "sort_price": 1790.0,
         "tipo": "com-aereo"
       },
@@ -11462,7 +11462,6 @@
         "departure_date": "03/10/2026 a 10/10/2026",
         "additional_dates": "29/08; 28/09; 05/10; 13/11; 17/01",
         "departure_dates": [
-          "2026-10-03",
           "2026-10-05",
           "2026-11-13",
           "2027-01-17",
@@ -11522,7 +11521,7 @@
         "currency": "BRL",
         "evento": false,
         "pacote_categoria": "Nacional",
-        "sort_date": "2026-10-03",
+        "sort_date": "2026-10-05",
         "sort_price": 2380.0,
         "tipo": "com-aereo"
       },
@@ -17885,56 +17884,6 @@
         "tipo": "sem-aereo"
       },
       {
-        "id": "pacote:santiagoessencial-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2:SÃO PAULO",
-        "fingerprint": "22e0ec2b753fade4",
-        "category": "pacote",
-        "source_slug": "santiagoessencial-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2",
-        "title": "Santiago - Essencial",
-        "destination": "Santiago",
-        "origin_city": "São Paulo",
-        "origin_airport": "SÃO PAULO",
-        "origin_bucket": "sp",
-        "departure_date": "03/10/2026 a 09/10/2026",
-        "additional_dates": "",
-        "departure_dates": [
-          "2026-10-03"
-        ],
-        "flight_included": true,
-        "categoria_site": "completo",
-        "capa": "img/b796774c08742158.png",
-        "inclui": [
-          "Hospedagem: 5 noites"
-        ],
-        "hoteis": [
-          {
-            "nome": "HUB Providencia",
-            "preco": "R$ 3.176,27",
-            "taxas": "R$ 354,00",
-            "regime": "Só hospedagem",
-            "promo": "",
-            "parcela": "10x de R$ 317"
-          }
-        ],
-        "taxas": "R$ 354,00",
-        "fees": 354.0,
-        "de": "",
-        "por": "",
-        "airfare_original_price": null,
-        "airfare_sale_price": null,
-        "installments": "10x de R$ 317",
-        "installment_count": 10,
-        "installment_value": 317.0,
-        "total_price": "R$ 3.176",
-        "package_total_price": 3176.27,
-        "price_source": "explicit_total",
-        "currency": "BRL",
-        "evento": false,
-        "pacote_categoria": "Internacional",
-        "sort_date": "2026-10-03",
-        "sort_price": 3176.27,
-        "tipo": "com-aereo"
-      },
-      {
         "id": "pacote:festivaldodiadosmortos:sem_aereo",
         "fingerprint": "92ea9fdb9e45a4ba",
         "category": "pacote",
@@ -22250,71 +22199,6 @@
         "sort_date": "2026-10-12",
         "sort_price": 5420.81,
         "tipo": "sem-aereo"
-      },
-      {
-        "id": "pacote:santiagocomcitytourgrati:SÃO PAULO",
-        "fingerprint": "89c545945d309d29",
-        "category": "pacote",
-        "source_slug": "santiagocomcitytourgrati",
-        "title": "Santiago com City tour GRÁTIS + Vinhedo Undurraga",
-        "destination": "Santiago",
-        "origin_city": "São Paulo",
-        "origin_airport": "SÃO PAULO",
-        "origin_bucket": "sp",
-        "departure_date": "03/10/2026 a 09/10/2026",
-        "additional_dates": "",
-        "departure_dates": [
-          "2026-10-03"
-        ],
-        "flight_included": true,
-        "categoria_site": "completo",
-        "capa": "img/8a324a2f5d46fce7.png",
-        "inclui": [
-          "Hospedagem: 5 noites",
-          "Passagem aérea de ida e volta.",
-          "Hospedagem conforme as datas e hotel selecionado.",
-          "Transfer de chegada e saída (Regular).",
-          "City tour regular É possível incluir \" Opcional \", seguro e passeios. É importante que o hotel seja bem avaliado ou indicado, pois nosso sistema disponibiliza produtos para todos os gostos. Os hotéis indicados podem não ser do padrão desejado pelo cliente, pois indicamos hotéis para todos os padrões. Escolher bem o hotel será crucial para o melhor aproveitamento da viagem. Powered by infotera CATIVA OPERADORA",
-          "Orcamento: 6033527 7/12 Parte aérea: Os pacotes estão filtrados para trazer a melhor oferta; verifique se o horário do voo está de acordo com o pacote. Caso o voo chegue no dia seguinte à saída do Brasil, a diária inicial será utilizada! Nesses casos, solicite uma atenção dos nossos consultores. Documentação Necessária : Passaporte Válido : Certifique-se de que seu passaporte está válido por pelo menos seis meses a partir da data de entrada no Chile. RG Alternativo : Brasileiros também podem entrar com o RG (Carteira de Identidade) emitido há menos de 10 anos e em bom estado de conservação. Evite usar outros documentos como carteira de motorista. Formulário Migratório : Ao desembarcar em Santiago, preencha o formulário migratório (Tarjeta de Turismo). Guarde a cópia durante toda a viagem, pois você precisará apresentá-la ao sair do país. Isenção de Visto : Brasileiros não precisam de visto para turismo no Chile por até 90 dias. Isso facilita muito sua viagem, permitindo que você explore o país sem preocupações adicionais. Seguro Viagem : Embora não seja obrigatório, é altamente recomendável. Um bom seguro viagem cobre despesas médicas, emergências e extravio de bagagem, garantindo uma viagem tranquila e segura. Vacinação : Não há vacinas obrigatórias para entrar no Chile. No entanto, é sempre bom estar com a vacinação de rotina em dia. A vacina contra febre amarela, embora não exigida, é recomendada para viajantes frequentes. Moeda Local e Câmbio : A moeda oficial é o peso chileno. Troque uma quantia inicial antes de viajar ou utilize casas de câmbio e caixas eletrônicos em Santiago. Cartões de crédito são amplamente aceitos, mas tenha sempre um pouco de dinheiro em espécie para pequenas despesas. Idioma e Comunicação : O idioma oficial é o espanhol. Embora muitos chilenos falem inglês nas áreas turísticas, aprender algumas frases básicas em espanhol pode enriquecer sua experiência. Tomadas e Voltagem : A voltagem padrão é 220V e as tomadas são do tipo C e L. Verifique se seus dispositivos são compatíveis e leve adaptadores se necessário. Segurança e Precauções : Santiago é uma cidade segura para turistas, mas mantenha a atenção em áreas movimentadas e evite exibir objetos de valor. Use táxis autorizados ou aplicativos de transporte para maior segurança. Clima e Vestuário : Santiago tem um clima mediterrâneo, com verões quentes e secos e invernos frios e úmidos. Vista-se em camadas para se adaptar às variações de temperatura ao longo do dia e aproveite para explorar as estações de esqui durante o inverno. Conectividade : Verifique os planos de roaming internacional da sua operadora ou adquira um chip local para se manter conectado. Wi-Fi é amplamente disponível em hotéis, restaurantes e cafés. Gastronomia e Cultura : Aproveite para saborear a rica gastronomia chilena, desde frutos do mar frescos até vinhos premiados. Visite museus, participe de eventos culturais e explore a vibrante vida noturna de Santiago.  Hospedagem Total ( 2 Adultos ) HUB Providencia         Antonio Bellet 333, Providencia",
-          "0, Santiago De Chile, Check-in 03 out 2026 Check-out 08 out 2026 Noites 5 Noites Hóspedes 2 Adultos  Estudio 2 Adultos Só Alojamento ― Não reembolsável Descrição: Non Refundable Powered by infotera CATIVA OPERADORA",
-          "Orcamento: 6033527 8/12  Aéreo Total ( 2 Adultos ) Ida 2 Adultos Voo Operado por Latam 07:10 GRU Duração 05h20 11:30 SCL São Paulo (BR)",
-          "03 out GUARULHOS",
-          "GOVERNADOR ANDRÉ FR … Santiago (CL)",
-          "03 out COMODORO ARTURO MERINO BENÍTEZ I … Classe: Econômica Voo: 0715 Bagagens e Assentos Adulto 1  1x Item Pessoal  1x Mala de mão  0x Mala despachada Adulto 2  1x Item Pessoal  1x Mala de mão  0x Mala despachada Volta 2 Adultos Voo Operado por Latam 21:30 SCL Duração 02h50 01:20 GRU Santiago (CL)",
-          "08 out COMODORO ARTURO MERINO BENÍTEZ I … São Paulo (BR)",
-          "09 out GUARULHOS",
-          "GOVERNADOR ANDRÉ FR … Classe: Econômica Voo: 0756 Bagagens e Assentos Adulto 1  1x Item Pessoal  1x Mala de mão  0x Mala despachada Adulto 2  1x Item Pessoal  1x Mala de mão  0x Mala despachada  Outros Serviços Total ( 2 Adultos ) Cobertura Cancelamento Involuntário de Viagem - R$ 4.000,00 Data de utilização: 03 outubro Powered by infotera CATIVA OPERADORA",
-          "Orcamento: 6033527 9/12 Descrição: PROGRAMA DE FLEXIBILIDADE TARIFÁRIA \"Protect TRAVEL\" 1. DO OBJETO E DEFINIÇÃO 1.1. O Protect TRAVEL é um serviço opcional de upgrade de flexibilidade tarifária oferecido pela Cativa Operadora. De caráter individual, nominal e intransferível, ele garante ao passageiro aderente a isenção de multas administrativas e a absorção de penalidades de fornecedores (cias aéreas, hotéis e serviços terrestres), desde que o cancelamento seja motivado exclusivamente por um dos eventos listados na Cláusula 2. 1.2. Esta proteção não possui natureza de seguro, mas sim de uma cláusula de flexibilidade tarifária garantida, onde a Operadora assume o ônus financeiro das multas perante os fornecedores finais. 1.3 O benefício é válido única e exclusivamente para pacotes e serviços turísticos operados e comercializados pela Cativa Operadora, não sendo extensível a itens adquiridos fora deste contrato de intermediação. 1.4 A isenção de multas é um benefício exclusivo e individual do passageiro aderente, condicionada à comunicação do cancelamento à Operadora em até 48 horas após a ocorrência do evento gerador 2. EVENTOS ELIGÍVEIS PARA ACIONAMENTO A adesão ao Protect Travel garante a conversão de valores retidos por multas em Créditos para Viagem Futura (Voucher), limitados ao teto do plano escolhido, caso a viagem precise ser cancelada em decorrência de: a) Impedimento por Saúde: Enfermidade grave ou Acidente Pessoal que gere impedimento clínico de locomoção do Beneficiário; b) Emergência Familiar: Falecimento ou internação hospitalar de urgência (superior a 72 horas) do cônjuge, pais, irmãos, filhos ou sogros, decorrente de enfermidade aguda e repentina; c) Fenômenos da Natureza: Eventos naturais extremos no domicílio ou destino, desde que declarados como Estado de Calamidade Pública pela autoridade competente, impedindo o tráfego ou operações aéreas; d) Obrigações Judiciais: Recebimento de notificação judicial improrrogável para comparecimento do Beneficiário em audiência com data coincidente ao período da viagem; e) Restrições Sanitárias: Determinação oficial de quarentena obrigatória imposta ao Beneficiário por autoridade sanitária competente; f) Gestação: Complicações médicas na gravidez (até o 7º mês) ou gravidez concebida após a adesão, desde que a data do embarque/retorno seja proibida pelas normas das transportadoras aéreas (após o 7º mês); g) Rescisão Laboral (CLT): Desemprego involuntário por demissão sem justa causa; h) Impedimento de Visto: Negativa de visto consular para o destino, desde que o processo tenha sido iniciado no prazo correto e a negativa ocorra após a contratação desta proteção; i) Concursos e Vida Pública: Convocação para concursos públicos, vestibulares, nomeação para cargo concursado ou convocação para mesa eleitoral, com datas conflitantes com a viagem. 3. REGRAS DO CRÉDITO (VOUCHER) 3.1. O valor das multas absorvidas pela Operadora será disponibilizado em forma de Voucher Nominal e Intransferível para utilização em novos serviços da Operadora, com validade de 12(doze) meses. 3.2. O valor pago pela adesão ao Protect Travel não é reembolsável e nem se transforma em crédito, por se tratar de serviço já prestado. 3.3. Na ocorrência de cancelamento de um dos ocupantes de acomodação dupla ou tripla, os passageiros remanescentes que optarem por manter a viagem serão responsáveis pelo pagamento de eventual suplemento tarifário (ex: diferença de quarto duplo para single) exigido pelos fornecedores, não cabendo à Operadora a absorção destes custos decorrentes da alteração da ocupação original. 4. DOCUMENTAÇÃO COMPROBATÓRIA Para o acionamento da proteção Protect Travel, o Beneficiário deverá apresentar obrigatoriamente, de acordo com o evento gerador do cancelamento, a seguinte documentação comprobatória: A) Óbito/Saúde: Certidão de óbito ou Relatório Médico (CRM legível) com diagnóstico e período de internação. Não serão aceitos relatórios emitidos por familiares. B) Gestação: Exame de imagem (ultrassonografia) e relatório médico atestando a idade gestacional e/ou a complicação que impeça o embarque. C) Desemprego (CLT): Cópia da Carteira de Trabalho (página da foto, dados e baixa do contrato) e Termo de Rescisão do Contrato de Trabalho (TRCT). D) Deveres Jurídicos e Públicos: Cópia da notificação judicial ou convocação oficial (Justiça, Tribunal, TRE ou Diário Oficial de nomeação) com data e assinatura da autoridade. e) Calamidade Pública: Cópia do Decreto Municipal ou Estadual de Calamidade Pública que afete diretamente a residência do beneficiário ou o destino da viagem. 5. EXCLUSÕES E LIMITAÇÕES 5.1. A proteção não cobre eventos preexistentes à contratação ou atos de má-fé. 5.2. A Operadora reserva-se o direito de realizar perícia médica ou técnica para validação dos documentos apresentados. 5.3. Cancelamentos realizados sem a documentação exigida ou fora dos motivos listados seguirão a política de cancelamento padrão do contrato principal, sem as isenções do Protect Travel. 5.4. Não haverá isenção de multas para acompanhantes cujo motivo do cancelamento seja a \"desistência por solidariedade\" ou \"impossibilidade financeira\" decorrente do cancelamento do beneficiário principal, salvo se os referidos acompanhantes também comprovarem evento próprio previsto na Cláusula 2. Powered by infotera CATIVA OPERADORA",
-          "Orcamento: 6033527 10/12  Pacote de serviços Total ( 2 Adultos ) PROGRAMA CHILE ESSENCIAL N°16 / TRASLADO IN/OUT + CITY TOUR SANTIAGO (FREE) + VINHEDO UNDURRAGA Data de utilização: 03 outubro Características  Todos os dias da semana  Dia todo  Disponível em português e espanhol Descrição: Este pacote turístico otimiza sua visita a Santiago combinando conforto e tradição vitivinícola. Inclui traslados de chegada e saída do aeroporto. Desfrute de um City Tour gratuito pelos marcos históricos e modernos da capital. O ponto alto é a excursão à Vinícola Undurraga, onde você visitará adegas centenárias e degustará vinhos de exportação no Vale do Maipo. Ideal para uma viagem perfeita de conforto e cultura chilena. Observações: Srv SIB: o city tour será realizado no dia seguinte à chegada; se o voo de chegada for no início da manhã, será coordenado para o dia seguinte.Pick up na sua hospedagem (apenas no eixo Alameda (Santiago Centro, Providencia e Apoquindo),O City Tour Termina no Mercado CentralHd Vinhedos (Visite uma destas prestigiadas vinícolas: Santa Rita, Undurraga ou Cousiño Macul dependendo da disponibilidade do dia) O que inclui  Traslado in/out  City tour santiago (free)  Viñedo undurraga ( ticket entrada + degustação de vinhos) O que não inclui x Café da manhã x Almoco no vinhedo  Informações gerais FORMAS DE PAGAMENTO: À vista : Depósito ou PIX (QR Code). Cartão de Crédito : Visa e Master : Parcelamento em até 10x sem juros. Elo, Amex e Hiper : Parcelamento em até 6x sem juros. Para parcelamentos acima de 7x, haverá um pequeno acréscimo."
-        ],
-        "hoteis": [
-          {
-            "nome": "HUB Providencia",
-            "preco": "R$ 3.778,84",
-            "taxas": "R$ 368,00",
-            "regime": "Só hospedagem",
-            "promo": "",
-            "parcela": "10x de R$ 377"
-          }
-        ],
-        "taxas": "R$ 368,00",
-        "fees": 368.0,
-        "de": "",
-        "por": "",
-        "airfare_original_price": null,
-        "airfare_sale_price": null,
-        "installments": "10x de R$ 377",
-        "installment_count": 10,
-        "installment_value": 377.0,
-        "total_price": "R$ 3.779",
-        "package_total_price": 3778.84,
-        "price_source": "explicit_total",
-        "currency": "BRL",
-        "evento": false,
-        "pacote_categoria": "Internacional",
-        "sort_date": "2026-10-03",
-        "sort_price": 3778.84,
-        "tipo": "com-aereo"
       },
       {
         "id": "pacote:santiagocompasseiosimper-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2:SÃO PAULO",
@@ -106646,7 +106530,7 @@
         "nota": "Café · Estadia de 5 noites ou mais. Quartos padrão The Little Mermaid. Sujeito à disponibilidade.",
         "fornecedor": "Kaluah",
         "exclusivo": "",
-        "sort_date": "2026-10-03",
+        "sort_date": "2027-07-31",
         "sort_price": 0
       },
       {
@@ -106663,7 +106547,7 @@
         "nota": "Café · Estadia de 1 a 4 noites. Quartos padrão The Little Mermaid. Sujeito à disponibilidade.",
         "fornecedor": "Kaluah",
         "exclusivo": "",
-        "sort_date": "2026-10-03",
+        "sort_date": "2027-07-31",
         "sort_price": 0
       },
       {
@@ -106680,7 +106564,7 @@
         "nota": "Café · Estadia de 5 noites ou mais. Sujeito à disponibilidade.",
         "fornecedor": "Kaluah",
         "exclusivo": "",
-        "sort_date": "2026-10-03",
+        "sort_date": "2027-07-31",
         "sort_price": 0
       },
       {
@@ -106697,7 +106581,7 @@
         "nota": "Café · Estadia de 5 noites ou mais. Sujeito à disponibilidade.",
         "fornecedor": "Kaluah",
         "exclusivo": "",
-        "sort_date": "2026-10-03",
+        "sort_date": "2027-07-31",
         "sort_price": 0
       },
       {
@@ -106714,7 +106598,7 @@
         "nota": "Café · Estadia de 5 noites ou mais. Sujeito à disponibilidade.",
         "fornecedor": "Kaluah",
         "exclusivo": "",
-        "sort_date": "2026-10-03",
+        "sort_date": "2027-07-31",
         "sort_price": 0
       },
       {
@@ -106731,7 +106615,7 @@
         "nota": "Café · Estadia de 5 noites ou mais. Sujeito à disponibilidade.",
         "fornecedor": "Kaluah",
         "exclusivo": "",
-        "sort_date": "2026-10-03",
+        "sort_date": "2027-07-31",
         "sort_price": 0
       },
       {
@@ -106748,7 +106632,7 @@
         "nota": "Café · Estadia de 5 noites ou mais. Sujeito à disponibilidade.",
         "fornecedor": "Kaluah",
         "exclusivo": "",
-        "sort_date": "2026-10-03",
+        "sort_date": "2027-07-31",
         "sort_price": 0
       },
       {
@@ -106765,7 +106649,7 @@
         "nota": "Café · Estadia de 1 a 4 noites. Sujeito à disponibilidade.",
         "fornecedor": "Kaluah",
         "exclusivo": "",
-        "sort_date": "2026-10-03",
+        "sort_date": "2027-07-31",
         "sort_price": 0
       },
       {
@@ -106782,7 +106666,7 @@
         "nota": "Café · Estadia de 1 a 4 noites. Sujeito à disponibilidade.",
         "fornecedor": "Kaluah",
         "exclusivo": "",
-        "sort_date": "2026-10-03",
+        "sort_date": "2027-07-31",
         "sort_price": 0
       },
       {
@@ -106799,7 +106683,7 @@
         "nota": "Café · Estadia de 1 a 4 noites. Sujeito à disponibilidade.",
         "fornecedor": "Kaluah",
         "exclusivo": "",
-        "sort_date": "2026-10-03",
+        "sort_date": "2027-07-31",
         "sort_price": 0
       },
       {
@@ -106816,7 +106700,7 @@
         "nota": "Café · Estadia de 1 a 4 noites. Sujeito à disponibilidade.",
         "fornecedor": "Kaluah",
         "exclusivo": "",
-        "sort_date": "2026-10-03",
+        "sort_date": "2027-07-31",
         "sort_price": 0
       },
       {
@@ -106833,7 +106717,7 @@
         "nota": "Café · Estadia de 1 a 4 noites. Sujeito à disponibilidade.",
         "fornecedor": "Kaluah",
         "exclusivo": "",
-        "sort_date": "2026-10-03",
+        "sort_date": "2027-07-31",
         "sort_price": 0
       },
       {
@@ -106850,7 +106734,7 @@
         "nota": "Café · Estadia de 5 noites ou mais. Sujeito à disponibilidade.",
         "fornecedor": "Kaluah",
         "exclusivo": "",
-        "sort_date": "2026-10-03",
+        "sort_date": "2027-07-31",
         "sort_price": 0
       },
       {
@@ -106867,7 +106751,7 @@
         "nota": "Café · Estadia de 5 noites ou mais. Suítes familiares. Sujeito à disponibilidade.",
         "fornecedor": "Kaluah",
         "exclusivo": "",
-        "sort_date": "2026-10-03",
+        "sort_date": "2027-07-31",
         "sort_price": 0
       },
       {
@@ -106884,7 +106768,7 @@
         "nota": "Café · Estadia de 5 noites ou mais. Sujeito à disponibilidade.",
         "fornecedor": "Kaluah",
         "exclusivo": "",
-        "sort_date": "2026-10-03",
+        "sort_date": "2027-07-31",
         "sort_price": 0
       },
       {
@@ -106901,7 +106785,7 @@
         "nota": "Café · Estadia de 5 noites ou mais. Sujeito à disponibilidade.",
         "fornecedor": "Kaluah",
         "exclusivo": "",
-        "sort_date": "2026-10-03",
+        "sort_date": "2027-07-31",
         "sort_price": 0
       },
       {
@@ -106918,7 +106802,7 @@
         "nota": "Café · Estadia de 5 noites ou mais. Studios categoria Deluxe. Sujeito à disponibilidade.",
         "fornecedor": "Kaluah",
         "exclusivo": "",
-        "sort_date": "2026-10-03",
+        "sort_date": "2027-07-31",
         "sort_price": 0
       },
       {
@@ -106935,7 +106819,7 @@
         "nota": "Café · Estadia de 5 noites ou mais. Sujeito à disponibilidade.",
         "fornecedor": "Kaluah",
         "exclusivo": "",
-        "sort_date": "2026-10-03",
+        "sort_date": "2027-07-31",
         "sort_price": 0
       },
       {
@@ -106952,7 +106836,7 @@
         "nota": "Café · Estadia de 5 noites ou mais. Sujeito à disponibilidade.",
         "fornecedor": "Kaluah",
         "exclusivo": "",
-        "sort_date": "2026-10-03",
+        "sort_date": "2027-07-31",
         "sort_price": 0
       },
       {
@@ -106969,7 +106853,7 @@
         "nota": "Café · Estadia de 5 noites ou mais. Sujeito à disponibilidade.",
         "fornecedor": "Kaluah",
         "exclusivo": "",
-        "sort_date": "2026-10-03",
+        "sort_date": "2027-07-31",
         "sort_price": 0
       },
       {
@@ -106986,7 +106870,7 @@
         "nota": "Café · Estadia de 1 a 4 noites. Sujeito à disponibilidade.",
         "fornecedor": "Kaluah",
         "exclusivo": "",
-        "sort_date": "2026-10-03",
+        "sort_date": "2027-07-31",
         "sort_price": 0
       },
       {
@@ -107003,7 +106887,7 @@
         "nota": "Café · Estadia de 1 a 4 noites. Suítes familiares. Sujeito à disponibilidade.",
         "fornecedor": "Kaluah",
         "exclusivo": "",
-        "sort_date": "2026-10-03",
+        "sort_date": "2027-07-31",
         "sort_price": 0
       },
       {
@@ -107020,7 +106904,7 @@
         "nota": "Café · Estadia de 1 a 4 noites. Sujeito à disponibilidade.",
         "fornecedor": "Kaluah",
         "exclusivo": "",
-        "sort_date": "2026-10-03",
+        "sort_date": "2027-07-31",
         "sort_price": 0
       },
       {
@@ -107037,7 +106921,7 @@
         "nota": "Café · Estadia de 1 a 4 noites. Sujeito à disponibilidade.",
         "fornecedor": "Kaluah",
         "exclusivo": "",
-        "sort_date": "2026-10-03",
+        "sort_date": "2027-07-31",
         "sort_price": 0
       },
       {
@@ -107054,7 +106938,7 @@
         "nota": "Café · Estadia de 1 a 4 noites. Studios categoria Deluxe. Sujeito à disponibilidade.",
         "fornecedor": "Kaluah",
         "exclusivo": "",
-        "sort_date": "2026-10-03",
+        "sort_date": "2027-07-31",
         "sort_price": 0
       },
       {
@@ -107071,7 +106955,7 @@
         "nota": "Café · Estadia de 1 a 4 noites. Sujeito à disponibilidade.",
         "fornecedor": "Kaluah",
         "exclusivo": "",
-        "sort_date": "2026-10-03",
+        "sort_date": "2027-07-31",
         "sort_price": 0
       },
       {
@@ -107088,7 +106972,7 @@
         "nota": "Café · Estadia de 1 a 4 noites. Sujeito à disponibilidade.",
         "fornecedor": "Kaluah",
         "exclusivo": "",
-        "sort_date": "2026-10-03",
+        "sort_date": "2027-07-31",
         "sort_price": 0
       },
       {
@@ -107105,7 +106989,7 @@
         "nota": "Café · Estadia de 1 a 4 noites. Sujeito à disponibilidade.",
         "fornecedor": "Kaluah",
         "exclusivo": "",
-        "sort_date": "2026-10-03",
+        "sort_date": "2027-07-31",
         "sort_price": 0
       },
       {
@@ -107122,7 +107006,7 @@
         "nota": "Café · Estadia de 5 noites ou mais. Sujeito à disponibilidade.",
         "fornecedor": "Kaluah",
         "exclusivo": "",
-        "sort_date": "2026-10-03",
+        "sort_date": "2027-07-31",
         "sort_price": 0
       },
       {
@@ -107139,7 +107023,7 @@
         "nota": "Café · Estadia de 5 noites ou mais. Sujeito à disponibilidade.",
         "fornecedor": "Kaluah",
         "exclusivo": "",
-        "sort_date": "2026-10-03",
+        "sort_date": "2027-07-31",
         "sort_price": 0
       },
       {
@@ -107156,7 +107040,7 @@
         "nota": "Café · Estadia de 5 noites ou mais. Sujeito à disponibilidade.",
         "fornecedor": "Kaluah",
         "exclusivo": "",
-        "sort_date": "2026-10-03",
+        "sort_date": "2027-07-31",
         "sort_price": 0
       },
       {
@@ -107173,7 +107057,7 @@
         "nota": "Café · Estadia de 5 noites ou mais. Sujeito à disponibilidade.",
         "fornecedor": "Kaluah",
         "exclusivo": "",
-        "sort_date": "2026-10-03",
+        "sort_date": "2027-07-31",
         "sort_price": 0
       },
       {
@@ -107190,7 +107074,7 @@
         "nota": "Café · Estadia de 5 noites ou mais. Sujeito à disponibilidade.",
         "fornecedor": "Kaluah",
         "exclusivo": "",
-        "sort_date": "2026-10-03",
+        "sort_date": "2027-07-31",
         "sort_price": 0
       },
       {
@@ -107207,7 +107091,7 @@
         "nota": "Café · Estadia de 5 noites ou mais. Sujeito à disponibilidade.",
         "fornecedor": "Kaluah",
         "exclusivo": "",
-        "sort_date": "2026-10-03",
+        "sort_date": "2027-07-31",
         "sort_price": 0
       },
       {
@@ -107224,7 +107108,7 @@
         "nota": "Café · Estadia de 5 noites ou mais. Sujeito à disponibilidade.",
         "fornecedor": "Kaluah",
         "exclusivo": "",
-        "sort_date": "2026-10-03",
+        "sort_date": "2027-07-31",
         "sort_price": 0
       },
       {
@@ -107241,7 +107125,7 @@
         "nota": "Café · Estadia de 5 noites ou mais. Sujeito à disponibilidade.",
         "fornecedor": "Kaluah",
         "exclusivo": "",
-        "sort_date": "2026-10-03",
+        "sort_date": "2027-07-31",
         "sort_price": 0
       },
       {
@@ -107258,7 +107142,7 @@
         "nota": "Café · Estadia de 5 noites ou mais. Sujeito à disponibilidade.",
         "fornecedor": "Kaluah",
         "exclusivo": "",
-        "sort_date": "2026-10-03",
+        "sort_date": "2027-07-31",
         "sort_price": 0
       },
       {
@@ -107275,7 +107159,7 @@
         "nota": "Café · Estadia de 5 noites ou mais. Sujeito à disponibilidade.",
         "fornecedor": "Kaluah",
         "exclusivo": "",
-        "sort_date": "2026-10-03",
+        "sort_date": "2027-07-31",
         "sort_price": 0
       },
       {
@@ -107292,7 +107176,7 @@
         "nota": "Café · Estadia de 5 noites ou mais. Sujeito à disponibilidade.",
         "fornecedor": "Kaluah",
         "exclusivo": "",
-        "sort_date": "2026-10-03",
+        "sort_date": "2027-07-31",
         "sort_price": 0
       },
       {
@@ -107309,7 +107193,7 @@
         "nota": "Café · Estadia de 5 noites ou mais. Sujeito à disponibilidade.",
         "fornecedor": "Kaluah",
         "exclusivo": "",
-        "sort_date": "2026-10-03",
+        "sort_date": "2027-07-31",
         "sort_price": 0
       },
       {
@@ -107326,7 +107210,7 @@
         "nota": "Café · Estadia de 5 noites ou mais. Sujeito à disponibilidade. Quartos com cama king",
         "fornecedor": "Kaluah",
         "exclusivo": "",
-        "sort_date": "2026-10-03",
+        "sort_date": "2027-07-31",
         "sort_price": 0
       },
       {
@@ -107343,7 +107227,7 @@
         "nota": "Café · Estadia de 5 noites ou mais. Sujeito à disponibilidade.",
         "fornecedor": "Kaluah",
         "exclusivo": "",
-        "sort_date": "2026-10-03",
+        "sort_date": "2027-07-31",
         "sort_price": 0
       },
       {
@@ -107360,7 +107244,7 @@
         "nota": "Café · Estadia de 5 noites ou mais. Villas de 1 e 2 quartos. Sujeito à disponibilidade.",
         "fornecedor": "Kaluah",
         "exclusivo": "",
-        "sort_date": "2026-10-03",
+        "sort_date": "2027-07-31",
         "sort_price": 0
       },
       {
@@ -107377,7 +107261,7 @@
         "nota": "Café · Estadia de 5 noites ou mais. Sujeito à disponibilidade.",
         "fornecedor": "Kaluah",
         "exclusivo": "",
-        "sort_date": "2026-10-03",
+        "sort_date": "2027-07-31",
         "sort_price": 0
       },
       {
@@ -107394,7 +107278,7 @@
         "nota": "Café · Estadia de 5 noites ou mais. Sujeito à disponibilidade.",
         "fornecedor": "Kaluah",
         "exclusivo": "",
-        "sort_date": "2026-10-03",
+        "sort_date": "2027-07-31",
         "sort_price": 0
       },
       {
@@ -107411,7 +107295,7 @@
         "nota": "Café · Estadia de 5 noites ou mais. Sujeito à disponibilidade.",
         "fornecedor": "Kaluah",
         "exclusivo": "",
-        "sort_date": "2026-10-03",
+        "sort_date": "2027-07-31",
         "sort_price": 0
       },
       {
@@ -107428,7 +107312,7 @@
         "nota": "Café · Estadia de 5 noites ou mais. Sujeito à disponibilidade.",
         "fornecedor": "Kaluah",
         "exclusivo": "",
-        "sort_date": "2026-10-03",
+        "sort_date": "2027-07-31",
         "sort_price": 0
       },
       {
@@ -107445,7 +107329,7 @@
         "nota": "Café · Estadia de 5 noites ou mais. Sujeito à disponibilidade.",
         "fornecedor": "Kaluah",
         "exclusivo": "",
-        "sort_date": "2026-10-03",
+        "sort_date": "2027-07-31",
         "sort_price": 0
       },
       {
@@ -107462,7 +107346,7 @@
         "nota": "Café · Estadia de 5 noites ou mais. Sujeito à disponibilidade.",
         "fornecedor": "Kaluah",
         "exclusivo": "",
-        "sort_date": "2026-10-03",
+        "sort_date": "2027-07-31",
         "sort_price": 0
       },
       {
@@ -107479,7 +107363,7 @@
         "nota": "Café · Estadia de 5 noites ou mais. Sujeito à disponibilidade.",
         "fornecedor": "Kaluah",
         "exclusivo": "",
-        "sort_date": "2026-10-03",
+        "sort_date": "2027-07-31",
         "sort_price": 0
       },
       {
@@ -107496,7 +107380,7 @@
         "nota": "Café · Estadia de 5 noites ou mais. Sujeito à disponibilidade.",
         "fornecedor": "Kaluah",
         "exclusivo": "",
-        "sort_date": "2026-10-03",
+        "sort_date": "2027-07-31",
         "sort_price": 0
       },
       {
@@ -107513,7 +107397,7 @@
         "nota": "Café · Estadia de 5 noites ou mais. Sujeito à disponibilidade.",
         "fornecedor": "Kaluah",
         "exclusivo": "",
-        "sort_date": "2026-10-03",
+        "sort_date": "2027-07-31",
         "sort_price": 0
       },
       {
@@ -107530,7 +107414,7 @@
         "nota": "Café · Estadia de 5 noites ou mais. Sujeito à disponibilidade.",
         "fornecedor": "Kaluah",
         "exclusivo": "",
-        "sort_date": "2026-10-03",
+        "sort_date": "2027-07-31",
         "sort_price": 0
       },
       {
@@ -107547,7 +107431,7 @@
         "nota": "Café · Estadia de 5 noites ou mais. Sujeito à disponibilidade.",
         "fornecedor": "Kaluah",
         "exclusivo": "",
-        "sort_date": "2026-10-03",
+        "sort_date": "2027-07-31",
         "sort_price": 0
       },
       {
@@ -107564,7 +107448,7 @@
         "nota": "Café · Estadia de 5 noites ou mais. Sujeito à disponibilidade.",
         "fornecedor": "Kaluah",
         "exclusivo": "",
-        "sort_date": "2026-10-03",
+        "sort_date": "2027-07-31",
         "sort_price": 0
       },
       {
@@ -107581,7 +107465,7 @@
         "nota": "Café · Estadia de 5 noites ou mais. Sujeito à disponibilidade.",
         "fornecedor": "Kaluah",
         "exclusivo": "",
-        "sort_date": "2026-10-03",
+        "sort_date": "2027-07-31",
         "sort_price": 0
       },
       {
@@ -107598,7 +107482,7 @@
         "nota": "Café · Estadia de 5 noites ou mais. Sujeito à disponibilidade.",
         "fornecedor": "Kaluah",
         "exclusivo": "",
-        "sort_date": "2026-10-03",
+        "sort_date": "2027-07-31",
         "sort_price": 0
       },
       {
@@ -107615,7 +107499,7 @@
         "nota": "Café · Estadia de 5 noites ou mais. Sujeito à disponibilidade.",
         "fornecedor": "Kaluah",
         "exclusivo": "",
-        "sort_date": "2026-10-03",
+        "sort_date": "2027-07-31",
         "sort_price": 0
       },
       {
@@ -107632,7 +107516,7 @@
         "nota": "Café · Estadia de 5 noites ou mais. Sujeito à disponibilidade.",
         "fornecedor": "Kaluah",
         "exclusivo": "",
-        "sort_date": "2026-10-03",
+        "sort_date": "2027-07-31",
         "sort_price": 0
       },
       {
@@ -107649,7 +107533,7 @@
         "nota": "Café · Estadia de 5 noites ou mais. Sujeito à disponibilidade.",
         "fornecedor": "Kaluah",
         "exclusivo": "",
-        "sort_date": "2026-10-03",
+        "sort_date": "2027-07-31",
         "sort_price": 0
       },
       {
@@ -107666,7 +107550,7 @@
         "nota": "Café · Estadia de 5 noites ou mais. Sujeito à disponibilidade. Quartos com cama king",
         "fornecedor": "Kaluah",
         "exclusivo": "",
-        "sort_date": "2026-10-03",
+        "sort_date": "2027-07-31",
         "sort_price": 0
       },
       {
@@ -107683,7 +107567,7 @@
         "nota": "Café · Estadia de 5 noites ou mais. Sujeito à disponibilidade.",
         "fornecedor": "Kaluah",
         "exclusivo": "",
-        "sort_date": "2026-10-03",
+        "sort_date": "2027-07-31",
         "sort_price": 0
       },
       {
@@ -107700,7 +107584,7 @@
         "nota": "Café · Estadia de 5 noites ou mais. Villas de 1 e 2 quartos. Sujeito à disponibilidade.",
         "fornecedor": "Kaluah",
         "exclusivo": "",
-        "sort_date": "2026-10-03",
+        "sort_date": "2027-07-31",
         "sort_price": 0
       },
       {
@@ -107717,7 +107601,7 @@
         "nota": "Café · Estadia de 5 noites ou mais. Sujeito à disponibilidade.",
         "fornecedor": "Kaluah",
         "exclusivo": "",
-        "sort_date": "2026-10-03",
+        "sort_date": "2027-07-31",
         "sort_price": 0
       },
       {
@@ -107734,7 +107618,7 @@
         "nota": "Café · Estadia de 5 noites ou mais. Sujeito à disponibilidade.",
         "fornecedor": "Kaluah",
         "exclusivo": "",
-        "sort_date": "2026-10-03",
+        "sort_date": "2027-07-31",
         "sort_price": 0
       },
       {
@@ -107751,7 +107635,7 @@
         "nota": "Café · Estadia de 5 noites ou mais. Sujeito à disponibilidade.",
         "fornecedor": "Kaluah",
         "exclusivo": "",
-        "sort_date": "2026-10-03",
+        "sort_date": "2027-07-31",
         "sort_price": 0
       },
       {
@@ -107768,7 +107652,7 @@
         "nota": "Café · Estadia de 5 noites ou mais. Sujeito à disponibilidade.",
         "fornecedor": "Kaluah",
         "exclusivo": "",
-        "sort_date": "2026-10-03",
+        "sort_date": "2027-07-31",
         "sort_price": 0
       },
       {
@@ -107785,7 +107669,7 @@
         "nota": "Café · Estadia de 5 noites ou mais. Sujeito à disponibilidade.",
         "fornecedor": "Kaluah",
         "exclusivo": "",
-        "sort_date": "2026-10-03",
+        "sort_date": "2027-07-31",
         "sort_price": 0
       },
       {
