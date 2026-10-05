@@ -1,5 +1,5 @@
 {
-  "last_sync": "2026-10-04T12:26:37",
+  "last_sync": "2026-10-05T14:47:49",
   "source": "https://viajandocomdesconto.com/",
   "cotado_em": "29/09/2026",
   "stats": {
@@ -11,19 +11,19 @@
     "filtro_pacotes": {
       "total": 471,
       "rio": 108,
-      "sp": 193,
+      "sp": 192,
       "sem_aereo": 195,
       "ignored_origin": 54,
-      "ignored_expired": 20
+      "ignored_expired": 21
     },
     "filtro_voos": {
       "total": 9995,
       "rio": 921,
-      "sp": 1744,
-      "nacional": 2273,
+      "sp": 1743,
+      "nacional": 2272,
       "internacional": 392,
       "ignored_origin": 7314,
-      "ignored_expired": 15,
+      "ignored_expired": 16,
       "ignored_invalid_date": 0,
       "duplicates_removed": 1
     },
@@ -33,25 +33,25 @@
       "ignored_expired": 0
     },
     "publicados": {
-      "pacotes": 485,
-      "promo_voos": 2665,
+      "pacotes": 484,
+      "promo_voos": 2664,
       "campanhas": 132
     },
     "reconciliacao_index": {
       "cards_existentes": 30,
-      "pacotes_correspondidos": 111
+      "pacotes_correspondidos": 110
     },
     "validacao_voos": {
       "inverted": 0,
       "js_leaks": 0,
       "sem_preco": 0,
       "sem_taxa": 2,
-      "com_horario": 2665,
-      "com_aeroporto_destino": 2665
+      "com_horario": 2664,
+      "com_aeroporto_destino": 2664
     },
     "validacao_precos_pacotes": {
-      "analisados": 485,
-      "com_preco_total": 484,
+      "analisados": 484,
+      "com_preco_total": 483,
       "sem_preco_total": 1,
       "inconsistencias": 0,
       "aereo_como_total": 0
@@ -367,12 +367,12 @@
         "departure_date": "12/01/2027 a 19/01/2027",
         "additional_dates": "04/10; 20/11; 06/12; 10/01; 19/02",
         "departure_dates": [
-          "2026-10-04",
           "2026-11-20",
           "2026-12-06",
           "2027-01-10",
           "2027-01-12",
-          "2027-02-19"
+          "2027-02-19",
+          "2027-10-04"
         ],
         "flight_included": true,
         "categoria_site": "completo",
@@ -408,7 +408,7 @@
         "currency": "BRL",
         "evento": false,
         "pacote_categoria": "Nacional",
-        "sort_date": "2026-10-04",
+        "sort_date": "2026-11-20",
         "sort_price": 11880.0,
         "tipo": "com-aereo"
       },
@@ -10814,7 +10814,7 @@
         ],
         "flight_included": true,
         "categoria_site": "completo",
-        "capa": "img/e92fae1b37514743.png",
+        "capa": "img/e7a63a116971a770.png",
         "inclui": [
           "Passagem aérea ida e volta",
           "Noites de Hospedagem (consulte regime de alimentação)",
@@ -11230,12 +11230,12 @@
         "departure_date": "19/02/2027 a 26/02/2027",
         "additional_dates": "04/10; 06/12; 27/01; 14/02; 16/03",
         "departure_dates": [
-          "2026-10-04",
           "2026-12-06",
           "2027-01-27",
           "2027-02-14",
           "2027-02-19",
-          "2027-03-16"
+          "2027-03-16",
+          "2027-10-04"
         ],
         "flight_included": true,
         "categoria_site": "completo",
@@ -11291,7 +11291,7 @@
         "currency": "BRL",
         "evento": false,
         "pacote_categoria": "Nacional",
-        "sort_date": "2026-10-04",
+        "sort_date": "2026-12-06",
         "sort_price": 3140.0,
         "tipo": "com-aereo"
       },
@@ -14511,12 +14511,12 @@
         "departure_date": "06/12/2026 a 13/12/2026",
         "additional_dates": "04/10; 10/11; 04/12; 12/01; 21/02",
         "departure_dates": [
-          "2026-10-04",
           "2026-11-10",
           "2026-12-04",
           "2026-12-06",
           "2027-01-12",
-          "2027-02-21"
+          "2027-02-21",
+          "2027-10-04"
         ],
         "flight_included": true,
         "categoria_site": "completo",
@@ -14552,7 +14552,7 @@
         "currency": "BRL",
         "evento": false,
         "pacote_categoria": "Nacional",
-        "sort_date": "2026-10-04",
+        "sort_date": "2026-11-10",
         "sort_price": 9430.0,
         "tipo": "com-aereo"
       },
@@ -14569,12 +14569,12 @@
         "departure_date": "24/01/2027 a 31/01/2027",
         "additional_dates": "26/10; 21/11; 10/12; 09/04; 04/10",
         "departure_dates": [
-          "2026-10-04",
           "2026-10-26",
           "2026-11-21",
           "2026-12-10",
           "2027-01-24",
-          "2027-04-09"
+          "2027-04-09",
+          "2027-10-04"
         ],
         "flight_included": true,
         "categoria_site": "completo",
@@ -14616,7 +14616,7 @@
         "currency": "BRL",
         "evento": false,
         "pacote_categoria": "Nacional",
-        "sort_date": "2026-10-04",
+        "sort_date": "2026-10-26",
         "sort_price": 5130.0,
         "tipo": "com-aereo"
       },
@@ -16820,63 +16820,6 @@
         "pacote_categoria": "Internacional",
         "sort_date": "2026-12-21",
         "sort_price": 17940.0,
-        "tipo": "com-aereo"
-      },
-      {
-        "id": "pacote:euadisneycomfestadehallo:SÃO PAULO",
-        "fingerprint": "601c695b10629230",
-        "category": "pacote",
-        "source_slug": "euadisneycomfestadehallo",
-        "title": "EUA: Disney com festa de Halloween",
-        "destination": "Orlando",
-        "origin_city": "São Paulo",
-        "origin_airport": "SÃO PAULO",
-        "origin_bucket": "sp",
-        "departure_date": "04/10/2026 a 13/10/2026",
-        "additional_dates": "",
-        "departure_dates": [
-          "2026-10-04"
-        ],
-        "flight_included": true,
-        "categoria_site": "completo",
-        "capa": "img/d0f8220f8a0584a7.png",
-        "inclui": [
-          "Hospedagem: 8 noites",
-          "Passagem aérea de ida e volta",
-          "Noites de hospedagem em Orlando",
-          "Ingresso para 4 dias na Walt Disney World Resort Parks",
-          "Ingresso de entrada para 1 dia de festa: Mickey’s Not-So-Scary Halloween Party 2026",
-          "Ingresso para 3 parques Universal",
-          "Seguro de viagem",
-          "Cobertura Cancelamento Involuntário de Viagem - R$ 10.000,00 Dias de festas: Mickey’s Not-So-Scary Halloween Party Agosto: 7, 11, 14, 18, 21, 23, 25, 28 e 30. Setembro: 1, 4, 8, 11, 13, 15, 18, 20, 22, 24, 25, 27 e 29. Outubro: 1, 2, 4, 6, 8, 9, 13, 15, 16, 18, 22, 23, 25, 27, 29 e 31"
-        ],
-        "hoteis": [
-          {
-            "nome": "Doubletree by Hilton Orlando Downtown",
-            "preco": "R$ 21.290,00",
-            "taxas": "R$ 896,00",
-            "regime": "Café da manhã",
-            "promo": "",
-            "parcela": "10x de R$ 2.129"
-          }
-        ],
-        "taxas": "R$ 896,00",
-        "fees": 896.0,
-        "de": "",
-        "por": "",
-        "airfare_original_price": null,
-        "airfare_sale_price": null,
-        "installments": "10x de R$ 2.129",
-        "installment_count": 10,
-        "installment_value": 2129.0,
-        "total_price": "R$ 21.290",
-        "package_total_price": 21290.0,
-        "price_source": "explicit_total",
-        "currency": "BRL",
-        "evento": false,
-        "pacote_categoria": "Internacional",
-        "sort_date": "2026-10-04",
-        "sort_price": 21290.0,
         "tipo": "com-aereo"
       },
       {
@@ -85625,34 +85568,6 @@
         "sort_price": 887.0
       },
       {
-        "id": "voo:GRU:AJU:2027-04-10:2027-04-15:947.0:199.0:09:00",
-        "fingerprint": "2882d34e435b5cf5",
-        "category": "promo-voo",
-        "title": "Aracaju",
-        "destination": "Aracaju",
-        "destination_type": "nacional",
-        "destination_airport": "AJU",
-        "origin_city": "São Paulo",
-        "origin_airport": "GRU",
-        "origin_bucket": "sp",
-        "departure_date": "2027-04-10",
-        "departure_time": "09:00",
-        "return_date": "2027-04-15",
-        "return_time": "18:50",
-        "departure_dates": [
-          "2027-04-10"
-        ],
-        "nights": 5,
-        "price": 947.0,
-        "tax": 199.0,
-        "currency": "BRL",
-        "seats": 40,
-        "last_seats": null,
-        "airline": "GOL",
-        "sort_date": "2027-04-10",
-        "sort_price": 947.0
-      },
-      {
         "id": "voo:GRU:AJU:2027-04-10:2027-04-15:902.0:199.0:09:00",
         "fingerprint": "285325a1f216854f",
         "category": "promo-voo",
@@ -108094,7 +108009,7 @@
         "nota": "Válido apenas para visita de 1 dia no Kennedy Space Center Visitor Complex.",
         "fornecedor": "Kaluah",
         "exclusivo": "",
-        "sort_date": "2026-10-04",
+        "sort_date": "2026-12-18",
         "sort_price": 0
       },
       {
