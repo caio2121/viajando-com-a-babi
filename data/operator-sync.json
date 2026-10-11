@@ -1,5 +1,5 @@
 {
-  "last_sync": "2026-10-10T12:37:36",
+  "last_sync": "2026-10-11T12:56:30",
   "source": "https://viajandocomdesconto.com/",
   "cotado_em": "06/10/2026",
   "stats": {
@@ -14,16 +14,16 @@
       "sp": 192,
       "sem_aereo": 193,
       "ignored_origin": 52,
-      "ignored_expired": 12
+      "ignored_expired": 15
     },
     "filtro_voos": {
       "total": 10871,
       "rio": 1022,
-      "sp": 2377,
+      "sp": 2376,
       "nacional": 2994,
-      "internacional": 405,
+      "internacional": 404,
       "ignored_origin": 7461,
-      "ignored_expired": 10,
+      "ignored_expired": 11,
       "ignored_invalid_date": 0,
       "duplicates_removed": 1
     },
@@ -33,25 +33,25 @@
       "ignored_expired": 0
     },
     "publicados": {
-      "pacotes": 494,
-      "promo_voos": 3399,
+      "pacotes": 491,
+      "promo_voos": 3398,
       "campanhas": 62
     },
     "reconciliacao_index": {
       "cards_existentes": 30,
-      "pacotes_correspondidos": 118
+      "pacotes_correspondidos": 120
     },
     "validacao_voos": {
       "inverted": 0,
       "js_leaks": 0,
       "sem_preco": 0,
       "sem_taxa": 2,
-      "com_horario": 3399,
-      "com_aeroporto_destino": 3399
+      "com_horario": 3398,
+      "com_aeroporto_destino": 3398
     },
     "validacao_precos_pacotes": {
-      "analisados": 494,
-      "com_preco_total": 493,
+      "analisados": 491,
+      "com_preco_total": 490,
       "sem_preco_total": 1,
       "inconsistencias": 0,
       "aereo_como_total": 0
@@ -710,12 +710,12 @@
         "departure_date": "30/01/2027 a 03/02/2027",
         "additional_dates": "22/08; 10/10; 26/11; 04/12; 07/01",
         "departure_dates": [
-          "2026-10-10",
           "2026-11-26",
           "2026-12-04",
           "2027-01-07",
           "2027-01-30",
-          "2027-08-22"
+          "2027-08-22",
+          "2027-10-10"
         ],
         "flight_included": true,
         "categoria_site": "completo",
@@ -769,7 +769,7 @@
         "currency": "BRL",
         "evento": false,
         "pacote_categoria": "Nacional",
-        "sort_date": "2026-10-10",
+        "sort_date": "2026-11-26",
         "sort_price": 1510.0,
         "tipo": "com-aereo"
       },
@@ -3774,7 +3774,6 @@
         "departure_date": "23/10/2026 a 27/10/2026",
         "additional_dates": "10/10/2026",
         "departure_dates": [
-          "2026-10-10",
           "2026-10-23"
         ],
         "flight_included": true,
@@ -3829,7 +3828,7 @@
         "currency": "BRL",
         "evento": false,
         "pacote_categoria": "Nacional",
-        "sort_date": "2026-10-10",
+        "sort_date": "2026-10-23",
         "sort_price": 1250.0,
         "tipo": "com-aereo"
       },
@@ -6208,12 +6207,12 @@
         "departure_date": "26/01/2027 a 02/02/2027",
         "additional_dates": "10/10; 26/11; 01/12; 19/02; 25/03",
         "departure_dates": [
-          "2026-10-10",
           "2026-11-26",
           "2026-12-01",
           "2027-01-26",
           "2027-02-19",
-          "2027-03-25"
+          "2027-03-25",
+          "2027-10-10"
         ],
         "flight_included": true,
         "categoria_site": "completo",
@@ -6250,7 +6249,7 @@
         "currency": "BRL",
         "evento": false,
         "pacote_categoria": "Nacional",
-        "sort_date": "2026-10-10",
+        "sort_date": "2026-11-26",
         "sort_price": 11770.0,
         "tipo": "com-aereo"
       },
@@ -6796,12 +6795,12 @@
         "departure_date": "29/11/2026 a 05/12/2026",
         "additional_dates": "19/09; 10/10; 26/11; 04/12; 24/02",
         "departure_dates": [
-          "2026-10-10",
           "2026-11-26",
           "2026-11-29",
           "2026-12-04",
           "2027-02-24",
-          "2027-09-19"
+          "2027-09-19",
+          "2027-10-10"
         ],
         "flight_included": true,
         "categoria_site": "completo",
@@ -6837,7 +6836,7 @@
         "currency": "BRL",
         "evento": false,
         "pacote_categoria": "Nacional",
-        "sort_date": "2026-10-10",
+        "sort_date": "2026-11-26",
         "sort_price": 6440.0,
         "tipo": "com-aereo"
       },
@@ -7884,12 +7883,12 @@
         "departure_date": "18/03/2027 a 22/03/2027",
         "additional_dates": "10/10; 02/12; 16/01; 25/02; 04/03",
         "departure_dates": [
-          "2026-10-10",
           "2026-12-02",
           "2027-01-16",
           "2027-02-25",
           "2027-03-04",
-          "2027-03-18"
+          "2027-03-18",
+          "2027-10-10"
         ],
         "flight_included": true,
         "categoria_site": "completo",
@@ -7942,7 +7941,7 @@
         "currency": "BRL",
         "evento": false,
         "pacote_categoria": "Nacional",
-        "sort_date": "2026-10-10",
+        "sort_date": "2026-12-02",
         "sort_price": 1860.0,
         "tipo": "com-aereo"
       },
@@ -10377,12 +10376,12 @@
         "departure_date": "13/11/2026 a 17/11/2026",
         "additional_dates": "26/08; 23/09; 10/10; 05/11; 03/12",
         "departure_dates": [
-          "2026-10-10",
           "2026-11-05",
           "2026-11-13",
           "2026-12-03",
           "2027-08-26",
-          "2027-09-23"
+          "2027-09-23",
+          "2027-10-10"
         ],
         "flight_included": true,
         "categoria_site": "completo",
@@ -10438,7 +10437,7 @@
         "currency": "BRL",
         "evento": false,
         "pacote_categoria": "Nacional",
-        "sort_date": "2026-10-10",
+        "sort_date": "2026-11-05",
         "sort_price": 2650.0,
         "tipo": "com-aereo"
       },
@@ -12951,7 +12950,6 @@
         "departure_date": "10/10/2026 a 14/10/2026",
         "additional_dates": "15/10; 16/10; 22/10",
         "departure_dates": [
-          "2026-10-10",
           "2026-10-15",
           "2026-10-16",
           "2026-10-22"
@@ -13009,7 +13007,7 @@
         "currency": "BRL",
         "evento": false,
         "pacote_categoria": "Nacional",
-        "sort_date": "2026-10-10",
+        "sort_date": "2026-10-15",
         "sort_price": 1950.0,
         "tipo": "com-aereo"
       },
@@ -13232,12 +13230,12 @@
         "departure_date": "27/11/2026 a 02/12/2026",
         "additional_dates": "18/09; 10/10; 26/11; 02/12; 08/03",
         "departure_dates": [
-          "2026-10-10",
           "2026-11-26",
           "2026-11-27",
           "2026-12-02",
           "2027-03-08",
-          "2027-09-18"
+          "2027-09-18",
+          "2027-10-10"
         ],
         "flight_included": true,
         "categoria_site": "completo",
@@ -13273,7 +13271,7 @@
         "currency": "BRL",
         "evento": false,
         "pacote_categoria": "Nacional",
-        "sort_date": "2026-10-10",
+        "sort_date": "2026-11-26",
         "sort_price": 2450.0,
         "tipo": "com-aereo"
       },
@@ -13852,12 +13850,12 @@
         "departure_date": "27/11/2026 a 01/12/2026",
         "additional_dates": "19/09; 10/10; 26/11; 20/02; 08/03",
         "departure_dates": [
-          "2026-10-10",
           "2026-11-26",
           "2026-11-27",
           "2027-02-20",
           "2027-03-08",
-          "2027-09-19"
+          "2027-09-19",
+          "2027-10-10"
         ],
         "flight_included": true,
         "categoria_site": "completo",
@@ -13894,7 +13892,7 @@
         "currency": "BRL",
         "evento": false,
         "pacote_categoria": "Nacional",
-        "sort_date": "2026-10-10",
+        "sort_date": "2026-11-26",
         "sort_price": 4190.0,
         "tipo": "com-aereo"
       },
@@ -16333,11 +16331,11 @@
         "departure_date": "02/12/2026 a 07/12/2026",
         "additional_dates": "10/10; 26/11; 26/01; 19/02",
         "departure_dates": [
-          "2026-10-10",
           "2026-11-26",
           "2026-12-02",
           "2027-01-26",
-          "2027-02-19"
+          "2027-02-19",
+          "2027-10-10"
         ],
         "flight_included": true,
         "categoria_site": "completo",
@@ -16373,7 +16371,7 @@
         "currency": "BRL",
         "evento": false,
         "pacote_categoria": "Nacional",
-        "sort_date": "2026-10-10",
+        "sort_date": "2026-11-26",
         "sort_price": 6450.0,
         "tipo": "com-aereo"
       },
@@ -16524,62 +16522,6 @@
         "sort_date": "2027-01-14",
         "sort_price": 3550.0,
         "tipo": "com-aereo"
-      },
-      {
-        "id": "pacote:italiaimperial:sem_aereo",
-        "fingerprint": "8c4da545512f31c6",
-        "category": "pacote",
-        "source_slug": "italiaimperial",
-        "title": "Itália Imperial",
-        "destination": "",
-        "origin_city": "",
-        "origin_airport": "",
-        "origin_bucket": "sem_aereo",
-        "departure_date": "10/10/2026 a 18/10/2026",
-        "additional_dates": "",
-        "departure_dates": [
-          "2026-10-10"
-        ],
-        "flight_included": false,
-        "categoria_site": "sem-aereo",
-        "capa": "img/132733bbaefbf2f7.png",
-        "inclui": [
-          "Hospedagem: 8 noites",
-          "Guia acompanhante no destino",
-          "Traslados",
-          "Alimentação: café da manhã",
-          "Passeios e visitas panorâmicas",
-          "Entradas/ingressos inclusos",
-          "Seguro viagem."
-        ],
-        "hoteis": [
-          {
-            "nome": "Roteiro completo",
-            "preco": "R$ 9.690,00",
-            "taxas": "R$ 282,00",
-            "regime": "Café da manhã",
-            "promo": "",
-            "parcela": "10x de R$ 969"
-          }
-        ],
-        "taxas": "R$ 282,00",
-        "fees": 282.0,
-        "de": "",
-        "por": "",
-        "airfare_original_price": null,
-        "airfare_sale_price": null,
-        "installments": "10x de R$ 969",
-        "installment_count": 10,
-        "installment_value": 969.0,
-        "total_price": "R$ 9.690",
-        "package_total_price": 9690.0,
-        "price_source": "explicit_total",
-        "currency": "BRL",
-        "evento": false,
-        "pacote_categoria": "Internacional",
-        "sort_date": "2026-10-10",
-        "sort_price": 9690.0,
-        "tipo": "sem-aereo"
       },
       {
         "id": "pacote:oferta2x1egitocomcruzeir:sem_aereo",
@@ -23864,65 +23806,6 @@
         "tipo": "sem-aereo"
       },
       {
-        "id": "pacote:senegalessencialecabover:sem_aereo",
-        "fingerprint": "fd4df9cc918b0c78",
-        "category": "pacote",
-        "source_slug": "senegalessencialecabover",
-        "title": "SENEGAL ESSENCIAL E CABO VERDE",
-        "destination": "DAKAR",
-        "origin_city": "",
-        "origin_airport": "",
-        "origin_bucket": "sem_aereo",
-        "departure_date": "10/10/2026 a 25/10/2026",
-        "additional_dates": "",
-        "departure_dates": [
-          "2026-10-10"
-        ],
-        "flight_included": false,
-        "categoria_site": "sem-aereo",
-        "capa": "img/e8a375520a629510.png",
-        "inclui": [
-          "Hospedagem: 15 noites",
-          "Roteiro: DAKAR → SAINT → DESIERTO → TOBAKOUTA → PLAYA DE SALY → PRAIA → PRAIA-TARRAFAL → TARRAFAL → TARRAFAL-PRAIA",
-          "Guia acompanhante",
-          "Transporte terrestre",
-          "Traslados",
-          "Alimentação: café da manhã + 1 almoço",
-          "Passeios e visitas panorâmicas",
-          "Entradas/ingressos inclusos",
-          "Seguro viagem",
-          "Taxas: R$ 586,00"
-        ],
-        "hoteis": [
-          {
-            "nome": "Roteiro completo",
-            "preco": "R$ 20.190,00",
-            "taxas": "R$ 586,00",
-            "regime": "Café da manhã + 1 almoço",
-            "promo": "",
-            "parcela": "10x de R$ 2.019"
-          }
-        ],
-        "taxas": "R$ 586,00",
-        "fees": 586.0,
-        "de": "",
-        "por": "",
-        "airfare_original_price": null,
-        "airfare_sale_price": null,
-        "installments": "10x de R$ 2.019",
-        "installment_count": 10,
-        "installment_value": 2019.0,
-        "total_price": "R$ 20.190",
-        "package_total_price": 20190.0,
-        "price_source": "explicit_total",
-        "currency": "BRL",
-        "evento": false,
-        "pacote_categoria": "Internacional",
-        "sort_date": "2026-10-10",
-        "sort_price": 20190.0,
-        "tipo": "sem-aereo"
-      },
-      {
         "id": "pacote:madagascarnortecolorido:sem_aereo",
         "fingerprint": "89b717e618d5d17c",
         "category": "pacote",
@@ -24809,66 +24692,6 @@
         "pacote_categoria": "Internacional",
         "sort_date": "2026-11-15",
         "sort_price": 4710.0,
-        "tipo": "sem-aereo"
-      },
-      {
-        "id": "pacote:italiabela:sem_aereo",
-        "fingerprint": "9aa1c1521c14dbee",
-        "category": "pacote",
-        "source_slug": "italiabela",
-        "title": "Itália bela",
-        "destination": "CIDADE DE ORIGEM",
-        "origin_city": "",
-        "origin_airport": "",
-        "origin_bucket": "sem_aereo",
-        "departure_date": "10/10/2026 a 18/10/2026",
-        "additional_dates": "",
-        "departure_dates": [
-          "2026-10-10"
-        ],
-        "flight_included": false,
-        "categoria_site": "sem-aereo",
-        "capa": "img/83c438d2175e1af6.png",
-        "inclui": [
-          "Hospedagem: 8 noites",
-          "Roteiro: CIDADE DE ORIGEM → MILÃO → VERONA → REGIÃO DO VÊNETO → VENEZA → PÁDUA → FLORENÇA → SAN GIMIGNANO → SIENA → ROMA",
-          "Guia acompanhante",
-          "Transporte terrestre",
-          "Traslados",
-          "Alimentação: café da manhã + 3 almoços + 4 jantares",
-          "Passeios e visitas panorâmicas",
-          "Entradas/ingressos inclusos",
-          "Seguro viagem",
-          "Taxas: R$ 353,00"
-        ],
-        "hoteis": [
-          {
-            "nome": "A consultar",
-            "preco": "R$ 12.180,00",
-            "taxas": "R$ 353,00",
-            "regime": "Café da manhã + 3 almoços + 4 jantares",
-            "promo": "",
-            "parcela": "10x de R$ 1.218",
-            "src": "Roteiro completo"
-          }
-        ],
-        "taxas": "R$ 353,00",
-        "fees": 353.0,
-        "de": "",
-        "por": "",
-        "airfare_original_price": null,
-        "airfare_sale_price": null,
-        "installments": "10x de R$ 1.218",
-        "installment_count": 10,
-        "installment_value": 1218.0,
-        "total_price": "R$ 12.180",
-        "package_total_price": 12180.0,
-        "price_source": "explicit_total",
-        "currency": "BRL",
-        "evento": false,
-        "pacote_categoria": "Internacional",
-        "sort_date": "2026-10-10",
-        "sort_price": 12180.0,
         "tipo": "sem-aereo"
       },
       {
@@ -32339,34 +32162,6 @@
         "airline": "AZUL",
         "sort_date": "2026-10-29",
         "sort_price": 759.0
-      },
-      {
-        "id": "voo:GRU:CMN:2026-10-30:2026-11-10:4687.0:1756.0:00:25",
-        "fingerprint": "532abc836ceeae39",
-        "category": "promo-voo",
-        "title": "Casablanca",
-        "destination": "Casablanca",
-        "destination_type": "internacional",
-        "destination_airport": "CMN",
-        "origin_city": "São Paulo",
-        "origin_airport": "GRU",
-        "origin_bucket": "sp",
-        "departure_date": "2026-10-30",
-        "departure_time": "00:25",
-        "return_date": "2026-11-10",
-        "return_time": "08:40",
-        "departure_dates": [
-          "2026-10-30"
-        ],
-        "nights": 11,
-        "price": 4687.0,
-        "tax": 1756.0,
-        "currency": "BRL",
-        "seats": 6,
-        "last_seats": null,
-        "airline": "ROYAL AIR MAROC",
-        "sort_date": "2026-10-30",
-        "sort_price": 4687.0
       },
       {
         "id": "voo:GIG:AJU:2026-10-31:2026-11-05:768.0:186.0:10:05",
