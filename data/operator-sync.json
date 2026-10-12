@@ -1,5 +1,5 @@
 {
-  "last_sync": "2026-10-11T12:56:30",
+  "last_sync": "2026-10-12T15:33:58",
   "source": "https://viajandocomdesconto.com/",
   "cotado_em": "06/10/2026",
   "stats": {
@@ -11,10 +11,10 @@
     "filtro_pacotes": {
       "total": 467,
       "rio": 113,
-      "sp": 192,
+      "sp": 191,
       "sem_aereo": 193,
       "ignored_origin": 52,
-      "ignored_expired": 15
+      "ignored_expired": 16
     },
     "filtro_voos": {
       "total": 10871,
@@ -33,7 +33,7 @@
       "ignored_expired": 0
     },
     "publicados": {
-      "pacotes": 491,
+      "pacotes": 490,
       "promo_voos": 3398,
       "campanhas": 62
     },
@@ -50,8 +50,8 @@
       "com_aeroporto_destino": 3398
     },
     "validacao_precos_pacotes": {
-      "analisados": 491,
-      "com_preco_total": 490,
+      "analisados": 490,
+      "com_preco_total": 489,
       "sem_preco_total": 1,
       "inconsistencias": 0,
       "aereo_como_total": 0
@@ -28554,65 +28554,6 @@
         "pacote_categoria": "Internacional",
         "sort_date": "2026-10-16",
         "sort_price": 9190.0,
-        "tipo": "com-aereo"
-      },
-      {
-        "id": "pacote:montevideu2noitesbuenosa:GRU",
-        "fingerprint": "56dff6aa96a4ec97",
-        "category": "pacote",
-        "source_slug": "montevideu2noitesbuenosa",
-        "title": "Montevidéu (2 Noites) + Buenos Aires (2 Noites) + Santiago do Chile (3 Noites) - 7 Noites",
-        "destination": "Santiago (SCL)",
-        "origin_city": "São Paulo",
-        "origin_airport": "GRU",
-        "origin_bucket": "sp",
-        "departure_date": "11/10/2026 a 18/10/2026",
-        "additional_dates": "",
-        "departure_dates": [
-          "2026-10-11"
-        ],
-        "flight_included": true,
-        "categoria_site": "completo",
-        "capa": "img/abc445eed6c54cfe.png",
-        "inclui": [
-          "Hospedagem: 7 noites",
-          "Passagem aérea de ida e volta",
-          "2 noites de hospedagem em Montevidéu",
-          "2 noites de hospedagem em Buenos Aires",
-          "3 noites de hospedagem em Santiago",
-          "Transporte de chegada e saída dos hotéis",
-          "Buquebus - Montevidéu / Buenos Aires",
-          "City tour nas 3 cidades",
-          "Cobertura Cancelamento Involuntário de Viagem - R$ 8.000,00",
-          "Taxas: R$ 818,00"
-        ],
-        "hoteis": [
-          {
-            "nome": "Alvear - 02 noites (Montevideo - café) + M Concept Hotel by Unique - 02 noites (Buenos Aires - sem café) + Hub Providencia - 03 noites (Santiago - café)",
-            "preco": "R$ 6.630,00",
-            "taxas": "R$ 818,00",
-            "regime": "",
-            "promo": "",
-            "parcela": "10x de R$ 663"
-          }
-        ],
-        "taxas": "R$ 818,00",
-        "fees": 818.0,
-        "de": "",
-        "por": "",
-        "airfare_original_price": null,
-        "airfare_sale_price": null,
-        "installments": "10x de R$ 663",
-        "installment_count": 10,
-        "installment_value": 663.0,
-        "total_price": "R$ 6.630",
-        "package_total_price": 6630.0,
-        "price_source": "explicit_total",
-        "currency": "BRL",
-        "evento": false,
-        "pacote_categoria": "Internacional",
-        "sort_date": "2026-10-11",
-        "sort_price": 6630.0,
         "tipo": "com-aereo"
       },
       {
