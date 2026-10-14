@@ -1,0 +1,122 @@
+/* Viajando com a Babi — estilos compartilhados A4 impressão */
+@page {
+  size: A4 portrait;
+  margin: 0;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --clr-primary: #3AAFA9;
+  --clr-primary-d: #2B7A78;
+  --clr-primary-l: #DEF2F1;
+  --clr-dark: #17252A;
+  --clr-text: #2d4a52;
+  --clr-muted: #3d5860;
+  --clr-bg: #F0F9F8;
+  --clr-white: #FFFFFF;
+  --clr-wa: #157347;
+  --ff-body: "Nunito", "Segoe UI", sans-serif;
+  --ff-accent: "Dancing Script", "Segoe Print", cursive;
+  --safe: 12mm;
+}
+
+html, body {
+  width: 210mm;
+  height: 297mm;
+  margin: 0;
+  padding: 0;
+  background: #fff;
+  color: var(--clr-text);
+  font-family: var(--ff-body);
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.page {
+  width: 210mm;
+  height: 297mm;
+  overflow: hidden;
+  position: relative;
+  background:
+    radial-gradient(ellipse 120% 60% at 100% 0%, rgba(58, 175, 169, 0.18), transparent 55%),
+    radial-gradient(ellipse 90% 50% at 0% 100%, rgba(43, 122, 120, 0.12), transparent 50%),
+    linear-gradient(165deg, #ffffff 0%, #f3fbfa 45%, #e8f6f5 100%);
+}
+
+.page__inner {
+  height: 100%;
+  padding: var(--safe);
+  display: flex;
+  flex-direction: column;
+}
+
+.logo {
+  display: block;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+.badge {
+  display: inline-block;
+  font-size: 9pt;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--clr-dark);
+  background: var(--clr-primary-l);
+  border: 1px solid rgba(23, 37, 42, 0.14);
+  padding: 3px 10px;
+  border-radius: 99px;
+}
+
+h1, h2, h3 {
+  color: var(--clr-dark);
+  line-height: 1.15;
+  font-weight: 800;
+}
+
+.accent {
+  font-family: var(--ff-accent);
+  font-weight: 600;
+  color: var(--clr-primary-d);
+}
+
+.muted {
+  color: var(--clr-muted);
+}
+
+.cta-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: var(--clr-wa);
+  color: #fff;
+  font-weight: 800;
+  font-size: 11pt;
+  padding: 10px 18px;
+  border-radius: 40px;
+}
+
+.disclaimer {
+  font-size: 7.5pt;
+  color: var(--clr-muted);
+  line-height: 1.35;
+}
+
+@media print {
+  html, body {
+    width: 210mm;
+    height: 297mm;
+  }
+  .page {
+    page-break-after: avoid;
+    page-break-inside: avoid;
+  }
+}

@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Admin · Viajando com a Babi</title>
+  <link rel="icon" href="/assets/logo-vcb.png" type="image/png">
+  <link rel="stylesheet" href="/admin/admin.css">
+</head>
+<body>
+  <main class="admin-shell">
+    <section id="loginPanel" class="panel">
+      <p class="eyebrow">Ambiente local</p>
+      <h1>Gerenciar pacotes</h1>
+      <p>Área administrativa separada do site público. Nenhum dado é enviado para produção.</p>
+      <form id="loginForm">
+          <label>Usuário <input id="username" autocomplete="username" required></label>
+          <label>Senha administrativa <input id="password" type="password" autocomplete="current-password" required></label>
+        <button type="submit">Entrar</button>
+      </form>
+      <p id="loginMessage" class="message" role="alert"></p>
+    </section>
+
+    <section id="appPanel" class="panel" hidden>
+      <header class="admin-header">
+        <div><p class="eyebrow">Conteúdo persistido</p><h1>Pacotes manuais</h1></div>
+        <button id="logoutButton" class="secondary" type="button">Sair</button>
+      </header>
+      <p id="appMessage" class="message" role="status"></p>
+      <div class="admin-grid">
+        <form id="offerForm" class="editor">
+          <input id="offerId" type="hidden">
+          <h2 id="formTitle">Novo pacote</h2>
+          <label>Título <input id="title" maxlength="180" required></label>
+          <label>Destino <input id="destination" maxlength="120"></label>
+          <div class="two-columns">
+            <label>Origem <select id="originBucket"><option value="rio">Rio</option><option value="sp">São Paulo</option><option value="sem-aereo">Sem aéreo</option></select></label>
+            <label>Aeroporto <input id="originAirport" maxlength="30" placeholder="GIG"></label>
+          </div>
+          <label>Cidade de saída <input id="originCity" maxlength="100"></label>
+          <label>Datas ISO (separadas por vírgula) <input id="dates" placeholder="2027-01-10, 2027-02-14"></label>
+          <label>Preço total (BRL) <input id="price" type="number" min="0" max="10000000" step="0.01"></label>
+          <label>Imagem relativa <input id="imageUrl" value="assets/og-share.jpeg" maxlength="500"></label>
+          <label>Itens incluídos (um por linha) <textarea id="features" rows="5"></textarea></label>
+          <label>Status <select id="status"><option value="draft">Rascunho</option><option value="published">Publicado</option><option value="archived">Desativado</option></select></label>
+          <div class="actions"><button type="submit">Salvar</button><button id="clearButton" class="secondary" type="button">Limpar</button></div>
+        </form>
+        <div>
+          <h2>Registros</h2>
+          <div id="offers" class="offers" aria-live="polite"></div>
+           <section class="audit-panel" aria-labelledby="auditTitle">
+            <div class="audit-header"><h2 id="auditTitle">Auditoria</h2><button id="loadAuditButton" class="secondary" type="button">Atualizar</button></div>
+            <p class="hint">Somente administradores podem consultar eventos. A origem é exibida como hash.</p>
+             <div id="auditEvents" class="audit-events" aria-live="polite"></div>
+           </section>
+           <section class="audit-panel" aria-labelledby="syncTitle">
+             <div class="audit-header"><h2 id="syncTitle">Sincronizações</h2><button id="loadSyncRunsButton" class="secondary" type="button">Atualizar</button></div>
+             <p class="hint">Falhas de provider e conflitos de ownership não alteram o último catálogo válido.</p>
+             <div id="syncRuns" class="audit-events" aria-live="polite"></div>
+           </section>
+         </div>
+      </div>
+    </section>
+  </main>
+  <script src="/admin/admin.js"></script>
+</body>
+</html>

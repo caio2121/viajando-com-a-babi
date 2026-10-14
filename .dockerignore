@@ -1,0 +1,12 @@
+.git
+.github
+.env
+var
+__pycache__
+*.py[cod]
+*.sqlite3
+*.log
+bkp
+node_modules
+marketing/social
+tests

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<title>12</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin /><link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&display=swap" rel="stylesheet" />
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1080px;height:1350px;overflow:hidden;background:#000;font-family:Nunito,sans-serif;-webkit-font-smoothing:antialiased}
+.canvas{position:relative;width:1080px;height:1350px;overflow:hidden}
+.photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 45%}
+
+.veil{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.06) 0%,rgba(0,0,0,.04) 40%,rgba(0,0,0,.3) 100%)}
+.logo-tab{position:absolute;top:0;left:50%;transform:translateX(-50%);background:#fff;border-radius:0 0 22px 22px;padding:16px 26px 14px;box-shadow:0 10px 28px rgba(0,0,0,.28);z-index:5}
+.logo-tab img{display:block;height:88px;width:auto}
+.stack{position:absolute;left:42px;right:42px;bottom:112px;z-index:4}
+.side{position:absolute;left:42px;bottom:520px;display:flex;flex-direction:column;gap:14px;z-index:5}
+.badge-air{width:124px;height:124px;border-radius:50%;background:#F5C518;color:#111;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-size:16px;font-weight:900;line-height:1.05;text-align:center;box-shadow:0 10px 24px rgba(0,0,0,.32)}
+.badge-pay{background:#fff;border-radius:12px;padding:10px 14px;box-shadow:0 8px 20px rgba(0,0,0,.28);color:#111;font-weight:900;font-size:17px;line-height:1.15;text-align:center;max-width:150px}
+.badge-pay .hi{color:#E6A800;font-size:22px}
+.badge-pay small{display:block;font-size:12px;font-weight:800;opacity:.7;margin-top:2px}
+.dest{background:#fff;border-radius:8px;padding:20px 24px;text-align:center;box-shadow:0 12px 28px rgba(0,0,0,.34);transform:perspective(800px) rotateX(2deg);position:relative;z-index:2}
+.dest h1{font-size:40px;font-weight:900;color:#111;letter-spacing:.03em}
+.super{width:max-content;margin:-14px auto 0;position:relative;z-index:3;background:#F5C518;color:#111;font-size:20px;font-weight:900;letter-spacing:.05em;padding:11px 26px;border-radius:8px;box-shadow:0 8px 18px rgba(0,0,0,.28)}
+.price-card{margin:20px auto 0;width:90%;background:#fff;transform:skewX(-4deg);border-radius:16px;padding:24px 40px 20px;box-shadow:0 14px 34px rgba(0,0,0,.36)}
+.price-card .inner{transform:skewX(4deg)}
+.price-card .from{font-size:23px;font-weight:800;color:#222}
+.price-card .from .hi{color:#E6A800;font-weight:900;font-size:28px}
+.price-card .avista{margin-top:4px;font-size:32px;font-weight:900;color:#111}
+.price-card .avista .big{font-size:62px}
+.price-card .unit{margin-top:2px;font-size:18px;font-weight:800;color:#666}
+.footer{position:absolute;left:0;right:0;bottom:0;height:84px;background:#000;display:flex;align-items:center;justify-content:center;gap:12px;color:#fff;font-size:25px;font-weight:800;z-index:6}
+.disc{position:absolute;bottom:90px;left:40px;right:40px;text-align:center;font-size:13px;color:rgba(255,255,255,.9);text-shadow:0 1px 4px rgba(0,0,0,.55);z-index:5}
+
+</style>
+</head>
+<body>
+
+<article class="canvas">
+  <img class="photo" src="file:///C:/Users/CaioA/Viajandocomababi/marketing/social/campaigns/2027/jericoacoara/assets/hero.png" alt="" />
+  <div class="veil"></div>
+  <div class="logo-tab"><img src="file:///C:/Users/CaioA/Viajandocomababi/marketing/social/brand/logo-vcb.png" alt="Viajando com a Babi" /></div>
+  <div class="side">
+    <div class="badge-air"><svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path fill="currentColor" d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg>Pacote<br/>Aéreo</div>
+    <div class="badge-pay">INCLUI<br/><span class="hi">4 ITENS</span><small>aéreo · transfer · hotel · passeios</small></div>
+  </div>
+  <div class="stack">
+    <div class="dest"><h1>JERICOACOARA</h1></div>
+    <div class="super">SUPER OPORTUNIDADE</div>
+    <div class="price-card"><div class="inner">
+      <div class="from">Valor promocional <span class="hi">único</span></div>
+      <div class="avista">À vista <span class="big">R$ 2.790</span></div>
+      <div class="unit">por pessoa em apto duplo</div>
+    </div></div>
+  </div>
+  <p class="disc">Valor promocional sujeito à disponibilidade.</p>
+  <div class="footer"><svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path fill="currentColor" d="M19 4h-1V2h-2v2H8V2H6v2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2z"/></svg>08/05/27  ·  RETORNO: 13/05/27</div>
+</article>
+
+</body>
+</html>

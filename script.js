@@ -53,30 +53,39 @@
    SCROLL REVEAL — IntersectionObserver
 ────────────────────────────────────────────────── */
 (function initScrollReveal() {
-  const revealEls = document.querySelectorAll('.reveal');
+  function observeRevealElements() {
+    const revealEls = Array.from(document.querySelectorAll('.reveal'))
+      .filter(el => !el.dataset.vcbRevealObserved);
 
-  if (!revealEls.length) return;
+    if (!revealEls.length) return;
 
-  // Respect prefers-reduced-motion
-  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (prefersReduced) {
-    revealEls.forEach(el => el.classList.add('visible'));
-    return;
+    // Respect prefers-reduced-motion
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReduced) {
+      revealEls.forEach(el => el.classList.add('visible'));
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
+    );
+
+    revealEls.forEach(el => {
+      el.dataset.vcbRevealObserved = '1';
+      observer.observe(el);
+    });
   }
 
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
-  );
-
-  revealEls.forEach(el => observer.observe(el));
+  observeRevealElements();
+  document.addEventListener('vcb:content-updated', observeRevealElements);
 })();
 
 /* ──────────────────────────────────────────────────
@@ -268,7 +277,8 @@
       `🏙️ Saída de: ${saida}\n` +
       `💰 Orçamento: ${orcamento}`;
 
-    const waUrl = 'https://wa.me/5521920064617?text=' + encodeURIComponent(msg);
+    const waNumber = (window.VCB_CONFIG && window.VCB_CONFIG.whatsapp_number) || '5521920064617';
+    const waUrl = 'https://wa.me/' + waNumber + '?text=' + encodeURIComponent(msg);
 
     if (window.VCBAnalytics) {
       window.VCBAnalytics.trackFormLead();
@@ -341,16 +351,24 @@
    PACOTES: rótulos únicos nos CTAs (acessibilidade)
 ────────────────────────────────────────────────── */
 (function initPackageButtonLabels() {
-  document.querySelectorAll('.card[data-destino] .btn--whatsapp.btn--full').forEach(btn => {
-    const destino = btn.closest('.card')?.dataset.destino;
-    if (destino) btn.setAttribute('aria-label', `Quero esse pacote: ${destino}`);
-  });
+  function labelButtons() {
+    document.querySelectorAll('.card[data-destino] .btn--whatsapp.btn--full').forEach(btn => {
+      const destino = btn.closest('.card')?.dataset.destino;
+      if (destino) btn.setAttribute('aria-label', `Quero esse pacote: ${destino}`);
+    });
+  }
+  labelButtons();
+  document.addEventListener('vcb:content-updated', labelButtons);
 })();
 
 /* ──────────────────────────────────────────────────
    CATÁLOGO: filtros, ordenação e mostrar mais
 ────────────────────────────────────────────────── */
 (function initCatalog() {
+  const contentReady = window.VCBContentReady || Promise.resolve();
+  contentReady.then(initCatalogNow);
+
+  function initCatalogNow() {
   const root = document.querySelector('[data-catalog-root]');
   if (!root) return;
 
@@ -892,7 +910,8 @@
         return url.toString();
       } catch (err) {}
     }
-    return 'https://wa.me/5521920064617?text=' + encodeURIComponent(msg);
+    const waNumber = (window.VCB_CONFIG && window.VCB_CONFIG.whatsapp_number) || '5521920064617';
+    return 'https://wa.me/' + waNumber + '?text=' + encodeURIComponent(msg);
   }
 
   function renderDestOptions(group) {
@@ -1192,5 +1211,6 @@
       const current = { key: destModalState.key, label: (destModal.querySelector('#destModalTitle') || {}).textContent || '', offers: destModalState.offers };
       renderDestOptions(current);
     });
+  }
   }
 })();

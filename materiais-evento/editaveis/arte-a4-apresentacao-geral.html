@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Arte A4 | Apresentação geral | Viajando com a Babi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Nunito:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="base-print.css" />
+  <style>
+    .hero {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 8mm;
+      align-items: center;
+      margin-bottom: 6mm;
+    }
+    .hero__brand {
+      display: flex;
+      flex-direction: column;
+      gap: 3.5mm;
+    }
+    .hero .logo {
+      width: 48mm;
+      height: 48mm;
+    }
+    .hero h1 {
+      font-size: 22pt;
+      max-width: 95mm;
+    }
+    .hero__lead {
+      font-size: 10.5pt;
+      line-height: 1.45;
+      max-width: 98mm;
+    }
+    .hero__photo {
+      height: 78mm;
+      border-radius: 4mm;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 4mm 10mm rgba(23, 37, 42, 0.14);
+    }
+    .hero__photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+    }
+    .hero__photo::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 55%, rgba(23, 37, 42, 0.45));
+    }
+    .pillars {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4mm;
+      margin-bottom: 5mm;
+    }
+    .pillar {
+      background: rgba(255, 255, 255, 0.86);
+      border: 1px solid rgba(58, 175, 169, 0.28);
+      border-radius: 3.5mm;
+      padding: 4mm;
+    }
+    .pillar h2 {
+      font-size: 12pt;
+      margin-bottom: 2mm;
+      display: flex;
+      align-items: center;
+      gap: 2mm;
+    }
+    .pillar h2 .dot {
+      width: 3mm;
+      height: 3mm;
+      border-radius: 50%;
+      background: var(--clr-primary);
+      flex-shrink: 0;
+    }
+    .pillar ul {
+      list-style: none;
+      font-size: 9.5pt;
+      line-height: 1.45;
+    }
+    .pillar li + li { margin-top: 1mm; }
+    .diffs {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3mm;
+      margin-bottom: 5mm;
+    }
+    .diff {
+      background: var(--clr-dark);
+      color: #fff;
+      border-radius: 3mm;
+      padding: 3.5mm 3mm;
+      text-align: center;
+      font-size: 8.5pt;
+      font-weight: 700;
+      line-height: 1.3;
+    }
+    .diff strong {
+      display: block;
+      font-size: 9.5pt;
+      margin-bottom: 0.8mm;
+      color: #9fe3df;
+    }
+    .pay {
+      background: linear-gradient(120deg, var(--clr-primary-d), var(--clr-primary));
+      color: #fff;
+      border-radius: 3.5mm;
+      padding: 4.5mm 5mm;
+      margin-bottom: 5mm;
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 4mm;
+      align-items: center;
+    }
+    .pay h2 {
+      color: #fff;
+      font-size: 13pt;
+      margin-bottom: 1.5mm;
+    }
+    .pay p {
+      font-size: 9pt;
+      line-height: 1.4;
+      opacity: 0.95;
+    }
+    .pay__list {
+      list-style: none;
+      font-size: 9.5pt;
+      font-weight: 700;
+    }
+    .pay__list li {
+      background: rgba(255, 255, 255, 0.16);
+      border-radius: 2mm;
+      padding: 2.2mm 3mm;
+    }
+    .pay__list li + li { margin-top: 2mm; }
+    .cta-block {
+      margin-top: auto;
+      background: #fff;
+      border: 1.5px solid rgba(58, 175, 169, 0.35);
+      border-radius: 4mm;
+      padding: 4.5mm 5mm;
+      display: grid;
+      grid-template-columns: 1.25fr auto;
+      gap: 5mm;
+      align-items: center;
+    }
+    .cta-block h2 {
+      font-size: 14pt;
+      margin-bottom: 1.5mm;
+    }
+    .cta-block .sub {
+      font-size: 9.5pt;
+      margin-bottom: 3mm;
+    }
+    .contacts {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5mm 4mm;
+      font-size: 8.8pt;
+      font-weight: 700;
+      color: var(--clr-dark);
+    }
+    .contacts span {
+      display: block;
+      font-size: 7.5pt;
+      font-weight: 600;
+      color: var(--clr-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .cta-side {
+      text-align: center;
+    }
+    .cta-side img {
+      width: 28mm;
+      height: 28mm;
+      margin: 0 auto 2mm;
+      display: block;
+    }
+    .cta-side p {
+      font-size: 8pt;
+      font-weight: 700;
+      color: var(--clr-dark);
+      line-height: 1.25;
+    }
+  </style>
+</head>
+<body>
+  <article class="page">
+    <div class="page__inner">
+      <header class="hero">
+        <div class="hero__brand">
+          <img class="logo" src="../imagens/logo-vcb.png" alt="Viajando com a Babi" width="500" height="500" />
+          <span class="badge">Agência de Viagens</span>
+          <h1>Planeje sua próxima viagem conosco</h1>
+          <p class="accent" style="font-size: 16pt;">viver o mundo do seu jeito</p>
+          <p class="hero__lead">
+            Sou a Babi, agente de viagens apaixonada por criar pacotes e roteiros personalizados.
+            Cuidamos de destino, reservas e detalhes para uma experiência leve, segura e inesquecível.
+          </p>
+        </div>
+        <div class="hero__photo">
+          <img src="../imagens/babi-sobre.jpeg" alt="Babi em Paris, em frente à Torre Eiffel" width="960" height="1280" />
+        </div>
+      </header>
+
+      <section class="pillars" aria-label="Destinos">
+        <div class="pillar">
+          <h2><span class="dot" aria-hidden="true"></span> Destinos nacionais</h2>
+          <ul>
+            <li>Nordeste: Salvador, Porto Seguro, Porto de Galinhas, João Pessoa e mais</li>
+            <li>Sul e Serra Gaúcha: Gramado, Bento Gonçalves, Foz do Iguaçu</li>
+            <li>Pacotes com aéreo, hospedagem e transfers</li>
+          </ul>
+        </div>
+        <div class="pillar">
+          <h2><span class="dot" aria-hidden="true"></span> Destinos internacionais</h2>
+          <ul>
+            <li>América do Sul: Santiago, Buenos Aires e Cone Sul</li>
+            <li>Caribe e México: Cancún, Curaçao e resorts all inclusive</li>
+            <li>Europa, Disney e roteiros sob medida</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="diffs" aria-label="Diferenciais">
+        <div class="diff"><strong>Atendimento humano</strong>WhatsApp do planejamento ao embarque</div>
+        <div class="diff"><strong>Roteiros personalizados</strong>Montados para o seu perfil e orçamento</div>
+        <div class="diff"><strong>Agência Cadastur</strong>Regularizada e com consultoria completa</div>
+      </section>
+
+      <section class="pay" aria-label="Formas de pagamento">
+        <div>
+          <h2>Facilitamos o pagamento da sua viagem</h2>
+          <p>Boleto sem análise de crédito e parcelamento no cartão, sem juros, para escolher o que faz mais sentido para você.</p>
+        </div>
+        <ul class="pay__list">
+          <li>Boleto sem análise de crédito</li>
+          <li>Parcelamento no cartão sem juros</li>
+        </ul>
+      </section>
+
+      <footer class="cta-block">
+        <div>
+          <h2>Solicite seu orçamento</h2>
+          <p class="sub muted">Fale com a Babi e encontre o destino ideal para você.</p>
+          <div class="contacts">
+            <div><span>WhatsApp / Telefone</span>(21) 92006-4617</div>
+            <div><span>Instagram</span>@viajandocomababi_</div>
+            <div><span>Site</span>viajandocomababi.com.br</div>
+            <div><span>E-mail</span>contato@viajandocomababi.com.br</div>
+          </div>
+        </div>
+        <div class="cta-side">
+          <img src="../imagens/qr/qr-whatsapp.png" alt="QR Code WhatsApp" width="636" height="636" />
+          <p>Fale conosco<br />pelo WhatsApp</p>
+        </div>
+      </footer>
+    </div>
+  </article>
+</body>
+</html>

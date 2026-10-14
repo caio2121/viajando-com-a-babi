@@ -7,11 +7,14 @@ import re
 from pathlib import Path
 
 from _catalog_ui import ANALYTICS_VERSION, CSS_VERSION, JS_VERSION
+from _site_config import PUBLIC_CONFIG_PATH, load_public_config, public_replacements, render_public_template
 
 root = Path(__file__).parent
-head_assets = (root / "_partials/head-assets.html").read_text(encoding="utf-8")
-ga4 = (root / "_partials/ga4.html").read_text(encoding="utf-8")
-hub_footer = (root / "_partials/hub-footer.html").read_text(encoding="utf-8")
+public_config = load_public_config()
+baseline_config = load_public_config(PUBLIC_CONFIG_PATH)
+head_assets = render_public_template((root / "_partials/head-assets.html").read_text(encoding="utf-8"), public_config)
+ga4 = render_public_template((root / "_partials/ga4.html").read_text(encoding="utf-8"), public_config)
+hub_footer = render_public_template((root / "_partials/hub-footer.html").read_text(encoding="utf-8"), public_config)
 
 FONT_BLOCK = re.compile(
     r'  <link rel="preconnect" href="https://fonts\.googleapis\.com" />.*?'
@@ -32,6 +35,10 @@ FOOTER_BLOCK_OLD = re.compile(
     re.DOTALL,
 )
 SKIP_FOOTER_TAIL = {"index.html", "404.html", "privacidade.html"}
+SKIP_GA4 = {
+    "cookies.html", "termos-de-uso.html", "condicoes-comerciais.html",
+    "cancelamento-reembolso.html", "contato-lgpd.html", "google194769ee1567755b.html",
+}
 
 # Bumps legados → versões atuais em _catalog_ui (não hardcodar versões antigas).
 _LEGACY_CSS = tuple(str(n) for n in range(15, int(CSS_VERSION)))
@@ -50,9 +57,15 @@ for path in pages:
         elif FONT_BLOCK_ALT.search(text):
             text = FONT_BLOCK_ALT.sub(head_assets, text, count=1)
 
-    text = GA4_BLOCK.sub(ga4, text, count=1)
-    if "VCB_CONSENT_KEY" not in text:
-        text = text.replace("</head>", ga4 + "</head>")
+    config_tag = '  <script src="site-config.js?v=1"></script>\n'
+    text = re.sub(r'\s*<script src="site-config\.js\?v=1"></script>\s*', '\n', text)
+    text = text.replace("<head>", "<head>\n" + config_tag, 1)
+    if path.name not in SKIP_GA4:
+        text = GA4_BLOCK.sub(ga4, text, count=1)
+        if "VCB_CONSENT_KEY" not in text:
+            text = text.replace("</head>", ga4 + "</head>")
+    for old, new in public_replacements(baseline_config, public_config).items():
+        text = text.replace(old, new)
 
     for old_css in _LEGACY_CSS:
         text = text.replace(f"style.css?v={old_css}", f"style.css?v={CSS_VERSION}")

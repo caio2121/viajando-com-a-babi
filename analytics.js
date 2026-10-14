@@ -7,7 +7,7 @@
 'use strict';
 
 (function initAnalytics() {
-  const WA_NUMBER = '5521920064617';
+  const WA_NUMBER = (window.VCB_CONFIG && window.VCB_CONFIG.whatsapp_number) || '5521920064617';
   const viewedPackages = new Set();
   const viewedCategories = new Set();
   const viewedSections = new Set();
@@ -449,17 +449,21 @@
   }
 
   function scheduleIdleObservers() {
-    if ('requestIdleCallback' in window) {
-      requestIdleCallback(function () {
-        initPackageImpressions();
-        initSectionImpressions();
-      }, { timeout: 4000 });
-    } else {
-      window.addEventListener('load', function () {
-        initPackageImpressions();
-        initSectionImpressions();
-      });
-    }
+    const start = function () {
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(function () {
+          initPackageImpressions();
+          initSectionImpressions();
+        }, { timeout: 4000 });
+      } else {
+        window.addEventListener('load', function () {
+          initPackageImpressions();
+          initSectionImpressions();
+        }, { once: true });
+      }
+    };
+    const contentReady = window.VCBContentReady || Promise.resolve();
+    contentReady.then(start);
   }
 
   scheduleIdleObservers();

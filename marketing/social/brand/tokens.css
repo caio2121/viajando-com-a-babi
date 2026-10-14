@@ -1,0 +1,27 @@
+/* Tokens de marca para criativos sociais | Viajando com a Babi */
+:root {
+  --clr-primary: #3AAFA9;
+  --clr-primary-d: #2B7A78;
+  --clr-primary-l: #DEF2F1;
+  --clr-dark: #17252A;
+  --clr-text: #2d4a52;
+  --clr-muted: #3d5860;
+  --clr-bg: #F0F9F8;
+  --clr-white: #FFFFFF;
+  --clr-wa: #157347;
+  --clr-wa-d: #0e5c38;
+  --clr-wa-bright: #25D366;
+
+  --ff-body: "Nunito", "Segoe UI", sans-serif;
+  --ff-accent: "Dancing Script", "Segoe Print", cursive;
+
+  --safe-post: 48px;
+  --safe-story-x: 48px;
+  --safe-story-top: 120px;
+  --safe-story-bottom: 180px;
+
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 24px;
+  --radius-pill: 999px;
+}

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<title>13</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin /><link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&display=swap" rel="stylesheet" />
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1080px;height:1350px;overflow:hidden;background:#000;font-family:Nunito,sans-serif;-webkit-font-smoothing:antialiased}
+.canvas{position:relative;width:1080px;height:1350px;overflow:hidden}
+.photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 45%}
+
+.veil{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.1) 0%,transparent 35%,rgba(0,0,0,.35) 100%)}
+.logo-tab{position:absolute;top:0;left:50%;transform:translateX(-50%);background:#fff;border-radius:0 0 24px 24px;padding:18px 30px 16px;box-shadow:0 10px 28px rgba(0,0,0,.28);z-index:5}
+.logo-tab img{display:block;height:96px;width:auto}
+.stack{position:absolute;left:56px;right:56px;bottom:120px;display:flex;flex-direction:column;align-items:center;z-index:4}
+.pill{background:#3AAFA9;color:#17252A;font-size:18px;font-weight:900;letter-spacing:.08em;padding:10px 22px;border-radius:999px;margin-bottom:16px;box-shadow:0 8px 18px rgba(0,0,0,.25)}
+.dest{width:100%;background:#fff;border-radius:16px;padding:26px 24px 22px;text-align:center;box-shadow:0 12px 30px rgba(0,0,0,.32)}
+.dest h1{font-size:48px;font-weight:900;color:#111}
+.dest .tag{margin-top:6px;font-size:20px;font-weight:800;color:#2B7A78}
+.super{margin-top:-14px;background:#17252A;color:#fff;font-size:20px;font-weight:900;letter-spacing:.06em;padding:12px 26px;border-radius:10px;box-shadow:0 8px 18px rgba(0,0,0,.3)}
+.price-card{margin-top:18px;width:100%;background:#fff;border-radius:20px;padding:28px 32px 24px;text-align:center;box-shadow:0 14px 34px rgba(0,0,0,.34)}
+.price-card .avista{font-size:30px;font-weight:900;color:#111}
+.price-card .avista .big{display:block;font-size:72px;line-height:1;margin-top:4px;color:#111}
+.price-card .unit{margin-top:8px;font-size:22px;font-weight:800;color:#2B7A78;letter-spacing:.06em}
+.incs{margin-top:14px;display:flex;flex-wrap:wrap;justify-content:center;gap:8px}
+.incs span{background:#DEF2F1;color:#17252A;font-size:15px;font-weight:800;padding:8px 12px;border-radius:999px}
+.footer{position:absolute;left:0;right:0;bottom:0;height:86px;background:#111;display:flex;align-items:center;justify-content:center;gap:14px;color:#fff;font-size:26px;font-weight:800;z-index:6}
+.disc{position:absolute;bottom:92px;left:48px;right:48px;text-align:center;font-size:14px;color:rgba(255,255,255,.9);text-shadow:0 1px 4px rgba(0,0,0,.5);z-index:5}
+
+</style>
+</head>
+<body>
+
+<article class="canvas">
+  <img class="photo" src="file:///C:/Users/CaioA/Viajandocomababi/marketing/social/campaigns/2027/jericoacoara/assets/hero.png" alt="" />
+  <div class="veil"></div>
+  <div class="logo-tab"><img src="file:///C:/Users/CaioA/Viajandocomababi/marketing/social/brand/logo-vcb.png" alt="Viajando com a Babi" /></div>
+  <div class="stack">
+    <div class="pill">PACOTE AÉREO</div>
+    <div class="dest">
+      <h1>JERICOACOARA</h1>
+      <div class="tag">Nordeste · Mai 2027</div>
+    </div>
+    <div class="super">SUPER OPORTUNIDADE</div>
+    <div class="price-card">
+      <div class="avista">À vista<span class="big">R$ 2.790</span></div>
+      <div class="unit">POR PESSOA</div>
+      <div class="incs"><span>Aéreo ida e volta</span><span>Transfer ida e volta</span><span>Hotel com café da manhã</span><span>Passeios Leste e Oeste</span></div>
+    </div>
+  </div>
+  <p class="disc">Valor promocional sujeito à disponibilidade.</p>
+  <div class="footer"><svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path fill="currentColor" d="M19 4h-1V2h-2v2H8V2H6v2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2z"/></svg>08/05/27  ·  RETORNO: 13/05/27</div>
+</article>
+
+</body>
+</html>

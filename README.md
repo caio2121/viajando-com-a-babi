@@ -122,7 +122,21 @@ Isso atualiza a home (top 30 do sync), `promo-voos.html`, `campanhas.html` e o c
 
 ## Como executar localmente
 
-Nenhuma dependência de servidor é necessária. Basta abrir o arquivo `index.html` em qualquer navegador moderno.
+O modo estático continua disponível: basta abrir `index.html` ou usar um servidor
+de arquivos. Para testar a arquitetura dinâmica, use o Compose local; ele cria
+um SQLite persistido em volume nomeado e não se conecta à produção.
+
+```bash
+# Windows PowerShell
+Copy-Item .env.example .env
+docker compose up -d --build
+```
+
+Acesse `http://127.0.0.1:8080/` e `http://127.0.0.1:8080/admin/`. A senha local é
+a definida em `.env`. Detalhes do backend, fallback e validação estão em
+[`docs/dynamic-local-architecture.md`](docs/dynamic-local-architecture.md).
+
+Para o modo estático sem backend:
 
 Para um servidor local rápido (recomendado para evitar problemas de CORS com imagens):
 

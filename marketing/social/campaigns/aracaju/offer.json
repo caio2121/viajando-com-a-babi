@@ -1,0 +1,41 @@
+{
+  "slug": "aracaju",
+  "variant": "standard",
+  "destination": "Aracaju",
+  "destination_html": "Aracaju",
+  "eyebrow": "Sergipe",
+  "tagline": "Praia, mangue e city tour",
+  "date_display": "23 A 28 FEV",
+  "date_raw": "23 a 28/02",
+  "price": {
+    "value": "R$ 1.990",
+    "unit": "POR PESSOA"
+  },
+  "payment": [],
+  "includes": [
+    "Aéreo ida e volta",
+    "Transfer ida e volta",
+    "Hotel com café da manhã",
+    "City tour e passeios"
+  ],
+  "cta": "Tire suas dúvidas e aproveite agora essa oportunidade",
+  "disclaimer": null,
+  "hotel": null,
+  "year_note": "Ano não informado no briefing. Não inventar.",
+  "photo": {
+    "file": "hero-hires.jpg",
+    "object_position_post": "center 45%",
+    "object_position_story": "center 58%",
+    "hires_note": "1350x1688 scale=0.80",
+    "qa_crop_note": "QA crop: ok em 45%",
+    "qa_post": "1350x1688 scale=0.80 | smart-crop: zoom=0.68 xy=388,541 score=-1299 | framed scale ok<=1.25 | QA textos ok",
+    "qa_story": "1350x1688 scale=1.14 | smart-crop descartado (base=-55136 novo=-54611); mantendo original | QA textos ok",
+    "qa_marketing": "REPROVAR 2/10 | praia generica com barracas/guarda-sois de operadora; trocar por Orla Atalaia golden hour ou Farol limpo"
+  },
+  "photo_alt": "Foto atual reprovada no QA de marketing; aguardando substituta",
+  "formats": [
+    "post",
+    "story"
+  ],
+  "logo_mode": "standard"
+}

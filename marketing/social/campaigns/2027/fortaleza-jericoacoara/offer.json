@@ -1,0 +1,43 @@
+{
+  "slug": "fortaleza-jericoacoara-2027",
+  "variant": "couple",
+  "destination": "Fortaleza + Jericoacoara",
+  "destination_html": "Fortaleza<span class=\"plus\">+ Jericoacoara</span>",
+  "eyebrow": "Oferta 2027",
+  "tagline": "Ceará completo para o casal",
+  "date_display": "14 A 20 MAI 2027",
+  "date_raw": "14 a 20 de maio de 2027",
+  "price": {
+    "value": "R$ 5.857",
+    "unit": "O CASAL"
+  },
+  "payment": [
+    "10x sem juros no cartão",
+    "8x sem juros no boleto"
+  ],
+  "includes": [
+    "Aéreo ida e volta",
+    "Hotel com café da manhã",
+    "Lagoa do Paraíso",
+    "Passeio pelas 3 praias"
+  ],
+  "cta": "Tire suas dúvidas e aproveite agora essa oportunidade",
+  "disclaimer": null,
+  "hotel": null,
+  "photo": {
+    "file": "hero-hires.jpg",
+    "object_position_post": "center 45%",
+    "object_position_story": "center 40%",
+    "hires_note": "1968x1312 scale=1.03",
+    "qa_crop_note": "QA crop: ok em 45%",
+    "qa_post": "1968x1312 scale=1.03 | smart-crop fraco descartado (base=-149801 novo=-136911) | QA textos ok",
+    "qa_marketing": "TROCAR 4/10 | meio-dia com plasticos e topo morto; preferir Jeri landmark ou Fortaleza golden hour"
+  },
+  "photo_alt": "Falésias e praia no litoral do Ceará",
+  "photo_source": "pacotes/pacote-fortaleza-for.jpeg (repositório; foto de Fortaleza/litoral CE)",
+  "formats": [
+    "post",
+    "story"
+  ],
+  "logo_mode": "standard"
+}

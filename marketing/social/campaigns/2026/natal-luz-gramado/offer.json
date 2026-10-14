@@ -1,0 +1,42 @@
+{
+  "slug": "natal-luz-gramado-2026",
+  "variant": "standard",
+  "destination": "Natal Luz Gramado",
+  "eyebrow": "Serra Gaúcha",
+  "tagline": "O maior espetáculo natalino do Brasil",
+  "date_display": "27 NOV A 01 DEZ 2026",
+  "date_raw": "27/11 a 01/12/2026",
+  "price": {
+    "value": "15x R$ 164",
+    "unit": "POR PESSOA",
+    "label": "A partir de"
+  },
+  "payment": [
+    "Com aéreo incluso",
+    "7% OFF à vista"
+  ],
+  "includes": [
+    "Bloqueio aéreo saindo do Rio",
+    "Hotel com café da manhã",
+    "Transfers",
+    "Bustour + Nativitaten"
+  ],
+  "cta": "Tire suas dúvidas e aproveite agora essa oportunidade",
+  "disclaimer": "Valor a partir de, com aéreo. Taxas à parte conforme hotel. Sujeito a alteração.",
+  "hotel": null,
+  "photo": {
+    "file": "hero-hires.jpg",
+    "object_position_post": "center 45%",
+    "hires_note": "3866x2636 scale=0.51",
+    "qa_crop_note": "QA crop: ok em 45%",
+    "qa_post": "3866x2636 scale=0.51 | smart-crop: zoom=0.45 xy=437,1365 score=58768 | framed scale ok<=1.25 | QA textos ok",
+    "qa_story": "3866x2636 scale=0.73 | smart-crop: zoom=0.60 xy=0,1055 score=32279 | framed scale ok<=1.25 | QA textos ok",
+    "qa_marketing": "REPROVAR 3/10 | snapshot noturno topo morto e multidao; trocar por fachada alpina iluminada limpa"
+  },
+  "photo_alt": "Natal Luz em Gramado com luzes e decoração natalina",
+  "formats": [
+    "post",
+    "story"
+  ],
+  "logo_mode": "standard"
+}

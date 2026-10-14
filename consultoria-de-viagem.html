@@ -1,7 +1,9 @@
 ﻿<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
+  <script src="site-config.js?v=1"></script>
+
+<meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Consultoria de viagem | Viajando com a Babi</title>
   <meta name="description" content="Consultoria de viagem com atendimento humano: orientação para pacotes, roteiros, destinos nacionais e internacionais. Agência Cadastur. Fale com a Babi." />
@@ -37,9 +39,9 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     var VCB_CONSENT_KEY = 'vcb_consent_analytics';
-    var VCB_GA4_ID = 'G-WGDNTSY8WM';
-    var VCB_ADS_ID = 'AW-18242129651';
-    var VCB_ADS_CONVERSION = 'AW-18242129651/_fe6COee7sscEPOdw_pD';
+    var VCB_GA4_ID = (window.VCB_CONFIG && window.VCB_CONFIG.ga4_measurement_id) || '';
+    var VCB_ADS_ID = (window.VCB_CONFIG && window.VCB_CONFIG.ads_id) || '';
+    var VCB_ADS_CONVERSION = (window.VCB_CONFIG && window.VCB_CONFIG.ads_conversion) || '';
     var ga4Loaded = false;
 
     function gtag_report_conversion(url, opts) {
@@ -52,7 +54,7 @@
       };
       var granted = false;
       try { granted = localStorage.getItem(VCB_CONSENT_KEY) === 'granted'; } catch (e) {}
-      if (!granted || typeof gtag !== 'function') {
+      if (!granted || !VCB_GA4_ID || !VCB_ADS_ID || !VCB_ADS_CONVERSION || typeof gtag !== 'function') {
         callback();
         return false;
       }
@@ -91,6 +93,7 @@
 
     function loadGA4() {
       if (ga4Loaded) return;
+      if (!VCB_GA4_ID || !VCB_ADS_ID) return;
       ga4Loaded = true;
       var s = document.createElement('script');
       s.src = 'https://www.googletagmanager.com/gtag/js?id=' + VCB_GA4_ID;
@@ -217,7 +220,7 @@
       <div class="footer__grid">
 
         <div class="footer__brand">
-          <picture><source srcset="assets/logo-vcb.webp" type="image/webp" /><img src="assets/logo-vcb.png"
+           <picture><source srcset="assets/logo-vcb.webp" type="image/webp" /><img src="assets/logo-vcb.png"
                alt="Viajando com a Babi" class="footer__logo" width="280" height="150" ></picture>
           <p>Pacotes e Roteiros personalizados para destinos que você sempre sonhou. Do planejamento ao embarque, cuidamos de tudo por você.</p>
         </div>
@@ -235,7 +238,12 @@
             <li><a href="faq.html">FAQ</a></li>
             <li><a href="/#depoimentos">Depoimentos</a></li>
             <li><a href="/#pagamento">Pagamento</a></li>
-            <li><a href="privacidade.html">Privacidade</a></li>
+             <li><a href="privacidade.html">Privacidade</a></li>
+             <li><a href="cookies.html">Cookies</a></li>
+             <li><a href="termos-de-uso.html">Termos de uso</a></li>
+             <li><a href="condicoes-comerciais.html">Condições comerciais</a></li>
+             <li><a href="cancelamento-reembolso.html">Cancelamento e reembolso</a></li>
+             <li><a href="contato-lgpd.html">Contato LGPD</a></li>
             <li>
               <button class="footer__cadastur-btn" id="btnCadasturFooter" type="button">
                 <i class="fas fa-certificate"></i> Certificado Cadastur
@@ -246,30 +254,30 @@
 
         <div class="footer__contato">
           <p class="footer__col-title">Fale comigo</p>
-          <a href="https://wa.me/5521920064617?text=Ol%C3%A1%20Babi!%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20os%20pacotes%20de%20viagem"
+           <a href="https://wa.me/5521920064617?text=Ol%C3%A1%20Babi%21%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20os%20pacotes%20de%20viagem"
              target="_blank" rel="noopener noreferrer"
              class="footer__social-link footer__social-link--wa">
             <i class="fab fa-whatsapp"></i>
-            <span>+55 21 92006-4617</span>
+             <span>+55 21 92006-4617</span>
           </a>
-          <a href="https://www.instagram.com/viajandocomababi_/"
+           <a href="https://www.instagram.com/viajandocomababi_/"
              target="_blank" rel="noopener noreferrer"
              class="footer__social-link footer__social-link--ig">
             <i class="fab fa-instagram"></i>
             <span>@viajandocomababi_</span>
           </a>
-          <a href="mailto:contato@viajandocomababi.com.br"
+           <a href="mailto:contato@viajandocomababi.com.br"
              class="footer__social-link footer__social-link--email">
             <i class="fas fa-envelope"></i>
-            <span>contato@viajandocomababi.com.br</span>
+             <span>contato@viajandocomababi.com.br</span>
           </a>
           <div class="footer__ctas">
-            <a href="https://wa.me/5521920064617?text=Ol%C3%A1%20Babi!%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20os%20pacotes%20de%20viagem"
+             <a href="https://wa.me/5521920064617?text=Ol%C3%A1%20Babi%21%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20os%20pacotes%20de%20viagem"
                target="_blank" rel="noopener noreferrer"
                class="btn btn--whatsapp btn--md">
               <i class="fab fa-whatsapp"></i> WhatsApp
             </a>
-            <a href="https://www.instagram.com/viajandocomababi_/"
+             <a href="https://www.instagram.com/viajandocomababi_/"
                target="_blank" rel="noopener noreferrer"
                class="btn btn--instagram btn--md">
               <i class="fab fa-instagram"></i> Instagram
@@ -322,7 +330,7 @@
     </div>
   </div>
 
-  <a href="https://wa.me/5521920064617?text=Ol%C3%A1%20Babi!%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20os%20pacotes%20de%20viagem"
+   <a href="https://wa.me/5521920064617?text=Ol%C3%A1%20Babi%21%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20os%20pacotes%20de%20viagem"
      target="_blank" rel="noopener noreferrer"
      class="fab-whatsapp" aria-label="Falar no WhatsApp">
     <i class="fab fa-whatsapp"></i>
@@ -361,6 +369,7 @@
     })();
   </script>
 
+  <script src="api-catalog.js?v=1"></script>
   <script src="analytics.js?v=18"></script>
   <script src="script.js?v=29"></script>
 </body>

@@ -1,0 +1,44 @@
+{
+  "slug": "foz-do-iguacu-2027",
+  "variant": "standard",
+  "destination": "Foz do Iguaçu",
+  "eyebrow": "Paraná",
+  "tagline": "Cataratas + Marco das 3 Fronteiras",
+  "date_display": "20 A 26 FEV 2027",
+  "date_raw": "20 a 26/02/2027",
+  "price": {
+    "value": "R$ 2.085",
+    "unit": "POR PESSOA",
+    "label": "A partir de"
+  },
+  "payment": [
+    "15x sem juros",
+    "7% OFF à vista"
+  ],
+  "includes": [
+    "Bloqueio aéreo saindo do Rio",
+    "Hotel com café da manhã",
+    "Transfers",
+    "Protect Travel"
+  ],
+  "cta": "Tire suas dúvidas e aproveite agora essa oportunidade",
+  "disclaimer": "Valor a partir de, com aéreo. Taxas à parte conforme hotel. Sujeito a alteração.",
+  "hotel": null,
+  "photo": {
+    "file": "hero-hires-v2.jpg",
+    "object_position_post": "center 45%",
+    "hires_note": "4175x2784 scale=0.48",
+    "qa_crop_note": "QA crop: ok em 45%",
+    "qa_post": "4175x2784 scale=0.48 | smart-crop: zoom=0.40 xy=492,1671 score=47368 | framed scale ok<=1.25 | QA textos ok",
+    "qa_story": "4175x2784 scale=0.69 | smart-crop: zoom=0.60 xy=1618,940 score=32825 | framed scale ok<=1.25 | QA textos ok",
+    "qa_marketing": "APROVAR 9/10 | Cataratas com arco-iris HD Wikimedia",
+    "file_story": "hero-hires-v2.jpg"
+  },
+  "photo_alt": "Cataratas do Iguacu com arco-iris",
+  "formats": [
+    "post",
+    "story"
+  ],
+  "logo_mode": "standard",
+  "price_note": "Extraído do flyer de referência (TOTAL COM AÉREO do menor card). Envie valor único se quiser outro hotel."
+}

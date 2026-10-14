@@ -15,8 +15,10 @@ import _catalog_ui as ui
 import _dates as dates
 import _destination as destmod
 import _money as money
+from _site_config import load_public_config, render_public_template
 
 root = Path(__file__).parent
+PUBLIC_CONFIG = load_public_config()
 TODAY = dates.TODAY
 ARTICLE_RE = re.compile(r"<article\b[^>]*class=\"[^\"]*card[\s\S]*?</article>", re.I)
 
@@ -183,9 +185,9 @@ if sync_file.exists():
 
 all_cards = home_cards + sync_cards
 
-head_assets = (root / "_partials/head-assets.html").read_text(encoding="utf-8")
-ga4 = (root / "_partials/ga4.html").read_text(encoding="utf-8")
-hub_header = (root / "_partials/hub-header.html").read_text(encoding="utf-8")
+head_assets = render_public_template((root / "_partials/head-assets.html").read_text(encoding="utf-8"), PUBLIC_CONFIG)
+ga4 = render_public_template((root / "_partials/ga4.html").read_text(encoding="utf-8"), PUBLIC_CONFIG)
+hub_header = render_public_template((root / "_partials/hub-header.html").read_text(encoding="utf-8"), PUBLIC_CONFIG)
 
 head = f"""<!DOCTYPE html>
 <html lang="pt-BR">
@@ -194,24 +196,24 @@ head = f"""<!DOCTYPE html>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Pacotes de viagem | Viajando com a Babi</title>
   <meta name="description" content="Catálogo de pacotes de viagem: Nordeste, Gramado, João Pessoa, Cone Sul, México, Caribe, Dubai, Disneyland e cruzeiros. Agência Cadastur. Fale com a Babi." />
-  <link rel="canonical" href="https://viajandocomababi.com.br/pacotes.html" />
+  <link rel="canonical" href="{PUBLIC_CONFIG['public_base_url']}/pacotes.html" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://viajandocomababi.com.br/pacotes.html" />
+  <meta property="og:url" content="{PUBLIC_CONFIG['public_base_url']}/pacotes.html" />
   <meta property="og:title" content="Pacotes de viagem | Viajando com a Babi" />
   <meta property="og:description" content="Pacotes de viagem com aéreo e hospedagem para destinos nacionais e internacionais." />
-  <meta property="og:image" content="https://viajandocomababi.com.br/assets/og-share.jpeg" />
+  <meta property="og:image" content="{PUBLIC_CONFIG['public_base_url']}/assets/og-share.jpeg" />
   <meta property="og:locale" content="pt_BR" />
   <meta name="twitter:card" content="summary_large_image" />
-  <link rel="icon" type="image/png" href="assets/logo-vcb.png" />
+  <link rel="icon" type="image/png" href="{PUBLIC_CONFIG['logo_path']}" />
 {head_assets}  <link rel="stylesheet" href="style.css?v={ui.CSS_VERSION}" />
   <script type="application/ld+json">
   {{
     "@context": "https://schema.org",
     "@graph": [
-      {{ "@type": "WebPage", "@id": "https://viajandocomababi.com.br/pacotes.html#webpage", "url": "https://viajandocomababi.com.br/pacotes.html", "name": "Pacotes de viagem | Viajando com a Babi", "isPartOf": {{ "@id": "https://viajandocomababi.com.br/#website" }} }},
+       {{ "@type": "WebPage", "@id": "{PUBLIC_CONFIG['public_base_url']}/pacotes.html#webpage", "url": "{PUBLIC_CONFIG['public_base_url']}/pacotes.html", "name": "Pacotes de viagem | Viajando com a Babi", "isPartOf": {{ "@id": "{PUBLIC_CONFIG['public_base_url']}/#website" }} }},
       {{ "@type": "BreadcrumbList", "itemListElement": [
-        {{ "@type": "ListItem", "position": 1, "name": "Início", "item": "https://viajandocomababi.com.br/" }},
-        {{ "@type": "ListItem", "position": 2, "name": "Pacotes de viagem", "item": "https://viajandocomababi.com.br/pacotes.html" }}
+         {{ "@type": "ListItem", "position": 1, "name": "Início", "item": "{PUBLIC_CONFIG['public_base_url']}/" }},
+         {{ "@type": "ListItem", "position": 2, "name": "Pacotes de viagem", "item": "{PUBLIC_CONFIG['public_base_url']}/pacotes.html" }}
       ]}}
     ]
   }}
@@ -243,7 +245,7 @@ main = f"""<main id="conteudo-principal">
 {ui.destination_modal()}
 """
 
-hub_footer = (root / "_partials/hub-footer.html").read_text(encoding="utf-8")
+hub_footer = render_public_template((root / "_partials/hub-footer.html").read_text(encoding="utf-8"), PUBLIC_CONFIG)
 lightbox = """
   <div class="lightbox-overlay" id="lightbox" role="dialog" aria-modal="true" aria-label="Visualizar imagem">
     <button class="lightbox__close" id="lightboxClose" aria-label="Fechar imagem">&#x2715;</button>

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Arte A4 | Boas-vindas lua de mel | Viajando com a Babi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Nunito:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="base-print.css" />
+  <style>
+    /*
+      Editar para cada casal:
+      - .js-nomes  → nomes do casal
+      - .js-destino → opcional (destino da lua de mel)
+    */
+    .page {
+      background:
+        radial-gradient(ellipse 90% 55% at 50% 0%, rgba(58, 175, 169, 0.16), transparent 58%),
+        radial-gradient(ellipse 70% 45% at 50% 100%, rgba(43, 122, 120, 0.1), transparent 55%),
+        linear-gradient(180deg, #ffffff 0%, #f4fbfa 48%, #eaf7f6 100%);
+    }
+    .page__inner {
+      padding: 16mm 18mm;
+      align-items: center;
+      justify-content: center;
+    }
+    .card {
+      width: 100%;
+      max-width: 168mm;
+      min-height: 250mm;
+      background: rgba(255, 255, 255, 0.92);
+      border: 1px solid rgba(58, 175, 169, 0.28);
+      border-radius: 6mm;
+      box-shadow: 0 4mm 14mm rgba(23, 37, 42, 0.08);
+      padding: 14mm 14mm 12mm;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .card::before,
+    .card::after {
+      content: "";
+      position: absolute;
+      width: 42mm;
+      height: 42mm;
+      border: 1.2px solid rgba(58, 175, 169, 0.28);
+      pointer-events: none;
+    }
+    .card::before {
+      top: 5mm;
+      left: 5mm;
+      border-right: none;
+      border-bottom: none;
+      border-radius: 3mm 0 0 0;
+    }
+    .card::after {
+      bottom: 5mm;
+      right: 5mm;
+      border-left: none;
+      border-top: none;
+      border-radius: 0 0 3mm 0;
+    }
+    .logo {
+      width: 36mm;
+      height: 36mm;
+      margin-bottom: 8mm;
+    }
+    .nomes {
+      font-family: var(--ff-accent);
+      font-size: 34pt;
+      font-weight: 700;
+      color: var(--clr-dark);
+      line-height: 1.15;
+      margin-bottom: 3mm;
+      max-width: 140mm;
+    }
+    .destino {
+      font-size: 10pt;
+      font-weight: 700;
+      color: var(--clr-primary-d);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 8mm;
+      min-height: 4mm;
+    }
+    .destino:empty {
+      display: none;
+      margin: 0;
+    }
+    .divider {
+      width: 28mm;
+      height: 1.2px;
+      background: linear-gradient(90deg, transparent, var(--clr-primary), transparent);
+      margin: 0 auto 9mm;
+      border: 0;
+    }
+    .mensagem {
+      font-size: 13.5pt;
+      line-height: 1.55;
+      color: var(--clr-text);
+      max-width: 128mm;
+      margin: 0 auto 7mm;
+      font-weight: 600;
+    }
+    .mensagem p + p {
+      margin-top: 5mm;
+    }
+    .assinatura {
+      margin-top: auto;
+      padding-top: 8mm;
+      width: 100%;
+    }
+    .assinatura__label {
+      font-size: 10pt;
+      color: var(--clr-muted);
+      margin-bottom: 1.5mm;
+    }
+    .assinatura__nome {
+      font-family: var(--ff-accent);
+      font-size: 22pt;
+      color: var(--clr-primary-d);
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 1mm;
+    }
+    .assinatura__marca {
+      font-size: 9.5pt;
+      font-weight: 700;
+      color: var(--clr-dark);
+    }
+    .rodape {
+      margin-top: 8mm;
+      padding-top: 5mm;
+      border-top: 1px solid rgba(58, 175, 169, 0.22);
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 4mm;
+      text-align: left;
+    }
+    .rodape__texto {
+      font-size: 8pt;
+      line-height: 1.4;
+      color: var(--clr-muted);
+      font-weight: 600;
+    }
+    .rodape__texto strong {
+      display: block;
+      color: var(--clr-dark);
+      font-size: 8.5pt;
+      margin-bottom: 0.8mm;
+    }
+    .rodape img {
+      width: 18mm;
+      height: 18mm;
+      flex-shrink: 0;
+    }
+  </style>
+</head>
+<body>
+  <article class="page">
+    <div class="page__inner">
+      <div class="card">
+        <img class="logo" src="../imagens/logo-vcb.png" alt="Viajando com a Babi" width="500" height="500" />
+
+        <!-- Edite os nomes abaixo -->
+        <h1 class="nomes js-nomes">Juliana &amp; Matheus</h1>
+
+        <!-- Opcional: preencha o destino, ou deixe vazio -->
+        <p class="destino js-destino"></p>
+
+        <hr class="divider" />
+
+        <div class="mensagem">
+          <p>Que essa viagem seja o início de uma linda história a dois, repleta de momentos inesquecíveis.</p>
+          <p>Obrigada por escolherem a Viajando com a Babi para fazer parte desse momento.</p>
+        </div>
+
+        <div class="assinatura">
+          <p class="assinatura__label">Com carinho,</p>
+          <p class="assinatura__nome">Bárbara</p>
+          <p class="assinatura__marca">Viajando com a Babi</p>
+        </div>
+
+        <footer class="rodape">
+          <div class="rodape__texto">
+            <strong>Precisa de algo durante a viagem?</strong>
+            WhatsApp (21) 92006-4617<br />
+            @viajandocomababi_
+          </div>
+          <img src="../imagens/qr/qr-whatsapp-lua-de-mel.png" alt="QR Code WhatsApp lua de mel" width="636" height="636" />
+        </footer>
+      </div>
+    </div>
+  </article>
+</body>
+</html>

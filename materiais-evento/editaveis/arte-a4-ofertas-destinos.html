@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Arte A4 | Ofertas e destinos | Viajando com a Babi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Nunito:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="base-print.css" />
+  <style>
+    .top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 4mm;
+      margin-bottom: 4mm;
+      padding-bottom: 3.5mm;
+      border-bottom: 1.5px solid rgba(58, 175, 169, 0.35);
+    }
+    .top__left {
+      display: flex;
+      align-items: center;
+      gap: 3.5mm;
+    }
+    .top .logo {
+      width: 22mm;
+      height: 22mm;
+    }
+    .top h1 {
+      font-size: 16pt;
+    }
+    .top .accent {
+      font-size: 12pt;
+      display: block;
+      margin-top: 0.5mm;
+    }
+    .top__right {
+      text-align: right;
+      font-size: 8.5pt;
+      font-weight: 700;
+      color: var(--clr-dark);
+      line-height: 1.35;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: repeat(3, minmax(0, 1fr));
+      gap: 3mm;
+      flex: 1;
+      min-height: 0;
+      align-content: stretch;
+    }
+    .offer {
+      background: #fff;
+      border: 1px solid rgba(23, 37, 42, 0.1);
+      border-radius: 3.2mm;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+      height: 100%;
+      box-shadow: 0 1.5mm 4mm rgba(23, 37, 42, 0.06);
+    }
+    .offer__media {
+      width: 100%;
+      height: 36mm;
+      flex: 0 0 36mm;
+      overflow: hidden;
+      background: #d9ecea;
+      position: relative;
+    }
+    .offer__img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+      display: block;
+    }
+    .offer--salvador .offer__img { object-position: center 50%; }
+    .offer--gramado .offer__img { object-position: center 65%; }
+    .offer--foz .offer__img { object-position: center 55%; }
+    .offer--cancun .offer__img { object-position: center 55%; }
+    .offer--porto .offer__img { object-position: center 55%; }
+    .offer--santiago .offer__img { object-position: center 40%; }
+    .offer__body {
+      padding: 2.2mm 3mm 2.6mm;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      gap: 1mm;
+      flex: 1 1 auto;
+      min-height: 0;
+      overflow: hidden;
+    }
+    .tag {
+      display: inline-block;
+      font-size: 7pt;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--clr-primary-d);
+      background: var(--clr-primary-l);
+      padding: 1px 6px;
+      border-radius: 99px;
+      width: fit-content;
+    }
+    .offer h2 {
+      font-size: 10pt;
+      line-height: 1.15;
+    }
+    .offer h2 span {
+      display: block;
+      font-size: 7.5pt;
+      font-weight: 600;
+      color: var(--clr-muted);
+      margin-top: 0.5mm;
+    }
+    .meta {
+      font-size: 7.2pt;
+      color: var(--clr-muted);
+      line-height: 1.25;
+    }
+    .price {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 2mm;
+      margin-top: auto;
+    }
+    .price strong {
+      font-size: 10.5pt;
+      color: var(--clr-dark);
+      font-weight: 800;
+    }
+    .price em {
+      font-style: normal;
+      font-size: 7.5pt;
+      font-weight: 700;
+      color: var(--clr-primary-d);
+    }
+    .foot {
+      margin-top: 3mm;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 3.5mm;
+      align-items: center;
+      background: var(--clr-dark);
+      color: #fff;
+      border-radius: 3.5mm;
+      padding: 3.5mm 4.5mm;
+      flex-shrink: 0;
+    }
+    .foot h2 {
+      color: #fff;
+      font-size: 12.5pt;
+      margin-bottom: 1mm;
+    }
+    .foot p {
+      font-size: 8.5pt;
+      line-height: 1.35;
+      opacity: 0.92;
+    }
+    .foot__qr {
+      text-align: center;
+      background: #fff;
+      color: var(--clr-dark);
+      border-radius: 2.5mm;
+      padding: 2.5mm;
+    }
+    .foot__qr img {
+      width: 24mm;
+      height: 24mm;
+      display: block;
+      margin: 0 auto 1.5mm;
+    }
+    .foot__qr span {
+      display: block;
+      font-size: 7.5pt;
+      font-weight: 800;
+      line-height: 1.2;
+    }
+  </style>
+</head>
+<body>
+  <article class="page">
+    <div class="page__inner">
+      <header class="top">
+        <div class="top__left">
+          <img class="logo" src="../imagens/logo-vcb.png" alt="Viajando com a Babi" width="500" height="500" />
+          <div>
+            <span class="badge">Ofertas</span>
+            <h1>Destinos que vão te apaixonar</h1>
+            <span class="accent">Encontre o destino ideal para você</span>
+          </div>
+        </div>
+        <div class="top__right">
+          Pacote completo<br />
+          Aéreo + hospedagem<br />
+          Saídas do Rio de Janeiro
+        </div>
+      </header>
+
+      <section class="grid" aria-label="Ofertas selecionadas">
+        <article class="offer offer--landscape offer--gramado">
+          <div class="offer__media">
+            <img class="offer__img" src="../imagens/ofertas/gramado.jpeg" alt="Gramado" width="900" height="428" />
+          </div>
+          <div class="offer__body">
+            <span class="tag">Nacional</span>
+            <h2>Gramado <span>Experiência no Castelo St. Andrews</span></h2>
+            <p class="meta">Pacote completo · Café da manhã · Transfer</p>
+            <div class="price">
+              <strong>R$ 1.810</strong>
+              <em>10x de R$ 181</em>
+            </div>
+          </div>
+        </article>
+
+        <article class="offer offer--landscape offer--salvador">
+          <div class="offer__media">
+            <img class="offer__img" src="../imagens/ofertas/salvador.jpeg" alt="Salvador" width="900" height="576" />
+          </div>
+          <div class="offer__body">
+            <span class="tag">Nacional</span>
+            <h2>Salvador <span>Imperdível - BA</span></h2>
+            <p class="meta">Pacote completo · Café da manhã · Transfer</p>
+            <div class="price">
+              <strong>R$ 2.290</strong>
+              <em>10x de R$ 229</em>
+            </div>
+          </div>
+        </article>
+
+        <article class="offer offer--landscape offer--foz">
+          <div class="offer__media">
+            <img class="offer__img" src="../imagens/ofertas/foz.jpeg" alt="Foz do Iguaçu" width="900" height="544" />
+          </div>
+          <div class="offer__body">
+            <span class="tag">Nacional</span>
+            <h2>Foz do Iguaçu <span>Cultural</span></h2>
+            <p class="meta">Pacote completo · Café da manhã · Transfer</p>
+            <div class="price">
+              <strong>R$ 2.310</strong>
+              <em>10x de R$ 231</em>
+            </div>
+          </div>
+        </article>
+
+        <article class="offer offer--landscape offer--porto">
+          <div class="offer__media">
+            <img class="offer__img" src="../imagens/ofertas/porto-galinhas.jpeg" alt="Porto de Galinhas" width="1200" height="780" />
+          </div>
+          <div class="offer__body">
+            <span class="tag">Nacional</span>
+            <h2>Porto de Galinhas <span>Maragogi e Carneiros</span></h2>
+            <p class="meta">Pacote completo · Café da manhã · Transfer</p>
+            <div class="price">
+              <strong>R$ 2.890</strong>
+              <em>10x de R$ 289</em>
+            </div>
+          </div>
+        </article>
+
+        <article class="offer offer--landscape offer--santiago">
+          <div class="offer__media">
+            <img class="offer__img" src="../imagens/ofertas/santiago.jpeg" alt="Santiago" width="1500" height="1080" />
+          </div>
+          <div class="offer__body">
+            <span class="tag">Internacional</span>
+            <h2>Santiago <span>Essencial · 7 noites</span></h2>
+            <p class="meta">Pacote completo · Hotel 45 by Director</p>
+            <div class="price">
+              <strong>R$ 4.085</strong>
+              <em>10x de R$ 408</em>
+            </div>
+          </div>
+        </article>
+
+        <article class="offer offer--landscape offer--cancun">
+          <div class="offer__media">
+            <img class="offer__img" src="../imagens/ofertas/cancun.jpeg" alt="Cancún" width="945" height="576" />
+          </div>
+          <div class="offer__body">
+            <span class="tag">Internacional</span>
+            <h2>Cancún <span>Playa Mujeres · All Inclusive</span></h2>
+            <p class="meta">Pacote completo · Majestic Elegance Costa Mujeres</p>
+            <div class="price">
+              <strong>R$ 8.236</strong>
+              <em>10x de R$ 823</em>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <footer class="foot">
+        <div>
+          <h2>Consulte disponibilidade e solicite seu orçamento</h2>
+          <p>
+            Preços a partir de, + taxas, sujeitos a alteração. WhatsApp (21) 92006-4617 ·
+            @viajandocomababi_ · www.viajandocomababi.com.br
+          </p>
+          <p class="disclaimer" style="margin-top: 1.5mm; opacity: 0.8; color: #cde;">
+            Seleção de destaques. Catálogo completo no site.
+          </p>
+        </div>
+        <div class="foot__qr">
+          <img src="../imagens/qr/qr-ofertas.png" alt="QR Code ofertas" width="444" height="444" />
+          <span>Acesse nossas<br />ofertas</span>
+        </div>
+      </footer>
+    </div>
+  </article>
+</body>
+</html>

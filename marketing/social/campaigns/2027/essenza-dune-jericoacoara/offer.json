@@ -1,0 +1,43 @@
+{
+  "slug": "essenza-dune-jericoacoara-mai-2027",
+  "variant": "premium",
+  "destination": "Jericoacoara",
+  "destination_html": "Jericoacoara",
+  "eyebrow": "Experiência premium",
+  "tagline": "Vista para as dunas e piscina privativa",
+  "date_display": "08 A 13 MAI 2027",
+  "date_raw": "08 a 13 de maio de 2027",
+  "price": {
+    "value": "R$ 12.812",
+    "unit": "O CASAL"
+  },
+  "payment": [
+    "10x sem juros no cartão",
+    "7x sem juros no boleto, sem análise de crédito"
+  ],
+  "includes": [
+    "Aéreo ida e volta",
+    "Transfer ida e volta",
+    "Hotel com café da manhã",
+    "Passeios Leste, Oeste e Lagoa Azul"
+  ],
+  "cta": "Tire suas dúvidas e aproveite agora essa oportunidade",
+  "disclaimer": null,
+  "hotel": "Essenza Dune",
+  "photo": {
+    "file": "hero-hires.jpg",
+    "object_position_post": "center 58%",
+    "object_position_story": "center 55%",
+    "hires_note": "2400x3200 scale=0.45",
+    "qa_crop_note": "QA crop: ok em 58%",
+    "qa_post": "2400x3200 scale=0.45 | smart-crop: zoom=0.55 xy=486,1085 score=14960 | QA textos ok",
+    "qa_story": "2400x3200 scale=0.60 | smart-crop: zoom=0.50 xy=675,1120 score=17808 | framed scale ok<=1.25 | QA textos ok",
+    "qa_marketing": "APROVAR 9/10 | dunas premium"
+  },
+  "photo_alt": "Suíte com piscina privativa e vista para as dunas no Essenza Dune",
+  "formats": [
+    "post",
+    "story"
+  ],
+  "logo_mode": "standard"
+}

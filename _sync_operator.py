@@ -7,6 +7,7 @@ Uso:
   python _sync_operator.py --apply      # injeta até HOME_LIMIT pacotes do sync em index.html
   python _sync_operator.py --from-json  # regenera fragments a partir de data/operator-sync.json
   python _sync_operator.py --from-json --apply  # fragments + home a partir do JSON
+  python _sync_operator.py --from-json --persist-local  # também faz upsert no SQLite local
 
 Depois:
   python _build_ofertas.py
@@ -20,6 +21,7 @@ import html
 import io
 import json
 import re
+import time
 import unicodedata
 import urllib.error
 import urllib.parse
@@ -30,13 +32,16 @@ from pathlib import Path
 import _dates as dates
 import _destination as destmod
 import _money as money
+from _site_config import load_public_config
 
 ROOT = Path(__file__).parent
+PUBLIC_CONFIG = load_public_config()
 DATA = ROOT / "data"
 GENERATED = DATA / "generated"
 SYNC_FILE = DATA / "operator-sync.json"
-SOURCE_URL = "https://viajandocomdesconto.com/"
-WA_NUMBER = "5521920064617"
+IMAGE_MANIFEST = DATA / "operator-images.json"
+SOURCE_URL = PUBLIC_CONFIG["provider_source_url"]
+WA_NUMBER = PUBLIC_CONFIG["whatsapp_number"]
 TODAY = dates.TODAY
 
 RIO_IATA = {"GIG", "SDU", "RIO"}
@@ -151,7 +156,8 @@ def has_flight(inclui: list[str] | None) -> bool:
 
 
 def br_money_html(value: str) -> str:
-    return re.sub(r"R\$\s*", "R$&nbsp;", value or "")
+    escaped = html.escape(str(value or ""))
+    return re.sub(r"R\$\s*", "R$&nbsp;", escaped)
 
 
 def wa_link(message: str) -> str:
@@ -239,23 +245,19 @@ def fingerprint(*parts: str) -> str:
 
 
 def local_image_stem(slug: str, destino: str) -> str:
-    slug_map = {
-        "portodegalinhascommarago": "pacote-porto-de-galinhas",
-        "salvadorimperdivel": "pacote-salvador",
-    }
-    if slug in slug_map:
-        return slug_map[slug]
     if slug and len(slug) > 4:
-        candidate = slugify(slug, "pacote-")
-    else:
-        candidate = slugify(destino, "pacote-")
-    for stem in (candidate, slugify(destino, "pacote-")):
-        if (ROOT / "pacotes" / f"{stem}.jpeg").exists() or (ROOT / "pacotes" / f"{stem}.webp").exists():
-            return stem
-    return candidate if slug and len(slug) > 4 else slugify(destino, "pacote-")
+        # A imagem pertence à oferta, não apenas ao destino. Usar o destino
+        # como fallback fazia ofertas distintas compartilharem a mesma capa.
+        return slugify(slug, "pacote-")
+    return slugify(destino, "pacote-")
 
 
-def image_tags(stem: str, alt: str) -> str:
+def image_tags(stem: str, alt: str, *, use_existing: bool = True) -> str:
+    if not use_existing:
+        return (
+            f'<img src="assets/og-share.jpeg" alt="{html.escape(alt, quote=True)}" width="400" height="260" '
+            f'decoding="async" loading="lazy">'
+        )
     jpeg = ROOT / "pacotes" / f"{stem}.jpeg"
     webp400 = ROOT / "pacotes" / f"{stem}-400.webp"
     webp800 = ROOT / "pacotes" / f"{stem}-800.webp"
@@ -268,39 +270,105 @@ def image_tags(stem: str, alt: str) -> str:
         fallback = f"pacotes/{stem}.jpeg" if jpeg.exists() else f"pacotes/{stem}.webp"
     elif jpeg.exists():
         return (
-            f'<img src="pacotes/{stem}.jpeg" alt="{alt}" width="400" height="260" '
+            f'<img src="pacotes/{stem}.jpeg" alt="{html.escape(alt, quote=True)}" width="400" height="260" '
             f'data-lightbox decoding="async" loading="lazy">'
         )
     else:
         return (
-            f'<img src="assets/og-share.jpeg" alt="{alt}" width="400" height="260" '
+            f'<img src="assets/og-share.jpeg" alt="{html.escape(alt, quote=True)}" width="400" height="260" '
             f'decoding="async" loading="lazy">'
         )
+    escaped_alt = html.escape(alt, quote=True)
     return (
         f'<picture><source srcset="{srcset}" sizes="(max-width:640px) 100vw, 400px" type="image/webp" />'
-        f'<img src="{fallback}" alt="{alt}" width="400" height="260" data-lightbox '
+        f'<img src="{fallback}" alt="{escaped_alt}" width="400" height="260" data-lightbox '
         f'decoding="async" loading="lazy"></picture>'
     )
 
 
-def download_image(rel_path: str, stem: str) -> bool:
+IMAGE_SUFFIXES = (".jpeg", ".webp", "-400.webp", "-800.webp")
+SAFE_IMAGE_STEM_RE = re.compile(r"^[a-z0-9][a-z0-9-]*$")
+
+
+def _image_paths(stem: str) -> list[Path]:
+    if not SAFE_IMAGE_STEM_RE.fullmatch(stem):
+        raise ValueError(f"Stem de imagem inválido: {stem!r}")
+    return [ROOT / "pacotes" / f"{stem}{suffix}" for suffix in IMAGE_SUFFIXES]
+
+
+def _image_outputs_complete(stem: str) -> bool:
+    return all(path.exists() for path in _image_paths(stem))
+
+
+def _image_url(rel_path: str) -> str:
+    return rel_path if rel_path.startswith("http") else urllib.parse.urljoin(SOURCE_URL, rel_path)
+
+
+def _image_record(stem: str, url: str, headers, sha256: str = "", previous: dict | None = None) -> dict:
+    previous = previous or {}
+    return {
+        "stem": stem,
+        "source_url": url,
+        "etag": headers.get("ETag") or previous.get("etag") or "",
+        "last_modified": headers.get("Last-Modified") or previous.get("last_modified") or "",
+        "sha256": sha256 or previous.get("sha256") or "",
+    }
+
+
+def download_image(rel_path: str, stem: str, previous: dict | None = None) -> dict | None:
+    """Baixa a capa atual e retorna metadados persistíveis.
+
+    Usa ETag/Last-Modified para evitar downloads repetidos, mas nunca trata a
+    existência do JPEG local como prova de que a imagem ainda está atualizada.
+    """
     if not rel_path:
-        return False
-    url = rel_path if rel_path.startswith("http") else urllib.parse.urljoin(SOURCE_URL, rel_path)
-    dest_jpeg = ROOT / "pacotes" / f"{stem}.jpeg"
-    if dest_jpeg.exists():
-        return True
-    try:
-        req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
-        with urllib.request.urlopen(req, timeout=60) as resp:
-            data = resp.read()
-    except (urllib.error.URLError, TimeoutError):
-        return False
+        return None
+    url = _image_url(rel_path)
+    previous = previous or {}
+    headers = {"User-Agent": USER_AGENT}
+    can_validate = (
+        previous.get("source_url") == url
+        and _image_outputs_complete(stem)
+        and (previous.get("etag") or previous.get("last_modified"))
+    )
+    if can_validate:
+        if previous.get("etag"):
+            headers["If-None-Match"] = previous["etag"]
+        if previous.get("last_modified"):
+            headers["If-Modified-Since"] = previous["last_modified"]
+
+    data = None
+    response_headers = None
+    transient_statuses = {429, 500, 502, 503, 504}
+    for attempt in range(3):
+        try:
+            req = urllib.request.Request(url, headers=headers)
+            with urllib.request.urlopen(req, timeout=60) as resp:
+                data = resp.read()
+                response_headers = resp.headers
+            break
+        except urllib.error.HTTPError as exc:
+            if exc.code == 304 and can_validate:
+                return _image_record(stem, url, exc.headers, previous=previous)
+            if exc.code not in transient_statuses or attempt == 2:
+                raise RuntimeError(f"Falha ao baixar imagem {url}: HTTP {exc.code}") from exc
+        except (urllib.error.URLError, TimeoutError) as exc:
+            if attempt == 2:
+                raise RuntimeError(f"Falha ao baixar imagem {url}: {exc}") from exc
+        time.sleep(2**attempt)
+
+    if data is None or response_headers is None:
+        raise RuntimeError(f"Falha ao baixar imagem {url}: resposta vazia")
+
+    digest = hashlib.sha256(data).hexdigest()
+    if previous.get("source_url") == url and previous.get("sha256") == digest and _image_outputs_complete(stem):
+        return _image_record(stem, url, response_headers, digest, previous)
 
     try:
         from PIL import Image
 
         img = Image.open(io.BytesIO(data)).convert("RGB")
+        dest_jpeg = ROOT / "pacotes" / f"{stem}.jpeg"
         dest_jpeg.parent.mkdir(parents=True, exist_ok=True)
         img.save(dest_jpeg, "JPEG", quality=85, optimize=True)
         for width, suffix in ((800, "-800"), (400, "-400")):
@@ -308,9 +376,86 @@ def download_image(rel_path: str, stem: str) -> bool:
             resized.thumbnail((width, 520))
             resized.save(ROOT / "pacotes" / f"{stem}{suffix}.webp", "WEBP", quality=82)
         img.save(ROOT / "pacotes" / f"{stem}.webp", "WEBP", quality=82)
-        return True
-    except Exception:
-        return False
+    except Exception as exc:
+        raise RuntimeError(f"Falha ao processar imagem {url}: {exc}") from exc
+    return _image_record(stem, url, response_headers, digest, previous)
+
+
+def _image_stems_from_text(text: str) -> set[str]:
+    stems: set[str] = set()
+    for filename in re.findall(r"pacotes/([^\"'\s>]+)", text):
+        for suffix in ("-400.webp", "-800.webp", ".jpeg", ".webp"):
+            if filename.endswith(suffix):
+                stem = filename[: -len(suffix)]
+                if SAFE_IMAGE_STEM_RE.fullmatch(stem):
+                    stems.add(stem)
+                break
+    return stems
+
+
+def _image_stems_from_html(text: str, *, operator_only: bool = False) -> set[str]:
+    stems: set[str] = set()
+    for article in re.findall(r"<article\b[\s\S]*?</article>", text, re.I):
+        if operator_only and 'data-source="operator"' not in article:
+            continue
+        stems.update(_image_stems_from_text(article))
+    return stems
+
+
+def _referenced_image_stems() -> set[str]:
+    stems: set[str] = set()
+    for path in ROOT.rglob("*.html"):
+        try:
+            stems.update(_image_stems_from_text(path.read_text(encoding="utf-8")))
+        except (OSError, UnicodeDecodeError):
+            continue
+    return stems
+
+
+def load_image_manifest() -> dict[str, dict]:
+    if IMAGE_MANIFEST.exists():
+        try:
+            payload = json.loads(IMAGE_MANIFEST.read_text(encoding="utf-8"))
+            images = payload.get("images") or {}
+            if isinstance(images, dict):
+                return {
+                    str(stem): value
+                    for stem, value in images.items()
+                    if isinstance(stem, str) and SAFE_IMAGE_STEM_RE.fullmatch(stem) and isinstance(value, dict)
+                }
+        except (OSError, json.JSONDecodeError):
+            pass
+
+    # Migração segura: reconhece somente assets usados pelos fragments antigos
+    # do operador. Assets manuais não entram no manifesto e não serão apagados.
+    legacy = GENERATED / "pacotes-sync.html"
+    if not legacy.exists():
+        return {}
+    return {stem: {"stem": stem, "source_url": ""} for stem in _image_stems_from_html(legacy.read_text(encoding="utf-8"), operator_only=True)}
+
+
+def save_image_manifest(images: dict[str, dict]) -> None:
+    DATA.mkdir(parents=True, exist_ok=True)
+    payload = {"version": 1, "source": SOURCE_URL, "images": {key: images[key] for key in sorted(images)}}
+    IMAGE_MANIFEST.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+
+def prune_operator_images(previous: dict[str, dict], active: dict[str, dict]) -> int:
+    """Remove somente assets gerenciados que deixaram de ser usados.
+
+    A referência na home protege qualquer imagem compartilhada com card manual.
+    """
+    old_stems = set(previous)
+    active_stems = set(active)
+    candidates = old_stems - active_stems
+    referenced = _referenced_image_stems()
+    removed = 0
+    for stem in sorted(candidates - referenced):
+        for path in _image_paths(stem):
+            if path.exists():
+                path.unlink()
+                removed += 1
+    return removed
 
 
 def filter_pacotes(raw: list[dict]) -> tuple[list[dict], dict]:
@@ -630,7 +775,7 @@ def render_pacote_card(offer: dict) -> str:
     features = []
     if offer["flight_included"] and offer["origin_airport"]:
         aereo = offer.get("por") or offer.get("de") or ""
-        de = f" de {offer['de']}" if offer.get("de") and offer.get("por") else ""
+        de = f" de {html.escape(str(offer['de']))}" if offer.get("de") and offer.get("por") else ""
         features.append(
             f'<li><i class="fas fa-plane"></i> Saída {html.escape(offer["origin_city"])} ({html.escape(offer["origin_airport"])})'
             f"{': aéreo' + de + ' por ' + br_money_html(aereo) if aereo else ''}</li>"
@@ -721,7 +866,7 @@ def render_pacote_card(offer: dict) -> str:
     return f"""
         <article class="card reveal catalog-item" {attrs}>
           <div class="card__img-wrap">
-            {image_tags(stem, alt)}
+            {image_tags(stem, alt, use_existing=bool(offer.get("capa")))}
             <span class="card__badge">{html.escape(str(badge)[:70])}</span>
           </div>
           <div class="card__body">
@@ -1040,12 +1185,15 @@ def build_home_pacotes_html(offers: list[dict]) -> str:
 
 
 def build_home_cta_html() -> str:
-    return """      <div class="pacotes__cta-extra">
+    whatsapp_url = "https://wa.me/" + WA_NUMBER + "?text=" + urllib.parse.quote(
+        "Olá Babi! Vim pelo site e quero montar um roteiro personalizado"
+    )
+    return f"""      <div class="pacotes__cta-extra">
         <p>Quer ver todos os pacotes disponíveis?</p>
         <a href="pacotes.html" class="btn btn--outline btn--md">
           Ver todos os pacotes
         </a>
-        <a href="https://wa.me/5521920064617?text=Ol%C3%A1%20Babi!%20Vim%20pelo%20site%20e%20quero%20montar%20um%20roteiro%20personalizado"
+        <a href="{whatsapp_url}"
            target="_blank" rel="noopener noreferrer"
            class="btn btn--outline btn--md" style="margin-left:8px">
           <i class="fab fa-whatsapp"></i> Montar roteiro personalizado
@@ -1278,6 +1426,21 @@ def _print_home_preview(pacotes: list[dict]) -> None:
         print(f"  - {o.get('origin_bucket')}: {o.get('destination')} · {o.get('title')}")
 
 
+def persist_local_snapshot() -> dict:
+    """Persiste explicitamente o último snapshot no banco local.
+
+    A importação é opcional para manter o pipeline estático compatível com o
+    GitHub Pages. O import fica atrás desta função para que a coleta continue
+    sem exigir que o backend esteja configurado.
+    """
+    from backend.providers import import_sync
+    from backend.storage import Database
+
+    result = import_sync(Database(), ROOT, SYNC_FILE)
+    print(f"Persistência local concluída: {result}")
+    return result
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description="Sincroniza ofertas da operadora")
     parser.add_argument(
@@ -1287,6 +1450,7 @@ def main() -> None:
     )
     parser.add_argument("--download-images", action="store_true", help="Baixa imagens ausentes dos pacotes")
     parser.add_argument("--from-json", action="store_true", help="Regenera fragments a partir de data/operator-sync.json, sem coletar a fonte")
+    parser.add_argument("--persist-local", action="store_true", help="Faz upsert do snapshot no SQLite local depois de gerar os arquivos")
     args = parser.parse_args()
 
     if args.from_json:
@@ -1307,6 +1471,8 @@ def main() -> None:
             print(json.dumps(home, ensure_ascii=False, indent=2))
         else:
             _print_home_preview(pacotes)
+        if args.persist_local:
+            persist_local_snapshot()
         return
 
     print("Coletando fonte…")
@@ -1321,14 +1487,22 @@ def main() -> None:
     voos, voo_stats = filter_promo_voos(pvoo_payload)
     campanhas, camp_stats = filter_campanhas(promos_raw)
 
+    previous_image_manifest: dict[str, dict] = {}
+    active_image_manifest: dict[str, dict] = {}
     if args.download_images:
-        seen: set[str] = set()
+        previous_image_manifest = load_image_manifest()
+        seen: dict[str, str] = {}
         for offer in pacotes:
             stem = local_image_stem(offer["source_slug"], offer["destination"])
+            capa = offer.get("capa", "") or ""
+            if stem in seen and seen[stem] != capa:
+                raise RuntimeError(f"Colisão de imagem para {stem}: capas distintas na fonte")
             if stem in seen:
                 continue
-            seen.add(stem)
-            download_image(offer.get("capa", ""), stem)
+            seen[stem] = capa
+            record = download_image(capa, stem, previous_image_manifest.get(stem))
+            if record:
+                active_image_manifest[stem] = record
 
     write_fragments(pacotes, voos, campanhas)
     checks = validate_voos(voos)
@@ -1372,6 +1546,12 @@ def main() -> None:
         print(json.dumps(home, ensure_ascii=False, indent=2))
     else:
         _print_home_preview(pacotes)
+    if args.download_images:
+        removed_images = prune_operator_images(previous_image_manifest, active_image_manifest)
+        save_image_manifest(active_image_manifest)
+        print(f"\nIMAGENS: {len(active_image_manifest)} ativas, {removed_images} arquivos órfãos removidos")
+    if args.persist_local:
+        persist_local_snapshot()
 
 
 if __name__ == "__main__":

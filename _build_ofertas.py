@@ -3,9 +3,11 @@ import urllib.parse
 from pathlib import Path
 
 import _catalog_ui as ui
+from _site_config import load_public_config, render_public_template
 
 ROOT = Path(__file__).parent
 GENERATED = ROOT / "data" / "generated"
+PUBLIC_CONFIG = load_public_config()
 
 PAGES = {
     "promo-voos.html": {
@@ -42,13 +44,14 @@ PAGES = {
 
 
 def build_page(filename: str, cfg: dict) -> None:
+    cfg = {**cfg, "canonical": cfg["canonical"].replace("https://viajandocomababi.com.br", PUBLIC_CONFIG["public_base_url"])}
     cards = (GENERATED / cfg["fragment"]).read_text(encoding="utf-8")
-    head_assets = (ROOT / "_partials/head-assets.html").read_text(encoding="utf-8")
-    ga4 = (ROOT / "_partials/ga4.html").read_text(encoding="utf-8")
-    hub_header = (ROOT / "_partials/hub-header.html").read_text(encoding="utf-8")
-    hub_footer = (ROOT / "_partials/hub-footer.html").read_text(encoding="utf-8")
+    head_assets = render_public_template((ROOT / "_partials/head-assets.html").read_text(encoding="utf-8"), PUBLIC_CONFIG)
+    ga4 = render_public_template((ROOT / "_partials/ga4.html").read_text(encoding="utf-8"), PUBLIC_CONFIG)
+    hub_header = render_public_template((ROOT / "_partials/hub-header.html").read_text(encoding="utf-8"), PUBLIC_CONFIG)
+    hub_footer = render_public_template((ROOT / "_partials/hub-footer.html").read_text(encoding="utf-8"), PUBLIC_CONFIG)
     wa_cta = (
-        "https://wa.me/5521920064617?text="
+        "https://wa.me/" + PUBLIC_CONFIG["whatsapp_number"] + "?text="
         + urllib.parse.quote(f"Olá Babi! Vim pelo site e quero {cfg['cta_text']}.")
     )
 
@@ -64,18 +67,18 @@ def build_page(filename: str, cfg: dict) -> None:
   <meta property="og:url" content="{cfg['canonical']}" />
   <meta property="og:title" content="{cfg['title']}" />
   <meta property="og:description" content="{cfg['description']}" />
-  <meta property="og:image" content="https://viajandocomababi.com.br/assets/og-share.jpeg" />
+   <meta property="og:image" content="{PUBLIC_CONFIG['public_base_url']}/assets/og-share.jpeg" />
   <meta property="og:locale" content="pt_BR" />
   <meta name="twitter:card" content="summary_large_image" />
-  <link rel="icon" type="image/png" href="assets/logo-vcb.png" />
+   <link rel="icon" type="image/png" href="{PUBLIC_CONFIG['logo_path']}" />
 {head_assets}  <link rel="stylesheet" href="style.css?v={ui.CSS_VERSION}" />
   <script type="application/ld+json">
   {{
     "@context": "https://schema.org",
     "@graph": [
-      {{ "@type": "WebPage", "@id": "{cfg['canonical']}#webpage", "url": "{cfg['canonical']}", "name": "{cfg['schema_name']} | Viajando com a Babi", "isPartOf": {{ "@id": "https://viajandocomababi.com.br/#website" }} }},
+       {{ "@type": "WebPage", "@id": "{cfg['canonical']}#webpage", "url": "{cfg['canonical']}", "name": "{cfg['schema_name']} | Viajando com a Babi", "isPartOf": {{ "@id": "{PUBLIC_CONFIG['public_base_url']}/#website" }} }},
       {{ "@type": "BreadcrumbList", "itemListElement": [
-        {{ "@type": "ListItem", "position": 1, "name": "Início", "item": "https://viajandocomababi.com.br/" }},
+         {{ "@type": "ListItem", "position": 1, "name": "Início", "item": "{PUBLIC_CONFIG['public_base_url']}/" }},
         {{ "@type": "ListItem", "position": 2, "name": "{cfg['breadcrumb']}", "item": "{cfg['canonical']}" }}
       ]}}
     ]

@@ -1,8 +1,11 @@
 ﻿<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
+  <script src="site-config.js?v=1"></script>
+
+<meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
   <title>Política de Privacidade | Viajando com a Babi</title>
   <meta name="description" content="Política de privacidade e tratamento de dados da Viajando com a Babi, agência de viagens Cadastur." />
   <link rel="canonical" href="https://viajandocomababi.com.br/privacidade.html" />
@@ -34,9 +37,9 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     var VCB_CONSENT_KEY = 'vcb_consent_analytics';
-    var VCB_GA4_ID = 'G-WGDNTSY8WM';
-    var VCB_ADS_ID = 'AW-18242129651';
-    var VCB_ADS_CONVERSION = 'AW-18242129651/_fe6COee7sscEPOdw_pD';
+    var VCB_GA4_ID = (window.VCB_CONFIG && window.VCB_CONFIG.ga4_measurement_id) || '';
+    var VCB_ADS_ID = (window.VCB_CONFIG && window.VCB_CONFIG.ads_id) || '';
+    var VCB_ADS_CONVERSION = (window.VCB_CONFIG && window.VCB_CONFIG.ads_conversion) || '';
     var ga4Loaded = false;
 
     function gtag_report_conversion(url, opts) {
@@ -49,7 +52,7 @@
       };
       var granted = false;
       try { granted = localStorage.getItem(VCB_CONSENT_KEY) === 'granted'; } catch (e) {}
-      if (!granted || typeof gtag !== 'function') {
+      if (!granted || !VCB_GA4_ID || !VCB_ADS_ID || !VCB_ADS_CONVERSION || typeof gtag !== 'function') {
         callback();
         return false;
       }
@@ -88,6 +91,7 @@
 
     function loadGA4() {
       if (ga4Loaded) return;
+      if (!VCB_GA4_ID || !VCB_ADS_ID) return;
       ga4Loaded = true;
       var s = document.createElement('script');
       s.src = 'https://www.googletagmanager.com/gtag/js?id=' + VCB_GA4_ID;
@@ -194,7 +198,10 @@
     <h2>9. Segurança</h2>
     <p>Adotamos medidas razoáveis para proteger suas informações. O envio de dados pelo WhatsApp segue as políticas da plataforma Meta.</p>
 
-    <p style="margin-top:32px;"><a href="/">Voltar para viajandocomababi.com.br</a></p>
+    <nav aria-label="Informações legais" style="margin-top:32px;">
+      <a href="cookies.html">Cookies</a> · <a href="termos-de-uso.html">Termos de uso</a> · <a href="condicoes-comerciais.html">Condições comerciais</a> · <a href="cancelamento-reembolso.html">Cancelamento e reembolso</a> · <a href="contato-lgpd.html">Contato LGPD</a>
+    </nav>
+    <p><a href="/">Voltar para viajandocomababi.com.br</a></p>
   </main>
 
   <div id="cookieBanner" class="cookie-banner" role="dialog" aria-label="Cookies e privacidade" aria-live="polite" hidden>

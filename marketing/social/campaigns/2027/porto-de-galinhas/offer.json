@@ -1,0 +1,44 @@
+{
+  "slug": "porto-de-galinhas-2027",
+  "variant": "standard",
+  "destination": "Porto de Galinhas",
+  "eyebrow": "Pernambuco",
+  "tagline": "City Tour, Maragogi e Carneiros",
+  "date_display": "16 A 20 FEV 2027",
+  "date_raw": "16 a 20/02/2027",
+  "price": {
+    "value": "R$ 2.670",
+    "unit": "POR PESSOA",
+    "label": "A partir de"
+  },
+  "payment": [
+    "15x sem juros",
+    "7% OFF à vista"
+  ],
+  "includes": [
+    "Aéreo saindo do Rio",
+    "Hotel com café",
+    "Transfers",
+    "Carneiros + Maragogi"
+  ],
+  "cta": "Tire suas dúvidas e aproveite agora essa oportunidade",
+  "disclaimer": "Valor a partir de, com aéreo. Taxas à parte conforme hotel. Sujeito a alteração.",
+  "hotel": null,
+  "photo": {
+    "file": "hero-hires.jpg",
+    "object_position_post": "center 50%",
+    "hires_note": "2400x1595 scale=0.85",
+    "qa_crop_note": "QA crop: ok em 50%",
+    "qa_post": "2400x1595 scale=0.85 | smart-crop: zoom=0.68 xy=0,511 score=31422 | framed scale ok<=1.25 | QA textos ok",
+    "qa_story": "3200x2400 scale=0.80 | smart-crop: zoom=0.68 xy=1141,768 score=43479 | framed scale ok<=1.25 | QA textos ok",
+    "qa_marketing": "APROVAR 8/10 | post hero-hires; story hero-hires-alt (jangadas)",
+    "file_story": "hero-hires-alt.jpg"
+  },
+  "photo_alt": "Praia tropical com águas turquesa",
+  "formats": [
+    "post",
+    "story"
+  ],
+  "logo_mode": "standard",
+  "price_note": "Extraído do menor TOTAL com aéreo do flyer de referência."
+}

@@ -1,7 +1,9 @@
 ﻿<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
+  <script src="site-config.js?v=1"></script>
+
+<meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#3AAFA9" />
 
@@ -53,9 +55,9 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     var VCB_CONSENT_KEY = 'vcb_consent_analytics';
-    var VCB_GA4_ID = 'G-WGDNTSY8WM';
-    var VCB_ADS_ID = 'AW-18242129651';
-    var VCB_ADS_CONVERSION = 'AW-18242129651/_fe6COee7sscEPOdw_pD';
+    var VCB_GA4_ID = (window.VCB_CONFIG && window.VCB_CONFIG.ga4_measurement_id) || '';
+    var VCB_ADS_ID = (window.VCB_CONFIG && window.VCB_CONFIG.ads_id) || '';
+    var VCB_ADS_CONVERSION = (window.VCB_CONFIG && window.VCB_CONFIG.ads_conversion) || '';
     var ga4Loaded = false;
 
     function gtag_report_conversion(url, opts) {
@@ -68,7 +70,7 @@
       };
       var granted = false;
       try { granted = localStorage.getItem(VCB_CONSENT_KEY) === 'granted'; } catch (e) {}
-      if (!granted || typeof gtag !== 'function') {
+      if (!granted || !VCB_GA4_ID || !VCB_ADS_ID || !VCB_ADS_CONVERSION || typeof gtag !== 'function') {
         callback();
         return false;
       }
@@ -107,6 +109,7 @@
 
     function loadGA4() {
       if (ga4Loaded) return;
+      if (!VCB_GA4_ID || !VCB_ADS_ID) return;
       ga4Loaded = true;
       var s = document.createElement('script');
       s.src = 'https://www.googletagmanager.com/gtag/js?id=' + VCB_GA4_ID;
@@ -453,328 +456,28 @@
       <h2 class="section-title">Pacotes de viagem: destinos que vão te apaixonar</h2>
       <p class="section-sub">Catálogo com ofertas atuais da operadora (destaques na home). <a href="pacotes.html">Ver catálogo completo de pacotes</a> · <a href="promo-voos.html">Promo de voos</a> · <a href="campanhas.html">Campanhas</a>.</p>
 
-                                                <div class="pacotes__category" id="pacotes-completos">
+                                                            <div class="pacotes__category" id="pacotes-completos">
         <h3 class="pacotes__subhead"><i class="fas fa-plane-departure" aria-hidden="true"></i> Pacote completo</h3>
         <p class="pacotes__category-desc">Aéreo, hospedagem e serviços principais inclusos.</p>
         <div class="pacotes__grid">
 
-        <article class="card reveal catalog-item" id="pacote-fortalezacomlencoisparac-2-gig" data-destino="Fortaleza com Lençóis Paracuruenses" data-categoria="completo" data-source="operator" data-source-id="pacote:fortalezacomlencoisparac-2:GIG" data-sort-date="2026-09-28" data-dates="2026-09-28,2026-10-07,2026-11-18,2026-12-01,2027-01-16,2027-02-17" data-sort-price="2780.00" data-origem="rio" data-origem-iata="GIG" data-destination="FORTALEZA (FOR)" data-destino-key="fortaleza" data-group-label="Fortaleza" data-offer-name="Lençóis Paracuruenses" data-tipo="com-aereo" data-hotel="Hotel Praia Centro" data-regime="Café da manhã" data-extras="Transfer aeroporto / Hotel / Aeroporto · City tour">
+        <article class="card reveal catalog-item" id="pacote-gramadocomoficinadadiver-gig" data-destino="Gramado com Oficina da Diversão Criamigos CHD GRÁTIS de 6 A 10 anos" data-categoria="completo" data-source="operator" data-source-id="pacote:gramadocomoficinadadiver:GIG" data-sort-date="2026-10-14" data-dates="2026-10-14,2026-10-17,2026-10-23" data-sort-price="1420.00" data-origem="rio" data-origem-iata="GIG" data-destination="Gramado" data-destino-key="gramado" data-group-label="Gramado" data-offer-name="Oficina da Diversão Criamigos CHD GRÁTIS de 6 A 10 anos" data-tipo="com-aereo" data-hotel="Augusta Centro Hotel" data-regime="Café da manhã" data-extras="Transfer In e Out (Aeroporto / Hotel / Aeroporto) · Noites de hospedagem (consulte o regime alimentar)">
           <div class="card__img-wrap">
-            <picture><source srcset="pacotes/pacote-fortaleza-for-400.webp 400w, pacotes/pacote-fortaleza-for-800.webp 800w" sizes="(max-width:640px) 100vw, 400px" type="image/webp" /><img src="pacotes/pacote-fortaleza-for.jpeg" alt="FORTALEZA (FOR): Fortaleza com Lençóis Paracuruenses" width="400" height="260" data-lightbox decoding="async" loading="lazy"></picture>
-            <span class="card__badge">01/12/2026 a 08/12/2026 · 28/09; 07/10; 18/11; 16/01; 17/02</span>
+            <picture><source srcset="pacotes/pacote-gramadocomoficinadadiver-400.webp 400w, pacotes/pacote-gramadocomoficinadadiver-800.webp 800w" sizes="(max-width:640px) 100vw, 400px" type="image/webp" /><img src="pacotes/pacote-gramadocomoficinadadiver.jpeg" alt="Gramado: Gramado com Oficina da Diversão Criamigos CHD GRÁTIS de 6 A 10 anos" width="400" height="260" data-lightbox decoding="async" loading="lazy"></picture>
+            <span class="card__badge">17/10/2026 a 21/10/2026 · 14/10; 23/10</span>
           </div>
           <div class="card__body">
-            <h4 class="card__title">FORTALEZA (FOR) <span>Lençóis Paracuruenses</span></h4>
+            <h4 class="card__title">Gramado <span>Oficina da Diversão Criamigos CHD GRÁTIS de 6 A 10 anos</span></h4>
             <ul class="card__features">
-              <li><i class="fas fa-plane"></i> Saída Rio de Janeiro (GIG): aéreo de R$ 1.650,00 por R$&nbsp;1.250,00</li><li><i class="fas fa-hotel"></i> Hotel Praia Centro · Café da manhã</li><li><i class="fas fa-check"></i> Transfer aeroporto / Hotel / Aeroporto</li><li><i class="fas fa-check"></i> City tour</li><li><i class="fas fa-exclamation-circle"></i> Taxas R$&nbsp;295,00 · sujeito a alteração</li>
+              <li><i class="fas fa-plane"></i> Saída Rio de Janeiro (GIG): aéreo de R$ 698,00 por R$&nbsp;298,00</li><li><i class="fas fa-hotel"></i> Augusta Centro Hotel · Café da manhã</li><li><i class="fas fa-check"></i> Transfer In e Out (Aeroporto / Hotel / Aeroporto)</li><li><i class="fas fa-check"></i> Noites de hospedagem (consulte o regime alimentar)</li><li><i class="fas fa-exclamation-circle"></i> Taxas R$&nbsp;199,00 · sujeito a alteração</li>
             </ul>
             <div class="card__footer">
               <div class="card__preco">
-                <span class="card__total">A partir de <strong>R$&nbsp;2.780</strong></span>
-                <span class="card__parcela">15x de R$&nbsp;185</span>
+                <span class="card__total">A partir de <strong>R$&nbsp;1.420</strong></span>
+                <span class="card__parcela">10x de R$&nbsp;142</span>
                 <span class="card__taxas">+ taxas · sujeito a alteração</span>
               </div>
-              <a href="https://wa.me/5521920064617?text=Ol%C3%A1%2C%20Babi%21%20Tenho%20interesse%20na%20oferta%20Fortaleza%20com%20Len%C3%A7%C3%B3is%20Paracuruenses."
-                 target="_blank" rel="noopener noreferrer"
-                 class="btn btn--whatsapp btn--full">
-                <i class="fab fa-whatsapp"></i> Quero esse pacote!
-              </a>
-            </div>
-          </div>
-        </article>
-
-        <article class="card reveal catalog-item" id="pacote-gramadoexperiencianocast-gig" data-destino="Gramado Experiência no Castelo St. Andrews" data-categoria="completo" data-source="operator" data-source-id="pacote:gramadoexperiencianocast:GIG" data-sort-date="2026-10-01" data-dates="2026-10-01,2026-11-09,2026-12-02,2027-03-13,2027-08-20,2027-09-23" data-sort-price="1810.00" data-origem="rio" data-origem-iata="GIG" data-destination="Gramado" data-destino-key="gramado" data-group-label="Gramado" data-offer-name="Experiência no Castelo St. Andrews" data-tipo="com-aereo" data-hotel="HOTEL LAGHETTO ALLEGRO PEDRAS ALTAS" data-regime="Café da manhã" data-extras="Noites de hospedagem (consulte regime de alimentação) · Transfer aeroporto / hotel / aeroporto">
-          <div class="card__img-wrap">
-            <picture><source srcset="pacotes/pacote-gramado-400.webp 400w, pacotes/pacote-gramado-800.webp 800w" sizes="(max-width:640px) 100vw, 400px" type="image/webp" /><img src="pacotes/pacote-gramado.jpeg" alt="Gramado: Gramado Experiência no Castelo St. Andrews" width="400" height="260" data-lightbox decoding="async" loading="lazy"></picture>
-            <span class="card__badge">13/03/2027 a 17/03/2027 · 20/08; 23/09; 01/10; 09/11; 02/12</span>
-          </div>
-          <div class="card__body">
-            <h4 class="card__title">Gramado <span>Experiência no Castelo St. Andrews</span></h4>
-            <ul class="card__features">
-              <li><i class="fas fa-plane"></i> Saída Rio de Janeiro (GIG): aéreo de R$ 468,00 por R$&nbsp;468,00</li><li><i class="fas fa-hotel"></i> HOTEL LAGHETTO ALLEGRO PEDRAS ALTAS · Café da manhã</li><li><i class="fas fa-check"></i> Noites de hospedagem (consulte regime de alimentação)</li><li><i class="fas fa-check"></i> Transfer aeroporto / hotel / aeroporto</li><li><i class="fas fa-exclamation-circle"></i> Taxas R$&nbsp;215,00 · sujeito a alteração</li>
-            </ul>
-            <div class="card__footer">
-              <div class="card__preco">
-                <span class="card__total">A partir de <strong>R$&nbsp;1.810</strong></span>
-                <span class="card__parcela">15x de R$&nbsp;120</span>
-                <span class="card__taxas">+ taxas · sujeito a alteração</span>
-              </div>
-              <a href="https://wa.me/5521920064617?text=Ol%C3%A1%2C%20Babi%21%20Tenho%20interesse%20na%20oferta%20Gramado%20Experi%C3%AAncia%20no%20Castelo%20St.%20Andrews."
-                 target="_blank" rel="noopener noreferrer"
-                 class="btn btn--whatsapp btn--full">
-                <i class="fab fa-whatsapp"></i> Quero esse pacote!
-              </a>
-            </div>
-          </div>
-        </article>
-
-        <article class="card reveal catalog-item" id="pacote-portodegalinhascommarago-gig" data-destino="Porto de Galinhas com Maragogi e Carneiros" data-categoria="completo" data-source="operator" data-source-id="pacote:portodegalinhascommarago:GIG" data-sort-date="2026-10-01" data-dates="2026-10-01,2026-10-07,2026-11-11,2027-09-19" data-sort-price="2890.00" data-origem="rio" data-origem-iata="GIG" data-destination="Porto de Galinhas" data-destino-key="porto-de-galinhas" data-group-label="Porto de Galinhas" data-offer-name="Maragogi e Carneiros" data-tipo="com-aereo" data-hotel="Pousada Flor de Magnólia" data-regime="Café da manhã" data-extras="Noites de Hospedagem (Consulte regime de alimentação) · Transfer Aeroporto/ Hotel / Aeroporto">
-          <div class="card__img-wrap">
-            <picture><source srcset="pacotes/pacote-porto-de-galinhas-400.webp 400w, pacotes/pacote-porto-de-galinhas-800.webp 800w" sizes="(max-width:640px) 100vw, 400px" type="image/webp" /><img src="pacotes/pacote-porto-de-galinhas.jpeg" alt="Porto de Galinhas: Porto de Galinhas com Maragogi e Carneiros" width="400" height="260" data-lightbox decoding="async" loading="lazy"></picture>
-            <span class="card__badge">01/10/2026 a 06/10/2026 · 19/09, 07/10, 11/11</span>
-          </div>
-          <div class="card__body">
-            <h4 class="card__title">Porto de Galinhas <span>Maragogi e Carneiros</span></h4>
-            <ul class="card__features">
-              <li><i class="fas fa-plane"></i> Saída Rio de Janeiro (GIG): aéreo de R$ 1.100,00 por R$&nbsp;814,00</li><li><i class="fas fa-hotel"></i> Pousada Flor de Magnólia · Café da manhã</li><li><i class="fas fa-check"></i> Noites de Hospedagem (Consulte regime de alimentação)</li><li><i class="fas fa-check"></i> Transfer Aeroporto/ Hotel / Aeroporto</li><li><i class="fas fa-exclamation-circle"></i> Taxas R$&nbsp;199,00 · sujeito a alteração</li>
-            </ul>
-            <div class="card__footer">
-              <div class="card__preco">
-                <span class="card__total">A partir de <strong>R$&nbsp;2.890</strong></span>
-                <span class="card__parcela">15x de R$&nbsp;192</span>
-                <span class="card__taxas">+ taxas · sujeito a alteração</span>
-              </div>
-              <a href="https://wa.me/5521920064617?text=Ol%C3%A1%2C%20Babi%21%20Tenho%20interesse%20na%20oferta%20Porto%20de%20Galinhas%20com%20Maragogi%20e%20Carneiros."
-                 target="_blank" rel="noopener noreferrer"
-                 class="btn btn--whatsapp btn--full">
-                <i class="fab fa-whatsapp"></i> Quero esse pacote!
-              </a>
-            </div>
-          </div>
-        </article>
-
-        <article class="card reveal catalog-item" id="pacote-enotelresortallinclusive-gig" data-destino="Enotel Resort All Inclusive " data-categoria="completo" data-source="operator" data-source-id="pacote:enotelresortallinclusive:GIG" data-sort-date="2026-10-01" data-dates="2026-10-01,2026-10-08,2026-11-24,2027-02-20,2027-03-06" data-sort-price="8770.00" data-origem="rio" data-origem-iata="GIG" data-destination="RECIFE (REC)" data-destino-key="recife" data-group-label="Recife" data-offer-name="Enotel Resort All Inclusive" data-tipo="com-aereo" data-hotel="Enotel Porto de Galinhas - All Inclusive" data-regime="All Inclusive" data-extras="Transfer aeroporto / hotel / aeroporto · Noites de hospedagem com All Inclusive">
-          <div class="card__img-wrap">
-            <picture><source srcset="pacotes/pacote-recife-rec-400.webp 400w, pacotes/pacote-recife-rec-800.webp 800w" sizes="(max-width:640px) 100vw, 400px" type="image/webp" /><img src="pacotes/pacote-recife-rec.jpeg" alt="RECIFE (REC): Enotel Resort All Inclusive " width="400" height="260" data-lightbox decoding="async" loading="lazy"></picture>
-            <span class="card__badge">08/10/2026 a 15/10/2026 · 01/10; 24/11; 20/02; 06/03</span>
-          </div>
-          <div class="card__body">
-            <h4 class="card__title">RECIFE (REC) <span>Enotel Resort All Inclusive</span></h4>
-            <ul class="card__features">
-              <li><i class="fas fa-plane"></i> Saída Rio de Janeiro (GIG): aéreo de R$ 1.349,00 por R$&nbsp;949,00</li><li><i class="fas fa-hotel"></i> Enotel Porto de Galinhas - All Inclusive · All Inclusive</li><li><i class="fas fa-check"></i> Transfer aeroporto / hotel / aeroporto</li><li><i class="fas fa-check"></i> Noites de hospedagem com All Inclusive</li><li><i class="fas fa-exclamation-circle"></i> Taxas R$&nbsp;199,00 · sujeito a alteração</li>
-            </ul>
-            <div class="card__footer">
-              <div class="card__preco">
-                <span class="card__total">A partir de <strong>R$&nbsp;8.770</strong></span>
-                <span class="card__parcela">15x de R$&nbsp;584</span>
-                <span class="card__taxas">+ taxas · sujeito a alteração</span>
-              </div>
-              <a href="https://wa.me/5521920064617?text=Ol%C3%A1%2C%20Babi%21%20Tenho%20interesse%20na%20oferta%20Enotel%20Resort%20All%20Inclusive%20."
-                 target="_blank" rel="noopener noreferrer"
-                 class="btn btn--whatsapp btn--full">
-                <i class="fab fa-whatsapp"></i> Quero esse pacote!
-              </a>
-            </div>
-          </div>
-        </article>
-
-        <article class="card reveal catalog-item" id="pacote-aracajucompletose-gig" data-destino="Aracaju Completo - SE" data-categoria="completo" data-source="operator" data-source-id="pacote:aracajucompletose:GIG" data-sort-date="2026-10-03" data-dates="2026-10-03,2026-11-19,2026-12-10,2027-01-18,2027-02-18,2027-03-12" data-sort-price="2750.00" data-origem="rio" data-origem-iata="GIG" data-destination="Aracaju" data-destino-key="aracaju" data-group-label="Aracaju" data-offer-name="Completo - SE" data-tipo="com-aereo" data-hotel="ARCUS Hotel Aracaju by Atlantica" data-regime="Café da manhã" data-extras="Noites de Hospedagem (consulte regime de alimentação) · Transfer Aeroporto/ Hotel / Aeroporto">
-          <div class="card__img-wrap">
-            <picture><source srcset="pacotes/pacote-aracaju-400.webp 400w, pacotes/pacote-aracaju-800.webp 800w" sizes="(max-width:640px) 100vw, 400px" type="image/webp" /><img src="pacotes/pacote-aracaju.jpeg" alt="Aracaju: Aracaju Completo - SE" width="400" height="260" data-lightbox decoding="async" loading="lazy"></picture>
-            <span class="card__badge">12/03/2027 a 17/03/2027 · 03/10; 19/11; 10/12; 18/01; 18/02</span>
-          </div>
-          <div class="card__body">
-            <h4 class="card__title">Aracaju <span>Completo - SE</span></h4>
-            <ul class="card__features">
-              <li><i class="fas fa-plane"></i> Saída Rio de Janeiro (GIG): aéreo de R$ 1.210,00 por R$&nbsp;810,00</li><li><i class="fas fa-hotel"></i> ARCUS Hotel Aracaju by Atlantica · Café da manhã</li><li><i class="fas fa-check"></i> Noites de Hospedagem (consulte regime de alimentação)</li><li><i class="fas fa-check"></i> Transfer Aeroporto/ Hotel / Aeroporto</li><li><i class="fas fa-exclamation-circle"></i> Taxas R$&nbsp;199,00 · sujeito a alteração</li>
-            </ul>
-            <div class="card__footer">
-              <div class="card__preco">
-                <span class="card__total">A partir de <strong>R$&nbsp;2.750</strong></span>
-                <span class="card__parcela">15x de R$&nbsp;183</span>
-                <span class="card__taxas">+ taxas · sujeito a alteração</span>
-              </div>
-              <a href="https://wa.me/5521920064617?text=Ol%C3%A1%2C%20Babi%21%20Tenho%20interesse%20na%20oferta%20Aracaju%20Completo%20-%20SE."
-                 target="_blank" rel="noopener noreferrer"
-                 class="btn btn--whatsapp btn--full">
-                <i class="fab fa-whatsapp"></i> Quero esse pacote!
-              </a>
-            </div>
-          </div>
-        </article>
-
-        <article class="card reveal catalog-item" id="pacote-joaopessoacomcitytourpra-gig" data-destino="João Pessoa com City Tour &amp; Praias + Ilha + Pôr do Sol" data-categoria="completo" data-source="operator" data-source-id="pacote:joaopessoacomcitytourpra:GIG" data-sort-date="2026-10-04" data-dates="2026-10-04,2026-12-06,2027-01-27,2027-02-14,2027-02-19,2027-03-16" data-sort-price="3140.00" data-origem="rio" data-origem-iata="GIG" data-destination="João Pessoa" data-destino-key="joao-pessoa" data-group-label="João Pessoa" data-offer-name="City Tour &amp; Praias + Ilha + Pôr do Sol" data-tipo="com-aereo" data-hotel="Smart Hotel - João Pessoa" data-regime="Café da manhã" data-extras="Noites de Hospedagem (consulte regime de alimentação) · Transfer Aeroporto / Hotel / Aeroporto">
-          <div class="card__img-wrap">
-            <picture><source srcset="pacotes/pacote-joao-pessoa-400.webp 400w, pacotes/pacote-joao-pessoa-800.webp 800w" sizes="(max-width:640px) 100vw, 400px" type="image/webp" /><img src="pacotes/pacote-joao-pessoa.jpeg" alt="João Pessoa: João Pessoa com City Tour & Praias + Ilha + Pôr do Sol" width="400" height="260" data-lightbox decoding="async" loading="lazy"></picture>
-            <span class="card__badge">19/02/2027 a 26/02/2027 · 04/10; 06/12; 27/01; 14/02; 16/03</span>
-          </div>
-          <div class="card__body">
-            <h4 class="card__title">João Pessoa <span>City Tour &amp; Praias + Ilha + Pôr do Sol</span></h4>
-            <ul class="card__features">
-              <li><i class="fas fa-plane"></i> Saída Rio de Janeiro (GIG): aéreo de R$ 1.526,00 por R$&nbsp;1.126,00</li><li><i class="fas fa-hotel"></i> Smart Hotel - João Pessoa · Café da manhã</li><li><i class="fas fa-check"></i> Noites de Hospedagem (consulte regime de alimentação)</li><li><i class="fas fa-check"></i> Transfer Aeroporto / Hotel / Aeroporto</li><li><i class="fas fa-exclamation-circle"></i> Taxas R$&nbsp;213,00 · sujeito a alteração</li>
-            </ul>
-            <div class="card__footer">
-              <div class="card__preco">
-                <span class="card__total">A partir de <strong>R$&nbsp;3.140</strong></span>
-                <span class="card__parcela">15x de R$&nbsp;209</span>
-                <span class="card__taxas">+ taxas · sujeito a alteração</span>
-              </div>
-              <a href="https://wa.me/5521920064617?text=Ol%C3%A1%2C%20Babi%21%20Tenho%20interesse%20na%20oferta%20Jo%C3%A3o%20Pessoa%20com%20City%20Tour%20%26%20Praias%20%2B%20Ilha%20%2B%20P%C3%B4r%20do%20Sol."
-                 target="_blank" rel="noopener noreferrer"
-                 class="btn btn--whatsapp btn--full">
-                <i class="fab fa-whatsapp"></i> Quero esse pacote!
-              </a>
-            </div>
-          </div>
-        </article>
-
-        <article class="card reveal catalog-item" id="pacote-fozdoiguacucultural-gig" data-destino="Foz do Iguaçu - Cultural" data-categoria="completo" data-source="operator" data-source-id="pacote:fozdoiguacucultural:GIG" data-sort-date="2026-10-05" data-dates="2026-10-05,2026-12-28,2027-02-12,2027-02-13,2027-03-24,2027-09-18" data-sort-price="2310.00" data-origem="rio" data-origem-iata="GIG" data-destination="Foz do Iguaçu" data-destino-key="foz-do-iguacu" data-group-label="Foz do Iguaçu" data-offer-name="Cultural" data-tipo="com-aereo" data-hotel="SJ Tour - San Juan Foz do Iguaçu" data-regime="Café da manhã" data-extras="Hospedagem em Foz do Iguaçu (consulte regime de alimentação) · Transfer aeroporto / hotel / aeroporto">
-          <div class="card__img-wrap">
-            <picture><source srcset="pacotes/pacote-foz-do-iguacu-400.webp 400w, pacotes/pacote-foz-do-iguacu-800.webp 800w" sizes="(max-width:640px) 100vw, 400px" type="image/webp" /><img src="pacotes/pacote-foz-do-iguacu.jpeg" alt="Foz do Iguaçu: Foz do Iguaçu - Cultural" width="400" height="260" data-lightbox decoding="async" loading="lazy"></picture>
-            <span class="card__badge">12/02/2027 a 16/02/2027 · 18/09; 05/10; 28/12; 13/02; 24/03</span>
-          </div>
-          <div class="card__body">
-            <h4 class="card__title">Foz do Iguaçu <span>Cultural</span></h4>
-            <ul class="card__features">
-              <li><i class="fas fa-plane"></i> Saída Rio de Janeiro (GIG): aéreo de R$ 1.288,00 por R$&nbsp;888,00</li><li><i class="fas fa-hotel"></i> SJ Tour - San Juan Foz do Iguaçu · Café da manhã</li><li><i class="fas fa-check"></i> Hospedagem em Foz do Iguaçu (consulte regime de alimentação)</li><li><i class="fas fa-check"></i> Transfer aeroporto / hotel / aeroporto</li><li><i class="fas fa-exclamation-circle"></i> Taxas R$&nbsp;219,00 · sujeito a alteração</li>
-            </ul>
-            <div class="card__footer">
-              <div class="card__preco">
-                <span class="card__total">A partir de <strong>R$&nbsp;2.310</strong></span>
-                <span class="card__parcela">15x de R$&nbsp;154</span>
-                <span class="card__taxas">+ taxas · sujeito a alteração</span>
-              </div>
-              <a href="https://wa.me/5521920064617?text=Ol%C3%A1%2C%20Babi%21%20Tenho%20interesse%20na%20oferta%20Foz%20do%20Igua%C3%A7u%20-%20Cultural."
-                 target="_blank" rel="noopener noreferrer"
-                 class="btn btn--whatsapp btn--full">
-                <i class="fab fa-whatsapp"></i> Quero esse pacote!
-              </a>
-            </div>
-          </div>
-        </article>
-
-        <article class="card reveal catalog-item" id="pacote-salvadorcomcitytourilhad-2-gig" data-destino="Salvador com City Tour &amp; Ilha dos Frades + Itaparica" data-categoria="completo" data-source="operator" data-source-id="pacote:salvadorcomcitytourilhad-2:GIG" data-sort-date="2026-10-06" data-dates="2026-10-06,2026-11-10,2026-11-14,2026-12-09,2027-03-05,2027-09-19" data-sort-price="2240.00" data-origem="rio" data-origem-iata="GIG" data-destination="Salvador" data-destino-key="salvador" data-group-label="Salvador" data-offer-name="City Tour &amp; Ilha dos Frades + Itaparica" data-tipo="com-aereo" data-hotel="Marano Hotel" data-regime="Café da manhã" data-extras="Noites de Hospedagem (Consulte regime de alimentação) · Transfer Aeroporto/ Hotel / Aeroporto">
-          <div class="card__img-wrap">
-            <picture><source srcset="pacotes/pacote-salvador-400.webp 400w, pacotes/pacote-salvador-800.webp 800w" sizes="(max-width:640px) 100vw, 400px" type="image/webp" /><img src="pacotes/pacote-salvador.jpeg" alt="Salvador: Salvador com City Tour & Ilha dos Frades + Itaparica" width="400" height="260" data-lightbox decoding="async" loading="lazy"></picture>
-            <span class="card__badge">10/11/2026 a 17/11/2026 · 19/09; 06/10; 14/11; 09/12; 05/03</span>
-          </div>
-          <div class="card__body">
-            <h4 class="card__title">Salvador <span>City Tour &amp; Ilha dos Frades + Itaparica</span></h4>
-            <ul class="card__features">
-              <li><i class="fas fa-plane"></i> Saída Rio de Janeiro (GIG): aéreo de R$ 1.068,00 por R$&nbsp;668,00</li><li><i class="fas fa-hotel"></i> Marano Hotel · Café da manhã</li><li><i class="fas fa-check"></i> Noites de Hospedagem (Consulte regime de alimentação)</li><li><i class="fas fa-check"></i> Transfer Aeroporto/ Hotel / Aeroporto</li><li><i class="fas fa-exclamation-circle"></i> Taxas R$&nbsp;290,00 · sujeito a alteração</li>
-            </ul>
-            <div class="card__footer">
-              <div class="card__preco">
-                <span class="card__total">A partir de <strong>R$&nbsp;2.240</strong></span>
-                <span class="card__parcela">15x de R$&nbsp;149</span>
-                <span class="card__taxas">+ taxas · sujeito a alteração</span>
-              </div>
-              <a href="https://wa.me/5521920064617?text=Ol%C3%A1%2C%20Babi%21%20Tenho%20interesse%20na%20oferta%20Salvador%20com%20City%20Tour%20%26%20Ilha%20dos%20Frades%20%2B%20Itaparica."
-                 target="_blank" rel="noopener noreferrer"
-                 class="btn btn--whatsapp btn--full">
-                <i class="fab fa-whatsapp"></i> Quero esse pacote!
-              </a>
-            </div>
-          </div>
-        </article>
-
-        <article class="card reveal catalog-item" id="pacote-fortalezacomjericoacoara-sdu" data-destino="Fortaleza com Jericoacoara" data-categoria="completo" data-source="operator" data-source-id="pacote:fortalezacomjericoacoara:SDU" data-sort-date="2026-10-07" data-dates="2026-10-07,2026-12-03,2027-01-16,2027-05-12" data-sort-price="3090.00" data-origem="rio" data-origem-iata="SDU" data-destination="Jericoacoara" data-destino-key="jericoacoara" data-group-label="Jericoacoara" data-offer-name="Fortaleza com Jericoacoara" data-tipo="com-aereo" data-hotel="Atlas Beach Hotel Grupo GR (Fortaleza - café da manhã) + Pousada Numei de Jeri (Jericoacoara - café da manhã) + Atlas Beach Hotel Grupo GR (Fortaleza - café da manhã)" data-extras="Transfer In (Aeroporto / Hotel em Fortaleza) · 02 Noites de hospedagem em Fortaleza (consulte o regime alimentar)">
-          <div class="card__img-wrap">
-            <picture><source srcset="pacotes/pacote-jericoacoara-400.webp 400w, pacotes/pacote-jericoacoara-800.webp 800w" sizes="(max-width:640px) 100vw, 400px" type="image/webp" /><img src="pacotes/pacote-jericoacoara.jpeg" alt="Jericoacoara: Fortaleza com Jericoacoara" width="400" height="260" data-lightbox decoding="async" loading="lazy"></picture>
-            <span class="card__badge">12/05/2027 a 19/05/2027 · 07/10; 03/12; 16/01</span>
-          </div>
-          <div class="card__body">
-            <h4 class="card__title">Jericoacoara <span>Fortaleza com Jericoacoara</span></h4>
-            <ul class="card__features">
-              <li><i class="fas fa-plane"></i> Saída Rio de Janeiro (SDU): aéreo de R$ 1.237,00 por R$&nbsp;837,00</li><li><i class="fas fa-hotel"></i> Atlas Beach Hotel Grupo GR (Fortaleza - café da manhã) + Pousada Numei de Jeri (Jericoacoara - café da manhã) + Atlas Beach Hotel Grupo GR (Fortaleza - café da manhã) · consulte regime</li><li><i class="fas fa-check"></i> Transfer In (Aeroporto / Hotel em Fortaleza)</li><li><i class="fas fa-check"></i> 02 Noites de hospedagem em Fortaleza (consulte o regime alimentar)</li><li><i class="fas fa-exclamation-circle"></i> Taxas R$&nbsp;398,04 · sujeito a alteração</li>
-            </ul>
-            <div class="card__footer">
-              <div class="card__preco">
-                <span class="card__total">A partir de <strong>R$&nbsp;3.090</strong></span>
-                <span class="card__parcela">15x de R$&nbsp;206</span>
-                <span class="card__taxas">+ taxas · sujeito a alteração</span>
-              </div>
-              <a href="https://wa.me/5521920064617?text=Ol%C3%A1%2C%20Babi%21%20Tenho%20interesse%20na%20oferta%20Fortaleza%20com%20Jericoacoara."
-                 target="_blank" rel="noopener noreferrer"
-                 class="btn btn--whatsapp btn--full">
-                <i class="fab fa-whatsapp"></i> Quero esse pacote!
-              </a>
-            </div>
-          </div>
-        </article>
-
-        <article class="card reveal catalog-item" id="pacote-oktoberfest2026comingres-sdu" data-destino="Oktoberfest 2026 Com Ingresso &amp; Hospedagem Balneário Camboriú" data-categoria="completo" data-source="operator" data-source-id="pacote:oktoberfest2026comingres:SDU" data-sort-date="2026-10-10" data-dates="2026-10-10,2026-10-23" data-sort-price="1250.00" data-origem="rio" data-origem-iata="SDU" data-destination="FLORIANÓPOLIS (FLN)" data-destino-key="florianopolis" data-group-label="Florianópolis" data-offer-name="Oktoberfest 2026 Com Ingresso &amp; Hospedagem Balneário Camboriú" data-tipo="com-aereo" data-hotel="Hotel Rosenbrock" data-regime="Café da manhã" data-extras="Hospedagem em Blumenau (consulte regime de alimentação) · Traslado aeroporto / hotel / aeroporto">
-          <div class="card__img-wrap">
-            <picture><source srcset="pacotes/pacote-florianopolis-fln-400.webp 400w, pacotes/pacote-florianopolis-fln-800.webp 800w" sizes="(max-width:640px) 100vw, 400px" type="image/webp" /><img src="pacotes/pacote-florianopolis-fln.jpeg" alt="FLORIANÓPOLIS (FLN): Oktoberfest 2026 Com Ingresso & Hospedagem Balneário Camboriú" width="400" height="260" data-lightbox decoding="async" loading="lazy"></picture>
-            <span class="card__badge">23/10/2026 a 27/10/2026 · 10/10/2026</span>
-          </div>
-          <div class="card__body">
-            <h4 class="card__title">FLORIANÓPOLIS (FLN) <span>Oktoberfest 2026 Com Ingresso &amp; Hospedagem Balneário Camboriú</span></h4>
-            <ul class="card__features">
-              <li><i class="fas fa-plane"></i> Saída Rio de Janeiro (SDU): aéreo de R$ 849,00 por R$&nbsp;449,00</li><li><i class="fas fa-hotel"></i> Hotel Rosenbrock · Café da manhã</li><li><i class="fas fa-check"></i> Hospedagem em Blumenau (consulte regime de alimentação)</li><li><i class="fas fa-check"></i> Traslado aeroporto / hotel / aeroporto</li><li><i class="fas fa-exclamation-circle"></i> Taxas R$&nbsp;159,00 · sujeito a alteração</li>
-            </ul>
-            <div class="card__footer">
-              <div class="card__preco">
-                <span class="card__total">A partir de <strong>R$&nbsp;1.250</strong></span>
-                <span class="card__parcela">12x de R$&nbsp;104</span>
-                <span class="card__taxas">+ taxas · sujeito a alteração</span>
-              </div>
-              <a href="https://wa.me/5521920064617?text=Ol%C3%A1%2C%20Babi%21%20Tenho%20interesse%20na%20oferta%20Oktoberfest%202026%20Com%20Ingresso%20%26%20Hospedagem%20Balne%C3%A1rio%20Cambori%C3%BA."
-                 target="_blank" rel="noopener noreferrer"
-                 class="btn btn--whatsapp btn--full">
-                <i class="fab fa-whatsapp"></i> Quero esse pacote!
-              </a>
-            </div>
-          </div>
-        </article>
-
-        <article class="card reveal catalog-item" id="pacote-betocarrero1diadetransfe-gig" data-destino="Beto Carrero - 1 dia de transfer para o Parque (Hospedagem em Camboriú) - Via FL" data-categoria="completo" data-source="operator" data-source-id="pacote:betocarrero1diadetransfe:GIG" data-sort-date="2026-10-10" data-dates="2026-10-10,2026-12-02,2027-01-16,2027-02-25,2027-03-04,2027-03-18" data-sort-price="1860.00" data-origem="rio" data-origem-iata="GIG" data-destination="Balneário Camboriú" data-destino-key="balneario-camboriu" data-group-label="Balneário Camboriú" data-offer-name="Beto Carrero - 1 dia de transfer para o Parque (Hospedagem em Camboriú) - Via FL" data-tipo="com-aereo" data-hotel="Atoba Praia" data-regime="Café da manhã" data-extras="Noites de hospedagem em Balneário Camboriú (consulte regime de alimentação) · Transfer aeroporto / hotel / aeroporto">
-          <div class="card__img-wrap">
-            <picture><source srcset="pacotes/pacote-balneario-camboriu-400.webp 400w, pacotes/pacote-balneario-camboriu-800.webp 800w" sizes="(max-width:640px) 100vw, 400px" type="image/webp" /><img src="pacotes/pacote-balneario-camboriu.jpeg" alt="Balneário Camboriú: Beto Carrero - 1 dia de transfer para o Parque (Hospedagem em Camboriú) - Via FLN" width="400" height="260" data-lightbox decoding="async" loading="lazy"></picture>
-            <span class="card__badge">18/03/2027 a 22/03/2027 · 10/10; 02/12; 16/01; 25/02; 04/03</span>
-          </div>
-          <div class="card__body">
-            <h4 class="card__title">Balneário Camboriú <span>Beto Carrero - 1 dia de transfer para o Parque (Hospedagem em Camboriú) - Via FL</span></h4>
-            <ul class="card__features">
-              <li><i class="fas fa-plane"></i> Saída Rio de Janeiro (GIG): aéreo de R$ 818,00 por R$&nbsp;418,00</li><li><i class="fas fa-hotel"></i> Atoba Praia · Café da manhã</li><li><i class="fas fa-check"></i> Noites de hospedagem em Balneário Camboriú (consulte regime de alimentação)</li><li><i class="fas fa-check"></i> Transfer aeroporto / hotel / aeroporto</li><li><i class="fas fa-exclamation-circle"></i> Taxas R$&nbsp;199,00 · sujeito a alteração</li>
-            </ul>
-            <div class="card__footer">
-              <div class="card__preco">
-                <span class="card__total">A partir de <strong>R$&nbsp;1.860</strong></span>
-                <span class="card__parcela">15x de R$&nbsp;124</span>
-                <span class="card__taxas">+ taxas · sujeito a alteração</span>
-              </div>
-              <a href="https://wa.me/5521920064617?text=Ol%C3%A1%2C%20Babi%21%20Tenho%20interesse%20na%20oferta%20Beto%20Carrero%20-%201%20dia%20de%20transfer%20para%20o%20Parque%20%28Hospedagem%20em%20Cambori%C3%BA%29%20-%20Via%20FL."
-                 target="_blank" rel="noopener noreferrer"
-                 class="btn btn--whatsapp btn--full">
-                <i class="fab fa-whatsapp"></i> Quero esse pacote!
-              </a>
-            </div>
-          </div>
-        </article>
-
-        <article class="card reveal catalog-item" id="pacote-arubaessencialailhamaisf-rio-de-janeiro" data-destino="ARUBA Essencial - A ilha mais feliz do caribe" data-categoria="completo" data-source="operator" data-source-id="pacote:arubaessencialailhamaisf:RIO DE JANEIRO" data-sort-date="2026-10-12" data-dates="2026-10-12" data-sort-price="6587.72" data-origem="rio" data-origem-iata="RIO DE JANEIRO" data-destination="Aruba" data-destino-key="aruba" data-group-label="Aruba" data-offer-name="Essencial - A ilha mais feliz do caribe" data-tipo="com-aereo" data-hotel="Del Rey Apartments" data-regime="All Inclusive" data-extras="Hospedagem: 5 noites">
-          <div class="card__img-wrap">
-            <picture><source srcset="pacotes/pacote-aruba-400.webp 400w, pacotes/pacote-aruba-800.webp 800w" sizes="(max-width:640px) 100vw, 400px" type="image/webp" /><img src="pacotes/pacote-aruba.jpeg" alt="Aruba: ARUBA Essencial - A ilha mais feliz do caribe" width="400" height="260" data-lightbox decoding="async" loading="lazy"></picture>
-            <span class="card__badge">12/10/2026 a 18/10/2026</span>
-          </div>
-          <div class="card__body">
-            <h4 class="card__title">Aruba <span>Essencial - A ilha mais feliz do caribe</span></h4>
-            <ul class="card__features">
-              <li><i class="fas fa-plane"></i> Saída Rio de Janeiro (RIO DE JANEIRO)</li><li><i class="fas fa-hotel"></i> Del Rey Apartments · All Inclusive</li><li><i class="fas fa-check"></i> Hospedagem: 5 noites</li><li><i class="fas fa-exclamation-circle"></i> Taxas R$&nbsp;526,00 · sujeito a alteração</li>
-            </ul>
-            <div class="card__footer">
-              <div class="card__preco">
-                <span class="card__total">A partir de <strong>R$&nbsp;6.588</strong></span>
-                <span class="card__parcela">15x de R$&nbsp;439</span>
-                <span class="card__taxas">+ taxas · sujeito a alteração</span>
-              </div>
-              <a href="https://wa.me/5521920064617?text=Ol%C3%A1%2C%20Babi%21%20Tenho%20interesse%20na%20oferta%20ARUBA%20Essencial%20-%20A%20ilha%20mais%20feliz%20do%20caribe."
-                 target="_blank" rel="noopener noreferrer"
-                 class="btn btn--whatsapp btn--full">
-                <i class="fab fa-whatsapp"></i> Quero esse pacote!
-              </a>
-            </div>
-          </div>
-        </article>
-
-        <article class="card reveal catalog-item" id="pacote-curacaoessencial-rio-de-janeiro" data-destino="Curaçao - Essencial" data-categoria="completo" data-source="operator" data-source-id="pacote:curacaoessencial:RIO DE JANEIRO" data-sort-date="2026-10-12" data-dates="2026-10-12" data-sort-price="8338.95" data-origem="rio" data-origem-iata="RIO DE JANEIRO" data-destination="Curaçao" data-destino-key="curacao" data-group-label="Curaçao" data-offer-name="Essencial" data-tipo="com-aereo" data-hotel="Courtyard by Marriott Curacao" data-extras="Hospedagem: 5 noites">
-          <div class="card__img-wrap">
-            <picture><source srcset="pacotes/pacote-curacao-400.webp 400w, pacotes/pacote-curacao-800.webp 800w" sizes="(max-width:640px) 100vw, 400px" type="image/webp" /><img src="pacotes/pacote-curacao.jpeg" alt="Curaçao: Curaçao - Essencial" width="400" height="260" data-lightbox decoding="async" loading="lazy"></picture>
-            <span class="card__badge">12/10/2026 a 18/10/2026</span>
-          </div>
-          <div class="card__body">
-            <h4 class="card__title">Curaçao <span>Essencial</span></h4>
-            <ul class="card__features">
-              <li><i class="fas fa-plane"></i> Saída Rio de Janeiro (RIO DE JANEIRO)</li><li><i class="fas fa-hotel"></i> Courtyard by Marriott Curacao · consulte regime</li><li><i class="fas fa-check"></i> Hospedagem: 5 noites</li><li><i class="fas fa-exclamation-circle"></i> Taxas R$&nbsp;335,00 · sujeito a alteração</li>
-            </ul>
-            <div class="card__footer">
-              <div class="card__preco">
-                <span class="card__total">A partir de <strong>R$&nbsp;8.339</strong></span>
-                <span class="card__parcela">15x de R$&nbsp;555</span>
-                <span class="card__taxas">+ taxas · sujeito a alteração</span>
-              </div>
-              <a href="https://wa.me/5521920064617?text=Ol%C3%A1%2C%20Babi%21%20Tenho%20interesse%20na%20oferta%20Cura%C3%A7ao%20-%20Essencial."
+              <a href="https://wa.me/5521920064617?text=Ol%C3%A1%2C%20Babi%21%20Tenho%20interesse%20na%20oferta%20Gramado%20com%20Oficina%20da%20Divers%C3%A3o%20Criamigos%20CHD%20GR%C3%81TIS%20de%206%20A%2010%20anos."
                  target="_blank" rel="noopener noreferrer"
                  class="btn btn--whatsapp btn--full">
                 <i class="fab fa-whatsapp"></i> Quero esse pacote!
@@ -785,7 +488,7 @@
 
         <article class="card reveal catalog-item" id="pacote-serragaucha3em1gramadono-gig" data-destino="Serra Gaúcha 3 em 1 - Gramado, Nova Petrópolis e Bento Gonçalves com Trem" data-categoria="completo" data-source="operator" data-source-id="pacote:serragaucha3em1gramadono:GIG" data-sort-date="2026-10-14" data-dates="2026-10-14,2026-11-06,2026-12-27,2027-01-25,2027-08-20,2027-09-23" data-sort-price="2370.00" data-origem="rio" data-origem-iata="GIG" data-destination="Serra Gaúcha" data-destino-key="serra-gaucha" data-group-label="Serra Gaúcha" data-offer-name="3 em 1 - Gramado, Nova Petrópolis e Bento Gonçalves com Trem" data-tipo="com-aereo" data-hotel="Golden Tulip Canela by Livá" data-regime="Café da manhã" data-extras="Noites de hospedagem (consulte regime de alimentação) · Traslado Aeroporto / hotel / aeroporto">
           <div class="card__img-wrap">
-            <picture><source srcset="pacotes/pacote-serra-gaucha-400.webp 400w, pacotes/pacote-serra-gaucha-800.webp 800w" sizes="(max-width:640px) 100vw, 400px" type="image/webp" /><img src="pacotes/pacote-serra-gaucha.jpeg" alt="Serra Gaúcha: Serra Gaúcha 3 em 1 - Gramado, Nova Petrópolis e Bento Gonçalves com Trem" width="400" height="260" data-lightbox decoding="async" loading="lazy"></picture>
+            <picture><source srcset="pacotes/pacote-serragaucha3em1gramadono-400.webp 400w, pacotes/pacote-serragaucha3em1gramadono-800.webp 800w" sizes="(max-width:640px) 100vw, 400px" type="image/webp" /><img src="pacotes/pacote-serragaucha3em1gramadono.jpeg" alt="Serra Gaúcha: Serra Gaúcha 3 em 1 - Gramado, Nova Petrópolis e Bento Gonçalves com Trem" width="400" height="260" data-lightbox decoding="async" loading="lazy"></picture>
             <span class="card__badge">25/01/2027 a 30/01/2027 · 20/08; 23/09; 14/10; 06/11; 27/12</span>
           </div>
           <div class="card__body">
@@ -796,7 +499,7 @@
             <div class="card__footer">
               <div class="card__preco">
                 <span class="card__total">A partir de <strong>R$&nbsp;2.370</strong></span>
-                <span class="card__parcela">15x de R$&nbsp;158</span>
+                <span class="card__parcela">10x de R$&nbsp;237</span>
                 <span class="card__taxas">+ taxas · sujeito a alteração</span>
               </div>
               <a href="https://wa.me/5521920064617?text=Ol%C3%A1%2C%20Babi%21%20Tenho%20interesse%20na%20oferta%20Serra%20Ga%C3%BAcha%203%20em%201%20-%20Gramado%2C%20Nova%20Petr%C3%B3polis%20e%20Bento%20Gon%C3%A7alves%20com%20Trem."
@@ -810,7 +513,7 @@
 
         <article class="card reveal catalog-item" id="pacote-bentogoncalvescommariafu-gig" data-destino="Bento Gonçalves com Maria Fumaça e Epopeia Italiana" data-categoria="completo" data-source="operator" data-source-id="pacote:bentogoncalvescommariafu:GIG" data-sort-date="2026-10-14" data-dates="2026-10-14,2026-11-09,2026-11-13,2026-12-24,2027-08-20,2027-09-23" data-sort-price="2390.00" data-origem="rio" data-origem-iata="GIG" data-destination="PORTO ALEGRE (POA)" data-destino-key="porto-alegre" data-group-label="Porto Alegre" data-offer-name="Bento Gonçalves com Maria Fumaça e Epopeia Italiana" data-tipo="com-aereo" data-hotel="DallOnder Planalto Hotel Bento Gonçalves" data-regime="Café da manhã" data-extras="Transfer aeroporto / Hotel em Bento Gonçalves / aeroporto · Noites de hospedagem">
           <div class="card__img-wrap">
-            <picture><source srcset="pacotes/pacote-porto-alegre-poa-400.webp 400w, pacotes/pacote-porto-alegre-poa-800.webp 800w" sizes="(max-width:640px) 100vw, 400px" type="image/webp" /><img src="pacotes/pacote-porto-alegre-poa.jpeg" alt="PORTO ALEGRE (POA): Bento Gonçalves com Maria Fumaça e Epopeia Italiana" width="400" height="260" data-lightbox decoding="async" loading="lazy"></picture>
+            <picture><source srcset="pacotes/pacote-bentogoncalvescommariafu-400.webp 400w, pacotes/pacote-bentogoncalvescommariafu-800.webp 800w" sizes="(max-width:640px) 100vw, 400px" type="image/webp" /><img src="pacotes/pacote-bentogoncalvescommariafu.jpeg" alt="PORTO ALEGRE (POA): Bento Gonçalves com Maria Fumaça e Epopeia Italiana" width="400" height="260" data-lightbox decoding="async" loading="lazy"></picture>
             <span class="card__badge">13/11/2026 a 17/11/2026 · 20/08; 23/09; 14/10; 09/11; 24/12</span>
           </div>
           <div class="card__body">
@@ -821,7 +524,7 @@
             <div class="card__footer">
               <div class="card__preco">
                 <span class="card__total">A partir de <strong>R$&nbsp;2.390</strong></span>
-                <span class="card__parcela">15x de R$&nbsp;159</span>
+                <span class="card__parcela">10x de R$&nbsp;239</span>
                 <span class="card__taxas">+ taxas · sujeito a alteração</span>
               </div>
               <a href="https://wa.me/5521920064617?text=Ol%C3%A1%2C%20Babi%21%20Tenho%20interesse%20na%20oferta%20Bento%20Gon%C3%A7alves%20com%20Maria%20Fuma%C3%A7a%20e%20Epopeia%20Italiana."
@@ -835,7 +538,7 @@
 
         <article class="card reveal catalog-item" id="pacote-bahia3em1portosegurotran-gig" data-destino="Bahia 3 em 1 - Porto Seguro, Trancoso e Arraial D&#x27;Ajuda" data-categoria="completo" data-source="operator" data-source-id="pacote:bahia3em1portosegurotran:GIG" data-sort-date="2026-10-16" data-dates="2026-10-16,2026-12-02,2027-01-10,2027-02-13,2027-03-24,2027-08-12" data-sort-price="2590.00" data-origem="rio" data-origem-iata="GIG" data-destination="PORTO SEGURO (BPS)" data-destino-key="porto-seguro" data-group-label="Porto Seguro" data-offer-name="Bahia 3 em 1 - Porto Seguro, Trancoso e Arraial D&#x27;Ajuda" data-tipo="com-aereo" data-hotel="Monte Pascoal Praia Hotel Porto Seguro" data-regime="Café da manhã" data-extras="Noites de hospedagem (consulte regime de alimentação) · Transfer In/out">
           <div class="card__img-wrap">
-            <picture><source srcset="pacotes/pacote-porto-seguro-bps-400.webp 400w, pacotes/pacote-porto-seguro-bps-800.webp 800w" sizes="(max-width:640px) 100vw, 400px" type="image/webp" /><img src="pacotes/pacote-porto-seguro-bps.jpeg" alt="PORTO SEGURO (BPS): Bahia 3 em 1 - Porto Seguro, Trancoso e Arraial D'Ajuda" width="400" height="260" data-lightbox decoding="async" loading="lazy"></picture>
+            <picture><source srcset="pacotes/pacote-bahia3em1portosegurotran-400.webp 400w, pacotes/pacote-bahia3em1portosegurotran-800.webp 800w" sizes="(max-width:640px) 100vw, 400px" type="image/webp" /><img src="pacotes/pacote-bahia3em1portosegurotran.jpeg" alt="PORTO SEGURO (BPS): Bahia 3 em 1 - Porto Seguro, Trancoso e Arraial D&#x27;Ajuda" width="400" height="260" data-lightbox decoding="async" loading="lazy"></picture>
             <span class="card__badge">24/03/2027 a 31/03/2027 · 12/08; 16/10; 02/12; 10/01; 13/02</span>
           </div>
           <div class="card__body">
@@ -846,7 +549,7 @@
             <div class="card__footer">
               <div class="card__preco">
                 <span class="card__total">A partir de <strong>R$&nbsp;2.590</strong></span>
-                <span class="card__parcela">15x de R$&nbsp;172</span>
+                <span class="card__parcela">10x de R$&nbsp;259</span>
                 <span class="card__taxas">+ taxas · sujeito a alteração</span>
               </div>
               <a href="https://wa.me/5521920064617?text=Ol%C3%A1%2C%20Babi%21%20Tenho%20interesse%20na%20oferta%20Bahia%203%20em%201%20-%20Porto%20Seguro%2C%20Trancoso%20e%20Arraial%20D%27Ajuda."
@@ -860,7 +563,7 @@
 
         <article class="card reveal catalog-item" id="pacote-orlando2universalem2dias-2-rio-de-janeiro" data-destino="Orlando: 2 Universal em 2 dias + Epic - Bloqueio Rio" data-categoria="completo" data-source="operator" data-source-id="pacote:orlando2universalem2dias-2:RIO DE JANEIRO" data-sort-date="2026-10-16" data-dates="2026-10-16" data-sort-price="9190.00" data-origem="rio" data-origem-iata="RIO DE JANEIRO" data-destination="Orlando" data-destino-key="orlando" data-group-label="Orlando" data-offer-name="2 Universal em 2 dias + Epic - Bloqueio Rio" data-tipo="com-aereo" data-hotel="Doubletree by Hilton Orlando Downtown" data-regime="Café da manhã" data-extras="Hospedagem: 7 noites · Hospedagem Orlando ou Kissimmee (consulte regime de alimentação)">
           <div class="card__img-wrap">
-            <picture><source srcset="pacotes/pacote-orlando-400.webp 400w, pacotes/pacote-orlando-800.webp 800w" sizes="(max-width:640px) 100vw, 400px" type="image/webp" /><img src="pacotes/pacote-orlando.jpeg" alt="Orlando: Orlando: 2 Universal em 2 dias + Epic - Bloqueio Rio" width="400" height="260" data-lightbox decoding="async" loading="lazy"></picture>
+            <picture><source srcset="pacotes/pacote-orlando2universalem2dias-2-400.webp 400w, pacotes/pacote-orlando2universalem2dias-2-800.webp 800w" sizes="(max-width:640px) 100vw, 400px" type="image/webp" /><img src="pacotes/pacote-orlando2universalem2dias-2.jpeg" alt="Orlando: Orlando: 2 Universal em 2 dias + Epic - Bloqueio Rio" width="400" height="260" data-lightbox decoding="async" loading="lazy"></picture>
             <span class="card__badge">16/10/2026 a 24/10/2026</span>
           </div>
           <div class="card__body">
@@ -871,7 +574,7 @@
             <div class="card__footer">
               <div class="card__preco">
                 <span class="card__total">A partir de <strong>R$&nbsp;9.190</strong></span>
-                <span class="card__parcela">15x de R$&nbsp;612</span>
+                <span class="card__parcela">10x de R$&nbsp;919</span>
                 <span class="card__taxas">+ taxas · sujeito a alteração</span>
               </div>
               <a href="https://wa.me/5521920064617?text=Ol%C3%A1%2C%20Babi%21%20Tenho%20interesse%20na%20oferta%20Orlando%3A%202%20Universal%20em%202%20dias%20%2B%20Epic%20-%20Bloqueio%20Rio."
@@ -883,9 +586,84 @@
           </div>
         </article>
 
+        <article class="card reveal catalog-item" id="pacote-salvadorimperdivelba-gig" data-destino="Salvador Imperdível - BA" data-categoria="completo" data-source="operator" data-source-id="pacote:salvadorimperdivelba:GIG" data-sort-date="2026-10-17" data-dates="2026-10-17,2026-11-11,2026-12-03,2027-03-25,2027-08-27,2027-09-19" data-sort-price="2290.00" data-origem="rio" data-origem-iata="GIG" data-destination="Salvador" data-destino-key="salvador" data-group-label="Salvador" data-offer-name="Imperdível - BA" data-tipo="com-aereo" data-hotel="Marano Hotel" data-regime="Café da manhã" data-extras="Noites de Hospedagem (Consulte regime de alimentação) · Transfer Aeroporto/ Hotel / Aeroporto">
+          <div class="card__img-wrap">
+            <picture><source srcset="pacotes/pacote-salvadorimperdivelba-400.webp 400w, pacotes/pacote-salvadorimperdivelba-800.webp 800w" sizes="(max-width:640px) 100vw, 400px" type="image/webp" /><img src="pacotes/pacote-salvadorimperdivelba.jpeg" alt="Salvador: Salvador Imperdível - BA" width="400" height="260" data-lightbox decoding="async" loading="lazy"></picture>
+            <span class="card__badge">25/03/2027 a 30/03/2027 · 27/08; 19/09; 17/10; 11/11; 03/12</span>
+          </div>
+          <div class="card__body">
+            <h4 class="card__title">Salvador <span>Imperdível - BA</span></h4>
+            <ul class="card__features">
+              <li><i class="fas fa-plane"></i> Saída Rio de Janeiro (GIG): aéreo de R$ 1.453,00 por R$&nbsp;1.053,00</li><li><i class="fas fa-hotel"></i> Marano Hotel · Café da manhã</li><li><i class="fas fa-check"></i> Noites de Hospedagem (Consulte regime de alimentação)</li><li><i class="fas fa-check"></i> Transfer Aeroporto/ Hotel / Aeroporto</li><li><i class="fas fa-exclamation-circle"></i> Taxas R$&nbsp;264,00 · sujeito a alteração</li>
+            </ul>
+            <div class="card__footer">
+              <div class="card__preco">
+                <span class="card__total">A partir de <strong>R$&nbsp;2.290</strong></span>
+                <span class="card__parcela">10x de R$&nbsp;229</span>
+                <span class="card__taxas">+ taxas · sujeito a alteração</span>
+              </div>
+              <a href="https://wa.me/5521920064617?text=Ol%C3%A1%2C%20Babi%21%20Tenho%20interesse%20na%20oferta%20Salvador%20Imperd%C3%ADvel%20-%20BA."
+                 target="_blank" rel="noopener noreferrer"
+                 class="btn btn--whatsapp btn--full">
+                <i class="fab fa-whatsapp"></i> Quero esse pacote!
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card reveal catalog-item" id="pacote-fortalezacomlencoisparac-2-gig" data-destino="Fortaleza com Lençóis Paracuruenses" data-categoria="completo" data-source="operator" data-source-id="pacote:fortalezacomlencoisparac-2:GIG" data-sort-date="2026-10-21" data-dates="2026-10-21,2026-11-18,2026-12-01,2027-01-16,2027-02-17,2027-03-01" data-sort-price="2490.00" data-origem="rio" data-origem-iata="GIG" data-destination="FORTALEZA (FOR)" data-destino-key="fortaleza" data-group-label="Fortaleza" data-offer-name="Lençóis Paracuruenses" data-tipo="com-aereo" data-hotel="Atlas Beach Hotel Grupo GR" data-regime="Café da manhã" data-extras="Transfer aeroporto / Hotel / Aeroporto · City tour">
+          <div class="card__img-wrap">
+            <picture><source srcset="pacotes/pacote-fortalezacomlencoisparac-2-400.webp 400w, pacotes/pacote-fortalezacomlencoisparac-2-800.webp 800w" sizes="(max-width:640px) 100vw, 400px" type="image/webp" /><img src="pacotes/pacote-fortalezacomlencoisparac-2.jpeg" alt="FORTALEZA (FOR): Fortaleza com Lençóis Paracuruenses" width="400" height="260" data-lightbox decoding="async" loading="lazy"></picture>
+            <span class="card__badge">17/02/2027 a 24/02/2027 · 21/10; 18/11; 01/12; 16/01; 01/03</span>
+          </div>
+          <div class="card__body">
+            <h4 class="card__title">FORTALEZA (FOR) <span>Lençóis Paracuruenses</span></h4>
+            <ul class="card__features">
+              <li><i class="fas fa-plane"></i> Saída Rio de Janeiro (GIG): aéreo de R$ 1.493,00 por R$&nbsp;1.093,00</li><li><i class="fas fa-hotel"></i> Atlas Beach Hotel Grupo GR · Café da manhã</li><li><i class="fas fa-check"></i> Transfer aeroporto / Hotel / Aeroporto</li><li><i class="fas fa-check"></i> City tour</li><li><i class="fas fa-exclamation-circle"></i> Taxas R$&nbsp;213,00 · sujeito a alteração</li>
+            </ul>
+            <div class="card__footer">
+              <div class="card__preco">
+                <span class="card__total">A partir de <strong>R$&nbsp;2.490</strong></span>
+                <span class="card__parcela">10x de R$&nbsp;249</span>
+                <span class="card__taxas">+ taxas · sujeito a alteração</span>
+              </div>
+              <a href="https://wa.me/5521920064617?text=Ol%C3%A1%2C%20Babi%21%20Tenho%20interesse%20na%20oferta%20Fortaleza%20com%20Len%C3%A7%C3%B3is%20Paracuruenses."
+                 target="_blank" rel="noopener noreferrer"
+                 class="btn btn--whatsapp btn--full">
+                <i class="fab fa-whatsapp"></i> Quero esse pacote!
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card reveal catalog-item" id="pacote-oktoberfest2026comingres-sdu" data-destino="Oktoberfest 2026 Com Ingresso &amp; Hospedagem Balneário Camboriú" data-categoria="completo" data-source="operator" data-source-id="pacote:oktoberfest2026comingres:SDU" data-sort-date="2026-10-23" data-dates="2026-10-23" data-sort-price="1250.00" data-origem="rio" data-origem-iata="SDU" data-destination="FLORIANÓPOLIS (FLN)" data-destino-key="florianopolis" data-group-label="Florianópolis" data-offer-name="Oktoberfest 2026 Com Ingresso &amp; Hospedagem Balneário Camboriú" data-tipo="com-aereo" data-hotel="Hotel Rosenbrock" data-regime="Café da manhã" data-extras="Hospedagem em Blumenau (consulte regime de alimentação) · Traslado aeroporto / hotel / aeroporto">
+          <div class="card__img-wrap">
+            <picture><source srcset="pacotes/pacote-oktoberfest2026comingres-400.webp 400w, pacotes/pacote-oktoberfest2026comingres-800.webp 800w" sizes="(max-width:640px) 100vw, 400px" type="image/webp" /><img src="pacotes/pacote-oktoberfest2026comingres.jpeg" alt="FLORIANÓPOLIS (FLN): Oktoberfest 2026 Com Ingresso &amp; Hospedagem Balneário Camboriú" width="400" height="260" data-lightbox decoding="async" loading="lazy"></picture>
+            <span class="card__badge">23/10/2026 a 27/10/2026 · 10/10/2026</span>
+          </div>
+          <div class="card__body">
+            <h4 class="card__title">FLORIANÓPOLIS (FLN) <span>Oktoberfest 2026 Com Ingresso &amp; Hospedagem Balneário Camboriú</span></h4>
+            <ul class="card__features">
+              <li><i class="fas fa-plane"></i> Saída Rio de Janeiro (SDU): aéreo de R$ 849,00 por R$&nbsp;449,00</li><li><i class="fas fa-hotel"></i> Hotel Rosenbrock · Café da manhã</li><li><i class="fas fa-check"></i> Hospedagem em Blumenau (consulte regime de alimentação)</li><li><i class="fas fa-check"></i> Traslado aeroporto / hotel / aeroporto</li><li><i class="fas fa-exclamation-circle"></i> Taxas R$&nbsp;159,00 · sujeito a alteração</li>
+            </ul>
+            <div class="card__footer">
+              <div class="card__preco">
+                <span class="card__total">A partir de <strong>R$&nbsp;1.250</strong></span>
+                <span class="card__parcela">10x de R$&nbsp;125</span>
+                <span class="card__taxas">+ taxas · sujeito a alteração</span>
+              </div>
+              <a href="https://wa.me/5521920064617?text=Ol%C3%A1%2C%20Babi%21%20Tenho%20interesse%20na%20oferta%20Oktoberfest%202026%20Com%20Ingresso%20%26%20Hospedagem%20Balne%C3%A1rio%20Cambori%C3%BA."
+                 target="_blank" rel="noopener noreferrer"
+                 class="btn btn--whatsapp btn--full">
+                <i class="fab fa-whatsapp"></i> Quero esse pacote!
+              </a>
+            </div>
+          </div>
+        </article>
+
         <article class="card reveal catalog-item" id="pacote-oktoberfest2026vianavega-gig" data-destino="Oktoberfest 2026 - via Navegantes Hospedagem Balneário Camboriú com Ingresso" data-categoria="completo" data-source="operator" data-source-id="pacote:oktoberfest2026vianavega:GIG" data-sort-date="2026-10-23" data-dates="2026-10-23" data-sort-price="1810.00" data-origem="rio" data-origem-iata="GIG" data-destination="NAVEGANTES (NVT)" data-destino-key="navegantes" data-group-label="Navegantes" data-offer-name="Oktoberfest 2026 - via Navegantes Hospedagem Balneário Camboriú com Ingresso" data-tipo="com-aereo" data-hotel="Hotel Rosenbrock" data-regime="Café da manhã" data-extras="Hospedagem em Balneário Camboriú (consulte regime de alimentação) · Traslado aeroporto / hotel / aeroporto">
           <div class="card__img-wrap">
-            <picture><source srcset="pacotes/pacote-navegantes-nvt-400.webp 400w, pacotes/pacote-navegantes-nvt-800.webp 800w" sizes="(max-width:640px) 100vw, 400px" type="image/webp" /><img src="pacotes/pacote-navegantes-nvt.jpeg" alt="NAVEGANTES (NVT): Oktoberfest 2026 - via Navegantes Hospedagem Balneário Camboriú com Ingresso" width="400" height="260" data-lightbox decoding="async" loading="lazy"></picture>
+            <picture><source srcset="pacotes/pacote-oktoberfest2026vianavega-400.webp 400w, pacotes/pacote-oktoberfest2026vianavega-800.webp 800w" sizes="(max-width:640px) 100vw, 400px" type="image/webp" /><img src="pacotes/pacote-oktoberfest2026vianavega.jpeg" alt="NAVEGANTES (NVT): Oktoberfest 2026 - via Navegantes Hospedagem Balneário Camboriú com Ingresso" width="400" height="260" data-lightbox decoding="async" loading="lazy"></picture>
             <span class="card__badge">23/10/2026 a 27/10/2026</span>
           </div>
           <div class="card__body">
@@ -896,7 +674,7 @@
             <div class="card__footer">
               <div class="card__preco">
                 <span class="card__total">A partir de <strong>R$&nbsp;1.810</strong></span>
-                <span class="card__parcela">15x de R$&nbsp;120</span>
+                <span class="card__parcela">10x de R$&nbsp;181</span>
                 <span class="card__taxas">+ taxas · sujeito a alteração</span>
               </div>
               <a href="https://wa.me/5521920064617?text=Ol%C3%A1%2C%20Babi%21%20Tenho%20interesse%20na%20oferta%20Oktoberfest%202026%20-%20via%20Navegantes%20Hospedagem%20Balne%C3%A1rio%20Cambori%C3%BA%20com%20Ingresso."
@@ -908,23 +686,173 @@
           </div>
         </article>
 
-        <article class="card reveal catalog-item" id="pacote-miches3noitesepuntacana4-rio-de-janeiro" data-destino="Miches (3 Noites) e Punta Cana (4 Noites)" data-categoria="completo" data-source="operator" data-source-id="pacote:miches3noitesepuntacana4:RIO DE JANEIRO" data-sort-date="2026-11-01" data-dates="2026-11-01" data-sort-price="7256.73" data-origem="rio" data-origem-iata="RIO DE JANEIRO" data-destination="Punta Cana" data-destino-key="punta-cana" data-group-label="Punta Cana" data-offer-name="Miches (3 Noites) e Punta Cana (4 Noites)" data-tipo="com-aereo" data-hotel="Powered by infotera CATIVA OPERADORA - Orcamento: 5778306 20/46 Viva Miches by Wyndham" data-regime="All Inclusive" data-extras="Hospedagem: 7 noites">
+        <article class="card reveal catalog-item" id="pacote-tauahotelconventionjoaop-gig" data-destino="Tauá Hotel &amp; Convention João Pessoa com Pensão Completa + Transfer In/Out GRÁTIS" data-categoria="completo" data-source="operator" data-source-id="pacote:tauahotelconventionjoaop:GIG" data-sort-date="2026-10-24" data-dates="2026-10-24,2026-11-20,2027-01-12,2027-01-28,2027-02-16,2027-04-09,2027-04-21" data-sort-price="7370.00" data-origem="rio" data-origem-iata="GIG" data-destination="João Pessoa" data-destino-key="joao-pessoa" data-group-label="João Pessoa" data-offer-name="Tauá Hotel &amp; Convention João Pessoa com Pensão Completa + Transfer In/Out GRÁTIS" data-tipo="com-aereo" data-hotel="Taua Resort e Convention Joao Pessoa" data-regime="FAP (Pensão completa)" data-extras="Transfer aeroporto / hotel / aeroporto GRÁTIS · Noites de hospedagem (consulte regime de alimentação)">
           <div class="card__img-wrap">
-            <picture><source srcset="pacotes/pacote-punta-cana-400.webp 400w, pacotes/pacote-punta-cana-800.webp 800w" sizes="(max-width:640px) 100vw, 400px" type="image/webp" /><img src="pacotes/pacote-punta-cana.jpeg" alt="Punta Cana: Miches (3 Noites) e Punta Cana (4 Noites)" width="400" height="260" data-lightbox decoding="async" loading="lazy"></picture>
-            <span class="card__badge">01/11/2026 a 09/11/2026</span>
+            <picture><source srcset="pacotes/pacote-tauahotelconventionjoaop-400.webp 400w, pacotes/pacote-tauahotelconventionjoaop-800.webp 800w" sizes="(max-width:640px) 100vw, 400px" type="image/webp" /><img src="pacotes/pacote-tauahotelconventionjoaop.jpeg" alt="João Pessoa: Tauá Hotel &amp; Convention João Pessoa com Pensão Completa + Transfer In/Out GRÁTIS" width="400" height="260" data-lightbox decoding="async" loading="lazy"></picture>
+            <span class="card__badge">24/10/2026 a 30/10/2026 · 20/11 - 12/01 - 28/01 - 16/02 -09/04 - 21/04</span>
           </div>
           <div class="card__body">
-            <h4 class="card__title">Punta Cana <span>Miches (3 Noites) e Punta Cana (4 Noites)</span></h4>
+            <h4 class="card__title">João Pessoa <span>Tauá Hotel &amp; Convention João Pessoa com Pensão Completa + Transfer In/Out GRÁTIS</span></h4>
             <ul class="card__features">
-              <li><i class="fas fa-plane"></i> Saída Rio de Janeiro (RIO DE JANEIRO)</li><li><i class="fas fa-hotel"></i> Powered by infotera CATIVA OPERADORA - Orcamento: 5778306 20/46 Viva Miches by Wyndham · All Inclusive</li><li><i class="fas fa-check"></i> Hospedagem: 7 noites</li><li><i class="fas fa-exclamation-circle"></i> Taxas R$&nbsp;1.117,00 · sujeito a alteração</li>
+              <li><i class="fas fa-plane"></i> Saída Rio de Janeiro (GIG): aéreo de R$ 1.499,00 por R$&nbsp;1.049,00</li><li><i class="fas fa-hotel"></i> Taua Resort e Convention Joao Pessoa · FAP (Pensão completa)</li><li><i class="fas fa-check"></i> Transfer aeroporto / hotel / aeroporto GRÁTIS</li><li><i class="fas fa-check"></i> Noites de hospedagem (consulte regime de alimentação)</li><li><i class="fas fa-exclamation-circle"></i> Taxas R$&nbsp;289,00 · sujeito a alteração</li>
             </ul>
             <div class="card__footer">
               <div class="card__preco">
-                <span class="card__total">A partir de <strong>R$&nbsp;7.257</strong></span>
-                <span class="card__parcela">15x de R$&nbsp;483</span>
+                <span class="card__total">A partir de <strong>R$&nbsp;7.370</strong></span>
+                <span class="card__parcela">10x de R$&nbsp;737</span>
                 <span class="card__taxas">+ taxas · sujeito a alteração</span>
               </div>
-              <a href="https://wa.me/5521920064617?text=Ol%C3%A1%2C%20Babi%21%20Tenho%20interesse%20na%20oferta%20Miches%20%283%20Noites%29%20e%20Punta%20Cana%20%284%20Noites%29."
+              <a href="https://wa.me/5521920064617?text=Ol%C3%A1%2C%20Babi%21%20Tenho%20interesse%20na%20oferta%20Tau%C3%A1%20Hotel%20%26%20Convention%20Jo%C3%A3o%20Pessoa%20com%20Pens%C3%A3o%20Completa%20%2B%20Transfer%20In%2FOut%20GR%C3%81TIS."
+                 target="_blank" rel="noopener noreferrer"
+                 class="btn btn--whatsapp btn--full">
+                <i class="fab fa-whatsapp"></i> Quero esse pacote!
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card reveal catalog-item" id="pacote-portodegalinhascompraiad-gig" data-destino="Porto de Galinhas com Praia de Carneiros" data-categoria="completo" data-source="operator" data-source-id="pacote:portodegalinhascompraiad:GIG" data-sort-date="2026-10-29" data-dates="2026-10-29,2026-11-07,2026-12-04,2027-02-17,2027-02-20,2027-03-10" data-sort-price="2890.00" data-origem="rio" data-origem-iata="GIG" data-destination="Porto de Galinhas" data-destino-key="porto-de-galinhas" data-group-label="Porto de Galinhas" data-offer-name="Praia de Carneiros" data-tipo="com-aereo" data-hotel="Pousada Atlantic" data-regime="Café da manhã" data-extras="Noites de Hospedagem (Consulte regime de alimentação) · Transfer Aeroporto/ Hotel / Aeroporto">
+          <div class="card__img-wrap">
+            <picture><source srcset="pacotes/pacote-portodegalinhascompraiad-400.webp 400w, pacotes/pacote-portodegalinhascompraiad-800.webp 800w" sizes="(max-width:640px) 100vw, 400px" type="image/webp" /><img src="pacotes/pacote-portodegalinhascompraiad.jpeg" alt="Porto de Galinhas: Porto de Galinhas com Praia de Carneiros" width="400" height="260" data-lightbox decoding="async" loading="lazy"></picture>
+            <span class="card__badge">20/02/2027 a 27/02/2027 · 29/10; 07/11; 04/12; 17/02; 10/03</span>
+          </div>
+          <div class="card__body">
+            <h4 class="card__title">Porto de Galinhas <span>Praia de Carneiros</span></h4>
+            <ul class="card__features">
+              <li><i class="fas fa-plane"></i> Saída Rio de Janeiro (GIG): aéreo de R$ 1.235,00 por R$&nbsp;835,00</li><li><i class="fas fa-hotel"></i> Pousada Atlantic · Café da manhã</li><li><i class="fas fa-check"></i> Noites de Hospedagem (Consulte regime de alimentação)</li><li><i class="fas fa-check"></i> Transfer Aeroporto/ Hotel / Aeroporto</li><li><i class="fas fa-exclamation-circle"></i> Taxas R$&nbsp;199,00 · sujeito a alteração</li>
+            </ul>
+            <div class="card__footer">
+              <div class="card__preco">
+                <span class="card__total">A partir de <strong>R$&nbsp;2.890</strong></span>
+                <span class="card__parcela">10x de R$&nbsp;289</span>
+                <span class="card__taxas">+ taxas · sujeito a alteração</span>
+              </div>
+              <a href="https://wa.me/5521920064617?text=Ol%C3%A1%2C%20Babi%21%20Tenho%20interesse%20na%20oferta%20Porto%20de%20Galinhas%20com%20Praia%20de%20Carneiros."
+                 target="_blank" rel="noopener noreferrer"
+                 class="btn btn--whatsapp btn--full">
+                <i class="fab fa-whatsapp"></i> Quero esse pacote!
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card reveal catalog-item" id="pacote-maragogicomtransferviaae-2-gig" data-destino="Maragogi Com Transfer - Via Aeroporto de Recife" data-categoria="completo" data-source="operator" data-source-id="pacote:maragogicomtransferviaae-2:GIG" data-sort-date="2026-10-29" data-dates="2026-10-29,2026-11-28,2026-12-01,2027-02-19,2027-03-02" data-sort-price="2960.00" data-origem="rio" data-origem-iata="GIG" data-destination="RECIFE (REC)" data-destino-key="recife" data-group-label="Recife" data-offer-name="Maragogi Com Transfer - Via Aeroporto de Recife" data-tipo="com-aereo" data-hotel="Pousada Shalom Beach" data-regime="Café da manhã" data-extras="Noites de hospedagem em Maragogi (consulte regime de alimentação) · Transfer Aeroporto Recife / Hotel em Maragogi / Aeroporto Recife">
+          <div class="card__img-wrap">
+            <picture><source srcset="pacotes/pacote-maragogicomtransferviaae-2-400.webp 400w, pacotes/pacote-maragogicomtransferviaae-2-800.webp 800w" sizes="(max-width:640px) 100vw, 400px" type="image/webp" /><img src="pacotes/pacote-maragogicomtransferviaae-2.jpeg" alt="RECIFE (REC): Maragogi Com Transfer - Via Aeroporto de Recife" width="400" height="260" data-lightbox decoding="async" loading="lazy"></picture>
+            <span class="card__badge">28/11/2026 a 05/12/2026 · 29/10; 01/12; 19/02; 02/03</span>
+          </div>
+          <div class="card__body">
+            <h4 class="card__title">RECIFE (REC) <span>Maragogi Com Transfer - Via Aeroporto de Recife</span></h4>
+            <ul class="card__features">
+              <li><i class="fas fa-plane"></i> Saída Rio de Janeiro (GIG): aéreo de R$ 1.420,00 por R$&nbsp;1.020,00</li><li><i class="fas fa-hotel"></i> Pousada Shalom Beach · Café da manhã</li><li><i class="fas fa-check"></i> Noites de hospedagem em Maragogi (consulte regime de alimentação)</li><li><i class="fas fa-check"></i> Transfer Aeroporto Recife / Hotel em Maragogi / Aeroporto Recife</li><li><i class="fas fa-exclamation-circle"></i> Taxas R$&nbsp;199,00 · sujeito a alteração</li>
+            </ul>
+            <div class="card__footer">
+              <div class="card__preco">
+                <span class="card__total">A partir de <strong>R$&nbsp;2.960</strong></span>
+                <span class="card__parcela">10x de R$&nbsp;296</span>
+                <span class="card__taxas">+ taxas · sujeito a alteração</span>
+              </div>
+              <a href="https://wa.me/5521920064617?text=Ol%C3%A1%2C%20Babi%21%20Tenho%20interesse%20na%20oferta%20Maragogi%20Com%20Transfer%20-%20Via%20Aeroporto%20de%20Recife."
+                 target="_blank" rel="noopener noreferrer"
+                 class="btn btn--whatsapp btn--full">
+                <i class="fab fa-whatsapp"></i> Quero esse pacote!
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card reveal catalog-item" id="pacote-aracajucomcitytour-gig" data-destino="Aracaju com City Tour" data-categoria="completo" data-source="operator" data-source-id="pacote:aracajucomcitytour:GIG" data-sort-date="2026-10-31" data-dates="2026-10-31,2026-11-19,2026-12-10,2027-01-18,2027-02-12,2027-03-20" data-sort-price="1790.00" data-origem="rio" data-origem-iata="GIG" data-destination="Aracaju" data-destino-key="aracaju" data-group-label="Aracaju" data-offer-name="City Tour" data-tipo="com-aereo" data-hotel="Real Praia Hotel" data-regime="Café da manhã" data-extras="Noite de Hospedagem( consulte regime de alimentação ) · Transfer Aeroporto/ Hotel / Aeroporto">
+          <div class="card__img-wrap">
+            <picture><source srcset="pacotes/pacote-aracajucomcitytour-400.webp 400w, pacotes/pacote-aracajucomcitytour-800.webp 800w" sizes="(max-width:640px) 100vw, 400px" type="image/webp" /><img src="pacotes/pacote-aracajucomcitytour.jpeg" alt="Aracaju: Aracaju com City Tour" width="400" height="260" data-lightbox decoding="async" loading="lazy"></picture>
+            <span class="card__badge">10/12/2026 a 15/12/2026 · 31/10; 19/11; 18/01; 12/02; 20/03</span>
+          </div>
+          <div class="card__body">
+            <h4 class="card__title">Aracaju <span>City Tour</span></h4>
+            <ul class="card__features">
+              <li><i class="fas fa-plane"></i> Saída Rio de Janeiro (GIG): aéreo de R$ 1.472,00 por R$&nbsp;1.072,00</li><li><i class="fas fa-hotel"></i> Real Praia Hotel · Café da manhã</li><li><i class="fas fa-check"></i> Noite de Hospedagem( consulte regime de alimentação )</li><li><i class="fas fa-check"></i> Transfer Aeroporto/ Hotel / Aeroporto</li><li><i class="fas fa-exclamation-circle"></i> Taxas R$&nbsp;199,00 · sujeito a alteração</li>
+            </ul>
+            <div class="card__footer">
+              <div class="card__preco">
+                <span class="card__total">A partir de <strong>R$&nbsp;1.790</strong></span>
+                <span class="card__parcela">10x de R$&nbsp;179</span>
+                <span class="card__taxas">+ taxas · sujeito a alteração</span>
+              </div>
+              <a href="https://wa.me/5521920064617?text=Ol%C3%A1%2C%20Babi%21%20Tenho%20interesse%20na%20oferta%20Aracaju%20com%20City%20Tour."
+                 target="_blank" rel="noopener noreferrer"
+                 class="btn btn--whatsapp btn--full">
+                <i class="fab fa-whatsapp"></i> Quero esse pacote!
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card reveal catalog-item" id="pacote-betocarrero2diasdetransf-2-gig" data-destino="Beto Carrero - 2 dias de transfer para o Parque (Hospedagem em Camboriú) - VIA F" data-categoria="completo" data-source="operator" data-source-id="pacote:betocarrero2diasdetransf-2:GIG" data-sort-date="2026-10-31" data-dates="2026-10-31,2026-12-02,2027-01-16,2027-02-12,2027-03-24,2027-04-02,2027-05-01" data-sort-price="1820.00" data-origem="rio" data-origem-iata="GIG" data-destination="Balneário Camboriú" data-destino-key="balneario-camboriu" data-group-label="Balneário Camboriú" data-offer-name="Beto Carrero - 2 dias de transfer para o Parque (Hospedagem em Camboriú) - VIA F" data-tipo="com-aereo" data-hotel="Hotel Rosenbrock" data-regime="Café da manhã" data-extras="Noites de hospedagem em Balneário Camboriú (consulte regime de alimentação) · Transfer aeroporto / hotel / aeroporto">
+          <div class="card__img-wrap">
+            <picture><source srcset="pacotes/pacote-betocarrero2diasdetransf-2-400.webp 400w, pacotes/pacote-betocarrero2diasdetransf-2-800.webp 800w" sizes="(max-width:640px) 100vw, 400px" type="image/webp" /><img src="pacotes/pacote-betocarrero2diasdetransf-2.jpeg" alt="Balneário Camboriú: Beto Carrero - 2 dias de transfer para o Parque (Hospedagem em Camboriú) - VIA FLN" width="400" height="260" data-lightbox decoding="async" loading="lazy"></picture>
+            <span class="card__badge">31/10/2026 a 04/11/2026 · 02/12; 16/01; 12/02; 24/03; 02/04; 01/05</span>
+          </div>
+          <div class="card__body">
+            <h4 class="card__title">Balneário Camboriú <span>Beto Carrero - 2 dias de transfer para o Parque (Hospedagem em Camboriú) - VIA F</span></h4>
+            <ul class="card__features">
+              <li><i class="fas fa-plane"></i> Saída Rio de Janeiro (GIG): aéreo de R$ 1.039,00 por R$&nbsp;639,00</li><li><i class="fas fa-hotel"></i> Hotel Rosenbrock · Café da manhã</li><li><i class="fas fa-check"></i> Noites de hospedagem em Balneário Camboriú (consulte regime de alimentação)</li><li><i class="fas fa-check"></i> Transfer aeroporto / hotel / aeroporto</li><li><i class="fas fa-exclamation-circle"></i> Taxas R$&nbsp;221,00 · sujeito a alteração</li>
+            </ul>
+            <div class="card__footer">
+              <div class="card__preco">
+                <span class="card__total">A partir de <strong>R$&nbsp;1.820</strong></span>
+                <span class="card__parcela">10x de R$&nbsp;182</span>
+                <span class="card__taxas">+ taxas · sujeito a alteração</span>
+              </div>
+              <a href="https://wa.me/5521920064617?text=Ol%C3%A1%2C%20Babi%21%20Tenho%20interesse%20na%20oferta%20Beto%20Carrero%20-%202%20dias%20de%20transfer%20para%20o%20Parque%20%28Hospedagem%20em%20Cambori%C3%BA%29%20-%20VIA%20F."
+                 target="_blank" rel="noopener noreferrer"
+                 class="btn btn--whatsapp btn--full">
+                <i class="fab fa-whatsapp"></i> Quero esse pacote!
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card reveal catalog-item" id="pacote-puntacanatransfergratis-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-rio-de" data-destino="PUNTA CANA - Transfer grátis" data-categoria="completo" data-source="operator" data-source-id="pacote:puntacanatransfergratis-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2:RIO DE JANEIRO" data-sort-date="2026-11-01" data-dates="2026-11-01" data-sort-price="6867.39" data-origem="rio" data-origem-iata="RIO DE JANEIRO" data-destination="Punta Cana" data-destino-key="punta-cana" data-group-label="Punta Cana" data-offer-name="Transfer grátis" data-tipo="com-aereo" data-hotel="Vista Sol Punta Cana Beach Resort &amp; Spa" data-regime="All Inclusive" data-extras="Hospedagem: 7 noites · Hospedagem">
+          <div class="card__img-wrap">
+            <picture><source srcset="pacotes/pacote-puntacanatransfergratis-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-400.webp 400w, pacotes/pacote-puntacanatransfergratis-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-800.webp 800w" sizes="(max-width:640px) 100vw, 400px" type="image/webp" /><img src="pacotes/pacote-puntacanatransfergratis-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2.jpeg" alt="Punta Cana: PUNTA CANA - Transfer grátis" width="400" height="260" data-lightbox decoding="async" loading="lazy"></picture>
+            <span class="card__badge">01/11/2026 a 09/11/2026</span>
+          </div>
+          <div class="card__body">
+            <h4 class="card__title">Punta Cana <span>Transfer grátis</span></h4>
+            <ul class="card__features">
+              <li><i class="fas fa-plane"></i> Saída Rio de Janeiro (RIO DE JANEIRO)</li><li><i class="fas fa-hotel"></i> Vista Sol Punta Cana Beach Resort &amp; Spa · All Inclusive</li><li><i class="fas fa-check"></i> Hospedagem: 7 noites</li><li><i class="fas fa-check"></i> Hospedagem</li><li><i class="fas fa-exclamation-circle"></i> Taxas R$&nbsp;1.004,00 · sujeito a alteração</li>
+            </ul>
+            <div class="card__footer">
+              <div class="card__preco">
+                <span class="card__total">A partir de <strong>R$&nbsp;6.867</strong></span>
+                <span class="card__parcela">10x de R$&nbsp;686</span>
+                <span class="card__taxas">+ taxas · sujeito a alteração</span>
+              </div>
+              <a href="https://wa.me/5521920064617?text=Ol%C3%A1%2C%20Babi%21%20Tenho%20interesse%20na%20oferta%20PUNTA%20CANA%20-%20Transfer%20gr%C3%A1tis."
+                 target="_blank" rel="noopener noreferrer"
+                 class="btn btn--whatsapp btn--full">
+                <i class="fab fa-whatsapp"></i> Quero esse pacote!
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card reveal catalog-item" id="pacote-santiagoessencial-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-rio-de-janeir" data-destino="Santiago - Essencial" data-categoria="completo" data-source="operator" data-source-id="pacote:santiagoessencial-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2:RIO DE JANEIRO" data-sort-date="2026-11-03" data-dates="2026-11-03" data-sort-price="2461.06" data-origem="rio" data-origem-iata="RIO DE JANEIRO" data-destination="Santiago" data-destino-key="santiago" data-group-label="Santiago" data-offer-name="Essencial" data-tipo="com-aereo" data-hotel="hUB Providencia (Santiago, Chile) Antonio Bellet 333, 7500025 Providencia, Región Metropolitana, Chile, Providencia CL," data-regime="Café da manhã" data-extras="Hospedagem: 4 noites">
+          <div class="card__img-wrap">
+            <picture><source srcset="pacotes/pacote-santiagoessencial-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-400.webp 400w, pacotes/pacote-santiagoessencial-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-800.webp 800w" sizes="(max-width:640px) 100vw, 400px" type="image/webp" /><img src="pacotes/pacote-santiagoessencial-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2.jpeg" alt="Santiago: Santiago - Essencial" width="400" height="260" data-lightbox decoding="async" loading="lazy"></picture>
+            <span class="card__badge">03/11/2026 a 07/11/2026</span>
+          </div>
+          <div class="card__body">
+            <h4 class="card__title">Santiago <span>Essencial</span></h4>
+            <ul class="card__features">
+              <li><i class="fas fa-plane"></i> Saída Rio de Janeiro (RIO DE JANEIRO)</li><li><i class="fas fa-hotel"></i> hUB Providencia (Santiago, Chile) Antonio Bellet 333, 7500025 Providencia, Región Metropolitana, Chile, Providencia CL, · Café da manhã</li><li><i class="fas fa-check"></i> Hospedagem: 4 noites</li><li><i class="fas fa-exclamation-circle"></i> Taxas R$&nbsp;243,00 · sujeito a alteração</li>
+            </ul>
+            <div class="card__footer">
+              <div class="card__preco">
+                <span class="card__total">A partir de <strong>R$&nbsp;2.461</strong></span>
+                <span class="card__parcela">10x de R$&nbsp;246</span>
+                <span class="card__taxas">+ taxas · sujeito a alteração</span>
+              </div>
+              <a href="https://wa.me/5521920064617?text=Ol%C3%A1%2C%20Babi%21%20Tenho%20interesse%20na%20oferta%20Santiago%20-%20Essencial."
                  target="_blank" rel="noopener noreferrer"
                  class="btn btn--whatsapp btn--full">
                 <i class="fab fa-whatsapp"></i> Quero esse pacote!
@@ -935,7 +863,7 @@
 
         <article class="card reveal catalog-item" id="pacote-rivieramaya-rio-de-janeiro" data-destino="Riviera Maya" data-categoria="completo" data-source="operator" data-source-id="pacote:rivieramaya:RIO DE JANEIRO" data-sort-date="2026-11-03" data-dates="2026-11-03" data-sort-price="8263.07" data-origem="rio" data-origem-iata="RIO DE JANEIRO" data-destination="Cancun" data-destino-key="cancun" data-group-label="Cancún" data-offer-name="Riviera Maya" data-tipo="com-aereo" data-hotel="by infotera CATIVA OPERADORA - Orcamento: 5925892 10/25 Iberostar Selection Riviera Cancún" data-regime="All Inclusive" data-extras="Hospedagem: 5 noites">
           <div class="card__img-wrap">
-            <picture><source srcset="pacotes/pacote-cancun-400.webp 400w, pacotes/pacote-cancun-800.webp 800w" sizes="(max-width:640px) 100vw, 400px" type="image/webp" /><img src="pacotes/pacote-cancun.jpeg" alt="Cancun: Riviera Maya" width="400" height="260" data-lightbox decoding="async" loading="lazy"></picture>
+            <picture><source srcset="pacotes/pacote-rivieramaya-400.webp 400w, pacotes/pacote-rivieramaya-800.webp 800w" sizes="(max-width:640px) 100vw, 400px" type="image/webp" /><img src="pacotes/pacote-rivieramaya.jpeg" alt="Cancun: Riviera Maya" width="400" height="260" data-lightbox decoding="async" loading="lazy"></picture>
             <span class="card__badge">03/11/2026 a 09/11/2026</span>
           </div>
           <div class="card__body">
@@ -946,7 +874,7 @@
             <div class="card__footer">
               <div class="card__preco">
                 <span class="card__total">A partir de <strong>R$&nbsp;8.263</strong></span>
-                <span class="card__parcela">15x de R$&nbsp;550</span>
+                <span class="card__parcela">10x de R$&nbsp;826</span>
                 <span class="card__taxas">+ taxas · sujeito a alteração</span>
               </div>
               <a href="https://wa.me/5521920064617?text=Ol%C3%A1%2C%20Babi%21%20Tenho%20interesse%20na%20oferta%20Riviera%20Maya."
@@ -960,7 +888,7 @@
 
         <article class="card reveal catalog-item" id="pacote-ilheuscomtransfercitytou-gig" data-destino="Ilhéus com Transfer &amp; City Tour Histórico" data-categoria="completo" data-source="operator" data-source-id="pacote:ilheuscomtransfercitytou:GIG" data-sort-date="2026-11-05" data-dates="2026-11-05,2026-11-26,2026-12-03,2027-01-23,2027-02-11,2027-03-18" data-sort-price="2350.00" data-origem="rio" data-origem-iata="GIG" data-destination="Ilhéus" data-destino-key="ilheus" data-group-label="Ilhéus" data-offer-name="Transfer &amp; City Tour Histórico" data-tipo="com-aereo" data-hotel="Pousada Praia Bela - Ilhéus" data-regime="Café da manhã" data-extras="Noites de Hospedagem (Consulte regime de alimentação) · Transfer Aeroporto/ Hotel / Aeroporto">
           <div class="card__img-wrap">
-            <picture><source srcset="pacotes/pacote-ilheus-400.webp 400w, pacotes/pacote-ilheus-800.webp 800w" sizes="(max-width:640px) 100vw, 400px" type="image/webp" /><img src="pacotes/pacote-ilheus.jpeg" alt="Ilhéus: Ilhéus com Transfer & City Tour Histórico" width="400" height="260" data-lightbox decoding="async" loading="lazy"></picture>
+            <picture><source srcset="pacotes/pacote-ilheuscomtransfercitytou-400.webp 400w, pacotes/pacote-ilheuscomtransfercitytou-800.webp 800w" sizes="(max-width:640px) 100vw, 400px" type="image/webp" /><img src="pacotes/pacote-ilheuscomtransfercitytou.jpeg" alt="Ilhéus: Ilhéus com Transfer &amp; City Tour Histórico" width="400" height="260" data-lightbox decoding="async" loading="lazy"></picture>
             <span class="card__badge">26/11/2026 a 01/12/2026 · 05/11; 03/12; 23/01; 11/02; 18/03</span>
           </div>
           <div class="card__body">
@@ -971,7 +899,7 @@
             <div class="card__footer">
               <div class="card__preco">
                 <span class="card__total">A partir de <strong>R$&nbsp;2.350</strong></span>
-                <span class="card__parcela">15x de R$&nbsp;156</span>
+                <span class="card__parcela">10x de R$&nbsp;235</span>
                 <span class="card__taxas">+ taxas · sujeito a alteração</span>
               </div>
               <a href="https://wa.me/5521920064617?text=Ol%C3%A1%2C%20Babi%21%20Tenho%20interesse%20na%20oferta%20Ilh%C3%A9us%20com%20Transfer%20%26%20City%20Tour%20Hist%C3%B3rico."
@@ -983,23 +911,23 @@
           </div>
         </article>
 
-        <article class="card reveal catalog-item" id="pacote-gpformula12026-sdu" data-destino="GP Fórmula 1 2026" data-categoria="completo" data-source="operator" data-source-id="pacote:gpformula12026:SDU" data-sort-date="2026-11-05" data-dates="2026-11-05" data-sort-price="7590.00" data-origem="rio" data-origem-iata="SDU" data-destination="São Paulo" data-destino-key="evento:gp-formula-1" data-group-label="GP Fórmula 1" data-offer-name="GP Fórmula 1 2026" data-tipo="com-aereo" data-evento="1" data-extras="Noites de Hospedagem em hotel (consulte regime de alimentação) · Pacote de Serviços: Chegada : Transfer Aeroporto / Hotel + 07/11: Transfer Hotel / Autódromo de Interlagos / Hotel + 08/11: Transfer Hotel / Autódromo de Interlagos / Aeroporto ou Hotel">
+        <article class="card reveal catalog-item" id="pacote-gpformula12026pacotecomp-gig" data-destino="GP Fórmula 1 2026 (Pacote completo)" data-categoria="completo" data-source="operator" data-source-id="pacote:gpformula12026pacotecomp:GIG" data-sort-date="2026-11-05" data-dates="2026-11-05" data-sort-price="7860.00" data-origem="rio" data-origem-iata="GIG" data-destination="São Paulo" data-destino-key="evento:gp-formula-1" data-group-label="GP Fórmula 1" data-offer-name="2026 (Pacote completo)" data-tipo="com-aereo" data-evento="1" data-extras="Noites de Hospedagem em hotel (consulte regime de alimentação) · Pacote de Serviços: Chegada : Transfer Aeroporto / Hotel + 07/11: Transfer Hotel / Autódromo de Interlagos / Hotel + 08/11: Transfer Hotel / Autódromo de Interlagos / Aeroporto ou Hotel">
           <div class="card__img-wrap">
-            <picture><source srcset="pacotes/pacote-sao-paulo-400.webp 400w, pacotes/pacote-sao-paulo-800.webp 800w" sizes="(max-width:640px) 100vw, 400px" type="image/webp" /><img src="pacotes/pacote-sao-paulo.jpeg" alt="São Paulo: GP Fórmula 1 2026" width="400" height="260" data-lightbox decoding="async" loading="lazy"></picture>
+            <picture><source srcset="pacotes/pacote-gpformula12026pacotecomp-400.webp 400w, pacotes/pacote-gpformula12026pacotecomp-800.webp 800w" sizes="(max-width:640px) 100vw, 400px" type="image/webp" /><img src="pacotes/pacote-gpformula12026pacotecomp.jpeg" alt="São Paulo: GP Fórmula 1 2026 (Pacote completo)" width="400" height="260" data-lightbox decoding="async" loading="lazy"></picture>
             <span class="card__badge">05/11/2026 a 08/11/2026</span>
           </div>
           <div class="card__body">
-            <h4 class="card__title">São Paulo <span>GP Fórmula 1 2026</span></h4>
+            <h4 class="card__title">São Paulo <span>2026 (Pacote completo)</span></h4>
             <ul class="card__features">
-              <li><i class="fas fa-plane"></i> Saída Rio de Janeiro (SDU): aéreo de R$ 846,00 por R$&nbsp;446,00</li><li><i class="fas fa-check"></i> Noites de Hospedagem em hotel (consulte regime de alimentação)</li><li><i class="fas fa-check"></i> Pacote de Serviços: Chegada : Transfer Aeroporto / Hotel + 07/11: Transfer Hotel / Autódromo de Interlagos / Hotel + 08/11: Transfer Hotel / Autódromo de Interlagos / Aeroporto ou Hotel</li><li><i class="fas fa-exclamation-circle"></i> Taxas R$&nbsp;119,00 · sujeito a alteração</li>
+              <li><i class="fas fa-plane"></i> Saída Rio de Janeiro (GIG): aéreo de R$ 1.112,00 por R$&nbsp;712,00</li><li><i class="fas fa-check"></i> Noites de Hospedagem em hotel (consulte regime de alimentação)</li><li><i class="fas fa-check"></i> Pacote de Serviços: Chegada : Transfer Aeroporto / Hotel + 07/11: Transfer Hotel / Autódromo de Interlagos / Hotel + 08/11: Transfer Hotel / Autódromo de Interlagos / Aeroporto ou Hotel</li><li><i class="fas fa-exclamation-circle"></i> Taxas R$&nbsp;85,00 · sujeito a alteração</li>
             </ul>
             <div class="card__footer">
               <div class="card__preco">
-                <span class="card__total">A partir de <strong>R$&nbsp;7.590</strong></span>
-                <span class="card__parcela">15x de R$&nbsp;506</span>
+                <span class="card__total">A partir de <strong>R$&nbsp;7.860</strong></span>
+                <span class="card__parcela">10x de R$&nbsp;786</span>
                 <span class="card__taxas">+ taxas · sujeito a alteração</span>
               </div>
-              <a href="https://wa.me/5521920064617?text=Ol%C3%A1%2C%20Babi%21%20Tenho%20interesse%20na%20oferta%20GP%20F%C3%B3rmula%201%202026."
+              <a href="https://wa.me/5521920064617?text=Ol%C3%A1%2C%20Babi%21%20Tenho%20interesse%20na%20oferta%20GP%20F%C3%B3rmula%201%202026%20%28Pacote%20completo%29."
                  target="_blank" rel="noopener noreferrer"
                  class="btn btn--whatsapp btn--full">
                 <i class="fab fa-whatsapp"></i> Quero esse pacote!
@@ -1008,23 +936,23 @@
           </div>
         </article>
 
-        <article class="card reveal catalog-item" id="pacote-natalemgrandeestilo-gig" data-destino="Natal em Grande Estilo" data-categoria="completo" data-source="operator" data-source-id="pacote:natalemgrandeestilo:GIG" data-sort-date="2026-11-09" data-dates="2026-11-09,2026-11-27,2026-12-04" data-sort-price="3330.00" data-origem="rio" data-origem-iata="GIG" data-destination="Natal" data-destino-key="natal" data-group-label="Natal" data-offer-name="Grande Estilo" data-tipo="com-aereo" data-hotel="Harmont Hotel" data-regime="Café da manhã" data-extras="Transfer Aeroporto / Hotel / Aeroporto · Noites de hospedagem (consulte regime de alimentação)">
+        <article class="card reveal catalog-item" id="pacote-espetaculograndedesfiled-3-gig" data-destino="Espetáculo Grande Desfile de Natal (Desfile Domingo)" data-categoria="completo" data-source="operator" data-source-id="pacote:espetaculograndedesfiled-3:GIG" data-sort-date="2026-11-06" data-dates="2026-11-06,2026-11-09,2026-12-04" data-sort-price="3120.00" data-origem="rio" data-origem-iata="GIG" data-destination="Natal" data-destino-key="natal" data-group-label="Natal" data-offer-name="Espetáculo Grande Desfile de Natal (Desfile Domingo)" data-tipo="com-aereo" data-hotel="Golden Gramado Laghetto Resort" data-regime="Café da manhã" data-extras="Transfer Aeroporto / Hotel / Aeroporto · Noites de hospedagem (consulte regime de alimentação)">
           <div class="card__img-wrap">
-            <picture><source srcset="pacotes/pacote-natal-400.webp 400w, pacotes/pacote-natal-800.webp 800w" sizes="(max-width:640px) 100vw, 400px" type="image/webp" /><img src="pacotes/pacote-natal.jpeg" alt="Natal: Natal em Grande Estilo" width="400" height="260" data-lightbox decoding="async" loading="lazy"></picture>
-            <span class="card__badge">27/11/2026 a 01/12/2026 · 09/11; 04/12</span>
+            <picture><source srcset="pacotes/pacote-espetaculograndedesfiled-3-400.webp 400w, pacotes/pacote-espetaculograndedesfiled-3-800.webp 800w" sizes="(max-width:640px) 100vw, 400px" type="image/webp" /><img src="pacotes/pacote-espetaculograndedesfiled-3.jpeg" alt="Natal: Espetáculo Grande Desfile de Natal (Desfile Domingo)" width="400" height="260" data-lightbox decoding="async" loading="lazy"></picture>
+            <span class="card__badge">06/11/2026 a 10/11/2026 · 09/11; 04/12</span>
           </div>
           <div class="card__body">
-            <h4 class="card__title">Natal <span>Grande Estilo</span></h4>
+            <h4 class="card__title">Natal <span>Espetáculo Grande Desfile de Natal (Desfile Domingo)</span></h4>
             <ul class="card__features">
-              <li><i class="fas fa-plane"></i> Saída Rio de Janeiro (GIG): aéreo de R$ 1.126,00 por R$&nbsp;726,00</li><li><i class="fas fa-hotel"></i> Harmont Hotel · Café da manhã</li><li><i class="fas fa-check"></i> Transfer Aeroporto / Hotel / Aeroporto</li><li><i class="fas fa-check"></i> Noites de hospedagem (consulte regime de alimentação)</li><li><i class="fas fa-exclamation-circle"></i> Taxas R$&nbsp;338,00 · sujeito a alteração</li>
+              <li><i class="fas fa-plane"></i> Saída Rio de Janeiro (GIG): aéreo de R$ 1.126,00 por R$&nbsp;726,00</li><li><i class="fas fa-hotel"></i> Golden Gramado Laghetto Resort · Café da manhã</li><li><i class="fas fa-check"></i> Transfer Aeroporto / Hotel / Aeroporto</li><li><i class="fas fa-check"></i> Noites de hospedagem (consulte regime de alimentação)</li><li><i class="fas fa-exclamation-circle"></i> Taxas R$&nbsp;236,00 · sujeito a alteração</li>
             </ul>
             <div class="card__footer">
               <div class="card__preco">
-                <span class="card__total">A partir de <strong>R$&nbsp;3.330</strong></span>
-                <span class="card__parcela">15x de R$&nbsp;222</span>
+                <span class="card__total">A partir de <strong>R$&nbsp;3.120</strong></span>
+                <span class="card__parcela">10x de R$&nbsp;312</span>
                 <span class="card__taxas">+ taxas · sujeito a alteração</span>
               </div>
-              <a href="https://wa.me/5521920064617?text=Ol%C3%A1%2C%20Babi%21%20Tenho%20interesse%20na%20oferta%20Natal%20em%20Grande%20Estilo."
+              <a href="https://wa.me/5521920064617?text=Ol%C3%A1%2C%20Babi%21%20Tenho%20interesse%20na%20oferta%20Espet%C3%A1culo%20Grande%20Desfile%20de%20Natal%20%28Desfile%20Domingo%29."
                  target="_blank" rel="noopener noreferrer"
                  class="btn btn--whatsapp btn--full">
                 <i class="fab fa-whatsapp"></i> Quero esse pacote!
@@ -1035,7 +963,7 @@
 
         <article class="card reveal catalog-item" id="pacote-travessiadoslagosbuenosa-gig" data-destino="Travessia dos Lagos - Buenos Aires, Bariloche, Puerto Varas, Puerto Montt e Sant" data-categoria="completo" data-source="operator" data-source-id="pacote:travessiadoslagosbuenosa:GIG" data-sort-date="2026-11-09" data-dates="2026-11-09" data-sort-price="7180.00" data-origem="rio" data-origem-iata="GIG" data-destination="Rio de Janeiro (GIG)" data-destino-key="rio-de-janeiro" data-group-label="Rio de Janeiro" data-offer-name="Travessia dos Lagos - Buenos Aires, Bariloche, Puerto Varas, Puerto Montt e Sant" data-tipo="com-aereo" data-hotel="M Concept Hotel" data-extras="Taxas: R$ 517,00">
           <div class="card__img-wrap">
-            <picture><source srcset="pacotes/pacote-rio-de-janeiro-gig-400.webp 400w, pacotes/pacote-rio-de-janeiro-gig-800.webp 800w" sizes="(max-width:640px) 100vw, 400px" type="image/webp" /><img src="pacotes/pacote-rio-de-janeiro-gig.jpeg" alt="Rio de Janeiro (GIG): Travessia dos Lagos - Buenos Aires, Bariloche, Puerto Varas, Puerto Montt e Santiago do Chile" width="400" height="260" data-lightbox decoding="async" loading="lazy"></picture>
+            <picture><source srcset="pacotes/pacote-travessiadoslagosbuenosa-400.webp 400w, pacotes/pacote-travessiadoslagosbuenosa-800.webp 800w" sizes="(max-width:640px) 100vw, 400px" type="image/webp" /><img src="pacotes/pacote-travessiadoslagosbuenosa.jpeg" alt="Rio de Janeiro (GIG): Travessia dos Lagos - Buenos Aires, Bariloche, Puerto Varas, Puerto Montt e Santiago do Chile" width="400" height="260" data-lightbox decoding="async" loading="lazy"></picture>
             <span class="card__badge">09/11/2026 a 21/10/2026</span>
           </div>
           <div class="card__body">
@@ -1046,7 +974,7 @@
             <div class="card__footer">
               <div class="card__preco">
                 <span class="card__total">A partir de <strong>R$&nbsp;7.180</strong></span>
-                <span class="card__parcela">15x de R$&nbsp;478</span>
+                <span class="card__parcela">10x de R$&nbsp;718</span>
                 <span class="card__taxas">+ taxas · sujeito a alteração</span>
               </div>
               <a href="https://wa.me/5521920064617?text=Ol%C3%A1%2C%20Babi%21%20Tenho%20interesse%20na%20oferta%20Travessia%20dos%20Lagos%20-%20Buenos%20Aires%2C%20Bariloche%2C%20Puerto%20Varas%2C%20Puerto%20Montt%20e%20Sant."
@@ -1060,7 +988,7 @@
 
         <article class="card reveal catalog-item" id="pacote-bonitobasicoviabonitoms-sdu" data-destino="Bonito Básico ( via Bonito - MS )" data-categoria="completo" data-source="operator" data-source-id="pacote:bonitobasicoviabonitoms:SDU" data-sort-date="2026-11-10" data-dates="2026-11-10,2027-01-26,2027-02-16" data-sort-price="2280.00" data-origem="rio" data-origem-iata="SDU" data-destination="Bonito" data-destino-key="bonito" data-group-label="Bonito" data-offer-name="Básico ( via Bonito - MS )" data-tipo="com-aereo" data-hotel="Pousada Villas Bonito" data-regime="Café da manhã" data-extras="Hospedagem em Bonito · Transfer aeroporto / hotel / aeroporto">
           <div class="card__img-wrap">
-            <picture><source srcset="pacotes/pacote-bonito-400.webp 400w, pacotes/pacote-bonito-800.webp 800w" sizes="(max-width:640px) 100vw, 400px" type="image/webp" /><img src="pacotes/pacote-bonito.jpeg" alt="Bonito: Bonito Básico ( via Bonito - MS )" width="400" height="260" data-lightbox decoding="async" loading="lazy"></picture>
+            <picture><source srcset="pacotes/pacote-bonitobasicoviabonitoms-400.webp 400w, pacotes/pacote-bonitobasicoviabonitoms-800.webp 800w" sizes="(max-width:640px) 100vw, 400px" type="image/webp" /><img src="pacotes/pacote-bonitobasicoviabonitoms.jpeg" alt="Bonito: Bonito Básico ( via Bonito - MS )" width="400" height="260" data-lightbox decoding="async" loading="lazy"></picture>
             <span class="card__badge">10/11/2026 a 15/11/2026 · 26/01; 16/02</span>
           </div>
           <div class="card__body">
@@ -1071,7 +999,7 @@
             <div class="card__footer">
               <div class="card__preco">
                 <span class="card__total">A partir de <strong>R$&nbsp;2.280</strong></span>
-                <span class="card__parcela">15x de R$&nbsp;152</span>
+                <span class="card__parcela">10x de R$&nbsp;228</span>
                 <span class="card__taxas">+ taxas · sujeito a alteração</span>
               </div>
               <a href="https://wa.me/5521920064617?text=Ol%C3%A1%2C%20Babi%21%20Tenho%20interesse%20na%20oferta%20Bonito%20B%C3%A1sico%20%28%20via%20Bonito%20-%20MS%20%29."
@@ -1083,48 +1011,23 @@
           </div>
         </article>
 
-        <article class="card reveal catalog-item" id="pacote-ilheuscomcitytourpasseio-gig" data-destino="Ilheús com City Tour &amp; Passeio Fazenda de Cacau + Itacaré" data-categoria="completo" data-source="operator" data-source-id="pacote:ilheuscomcitytourpasseio:GIG" data-sort-date="2026-11-19" data-dates="2026-11-19,2027-01-23,2027-02-11,2027-02-18,2027-03-18" data-sort-price="2890.00" data-origem="rio" data-origem-iata="GIG" data-destination="Ilhéus (IOS)" data-destino-key="ilheus" data-group-label="Ilhéus" data-offer-name="Ilheús com City Tour &amp; Passeio Fazenda de Cacau + Itacaré" data-tipo="com-aereo" data-hotel="Pousada Praia Bela" data-regime="Café da manhã" data-extras="Noites de Hospedagem (Consulte regime de alimentação) · Transfer Aeroporto/ Hotel / Aeroporto">
+        <article class="card reveal catalog-item" id="pacote-itacarecomcaminhadapraia-gig" data-destino="Itacaré com Caminhada Praias Urbanas &amp; Circuito das 4 praias" data-categoria="completo" data-source="operator" data-source-id="pacote:itacarecomcaminhadapraia:GIG" data-sort-date="2026-11-19" data-dates="2026-11-19,2026-12-10,2027-01-23,2027-02-11,2027-03-13" data-sort-price="2790.00" data-origem="rio" data-origem-iata="GIG" data-destination="ILHÉUS (IOS)" data-destino-key="ilheus" data-group-label="Ilhéus" data-offer-name="Itacaré com Caminhada Praias Urbanas &amp; Circuito das 4 praias" data-tipo="com-aereo" data-hotel="Pousada Raisis" data-regime="Café da manhã" data-extras="Noites de Hospedagem (Consulte regime de alimentação) · Transfer Aeroporto/ Hotel / Aeroporto">
           <div class="card__img-wrap">
-            <picture><source srcset="pacotes/pacote-ilheus-ios-400.webp 400w, pacotes/pacote-ilheus-ios-800.webp 800w" sizes="(max-width:640px) 100vw, 400px" type="image/webp" /><img src="pacotes/pacote-ilheus-ios.jpeg" alt="Ilhéus (IOS): Ilheús com City Tour & Passeio Fazenda de Cacau + Itacaré" width="400" height="260" data-lightbox decoding="async" loading="lazy"></picture>
-            <span class="card__badge">18/02/2027 a 23/02/2027 · 19/11; 23/01; 11/02; 18/03</span>
+            <picture><source srcset="pacotes/pacote-itacarecomcaminhadapraia-400.webp 400w, pacotes/pacote-itacarecomcaminhadapraia-800.webp 800w" sizes="(max-width:640px) 100vw, 400px" type="image/webp" /><img src="pacotes/pacote-itacarecomcaminhadapraia.jpeg" alt="ILHÉUS (IOS): Itacaré com Caminhada Praias Urbanas &amp; Circuito das 4 praias" width="400" height="260" data-lightbox decoding="async" loading="lazy"></picture>
+            <span class="card__badge">11/02/2027 a 16/02/2027 · 19/11; 10/12; 23/01; 13/03</span>
           </div>
           <div class="card__body">
-            <h4 class="card__title">Ilhéus (IOS) <span>Ilheús com City Tour &amp; Passeio Fazenda de Cacau + Itacaré</span></h4>
+            <h4 class="card__title">ILHÉUS (IOS) <span>Itacaré com Caminhada Praias Urbanas &amp; Circuito das 4 praias</span></h4>
             <ul class="card__features">
-              <li><i class="fas fa-plane"></i> Saída Rio de Janeiro (GIG): aéreo de R$ 1.730,00 por R$&nbsp;1.330,00</li><li><i class="fas fa-hotel"></i> Pousada Praia Bela · Café da manhã</li><li><i class="fas fa-check"></i> Noites de Hospedagem (Consulte regime de alimentação)</li><li><i class="fas fa-check"></i> Transfer Aeroporto/ Hotel / Aeroporto</li><li><i class="fas fa-exclamation-circle"></i> Taxas R$&nbsp;213,00 · sujeito a alteração</li>
+              <li><i class="fas fa-plane"></i> Saída Rio de Janeiro (GIG): aéreo de R$ 1.517,00 por R$&nbsp;1.117,00</li><li><i class="fas fa-hotel"></i> Pousada Raisis · Café da manhã</li><li><i class="fas fa-check"></i> Noites de Hospedagem (Consulte regime de alimentação)</li><li><i class="fas fa-check"></i> Transfer Aeroporto/ Hotel / Aeroporto</li><li><i class="fas fa-exclamation-circle"></i> Taxas R$&nbsp;213,00 · sujeito a alteração</li>
             </ul>
             <div class="card__footer">
               <div class="card__preco">
-                <span class="card__total">A partir de <strong>R$&nbsp;2.890</strong></span>
-                <span class="card__parcela">15x de R$&nbsp;192</span>
+                <span class="card__total">A partir de <strong>R$&nbsp;2.790</strong></span>
+                <span class="card__parcela">10x de R$&nbsp;279</span>
                 <span class="card__taxas">+ taxas · sujeito a alteração</span>
               </div>
-              <a href="https://wa.me/5521920064617?text=Ol%C3%A1%2C%20Babi%21%20Tenho%20interesse%20na%20oferta%20Ilhe%C3%BAs%20com%20City%20Tour%20%26%20Passeio%20Fazenda%20de%20Cacau%20%2B%20Itacar%C3%A9."
-                 target="_blank" rel="noopener noreferrer"
-                 class="btn btn--whatsapp btn--full">
-                <i class="fab fa-whatsapp"></i> Quero esse pacote!
-              </a>
-            </div>
-          </div>
-        </article>
-
-        <article class="card reveal catalog-item" id="pacote-travessiadoslagosbariloc-rio-de-janeiro" data-destino="TRAVESSIA DOS LAGOS - Bariloche, Puerto Varas, Puerto Montt e Santiago do Chile" data-categoria="completo" data-source="operator" data-source-id="pacote:travessiadoslagosbariloc:RIO DE JANEIRO" data-sort-date="2026-11-23" data-dates="2026-11-23" data-sort-price="7973.32" data-origem="rio" data-origem-iata="RIO DE JANEIRO" data-destination="Santiago" data-destino-key="santiago" data-group-label="Santiago" data-offer-name="TRAVESSIA DOS LAGOS - Bariloche, Puerto Varas, Puerto Montt e Santiago do Chile" data-tipo="com-aereo" data-hotel="Soft Bariloche" data-regime="Só hospedagem" data-extras="Hospedagem: 8 noites · 03 Noites de hospedagem em Bariloche">
-          <div class="card__img-wrap">
-            <picture><source srcset="pacotes/pacote-santiago-400.webp 400w, pacotes/pacote-santiago-800.webp 800w" sizes="(max-width:640px) 100vw, 400px" type="image/webp" /><img src="pacotes/pacote-santiago.jpeg" alt="Santiago: TRAVESSIA DOS LAGOS - Bariloche, Puerto Varas, Puerto Montt e Santiago do Chile" width="400" height="260" data-lightbox decoding="async" loading="lazy"></picture>
-            <span class="card__badge">23/11/2026 a 01/12/2026</span>
-          </div>
-          <div class="card__body">
-            <h4 class="card__title">Santiago <span>TRAVESSIA DOS LAGOS - Bariloche, Puerto Varas, Puerto Montt e Santiago do Chile</span></h4>
-            <ul class="card__features">
-              <li><i class="fas fa-plane"></i> Saída Rio de Janeiro (RIO DE JANEIRO)</li><li><i class="fas fa-hotel"></i> Soft Bariloche · Só hospedagem</li><li><i class="fas fa-check"></i> Hospedagem: 8 noites</li><li><i class="fas fa-check"></i> 03 Noites de hospedagem em Bariloche</li><li><i class="fas fa-exclamation-circle"></i> Taxas R$&nbsp;491,00 · sujeito a alteração</li>
-            </ul>
-            <div class="card__footer">
-              <div class="card__preco">
-                <span class="card__total">A partir de <strong>R$&nbsp;7.973</strong></span>
-                <span class="card__parcela">15x de R$&nbsp;531</span>
-                <span class="card__taxas">+ taxas · sujeito a alteração</span>
-              </div>
-              <a href="https://wa.me/5521920064617?text=Ol%C3%A1%2C%20Babi%21%20Tenho%20interesse%20na%20oferta%20TRAVESSIA%20DOS%20LAGOS%20-%20Bariloche%2C%20Puerto%20Varas%2C%20Puerto%20Montt%20e%20Santiago%20do%20Chile."
+              <a href="https://wa.me/5521920064617?text=Ol%C3%A1%2C%20Babi%21%20Tenho%20interesse%20na%20oferta%20Itacar%C3%A9%20com%20Caminhada%20Praias%20Urbanas%20%26%20Circuito%20das%204%20praias."
                  target="_blank" rel="noopener noreferrer"
                  class="btn btn--whatsapp btn--full">
                 <i class="fab fa-whatsapp"></i> Quero esse pacote!
@@ -1135,7 +1038,7 @@
 
         <article class="card reveal catalog-item" id="pacote-caldasnovasviaaeroportoc-sdu" data-destino="Caldas Novas (Via Aeroporto Caldas)" data-categoria="completo" data-source="operator" data-source-id="pacote:caldasnovasviaaeroportoc:SDU" data-sort-date="2026-12-02" data-dates="2026-12-02" data-sort-price="2340.00" data-origem="rio" data-origem-iata="SDU" data-destination="Caldas Novas (CLV)" data-destino-key="caldas-novas" data-group-label="Caldas Novas" data-offer-name="(Via Aeroporto Caldas)" data-tipo="com-aereo" data-hotel="Praias do Lago Eco Resort by WAM Experience" data-regime="Café da manhã" data-extras="Hospedagem (consulte regime de alimentação) · Transfer aeroporto / hotel / aeroporto">
           <div class="card__img-wrap">
-            <picture><source srcset="pacotes/pacote-caldas-novas-clv-400.webp 400w, pacotes/pacote-caldas-novas-clv-800.webp 800w" sizes="(max-width:640px) 100vw, 400px" type="image/webp" /><img src="pacotes/pacote-caldas-novas-clv.jpeg" alt="Caldas Novas (CLV): Caldas Novas (Via Aeroporto Caldas)" width="400" height="260" data-lightbox decoding="async" loading="lazy"></picture>
+            <picture><source srcset="pacotes/pacote-caldasnovasviaaeroportoc-400.webp 400w, pacotes/pacote-caldasnovasviaaeroportoc-800.webp 800w" sizes="(max-width:640px) 100vw, 400px" type="image/webp" /><img src="pacotes/pacote-caldasnovasviaaeroportoc.jpeg" alt="Caldas Novas (CLV): Caldas Novas (Via Aeroporto Caldas)" width="400" height="260" data-lightbox decoding="async" loading="lazy"></picture>
             <span class="card__badge">02/12/2026 a 09/12/2026</span>
           </div>
           <div class="card__body">
@@ -1146,7 +1049,7 @@
             <div class="card__footer">
               <div class="card__preco">
                 <span class="card__total">A partir de <strong>R$&nbsp;2.340</strong></span>
-                <span class="card__parcela">15x de R$&nbsp;156</span>
+                <span class="card__parcela">10x de R$&nbsp;234</span>
                 <span class="card__taxas">+ taxas · sujeito a alteração</span>
               </div>
               <a href="https://wa.me/5521920064617?text=Ol%C3%A1%2C%20Babi%21%20Tenho%20interesse%20na%20oferta%20Caldas%20Novas%20%28Via%20Aeroporto%20Caldas%29."
@@ -1158,9 +1061,84 @@
           </div>
         </article>
 
+        <article class="card reveal catalog-item" id="pacote-fortalezacomjericoacoara-sdu" data-destino="Fortaleza com Jericoacoara" data-categoria="completo" data-source="operator" data-source-id="pacote:fortalezacomjericoacoara:SDU" data-sort-date="2026-12-03" data-dates="2026-12-03,2027-01-16,2027-05-12,2027-10-07" data-sort-price="3090.00" data-origem="rio" data-origem-iata="SDU" data-destination="Jericoacoara" data-destino-key="jericoacoara" data-group-label="Jericoacoara" data-offer-name="Fortaleza com Jericoacoara" data-tipo="com-aereo" data-hotel="Atlas Beach Hotel Grupo GR (Fortaleza - café da manhã) + Pousada Numei de Jeri (Jericoacoara - café da manhã) + Atlas Beach Hotel Grupo GR (Fortaleza - café da manhã)" data-extras="Transfer In (Aeroporto / Hotel em Fortaleza) · 02 Noites de hospedagem em Fortaleza (consulte o regime alimentar)">
+          <div class="card__img-wrap">
+            <picture><source srcset="pacotes/pacote-fortalezacomjericoacoara-400.webp 400w, pacotes/pacote-fortalezacomjericoacoara-800.webp 800w" sizes="(max-width:640px) 100vw, 400px" type="image/webp" /><img src="pacotes/pacote-fortalezacomjericoacoara.jpeg" alt="Jericoacoara: Fortaleza com Jericoacoara" width="400" height="260" data-lightbox decoding="async" loading="lazy"></picture>
+            <span class="card__badge">12/05/2027 a 19/05/2027 · 07/10; 03/12; 16/01</span>
+          </div>
+          <div class="card__body">
+            <h4 class="card__title">Jericoacoara <span>Fortaleza com Jericoacoara</span></h4>
+            <ul class="card__features">
+              <li><i class="fas fa-plane"></i> Saída Rio de Janeiro (SDU): aéreo de R$ 1.237,00 por R$&nbsp;837,00</li><li><i class="fas fa-hotel"></i> Atlas Beach Hotel Grupo GR (Fortaleza - café da manhã) + Pousada Numei de Jeri (Jericoacoara - café da manhã) + Atlas Beach Hotel Grupo GR (Fortaleza - café da manhã) · consulte regime</li><li><i class="fas fa-check"></i> Transfer In (Aeroporto / Hotel em Fortaleza)</li><li><i class="fas fa-check"></i> 02 Noites de hospedagem em Fortaleza (consulte o regime alimentar)</li><li><i class="fas fa-exclamation-circle"></i> Taxas R$&nbsp;398,04 · sujeito a alteração</li>
+            </ul>
+            <div class="card__footer">
+              <div class="card__preco">
+                <span class="card__total">A partir de <strong>R$&nbsp;3.090</strong></span>
+                <span class="card__parcela">10x de R$&nbsp;309</span>
+                <span class="card__taxas">+ taxas · sujeito a alteração</span>
+              </div>
+              <a href="https://wa.me/5521920064617?text=Ol%C3%A1%2C%20Babi%21%20Tenho%20interesse%20na%20oferta%20Fortaleza%20com%20Jericoacoara."
+                 target="_blank" rel="noopener noreferrer"
+                 class="btn btn--whatsapp btn--full">
+                <i class="fab fa-whatsapp"></i> Quero esse pacote!
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card reveal catalog-item" id="pacote-fozdoiguacucompleto-gig" data-destino="Foz do Iguaçu - Completo" data-categoria="completo" data-source="operator" data-source-id="pacote:fozdoiguacucompleto:GIG" data-sort-date="2026-12-05" data-dates="2026-12-05,2027-02-20,2027-02-24,2027-03-24" data-sort-price="3320.00" data-origem="rio" data-origem-iata="GIG" data-destination="Foz do Iguaçu" data-destino-key="foz-do-iguacu" data-group-label="Foz do Iguaçu" data-offer-name="Completo" data-tipo="com-aereo" data-hotel="Nadai Confort Hotel &amp; Spa" data-regime="Café da manhã" data-extras="Transfer aeroporto/hotel/aeroporto · Noites de Hospedagem (consulte o regime de alimentação)">
+          <div class="card__img-wrap">
+            <picture><source srcset="pacotes/pacote-fozdoiguacucompleto-400.webp 400w, pacotes/pacote-fozdoiguacucompleto-800.webp 800w" sizes="(max-width:640px) 100vw, 400px" type="image/webp" /><img src="pacotes/pacote-fozdoiguacucompleto.jpeg" alt="Foz do Iguaçu: Foz do Iguaçu - Completo" width="400" height="260" data-lightbox decoding="async" loading="lazy"></picture>
+            <span class="card__badge">24/02/2027 a 28/02/2027 · 05/12; 20/02; 24/03</span>
+          </div>
+          <div class="card__body">
+            <h4 class="card__title">Foz do Iguaçu <span>Completo</span></h4>
+            <ul class="card__features">
+              <li><i class="fas fa-plane"></i> Saída Rio de Janeiro (GIG): aéreo de R$ 1.546,00 por R$&nbsp;1.146,00</li><li><i class="fas fa-hotel"></i> Nadai Confort Hotel &amp; Spa · Café da manhã</li><li><i class="fas fa-check"></i> Transfer aeroporto/hotel/aeroporto</li><li><i class="fas fa-check"></i> Noites de Hospedagem (consulte o regime de alimentação)</li><li><i class="fas fa-exclamation-circle"></i> Taxas R$&nbsp;251,00 · sujeito a alteração</li>
+            </ul>
+            <div class="card__footer">
+              <div class="card__preco">
+                <span class="card__total">A partir de <strong>R$&nbsp;3.320</strong></span>
+                <span class="card__parcela">10x de R$&nbsp;332</span>
+                <span class="card__taxas">+ taxas · sujeito a alteração</span>
+              </div>
+              <a href="https://wa.me/5521920064617?text=Ol%C3%A1%2C%20Babi%21%20Tenho%20interesse%20na%20oferta%20Foz%20do%20Igua%C3%A7u%20-%20Completo."
+                 target="_blank" rel="noopener noreferrer"
+                 class="btn btn--whatsapp btn--full">
+                <i class="fab fa-whatsapp"></i> Quero esse pacote!
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card reveal catalog-item" id="pacote-disneycelebraemcuritibau-gig" data-destino="Disney Celebra em Curitiba - Um Natal Inesquecível" data-categoria="completo" data-source="operator" data-source-id="pacote:disneycelebraemcuritibau:GIG" data-sort-date="2026-12-11" data-dates="2026-12-11" data-sort-price="2080.00" data-origem="rio" data-origem-iata="GIG" data-destination="Curitiba" data-destino-key="curitiba" data-group-label="Curitiba" data-offer-name="Disney Celebra em Curitiba - Um Natal Inesquecível" data-tipo="com-aereo" data-evento="1" data-extras="Noites de Hospedagem (Consulte Regime de Alimentação) · Transfer Regular para o Espetáculo">
+          <div class="card__img-wrap">
+            <picture><source srcset="pacotes/pacote-disneycelebraemcuritibau-400.webp 400w, pacotes/pacote-disneycelebraemcuritibau-800.webp 800w" sizes="(max-width:640px) 100vw, 400px" type="image/webp" /><img src="pacotes/pacote-disneycelebraemcuritibau.jpeg" alt="Curitiba: Disney Celebra em Curitiba - Um Natal Inesquecível" width="400" height="260" data-lightbox decoding="async" loading="lazy"></picture>
+            <span class="card__badge">11/12/2026 a 13/12/2026</span>
+          </div>
+          <div class="card__body">
+            <h4 class="card__title">Curitiba <span>Disney Celebra em Curitiba - Um Natal Inesquecível</span></h4>
+            <ul class="card__features">
+              <li><i class="fas fa-plane"></i> Saída Rio de Janeiro (GIG): aéreo de R$ 1.065,00 por R$&nbsp;665,00</li><li><i class="fas fa-check"></i> Noites de Hospedagem (Consulte Regime de Alimentação)</li><li><i class="fas fa-check"></i> Transfer Regular para o Espetáculo</li><li><i class="fas fa-exclamation-circle"></i> Taxas R$&nbsp;90,00 · sujeito a alteração</li>
+            </ul>
+            <div class="card__footer">
+              <div class="card__preco">
+                <span class="card__total">A partir de <strong>R$&nbsp;2.080</strong></span>
+                <span class="card__parcela">10x de R$&nbsp;208</span>
+                <span class="card__taxas">+ taxas · sujeito a alteração</span>
+              </div>
+              <a href="https://wa.me/5521920064617?text=Ol%C3%A1%2C%20Babi%21%20Tenho%20interesse%20na%20oferta%20Disney%20Celebra%20em%20Curitiba%20-%20Um%20Natal%20Inesquec%C3%ADvel."
+                 target="_blank" rel="noopener noreferrer"
+                 class="btn btn--whatsapp btn--full">
+                <i class="fab fa-whatsapp"></i> Quero esse pacote!
+              </a>
+            </div>
+          </div>
+        </article>
+
         <article class="card reveal catalog-item" id="pacote-maceiocomgungafrancesrod-gig" data-destino="Maceió com Gunga + Francês + Roda Gigante" data-categoria="completo" data-source="operator" data-source-id="pacote:maceiocomgungafrancesrod:GIG" data-sort-date="2027-01-14" data-dates="2027-01-14,2027-01-15,2027-02-17,2027-02-24,2027-03-01,2027-03-05,2027-04-14,2027-04-21" data-sort-price="1910.00" data-origem="rio" data-origem-iata="GIG" data-destination="Maceió" data-destino-key="maceio" data-group-label="Maceió" data-offer-name="Gunga + Francês + Roda Gigante" data-tipo="com-aereo" data-hotel="El Aram Beach Express" data-regime="Café da manhã" data-extras="Transfer aeroporto / hotel / aeroporto · City Tour com praia do Frânces">
           <div class="card__img-wrap">
-            <picture><source srcset="pacotes/pacote-maceio-400.webp 400w, pacotes/pacote-maceio-800.webp 800w" sizes="(max-width:640px) 100vw, 400px" type="image/webp" /><img src="pacotes/pacote-maceio.jpeg" alt="Maceió: Maceió com Gunga + Francês + Roda Gigante" width="400" height="260" data-lightbox decoding="async" loading="lazy"></picture>
+            <picture><source srcset="pacotes/pacote-maceiocomgungafrancesrod-400.webp 400w, pacotes/pacote-maceiocomgungafrancesrod-800.webp 800w" sizes="(max-width:640px) 100vw, 400px" type="image/webp" /><img src="pacotes/pacote-maceiocomgungafrancesrod.jpeg" alt="Maceió: Maceió com Gunga + Francês + Roda Gigante" width="400" height="260" data-lightbox decoding="async" loading="lazy"></picture>
             <span class="card__badge">31/07/2026 a 05/08/2026 · 14/01; 15/01; 17/02; 24/02; 01/03; 05/03; 14</span>
           </div>
           <div class="card__body">
@@ -1171,7 +1149,7 @@
             <div class="card__footer">
               <div class="card__preco">
                 <span class="card__total">A partir de <strong>R$&nbsp;1.910</strong></span>
-                <span class="card__parcela">15x de R$&nbsp;127</span>
+                <span class="card__parcela">10x de R$&nbsp;191</span>
                 <span class="card__taxas">+ taxas · sujeito a alteração</span>
               </div>
               <a href="https://wa.me/5521920064617?text=Ol%C3%A1%2C%20Babi%21%20Tenho%20interesse%20na%20oferta%20Macei%C3%B3%20com%20Gunga%20%2B%20Franc%C3%AAs%20%2B%20Roda%20Gigante."
@@ -1183,23 +1161,48 @@
           </div>
         </article>
 
-        <article class="card reveal catalog-item" id="pacote-pratagybeachresortalagoa-gig" data-destino="Pratagy Beach Resort - Alagoas" data-categoria="completo" data-source="operator" data-source-id="pacote:pratagybeachresortalagoa:GIG" data-sort-date="2027-01-14" data-dates="2027-01-14,2027-01-15,2027-02-17,2027-03-01,2027-04-17" data-sort-price="9370.00" data-origem="rio" data-origem-iata="GIG" data-destination="MACEIÓ (MCZ)" data-destino-key="maceio" data-group-label="Maceió" data-offer-name="Pratagy Beach Resort - Alagoas" data-tipo="com-aereo" data-hotel="Pratagy Beach Resort All Inclusive" data-regime="All Inclusive" data-extras="Noites de hospedagem com regime All Inclusive · Transfer aeroporto / resort / aeroporto">
+        <article class="card reveal catalog-item" id="pacote-pratagybeachresortalagoa-gig" data-destino="Pratagy Beach Resort - Alagoas" data-categoria="completo" data-source="operator" data-source-id="pacote:pratagybeachresortalagoa:GIG" data-sort-date="2027-01-14" data-dates="2027-01-14,2027-01-15,2027-04-21,2027-05-25,2027-06-19" data-sort-price="11120.00" data-origem="rio" data-origem-iata="GIG" data-destination="MACEIÓ (MCZ)" data-destino-key="maceio" data-group-label="Maceió" data-offer-name="Pratagy Beach Resort - Alagoas" data-tipo="com-aereo" data-hotel="Pratagy Beach Resort All Inclusive" data-regime="All Inclusive" data-extras="Noites de hospedagem com regime All Inclusive · Transfer aeroporto / resort / aeroporto">
           <div class="card__img-wrap">
-            <picture><source srcset="pacotes/pacote-maceio-mcz-400.webp 400w, pacotes/pacote-maceio-mcz-800.webp 800w" sizes="(max-width:640px) 100vw, 400px" type="image/webp" /><img src="pacotes/pacote-maceio-mcz.jpeg" alt="MACEIÓ (MCZ): Pratagy Beach Resort - Alagoas" width="400" height="260" data-lightbox decoding="async" loading="lazy"></picture>
-            <span class="card__badge">15/01/2027 a 22/01/2027 · 14/01; 17/02; 01/03; 17/04</span>
+            <picture><source srcset="pacotes/pacote-pratagybeachresortalagoa-400.webp 400w, pacotes/pacote-pratagybeachresortalagoa-800.webp 800w" sizes="(max-width:640px) 100vw, 400px" type="image/webp" /><img src="pacotes/pacote-pratagybeachresortalagoa.jpeg" alt="MACEIÓ (MCZ): Pratagy Beach Resort - Alagoas" width="400" height="260" data-lightbox decoding="async" loading="lazy"></picture>
+            <span class="card__badge">15/01/2027 a 22/01/2027 · 14/01; 21/04; 25/05; 19/06</span>
           </div>
           <div class="card__body">
             <h4 class="card__title">MACEIÓ (MCZ) <span>Pratagy Beach Resort - Alagoas</span></h4>
             <ul class="card__features">
-              <li><i class="fas fa-plane"></i> Saída Rio de Janeiro (GIG): aéreo de R$ 1.833,00 por R$&nbsp;1.433,00</li><li><i class="fas fa-hotel"></i> Pratagy Beach Resort All Inclusive · All Inclusive</li><li><i class="fas fa-check"></i> Noites de hospedagem com regime All Inclusive</li><li><i class="fas fa-check"></i> Transfer aeroporto / resort / aeroporto</li><li><i class="fas fa-exclamation-circle"></i> Taxas R$&nbsp;199,00 · sujeito a alteração</li>
+              <li><i class="fas fa-plane"></i> Saída Rio de Janeiro (GIG): aéreo de R$ 2.032,00 por R$&nbsp;1.632,00</li><li><i class="fas fa-hotel"></i> Pratagy Beach Resort All Inclusive · All Inclusive</li><li><i class="fas fa-check"></i> Noites de hospedagem com regime All Inclusive</li><li><i class="fas fa-check"></i> Transfer aeroporto / resort / aeroporto</li><li><i class="fas fa-exclamation-circle"></i> Taxas R$&nbsp;199,00 · sujeito a alteração</li>
             </ul>
             <div class="card__footer">
               <div class="card__preco">
-                <span class="card__total">A partir de <strong>R$&nbsp;9.370</strong></span>
-                <span class="card__parcela">15x de R$&nbsp;624</span>
+                <span class="card__total">A partir de <strong>R$&nbsp;11.120</strong></span>
+                <span class="card__parcela">10x de R$&nbsp;1.112</span>
                 <span class="card__taxas">+ taxas · sujeito a alteração</span>
               </div>
               <a href="https://wa.me/5521920064617?text=Ol%C3%A1%2C%20Babi%21%20Tenho%20interesse%20na%20oferta%20Pratagy%20Beach%20Resort%20-%20Alagoas."
+                 target="_blank" rel="noopener noreferrer"
+                 class="btn btn--whatsapp btn--full">
+                <i class="fab fa-whatsapp"></i> Quero esse pacote!
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card reveal catalog-item" id="pacote-sanandresessencial-rio-de-janeiro" data-destino="San Andrés - Essencial" data-categoria="completo" data-source="operator" data-source-id="pacote:sanandresessencial:RIO DE JANEIRO" data-sort-date="2027-02-06" data-dates="2027-02-06" data-sort-price="8290.00" data-origem="rio" data-origem-iata="RIO DE JANEIRO" data-destination="San Andres" data-destino-key="san-andres" data-group-label="San Andres" data-offer-name="San Andrés - Essencial" data-tipo="com-aereo" data-hotel="Decameron San Luis" data-regime="All Inclusive" data-extras="Hospedagem: 7 noites · Hospedagem conforme as datas e hotel selecionado.">
+          <div class="card__img-wrap">
+            <picture><source srcset="pacotes/pacote-sanandresessencial-400.webp 400w, pacotes/pacote-sanandresessencial-800.webp 800w" sizes="(max-width:640px) 100vw, 400px" type="image/webp" /><img src="pacotes/pacote-sanandresessencial.jpeg" alt="San Andres: San Andrés - Essencial" width="400" height="260" data-lightbox decoding="async" loading="lazy"></picture>
+            <span class="card__badge">06/02/2027 a 14/02/2027</span>
+          </div>
+          <div class="card__body">
+            <h4 class="card__title">San Andres <span>San Andrés - Essencial</span></h4>
+            <ul class="card__features">
+              <li><i class="fas fa-plane"></i> Saída Rio de Janeiro (RIO DE JANEIRO)</li><li><i class="fas fa-hotel"></i> Decameron San Luis · All Inclusive</li><li><i class="fas fa-check"></i> Hospedagem: 7 noites</li><li><i class="fas fa-check"></i> Hospedagem conforme as datas e hotel selecionado.</li><li><i class="fas fa-exclamation-circle"></i> Taxas R$&nbsp;810,00 · sujeito a alteração</li>
+            </ul>
+            <div class="card__footer">
+              <div class="card__preco">
+                <span class="card__total">A partir de <strong>R$&nbsp;8.290</strong></span>
+                <span class="card__parcela">10x de R$&nbsp;829</span>
+                <span class="card__taxas">+ taxas · sujeito a alteração</span>
+              </div>
+              <a href="https://wa.me/5521920064617?text=Ol%C3%A1%2C%20Babi%21%20Tenho%20interesse%20na%20oferta%20San%20Andr%C3%A9s%20-%20Essencial."
                  target="_blank" rel="noopener noreferrer"
                  class="btn btn--whatsapp btn--full">
                 <i class="fab fa-whatsapp"></i> Quero esse pacote!
@@ -1215,7 +1218,7 @@
         <a href="pacotes.html" class="btn btn--outline btn--md">
           Ver todos os pacotes
         </a>
-        <a href="https://wa.me/5521920064617?text=Ol%C3%A1%20Babi!%20Vim%20pelo%20site%20e%20quero%20montar%20um%20roteiro%20personalizado"
+        <a href="https://wa.me/5521920064617?text=Ol%C3%A1%20Babi%21%20Vim%20pelo%20site%20e%20quero%20montar%20um%20roteiro%20personalizado"
            target="_blank" rel="noopener noreferrer"
            class="btn btn--outline btn--md" style="margin-left:8px">
           <i class="fab fa-whatsapp"></i> Montar roteiro personalizado
@@ -1224,6 +1227,8 @@
           Saiba mais sobre roteiros sob medida
         </a>
       </div>
+
+
 
 
 
@@ -1547,7 +1552,7 @@
             <li><a href="faq.html">FAQ</a></li>
             <li><a href="/#depoimentos">Depoimentos</a></li>
             <li><a href="/#pagamento">Pagamento</a></li>
-            <li><a href="privacidade.html">Privacidade</a></li>
+            <li><a href="privacidade.html">Privacidade</a></li><li><a href="cookies.html">Cookies</a></li><li><a href="termos-de-uso.html">Termos de uso</a></li><li><a href="condicoes-comerciais.html">Condições comerciais</a></li><li><a href="cancelamento-reembolso.html">Cancelamento e reembolso</a></li><li><a href="contato-lgpd.html">Contato LGPD</a></li>
             <li>
               <button class="footer__cadastur-btn" id="btnCadasturFooter">
                 <i class="fas fa-certificate"></i> Certificado Cadastur
@@ -1736,6 +1741,7 @@
     })();
   </script>
 
+  <script src="api-catalog.js?v=1"></script>
   <script src="analytics.js?v=18"></script>
   <script src="script.js?v=29"></script>
 </body>

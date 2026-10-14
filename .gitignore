@@ -32,6 +32,8 @@ __pycache__/
 *.py[cod]
 *.pyo
 .env
+var/
+*.sqlite3
 venv/
 .venv/
 
@@ -40,3 +42,8 @@ venv/
 *.bak
 *.log
 *.md
+!docs/
+!docs/*.md
+!docs/**/*.md
+.playwright-mcp/*
+tests/*

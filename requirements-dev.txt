@@ -1,0 +1,2 @@
+# Optional image download/validation dependency used by the static sync workflow.
+Pillow==11.3.0

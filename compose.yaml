@@ -1,0 +1,39 @@
+name: viajando-com-a-babi-local
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: vcb-local:0.1.0
+    init: true
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:${APP_PORT:-8080}:8080"
+    environment:
+      APP_HOST: 0.0.0.0
+      APP_PORT: 8080
+      DATABASE_PATH: /app/var/vcb.sqlite3
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:?Defina ADMIN_PASSWORD no .env local}
+      SESSION_SECRET: ${SESSION_SECRET:?Defina SESSION_SECRET no .env local}
+      WHATSAPP_NUMBER: ${WHATSAPP_NUMBER:-5500000000000}
+      COOKIE_SECURE: ${COOKIE_SECURE:-0}
+      LOG_LEVEL: ${LOG_LEVEL:-INFO}
+    volumes:
+      - vcb-data:/app/var
+    networks:
+      - app
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8080/health', timeout=2)"]
+      interval: 30s
+      timeout: 5s
+      start_period: 10s
+      retries: 3
+
+networks:
+  app:
+    name: vcb-local-app
+
+volumes:
+  vcb-data:
+    name: vcb-local-data
