@@ -1,5 +1,5 @@
 {
-  "last_sync": "2026-10-13T14:17:18",
+  "last_sync": "2026-10-14T11:58:51",
   "source": "https://viajandocomdesconto.com/",
   "cotado_em": "06/10/2026",
   "stats": {
@@ -11,19 +11,19 @@
     "filtro_pacotes": {
       "total": 467,
       "rio": 111,
-      "sp": 191,
+      "sp": 190,
       "sem_aereo": 193,
       "ignored_origin": 52,
-      "ignored_expired": 21
+      "ignored_expired": 26
     },
     "filtro_voos": {
       "total": 10961,
       "rio": 1023,
-      "sp": 2499,
-      "nacional": 3118,
-      "internacional": 404,
+      "sp": 2492,
+      "nacional": 3112,
+      "internacional": 403,
       "ignored_origin": 7438,
-      "ignored_expired": 0,
+      "ignored_expired": 7,
       "ignored_invalid_date": 0,
       "duplicates_removed": 1
     },
@@ -33,25 +33,25 @@
       "ignored_expired": 0
     },
     "publicados": {
-      "pacotes": 485,
-      "promo_voos": 3522,
+      "pacotes": 480,
+      "promo_voos": 3515,
       "campanhas": 61
     },
     "reconciliacao_index": {
       "cards_existentes": 30,
-      "pacotes_correspondidos": 118
+      "pacotes_correspondidos": 115
     },
     "validacao_voos": {
       "inverted": 0,
       "js_leaks": 0,
       "sem_preco": 0,
       "sem_taxa": 2,
-      "com_horario": 3522,
-      "com_aeroporto_destino": 3522
+      "com_horario": 3515,
+      "com_aeroporto_destino": 3515
     },
     "validacao_precos_pacotes": {
-      "analisados": 485,
-      "com_preco_total": 484,
+      "analisados": 480,
+      "com_preco_total": 479,
       "sem_preco_total": 1,
       "inconsistencias": 0,
       "aereo_como_total": 0
@@ -3408,9 +3408,9 @@
         "departure_date": "16/09/2026 a 21/09/2026",
         "additional_dates": "05/08, 13/10, 04/12",
         "departure_dates": [
-          "2026-10-13",
           "2026-12-04",
-          "2027-08-05"
+          "2027-08-05",
+          "2027-10-13"
         ],
         "flight_included": true,
         "categoria_site": "completo",
@@ -3450,7 +3450,7 @@
         "currency": "BRL",
         "evento": false,
         "pacote_categoria": "Nacional",
-        "sort_date": "2026-10-13",
+        "sort_date": "2026-12-04",
         "sort_price": 3720.0,
         "tipo": "com-aereo"
       },
@@ -17210,62 +17210,6 @@
         "tipo": "com-aereo"
       },
       {
-        "id": "pacote:cidadedopanamacomcitytou:SÃO PAULO",
-        "fingerprint": "3e0926967b36b075",
-        "category": "pacote",
-        "source_slug": "cidadedopanamacomcitytou",
-        "title": "Cidade do Panamá com city tour + Canal + Tour de compras",
-        "destination": "Tocumen",
-        "origin_city": "São Paulo",
-        "origin_airport": "SÃO PAULO",
-        "origin_bucket": "sem_aereo",
-        "departure_date": "13/10/2026 a 18/10/2026",
-        "additional_dates": "",
-        "departure_dates": [
-          "2026-10-13"
-        ],
-        "flight_included": false,
-        "categoria_site": "sem-aereo",
-        "capa": "img/8c8f83add7d726e0.png",
-        "inclui": [
-          "Passagens aéreas.",
-          "Hospedagem conforme as datas e o hotel selecionado.",
-          "Transfer de chegada e saída (regular).",
-          "City tour com visita ao Canal, incluindo ingresso para o Centro de Visitantes de Miraflores.",
-          "Tour de compras na cidade.",
-          "Seguro viagem.",
-          "Cobertura de cancelamento involuntário de viagem."
-        ],
-        "hoteis": [
-          {
-            "nome": "Faranda Express Soloy & Casino",
-            "preco": "R$ 4.450,00",
-            "taxas": "R$ 416,00",
-            "regime": "Café da manhã",
-            "promo": "",
-            "parcela": "10x de R$ 445"
-          }
-        ],
-        "taxas": "R$ 416,00",
-        "fees": 416.0,
-        "de": "",
-        "por": "",
-        "airfare_original_price": null,
-        "airfare_sale_price": null,
-        "installments": "10x de R$ 445",
-        "installment_count": 10,
-        "installment_value": 445.0,
-        "total_price": "R$ 4.450",
-        "package_total_price": 4450.0,
-        "price_source": "explicit_total",
-        "currency": "BRL",
-        "evento": false,
-        "pacote_categoria": "Internacional",
-        "sort_date": "2026-10-13",
-        "sort_price": 4450.0,
-        "tipo": "sem-aereo"
-      },
-      {
         "id": "pacote:arubaessencialailhamaisf:SÃO PAULO",
         "fingerprint": "5efbc2db11a35d9c",
         "category": "pacote",
@@ -19320,60 +19264,6 @@
         "pacote_categoria": "Internacional",
         "sort_date": "2026-11-09",
         "sort_price": 5775.62,
-        "tipo": "com-aereo"
-      },
-      {
-        "id": "pacote:mendozacomcitytour:SÃO PAULO",
-        "fingerprint": "28544fef8ec8c890",
-        "category": "pacote",
-        "source_slug": "mendozacomcitytour",
-        "title": "Mendoza com City tour",
-        "destination": "Mendoza",
-        "origin_city": "São Paulo",
-        "origin_airport": "SÃO PAULO",
-        "origin_bucket": "sp",
-        "departure_date": "13/10/2026 a 18/10/2026",
-        "additional_dates": "",
-        "departure_dates": [
-          "2026-10-13"
-        ],
-        "flight_included": true,
-        "categoria_site": "completo",
-        "capa": "img/ac1933bf8eb0dcdc.png",
-        "inclui": [
-          "Passagem aérea de ida e volta",
-          "Noites de hospedagem",
-          "Transporte de chegada e saída (Aeroporto/Hotel/Aeroporto)",
-          "City tour regular",
-          "Cobertura Cancelamento Involuntário de Viagem - R$4.000,00"
-        ],
-        "hoteis": [
-          {
-            "nome": "Hotel Internacional",
-            "preco": "R$ 4.590,00",
-            "taxas": "R$ 507,00",
-            "regime": "",
-            "promo": "",
-            "parcela": "10x de R$ 459"
-          }
-        ],
-        "taxas": "R$ 507,00",
-        "fees": 507.0,
-        "de": "",
-        "por": "",
-        "airfare_original_price": null,
-        "airfare_sale_price": null,
-        "installments": "10x de R$ 459",
-        "installment_count": 10,
-        "installment_value": 459.0,
-        "total_price": "R$ 4.590",
-        "package_total_price": 4590.0,
-        "price_source": "explicit_total",
-        "currency": "BRL",
-        "evento": false,
-        "pacote_categoria": "Internacional",
-        "sort_date": "2026-10-13",
-        "sort_price": 4590.0,
         "tipo": "com-aereo"
       },
       {
@@ -21982,61 +21872,6 @@
         "tipo": "sem-aereo"
       },
       {
-        "id": "pacote:cafayatecomwinetourpurma:sem_aereo",
-        "fingerprint": "811808f087b0e2ff",
-        "category": "pacote",
-        "source_slug": "cafayatecomwinetourpurma",
-        "title": "CAFAYATE COM WINE TOUR, PURMAMARCA & MONTANHA DE 14 CORES - 8 Dias / 7 Noites",
-        "destination": "Excursão",
-        "origin_city": "",
-        "origin_airport": "",
-        "origin_bucket": "sem_aereo",
-        "departure_date": "13/10/2026 a 20/10/2026",
-        "additional_dates": "",
-        "departure_dates": [
-          "2026-10-13"
-        ],
-        "flight_included": false,
-        "categoria_site": "sem-aereo",
-        "capa": "img/0514df2f5d2fc636.png",
-        "inclui": [
-          "Roteiro personalizado: itinerário detalhado entregue na chegada.",
-          "Traslados no trajeto aeroporto / hotel / aeroporto.",
-          "Hospedagem: 3 noites em Salta, 2 noites em Cafayate e 2 noites em Purmamarca.",
-          "Excursões conforme a programação, acompanhadas por guia em espanhol.",
-          "Wine tour com degustação incluída."
-        ],
-        "hoteis": [
-          {
-            "nome": "A consultar",
-            "preco": "R$ 5.650,00",
-            "taxas": "R$ 170,00",
-            "regime": "Café da manhã",
-            "promo": "",
-            "parcela": "10x de R$ 565",
-            "src": "Roteiro completo"
-          }
-        ],
-        "taxas": "R$ 170,00",
-        "fees": 170.0,
-        "de": "",
-        "por": "",
-        "airfare_original_price": null,
-        "airfare_sale_price": null,
-        "installments": "10x de R$ 565",
-        "installment_count": 10,
-        "installment_value": 565.0,
-        "total_price": "R$ 5.650",
-        "package_total_price": 5650.0,
-        "price_source": "explicit_total",
-        "currency": "BRL",
-        "evento": false,
-        "pacote_categoria": "Internacional",
-        "sort_date": "2026-10-13",
-        "sort_price": 5650.0,
-        "tipo": "sem-aereo"
-      },
-      {
         "id": "pacote:todasascapitaisimperiais:sem_aereo",
         "fingerprint": "8d4c1fcb8730c13c",
         "category": "pacote",
@@ -23141,63 +22976,6 @@
         "tipo": "cruzeiro"
       },
       {
-        "id": "pacote:puertovaraspacotede3noit:sem_aereo",
-        "fingerprint": "23f07b26ef6427a4",
-        "category": "pacote",
-        "source_slug": "puertovaraspacotede3noit",
-        "title": "Puerto Varas - Pacote de 3 noites (hospedagem + transfers + passeios) ",
-        "destination": "Puerto Montt",
-        "origin_city": "",
-        "origin_airport": "",
-        "origin_bucket": "sem_aereo",
-        "departure_date": "13/10/2026 a 16/10/2026",
-        "additional_dates": "",
-        "departure_dates": [
-          "2026-10-13"
-        ],
-        "flight_included": false,
-        "categoria_site": "sem-aereo",
-        "capa": "img/68eeb3390ddc7ed8.png",
-        "inclui": [
-          "Hospedagem: 3 noites",
-          "Guia acompanhante",
-          "Transporte terrestre",
-          "Traslados",
-          "Alimentação: café da manhã",
-          "Passeios e visitas panorâmicas",
-          "Entradas/ingressos inclusos"
-        ],
-        "hoteis": [
-          {
-            "nome": "Hoteis selecionados",
-            "preco": "R$ 4.970,00",
-            "taxas": "R$ 149,00",
-            "regime": "Café da manhã",
-            "promo": "",
-            "parcela": "10x de R$ 497",
-            "src": "Roteiro completo"
-          }
-        ],
-        "taxas": "R$ 149,00",
-        "fees": 149.0,
-        "de": "",
-        "por": "",
-        "airfare_original_price": null,
-        "airfare_sale_price": null,
-        "installments": "10x de R$ 497",
-        "installment_count": 10,
-        "installment_value": 497.0,
-        "total_price": "R$ 4.970",
-        "package_total_price": 4970.0,
-        "price_source": "explicit_total",
-        "currency": "BRL",
-        "evento": false,
-        "pacote_categoria": "Internacional",
-        "sort_date": "2026-10-13",
-        "sort_price": 4970.0,
-        "tipo": "sem-aereo"
-      },
-      {
         "id": "pacote:omelhordacolombiacidadee:sem_aereo",
         "fingerprint": "36f9483400495c7b",
         "category": "pacote",
@@ -23547,65 +23325,6 @@
         "pacote_categoria": "Internacional",
         "sort_date": "2026-11-15",
         "sort_price": 6860.0,
-        "tipo": "sem-aereo"
-      },
-      {
-        "id": "pacote:madagascarnortecolorido:sem_aereo",
-        "fingerprint": "89b717e618d5d17c",
-        "category": "pacote",
-        "source_slug": "madagascarnortecolorido",
-        "title": "MADAGASCAR: NORTE COLORIDO",
-        "destination": "ANTANANARIVO",
-        "origin_city": "",
-        "origin_airport": "",
-        "origin_bucket": "sem_aereo",
-        "departure_date": "13/10/2026 a 19/10/2026",
-        "additional_dates": "",
-        "departure_dates": [
-          "2026-10-13"
-        ],
-        "flight_included": false,
-        "categoria_site": "sem-aereo",
-        "capa": "img/208ee02e3c37ea25.png",
-        "inclui": [
-          "Hospedagem: 6 noites",
-          "Roteiro: ANTANANARIVO → ANTSIRANANA",
-          "Guia acompanhante",
-          "Transporte terrestre",
-          "Traslados",
-          "Alimentação: café da manhã + 1 almoço",
-          "Passeios e visitas panorâmicas",
-          "Entradas/ingressos inclusos",
-          "Seguro viagem",
-          "Taxas: R$ 730,00"
-        ],
-        "hoteis": [
-          {
-            "nome": "Roteiro completo",
-            "preco": "R$ 25.160,00",
-            "taxas": "R$ 730,00",
-            "regime": "Café da manhã + 1 almoço",
-            "promo": "",
-            "parcela": "10x de R$ 2.516"
-          }
-        ],
-        "taxas": "R$ 730,00",
-        "fees": 730.0,
-        "de": "",
-        "por": "",
-        "airfare_original_price": null,
-        "airfare_sale_price": null,
-        "installments": "10x de R$ 2.516",
-        "installment_count": 10,
-        "installment_value": 2516.0,
-        "total_price": "R$ 25.160",
-        "package_total_price": 25160.0,
-        "price_source": "explicit_total",
-        "currency": "BRL",
-        "evento": false,
-        "pacote_categoria": "Internacional",
-        "sort_date": "2026-10-13",
-        "sort_price": 25160.0,
         "tipo": "sem-aereo"
       },
       {
@@ -31317,90 +31036,6 @@
     ],
     "promo_voos": [
       {
-        "id": "voo:GRU:AEP:2026-10-17:2026-10-21:957.0:620.0:09:40",
-        "fingerprint": "7da6d6342062ab6e",
-        "category": "promo-voo",
-        "title": "Buenos Aires",
-        "destination": "Buenos Aires",
-        "destination_type": "internacional",
-        "destination_airport": "AEP",
-        "origin_city": "São Paulo",
-        "origin_airport": "GRU",
-        "origin_bucket": "sp",
-        "departure_date": "2026-10-17",
-        "departure_time": "09:40",
-        "return_date": "2026-10-21",
-        "return_time": "18:20",
-        "departure_dates": [
-          "2026-10-17"
-        ],
-        "nights": 4,
-        "price": 957.0,
-        "tax": 620.0,
-        "currency": "BRL",
-        "seats": 1,
-        "last_seats": null,
-        "airline": "GOL",
-        "sort_date": "2026-10-17",
-        "sort_price": 957.0
-      },
-      {
-        "id": "voo:VCP:FOR:2026-10-17:2026-10-22:710.0:186.0:10:20",
-        "fingerprint": "f457b887b77871ba",
-        "category": "promo-voo",
-        "title": "Fortaleza",
-        "destination": "Fortaleza",
-        "destination_type": "nacional",
-        "destination_airport": "FOR",
-        "origin_city": "Campinas",
-        "origin_airport": "VCP",
-        "origin_bucket": "sp",
-        "departure_date": "2026-10-17",
-        "departure_time": "10:20",
-        "return_date": "2026-10-22",
-        "return_time": "12:15",
-        "departure_dates": [
-          "2026-10-17"
-        ],
-        "nights": 5,
-        "price": 710.0,
-        "tax": 186.0,
-        "currency": "BRL",
-        "seats": 1,
-        "last_seats": null,
-        "airline": "GOL",
-        "sort_date": "2026-10-17",
-        "sort_price": 710.0
-      },
-      {
-        "id": "voo:GRU:POA:2026-10-17:2026-10-21:222.0:186.0:08:50",
-        "fingerprint": "a6ee186af3de8a6b",
-        "category": "promo-voo",
-        "title": "Gramado",
-        "destination": "Gramado",
-        "destination_type": "nacional",
-        "destination_airport": "POA",
-        "origin_city": "São Paulo",
-        "origin_airport": "GRU",
-        "origin_bucket": "sp",
-        "departure_date": "2026-10-17",
-        "departure_time": "08:50",
-        "return_date": "2026-10-21",
-        "return_time": "18:45",
-        "departure_dates": [
-          "2026-10-17"
-        ],
-        "nights": 4,
-        "price": 222.0,
-        "tax": 186.0,
-        "currency": "BRL",
-        "seats": 1,
-        "last_seats": null,
-        "airline": "GOL",
-        "sort_date": "2026-10-17",
-        "sort_price": 222.0
-      },
-      {
         "id": "voo:VCP:JOI:2026-10-17:2026-10-21:327.0:186.0:09:20",
         "fingerprint": "69607b9c28f4610e",
         "category": "promo-voo",
@@ -31429,34 +31064,6 @@
         "sort_price": 327.0
       },
       {
-        "id": "voo:GRU:CGR:2026-10-20:2026-10-25:376.0:186.0:09:15",
-        "fingerprint": "4b5328cf6ac5fb45",
-        "category": "promo-voo",
-        "title": "Campo Grande",
-        "destination": "Campo Grande",
-        "destination_type": "nacional",
-        "destination_airport": "CGR",
-        "origin_city": "São Paulo",
-        "origin_airport": "GRU",
-        "origin_bucket": "sp",
-        "departure_date": "2026-10-20",
-        "departure_time": "09:15",
-        "return_date": "2026-10-25",
-        "return_time": "18:40",
-        "departure_dates": [
-          "2026-10-20"
-        ],
-        "nights": 5,
-        "price": 376.0,
-        "tax": 186.0,
-        "currency": "BRL",
-        "seats": 1,
-        "last_seats": null,
-        "airline": "LATAM",
-        "sort_date": "2026-10-20",
-        "sort_price": 376.0
-      },
-      {
         "id": "voo:CGH:IGU:2026-10-20:2026-10-25:517.0:186.0:11:55",
         "fingerprint": "f7ccfc00fb1eeedd",
         "category": "promo-voo",
@@ -31483,34 +31090,6 @@
         "airline": "GOL",
         "sort_date": "2026-10-20",
         "sort_price": 517.0
-      },
-      {
-        "id": "voo:GRU:SSA:2026-10-20:2026-10-27:671.0:186.0:12:10",
-        "fingerprint": "1c74f376ced8a41a",
-        "category": "promo-voo",
-        "title": "Salvador",
-        "destination": "Salvador",
-        "destination_type": "nacional",
-        "destination_airport": "SSA",
-        "origin_city": "São Paulo",
-        "origin_airport": "GRU",
-        "origin_bucket": "sp",
-        "departure_date": "2026-10-20",
-        "departure_time": "12:10",
-        "return_date": "2026-10-27",
-        "return_time": "20:45",
-        "departure_dates": [
-          "2026-10-20"
-        ],
-        "nights": 7,
-        "price": 671.0,
-        "tax": 186.0,
-        "currency": "BRL",
-        "seats": 5,
-        "last_seats": null,
-        "airline": "LATAM",
-        "sort_date": "2026-10-20",
-        "sort_price": 671.0
       },
       {
         "id": "voo:VCP:JOI:2026-10-22:2026-10-27:328.0:186.0:09:15",
@@ -34061,34 +33640,6 @@
         "sort_price": 2473.0
       },
       {
-        "id": "voo:CGH:IGU:2026-11-15:2026-11-19:602.0:186.0:11:50",
-        "fingerprint": "9d1d9b3ce87bca4b",
-        "category": "promo-voo",
-        "title": "Foz do Iguaçu",
-        "destination": "Foz do Iguaçu",
-        "destination_type": "nacional",
-        "destination_airport": "IGU",
-        "origin_city": "São Paulo",
-        "origin_airport": "CGH",
-        "origin_bucket": "sp",
-        "departure_date": "2026-11-15",
-        "departure_time": "11:50",
-        "return_date": "2026-11-19",
-        "return_time": "14:45",
-        "departure_dates": [
-          "2026-11-15"
-        ],
-        "nights": 4,
-        "price": 602.0,
-        "tax": 186.0,
-        "currency": "BRL",
-        "seats": 6,
-        "last_seats": null,
-        "airline": "GOL",
-        "sort_date": "2026-11-15",
-        "sort_price": 602.0
-      },
-      {
         "id": "voo:GRU:PUJ:2026-11-15:2026-11-22:2445.0:934.0:09:50",
         "fingerprint": "1d252a65d6c7a1ac",
         "category": "promo-voo",
@@ -36047,34 +35598,6 @@
         "airline": "GOL",
         "sort_date": "2026-11-28",
         "sort_price": 630.0
-      },
-      {
-        "id": "voo:CGH:POA:2026-11-28:2026-12-02:279.0:186.0:06:25",
-        "fingerprint": "ca1478e5ee5ef5fa",
-        "category": "promo-voo",
-        "title": "Gramado",
-        "destination": "Gramado",
-        "destination_type": "nacional",
-        "destination_airport": "POA",
-        "origin_city": "São Paulo",
-        "origin_airport": "CGH",
-        "origin_bucket": "sp",
-        "departure_date": "2026-11-28",
-        "departure_time": "06:25",
-        "return_date": "2026-12-02",
-        "return_time": "19:55",
-        "departure_dates": [
-          "2026-11-28"
-        ],
-        "nights": 4,
-        "price": 279.0,
-        "tax": 186.0,
-        "currency": "BRL",
-        "seats": 19,
-        "last_seats": null,
-        "airline": "AZUL",
-        "sort_date": "2026-11-28",
-        "sort_price": 279.0
       },
       {
         "id": "voo:CGH:POA:2026-11-28:2026-12-02:328.0:186.0:06:35",
