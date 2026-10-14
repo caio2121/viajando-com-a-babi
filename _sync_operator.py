@@ -255,7 +255,7 @@ def local_image_stem(slug: str, destino: str) -> str:
 def image_tags(stem: str, alt: str, *, use_existing: bool = True) -> str:
     if not use_existing:
         return (
-            f'<img src="assets/og-share.jpeg" alt="{html.escape(alt, quote=True)}" width="400" height="260" '
+            f'<img src="assets/logo-vcb.webp" alt="{html.escape(alt, quote=True)}" width="400" height="260" '
             f'decoding="async" loading="lazy">'
         )
     jpeg = ROOT / "pacotes" / f"{stem}.jpeg"
@@ -275,7 +275,7 @@ def image_tags(stem: str, alt: str, *, use_existing: bool = True) -> str:
         )
     else:
         return (
-            f'<img src="assets/og-share.jpeg" alt="{html.escape(alt, quote=True)}" width="400" height="260" '
+            f'<img src="assets/logo-vcb.webp" alt="{html.escape(alt, quote=True)}" width="400" height="260" '
             f'decoding="async" loading="lazy">'
         )
     escaped_alt = html.escape(alt, quote=True)

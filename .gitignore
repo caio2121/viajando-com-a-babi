@@ -48,3 +48,4 @@ venv/
 .playwright-mcp/*
 tests/*
 .opencode/*
+.opencode/telemetry/raw/context-continuity.jsonl

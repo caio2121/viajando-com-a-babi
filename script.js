@@ -650,6 +650,10 @@
 
   function groupOffers(offers) {
     const map = new Map();
+    function hasRealImage(el) {
+      const img = el.querySelector('.card__img-wrap img');
+      return !!img && (img.getAttribute('src') || '').startsWith('pacotes/');
+    }
     offers.forEach(el => {
       const key = groupKey(el) || el.id || itemTitle(el);
       if (!map.has(key)) {
@@ -675,15 +679,16 @@
         buckets.push(bucket);
       });
       group.origins = buckets;
-      const cheapest = group.offers.slice().sort((a, b) => {
+      const sortedOffers = group.offers.slice().sort((a, b) => {
         const pa = itemPrice(a);
         const pb = itemPrice(b);
         if (pa == null && pb == null) return 0;
         if (pa == null) return 1;
         if (pb == null) return -1;
         return pa - pb;
-      })[0];
-      group.imageSource = cheapest || group.offers[0];
+      });
+      const imageOffers = sortedOffers.filter(hasRealImage);
+      group.imageSource = imageOffers[0] || sortedOffers[0] || group.offers[0];
     });
     return Array.from(map.values());
   }
