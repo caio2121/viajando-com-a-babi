@@ -47,3 +47,4 @@ venv/
 !docs/**/*.md
 .playwright-mcp/*
 tests/*
+.opencode/*
