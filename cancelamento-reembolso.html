@@ -1,23 +1,395 @@
 <!doctype html>
 <html lang="pt-BR">
 <head>
-  <script src="site-config.js?v=1"></script>
+    <script src="site-config.js?v=1"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Dancing+Script:wght@600;700&display=swap" media="print" onload="this.media='all'" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" media="print" onload="this.media='all'" />
+  <noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  </noscript>
 
-<meta charset="utf-8">
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="robots" content="noindex, nofollow">
+  <link rel="stylesheet" href="style.css?v=31">
+  <link rel="icon" type="image/png" href="assets/logo-vcb.png">
+  <meta name="description" content="Orientações para solicitar cancelamento, alteração, remarcação e reembolso de serviços de viagem.">
+  <link rel="canonical" href="https://viajandocomababi.com.br/cancelamento-reembolso.html">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://viajandocomababi.com.br/cancelamento-reembolso.html">
+  <meta property="og:title" content="Cancelamento e Reembolso | Viajando com a Babi">
+  <meta property="og:description" content="Orientações para solicitar cancelamento, alteração, remarcação e reembolso de serviços de viagem.">
+  <meta property="og:image" content="https://viajandocomababi.com.br/assets/og-share.jpeg">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:site_name" content="Viajando com a Babi">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Cancelamento e Reembolso | Viajando com a Babi">
+  <meta name="twitter:description" content="Orientações para solicitar cancelamento, alteração, remarcação e reembolso de serviços de viagem.">
+  <meta name="twitter:image" content="https://viajandocomababi.com.br/assets/og-share.jpeg">
   <title>Cancelamento e Reembolso | Viajando com a Babi</title>
-  <link rel="stylesheet" href="style.css?v=30">
-  <style>.legal-pending{max-width:760px;margin:0 auto;padding:120px 24px 64px}.legal-pending h1{color:var(--clr-dark)}.legal-pending p{line-height:1.7;color:var(--clr-text)}.legal-pending a{color:var(--clr-primary-d);text-decoration:underline}</style>
+    <!-- Google Analytics 4 + Google Ads + Consent Mode v2 -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    var VCB_CONSENT_KEY = 'vcb_consent_analytics';
+    var VCB_GA4_ID = (window.VCB_CONFIG && window.VCB_CONFIG.ga4_measurement_id) || '';
+    var VCB_ADS_ID = (window.VCB_CONFIG && window.VCB_CONFIG.ads_id) || '';
+    var VCB_ADS_CONVERSION = (window.VCB_CONFIG && window.VCB_CONFIG.ads_conversion) || '';
+    var ga4Loaded = false;
+
+    function gtag_report_conversion(url, opts) {
+      opts = opts || {};
+      var targetUrl = url;
+      var callback = function () {
+        if (typeof targetUrl !== 'undefined' && targetUrl) {
+          window.open(targetUrl, '_blank', 'noopener,noreferrer');
+        }
+      };
+      var granted = false;
+      try { granted = localStorage.getItem(VCB_CONSENT_KEY) === 'granted'; } catch (e) {}
+      if (!granted || !VCB_GA4_ID || !VCB_ADS_ID || !VCB_ADS_CONVERSION || typeof gtag !== 'function') {
+        callback();
+        return false;
+      }
+      gtag('set', 'user_data', opts.user_data || {});
+      var params = {
+        send_to: VCB_ADS_CONVERSION,
+        value: 1.0,
+        currency: 'BRL',
+        transport_type: 'beacon',
+        event_callback: callback
+      };
+      if (opts.transaction_id) {
+        params.transaction_id = opts.transaction_id;
+      }
+      gtag('event', 'conversion', params);
+      return false;
+    }
+    window.gtag_report_conversion = gtag_report_conversion;
+
+    gtag('consent', 'default', {
+      analytics_storage: 'denied',
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied',
+      wait_for_update: 500
+    });
+
+    function scheduleLoadGA4() {
+      if (ga4Loaded) return;
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(loadGA4, { timeout: 3000 });
+      } else {
+        window.addEventListener('load', loadGA4);
+      }
+    }
+
+    function loadGA4() {
+      if (ga4Loaded) return;
+      if (!VCB_GA4_ID || !VCB_ADS_ID) return;
+      ga4Loaded = true;
+      var s = document.createElement('script');
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=' + VCB_GA4_ID;
+      s.async = true;
+      s.onload = function() {
+        gtag('js', new Date());
+        gtag('config', VCB_GA4_ID, { send_page_view: true });
+        gtag('config', VCB_ADS_ID, { allow_enhanced_conversions: true });
+      };
+      document.head.appendChild(s);
+    }
+
+    function grantGrantedConsent() {
+      return {
+        analytics_storage: 'granted',
+        ad_storage: 'granted',
+        ad_user_data: 'granted',
+        ad_personalization: 'granted'
+      };
+    }
+
+    function grantAnalyticsConsent() {
+      try { localStorage.setItem(VCB_CONSENT_KEY, 'granted'); } catch (e) {}
+      gtag('consent', 'update', grantGrantedConsent());
+      scheduleLoadGA4();
+      var banner = document.getElementById('cookieBanner');
+      if (banner) banner.hidden = true;
+    }
+
+    function denyAnalyticsConsent() {
+      try { localStorage.setItem(VCB_CONSENT_KEY, 'denied'); } catch (e) {}
+      gtag('consent', 'update', {
+        analytics_storage: 'denied',
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied'
+      });
+      var banner = document.getElementById('cookieBanner');
+      if (banner) banner.hidden = true;
+    }
+
+    function revokeAnalyticsConsent() {
+      denyAnalyticsConsent();
+    }
+
+    window.VCBConsent = {
+      grant: grantAnalyticsConsent,
+      deny: denyAnalyticsConsent,
+      revoke: revokeAnalyticsConsent,
+      key: VCB_CONSENT_KEY
+    };
+
+    try {
+      var stored = localStorage.getItem(VCB_CONSENT_KEY);
+      if (stored === 'granted') {
+        gtag('consent', 'update', grantGrantedConsent());
+        scheduleLoadGA4();
+      } else if (stored === 'denied') {
+        denyAnalyticsConsent();
+      }
+    } catch (e) {}
+  </script>
+
 </head>
 <body>
-  <main class="legal-pending" data-legal-status="pending-review" data-legal-version="">
-    <p><a href="/">&larr; Voltar ao site</a></p>
-    <h1>Cancelamento, pagamento e reembolso</h1>
-    <p><strong>Status:</strong> documento pendente de revisão profissional.</p>
-    <p>As regras finais deverão ser aprovadas pela empresa e informar prazos, taxas, condições da operadora e canais de atendimento.</p>
-    <p><strong>VALIDAÇÃO JURÍDICA NECESSÁRIA</strong></p>
-    <nav aria-label="Informações legais"><a href="condicoes-comerciais.html">Condições comerciais</a> · <a href="termos-de-uso.html">Termos de uso</a> · <a href="contato-lgpd.html">Contato LGPD</a></nav>
+  <a class="skip-link" href="#main-content">Pular para o conteúdo principal</a>
+  <header class="navbar" id="navbar">
+    <div class="navbar__container">
+      <a href="/" class="navbar__logo">
+         <picture><source srcset="assets/logo-vcb.webp" type="image/webp" /><img src="assets/logo-vcb.png" alt="Viajando com a Babi" width="200" height="62" fetchpriority="high" ></picture>
+      </a>
+
+      <nav class="navbar__links" id="navLinks">
+        <a href="/">Início</a>
+        <a href="sobre.html">Sobre</a>
+        <a href="como-funciona.html">Como funciona</a>
+        <a href="pacotes.html">Pacotes</a>
+        <a href="promo-voos.html">Promo de Voos</a>
+        <a href="campanhas.html">Campanhas</a>
+        <a href="faq.html">FAQ</a>
+        <a href="/#depoimentos">Depoimentos</a>
+        <a href="/#contato">Contato</a>
+        <button class="btn-cadastur-nav" id="btnCadasturNav" type="button" aria-label="Ver Certificado Cadastur">
+          <i class="fas fa-award" style="color:#d4a017"></i>
+          Cadastur
+        </button>
+      </nav>
+
+       <a href="https://wa.me/5521920064617?text=Ol%C3%A1%20Babi%21%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20os%20pacotes%20de%20viagem"
+         target="_blank" rel="noopener noreferrer"
+         class="btn btn--whatsapp btn--sm btn--icon navbar__cta"
+         aria-label="Falar no WhatsApp">
+        <i class="fab fa-whatsapp" aria-hidden="true"></i><span class="sr-only">WhatsApp</span>
+      </a>
+
+      <button class="navbar__hamburger" id="hamburger" aria-label="Abrir menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main-content" class="container legal-page" data-legal-status="published-with-pending-validation" data-legal-version="2026-10-14">
+    <nav class="breadcrumb" aria-label="Navegação estrutural"><a href="/">Início</a> <span aria-hidden="true">/</span> Cancelamento e Reembolso</nav>
+    <article class="legal-page__content">
+      
+<p class="legal-page__eyebrow">Orientações para solicitações pós-venda</p>
+<h1>Cancelamento, alteração e reembolso</h1>
+<p class="legal-page__lead">O resultado de um cancelamento depende do produto contratado, do momento da solicitação e das regras da oferta, do contrato e dos fornecedores envolvidos.</p>
+
+<h2>1. Como solicitar</h2>
+<p>Envie a solicitação pelo <a href="https://wa.me/5521920064617" target="_blank" rel="noopener noreferrer">WhatsApp +55 21 92006-4617</a> ou pelo e-mail <a href="mailto:contato@viajandocomababi.com.br">contato@viajandocomababi.com.br</a>. Informe o nome do passageiro responsável, os dados da reserva ou proposta e o que deseja solicitar. Evite enviar dados sensíveis desnecessários.</p>
+<p>A solicitação será encaminhada para análise. Peça e guarde a confirmação de recebimento pelo canal utilizado. O pedido não deve ser considerado aprovado apenas pelo envio da mensagem.</p>
+
+<h2>2. Regras aplicáveis</h2>
+<p>Cada serviço pode ter regras próprias: passagem aérea, hospedagem, pacote, passeio, seguro e demais itens podem ter prazos, condições de alteração e valores diferentes. As regras específicas devem estar na oferta, na proposta ou no contrato apresentado antes da contratação.</p>
+<p>Taxas, multas ou retenções só devem ser aplicadas quando previstas nas condições aplicáveis e permitidas pela legislação. Não há um percentual único de cancelamento para todas as viagens.</p>
+
+<h2>3. Alteração e remarcação</h2>
+<p>Pedidos de alteração ou remarcação dependem de disponibilidade e das regras do fornecedor. Antes de qualquer mudança, será necessário confirmar diferença de preço, taxas eventualmente previstas e os novos dados da viagem.</p>
+
+<h2>4. Reembolso</h2>
+<p>Quando houver direito a reembolso, o valor e a forma de devolução serão apurados conforme o item contratado, o pagamento realizado, as regras do fornecedor e a legislação aplicável. O prazo efetivo deve ser informado no retorno da solicitação; esta página não cria prazo ou percentual que não tenha sido confirmado.</p>
+<p>Se o pagamento tiver sido processado por fornecedor ou instituição financeira, o procedimento pode depender da confirmação e do processamento desse terceiro. A Viajando com a Babi deve informar o andamento disponível ao cliente.</p>
+
+<h2>5. Direitos do consumidor</h2>
+<p>Esta política não limita direitos previstos no Código de Defesa do Consumidor ou em outras normas aplicáveis. Em contratações realizadas fora do estabelecimento comercial, o direito de arrependimento pode incidir nas hipóteses legais; a aplicação ao caso concreto deve ser analisada considerando o serviço, o momento da contratação e a legislação vigente.</p>
+
+<h2>6. Dúvidas</h2>
+<p>Para dúvidas antes do pagamento, consulte as <a href="condicoes-comerciais.html">condições comerciais</a>. Para solicitações relacionadas a dados pessoais, acesse <a href="contato-lgpd.html">Contato LGPD</a>.</p>
+
+<aside class="legal-callout"><strong>Não deixe para depois:</strong> solicite alterações e cancelamentos assim que souber da necessidade, pois fornecedores podem ter prazos próprios.</aside>
+
+      <p class="legal-page__updated"><strong>Última atualização:</strong> 14 de outubro de 2026</p>
+      <nav class="legal-page__related" aria-label="Documentos relacionados">
+        <a href="privacidade.html">Privacidade</a>
+        <a href="cookies.html">Cookies</a>
+        <a href="termos-de-uso.html">Termos de uso</a>
+        <a href="condicoes-comerciais.html">Condições comerciais</a>
+        <a href="cancelamento-reembolso.html">Cancelamento e reembolso</a>
+        <a href="contato-lgpd.html">Contato LGPD</a>
+      </nav>
+    </article>
   </main>
+
+  <footer id="contato" class="footer">
+    <div class="container">
+      <div class="footer__grid">
+
+        <div class="footer__brand">
+           <picture><source srcset="assets/logo-vcb.webp" type="image/webp" /><img src="assets/logo-vcb.png"
+               alt="Viajando com a Babi" class="footer__logo" width="280" height="150" ></picture>
+          <p>Pacotes e Roteiros personalizados para destinos que você sempre sonhou. Do planejamento ao embarque, cuidamos de tudo por você.</p>
+        </div>
+
+        <div class="footer__links">
+          <p class="footer__col-title">Navegação</p>
+          <ul>
+            <li><a href="/">Início</a></li>
+            <li><a href="sobre.html">Sobre a Babi</a></li>
+            <li><a href="como-funciona.html">Como funciona</a></li>
+            <li><a href="pacotes.html">Pacotes de viagem</a></li>
+            <li><a href="promo-voos.html">Promo de Voos</a></li>
+            <li><a href="campanhas.html">Campanhas</a></li>
+            <li><a href="servicos.html">Serviços</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="/#depoimentos">Depoimentos</a></li>
+            <li><a href="/#pagamento">Pagamento</a></li>
+             <li><a href="privacidade.html">Privacidade</a></li>
+             <li><a href="cookies.html">Cookies</a></li>
+             <li><a href="termos-de-uso.html">Termos de uso</a></li>
+             <li><a href="condicoes-comerciais.html">Condições comerciais</a></li>
+             <li><a href="cancelamento-reembolso.html">Cancelamento e reembolso</a></li>
+             <li><a href="contato-lgpd.html">Contato LGPD</a></li>
+            <li>
+              <button class="footer__cadastur-btn" id="btnCadasturFooter" type="button">
+                <i class="fas fa-certificate"></i> Certificado Cadastur
+              </button>
+            </li>
+          </ul>
+        </div>
+
+        <div class="footer__contato">
+          <p class="footer__col-title">Fale comigo</p>
+           <a href="https://wa.me/5521920064617?text=Ol%C3%A1%20Babi%21%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20os%20pacotes%20de%20viagem"
+             target="_blank" rel="noopener noreferrer"
+             class="footer__social-link footer__social-link--wa">
+            <i class="fab fa-whatsapp"></i>
+             <span>+55 21 92006-4617</span>
+          </a>
+           <a href="https://www.instagram.com/viajandocomababi_/"
+             target="_blank" rel="noopener noreferrer"
+             class="footer__social-link footer__social-link--ig">
+            <i class="fab fa-instagram"></i>
+            <span>@viajandocomababi_</span>
+          </a>
+           <a href="mailto:contato@viajandocomababi.com.br"
+             class="footer__social-link footer__social-link--email">
+            <i class="fas fa-envelope"></i>
+             <span>contato@viajandocomababi.com.br</span>
+          </a>
+          <div class="footer__ctas">
+             <a href="https://wa.me/5521920064617?text=Ol%C3%A1%20Babi%21%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20os%20pacotes%20de%20viagem"
+               target="_blank" rel="noopener noreferrer"
+               class="btn btn--whatsapp btn--md">
+              <i class="fab fa-whatsapp"></i> WhatsApp
+            </a>
+             <a href="https://www.instagram.com/viajandocomababi_/"
+               target="_blank" rel="noopener noreferrer"
+               class="btn btn--instagram btn--md">
+              <i class="fab fa-instagram"></i> Instagram
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="footer__bottom">
+        <p>&copy; <span id="year"></span> Viajando com a Babi | Todos os direitos reservados.</p>
+        <p>CNPJ 60.536.280/0001-89</p>
+        <p>Site desenvolvido por <a href="https://cybershieldgroup.com.br/" target="_blank" rel="noopener noreferrer">Cyber Shield Group</a></p>
+        <p><a href="privacidade.html">Política de privacidade</a></p>
+        <p>Feito com <i class="fas fa-heart" style="color:#e74c3c"></i> para quem ama viajar.</p>
+      </div>
+    </div>
+  </footer>
+
+  <div class="modal-overlay" id="modalCadastur" role="dialog" aria-modal="true" aria-label="Certificado Cadastur">
+    <div class="modal">
+      <button class="modal__close" id="modalClose" aria-label="Fechar" type="button">
+        <i class="fas fa-times"></i>
+      </button>
+      <div class="modal__header">
+        <i class="fas fa-award"></i>
+        <div>
+          <h3>Certificado Cadastur</h3>
+          <p>Agência de turismo regularizada pelo Ministério do Turismo</p>
+        </div>
+      </div>
+      <picture>
+        <source srcset="assets/cadastur.webp" type="image/webp" />
+        <img data-src="assets/cadastur.jpg" alt="Certificado Cadastur | Viajando com a Babi" class="modal__img" width="430" height="304" decoding="async" />
+      </picture>
+      <div class="modal__info">
+        <div class="modal__info-item">
+          <span>Cadastrado</span>
+          <strong>Bárbara Cristina Machado Valente Costa de Abreu</strong>
+        </div>
+        <div class="modal__info-item">
+          <span>Nº de Cadastro</span>
+          <strong>60.536.280/0001-89</strong>
+        </div>
+        <div class="modal__info-item">
+          <span>Validade</span>
+          <strong>25/04/2025 a 25/04/2027</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+
+   <a href="https://wa.me/5521920064617?text=Ol%C3%A1%20Babi%21%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20os%20pacotes%20de%20viagem"
+     target="_blank" rel="noopener noreferrer"
+     class="fab-whatsapp" aria-label="Falar no WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+    <span class="fab-whatsapp__tooltip">Falar no WhatsApp</span>
+  </a>
+
+  <div id="cookieBanner" class="cookie-banner" role="dialog" aria-label="Cookies e privacidade" aria-live="polite" hidden>
+    <div class="cookie-banner__inner container">
+      <p class="cookie-banner__text">Usamos cookies de analytics (Google Analytics) e de publicidade (Google Ads) para medir visitas e campanhas, sem enviar dados pessoais dos formulários. <a href="privacidade.html">Política de privacidade</a></p>
+      <div class="cookie-banner__actions">
+        <button type="button" class="btn btn--md cookie-banner__accept" id="cookieAccept">Aceitar cookies</button>
+        <button type="button" class="btn btn--outline btn--md cookie-banner__reject" id="cookieReject">Recusar</button>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function initCookieBanner() {
+      var banner = document.getElementById('cookieBanner');
+      if (!banner) return;
+      var key = (window.VCBConsent && window.VCBConsent.key) || 'vcb_consent_analytics';
+      try {
+        if (localStorage.getItem(key)) {
+          banner.hidden = true;
+          return;
+        }
+      } catch (e) {}
+      banner.hidden = false;
+      var accept = document.getElementById('cookieAccept');
+      var reject = document.getElementById('cookieReject');
+      accept && accept.addEventListener('click', function () {
+        window.VCBConsent && window.VCBConsent.grant();
+      });
+      reject && reject.addEventListener('click', function () {
+        window.VCBConsent && window.VCBConsent.deny();
+      });
+    })();
+  </script>
+
+  <script src="api-catalog.js?v=1"></script>
+  <script src="analytics.js?v=18"></script>
+  <script src="script.js?v=29"></script>
 </body>
 </html>
+

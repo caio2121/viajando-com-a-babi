@@ -99,9 +99,14 @@
       if (banner) banner.hidden = true;
     }
 
+    function revokeAnalyticsConsent() {
+      denyAnalyticsConsent();
+    }
+
     window.VCBConsent = {
       grant: grantAnalyticsConsent,
       deny: denyAnalyticsConsent,
+      revoke: revokeAnalyticsConsent,
       key: VCB_CONSENT_KEY
     };
 

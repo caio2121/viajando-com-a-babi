@@ -1,38 +1,35 @@
-﻿<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
 <head>
-  <script src="site-config.js?v=1"></script>
+    <script src="site-config.js?v=1"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Dancing+Script:wght@600;700&display=swap" media="print" onload="this.media='all'" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" media="print" onload="this.media='all'" />
+  <noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  </noscript>
 
-<meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="robots" content="noindex, nofollow" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style.css?v=31">
+  <link rel="icon" type="image/png" href="assets/logo-vcb.png">
+  <meta name="description" content="Como a Viajando com a Babi coleta, utiliza, compartilha e protege dados pessoais no site e no atendimento.">
+  <link rel="canonical" href="https://viajandocomababi.com.br/privacidade.html">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://viajandocomababi.com.br/privacidade.html">
+  <meta property="og:title" content="Política de Privacidade | Viajando com a Babi">
+  <meta property="og:description" content="Como a Viajando com a Babi coleta, utiliza, compartilha e protege dados pessoais no site e no atendimento.">
+  <meta property="og:image" content="https://viajandocomababi.com.br/assets/og-share.jpeg">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:site_name" content="Viajando com a Babi">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Política de Privacidade | Viajando com a Babi">
+  <meta name="twitter:description" content="Como a Viajando com a Babi coleta, utiliza, compartilha e protege dados pessoais no site e no atendimento.">
+  <meta name="twitter:image" content="https://viajandocomababi.com.br/assets/og-share.jpeg">
   <title>Política de Privacidade | Viajando com a Babi</title>
-  <meta name="description" content="Política de privacidade e tratamento de dados da Viajando com a Babi, agência de viagens Cadastur." />
-  <link rel="canonical" href="https://viajandocomababi.com.br/privacidade.html" />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://viajandocomababi.com.br/privacidade.html" />
-  <meta property="og:title" content="Política de Privacidade | Viajando com a Babi" />
-  <meta property="og:description" content="Política de privacidade e tratamento de dados da Viajando com a Babi." />
-  <meta property="og:image" content="https://viajandocomababi.com.br/assets/og-share.jpeg" />
-  <meta property="og:locale" content="pt_BR" />
-  <meta property="og:site_name" content="Viajando com a Babi" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Política de Privacidade | Viajando com a Babi" />
-  <meta name="twitter:description" content="Política de privacidade e tratamento de dados da Viajando com a Babi." />
-  <meta name="twitter:image" content="https://viajandocomababi.com.br/assets/og-share.jpeg" />
-  <link rel="icon" type="image/png" href="assets/logo-vcb.png" />
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css?v=30" />
-  <style>
-    .legal-page { padding: calc(var(--navbar-h) + 40px) 0 60px; max-width: 760px; margin: 0 auto; }
-    .legal-page h1 { font-size: 2rem; color: var(--clr-dark); margin-bottom: 8px; }
-    .legal-page h2 { font-size: 1.2rem; color: var(--clr-dark); margin: 28px 0 10px; }
-    .legal-page p, .legal-page li { color: var(--clr-text); margin-bottom: 12px; line-height: 1.7; }
-    .legal-page ul { padding-left: 20px; list-style: disc; }
-    .legal-page a { color: var(--clr-primary-d); text-decoration: underline; }
-    .legal-page__back { display: inline-block; margin-bottom: 24px; font-weight: 700; color: var(--clr-primary); }
-  </style>
-  <!-- Google Analytics 4 + Google Ads + Consent Mode v2 -->
+    <!-- Google Analytics 4 + Google Ads + Consent Mode v2 -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
@@ -133,9 +130,14 @@
       if (banner) banner.hidden = true;
     }
 
+    function revokeAnalyticsConsent() {
+      denyAnalyticsConsent();
+    }
+
     window.VCBConsent = {
       grant: grantAnalyticsConsent,
       deny: denyAnalyticsConsent,
+      revoke: revokeAnalyticsConsent,
       key: VCB_CONSENT_KEY
     };
 
@@ -149,60 +151,225 @@
       }
     } catch (e) {}
   </script>
+
 </head>
 <body>
-  <main class="container legal-page">
-    <a href="/" class="legal-page__back">&larr; Voltar ao site</a>
-    <h1>Política de Privacidade</h1>
-    <p><strong>Última atualização:</strong> julho de 2026</p>
+  <a class="skip-link" href="#main-content">Pular para o conteúdo principal</a>
+  <header class="navbar" id="navbar">
+    <div class="navbar__container">
+      <a href="/" class="navbar__logo">
+         <picture><source srcset="assets/logo-vcb.webp" type="image/webp" /><img src="assets/logo-vcb.png" alt="Viajando com a Babi" width="200" height="62" fetchpriority="high" ></picture>
+      </a>
 
-    <p>A <strong>Viajando com a Babi</strong> (CNPJ 60.536.280/0001-89) respeita sua privacidade e trata dados pessoais em conformidade com a Lei Geral de Proteção de Dados (LGPD (Lei nº 13.709/2018).</p>
+      <nav class="navbar__links" id="navLinks">
+        <a href="/">Início</a>
+        <a href="sobre.html">Sobre</a>
+        <a href="como-funciona.html">Como funciona</a>
+        <a href="pacotes.html">Pacotes</a>
+        <a href="promo-voos.html">Promo de Voos</a>
+        <a href="campanhas.html">Campanhas</a>
+        <a href="faq.html">FAQ</a>
+        <a href="/#depoimentos">Depoimentos</a>
+        <a href="/#contato">Contato</a>
+        <button class="btn-cadastur-nav" id="btnCadasturNav" type="button" aria-label="Ver Certificado Cadastur">
+          <i class="fas fa-award" style="color:#d4a017"></i>
+          Cadastur
+        </button>
+      </nav>
 
-    <h2>1. Quem somos</h2>
-    <p>Controladora dos dados: Bárbara Cristina Machado Valente Costa de Abreu | Viajando com a Babi.<br>
-    Contato: <a href="mailto:contato@viajandocomababi.com.br">contato@viajandocomababi.com.br</a> · WhatsApp +55 21 92006-4617</p>
+       <a href="https://wa.me/5521920064617?text=Ol%C3%A1%20Babi%21%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20os%20pacotes%20de%20viagem"
+         target="_blank" rel="noopener noreferrer"
+         class="btn btn--whatsapp btn--sm btn--icon navbar__cta"
+         aria-label="Falar no WhatsApp">
+        <i class="fab fa-whatsapp" aria-hidden="true"></i><span class="sr-only">WhatsApp</span>
+      </a>
 
-    <h2>2. Quais dados coletamos</h2>
-    <p>Quando você entra em contato pelo formulário do site ou WhatsApp, podemos receber:</p>
-    <ul>
-      <li>Destino de interesse, datas, número de viajantes e orçamento estimado</li>
-      <li>Nome, telefone e e-mail (quando você os informar voluntariamente)</li>
-      <li>Mensagens enviadas por WhatsApp ou e-mail</li>
-    </ul>
-    <p>O site também utiliza <strong>Google Analytics 4</strong> para medir visitas e interações (cliques em botões de contato) e <strong>Google Ads</strong> para medir campanhas e remarketing, <strong>sem enviar</strong> ao Google o conteúdo que você digita nos formulários.</p>
+      <button class="navbar__hamburger" id="hamburger" aria-label="Abrir menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
 
-    <h2>3. Finalidade do tratamento</h2>
-    <ul>
-      <li>Responder solicitações de orçamento e planejamento de viagem</li>
-      <li>Prestar consultoria e organizar pacotes/roteiros</li>
-      <li>Melhorar o site e entender quais serviços geram mais interesse</li>
-    </ul>
+  <main id="main-content" class="container legal-page" data-legal-status="published-with-pending-validation" data-legal-version="2026-10-14">
+    <nav class="breadcrumb" aria-label="Navegação estrutural"><a href="/">Início</a> <span aria-hidden="true">/</span> Política de Privacidade</nav>
+    <article class="legal-page__content">
+      
+<p class="legal-page__eyebrow">Transparência sobre dados pessoais</p>
+<h1>Política de Privacidade</h1>
+<p class="legal-page__lead">A Viajando com a Babi (CNPJ 60.536.280/0001-89) apresenta nesta política as práticas observadas no site e no atendimento iniciado por seus canais oficiais.</p>
 
-    <h2>4. Base legal</h2>
-    <p>Execução de procedimentos preliminares a contrato, legítimo interesse (análise de tráfego do site) e consentimento quando aplicável.</p>
+<h2>1. Quem trata os dados</h2>
+<p>A operação do site identifica como responsável pelo atendimento <strong>Bárbara Cristina Machado Valente Costa de Abreu | Viajando com a Babi</strong>. Para dúvidas sobre privacidade ou solicitações de titulares, use <a href="contato-lgpd.html">Contato LGPD</a>, <a href="mailto:contato@viajandocomababi.com.br">contato@viajandocomababi.com.br</a> ou o WhatsApp informado no site.</p>
 
-    <h2>5. Compartilhamento</h2>
-    <p>Seus dados podem ser compartilhados apenas com operadoras, hotéis, seguradoras e parceiros necessários para montar sua viagem, ou com ferramentas de análise e publicidade (Google Analytics e Google Ads), conforme a finalidade descrita.</p>
+<h2>2. Dados tratados</h2>
+<ul>
+  <li>dados informados no formulário de viagem: destino, datas ou período, número de adultos, idades de crianças, cidade de saída e orçamento;</li>
+  <li>nome, telefone, e-mail e mensagem quando a pessoa decide informá-los no atendimento;</li>
+  <li>conteúdo e metadados da conversa quando o contato é enviado ao WhatsApp ou ao e-mail, sob as regras desses canais;</li>
+  <li>informações de navegação e interações de analytics e publicidade somente conforme a escolha de consentimento descrita em <a href="cookies.html">Cookies</a>.</li>
+</ul>
+<p>O formulário público não envia os campos para um backend próprio: o JavaScript monta uma mensagem e abre o WhatsApp. O site não mantém, no código observado, um banco de dados de solicitações do formulário.</p>
 
-    <h2>6. Cookies e tecnologias similares</h2>
-    <p>O site exibe um banner de cookies na primeira visita. Você pode <strong>aceitar</strong> ou <strong>recusar</strong> o uso de cookies de analytics e publicidade. A preferência é salva no navegador (<code>localStorage</code>, chave <code>vcb_consent_analytics</code>).</p>
-    <p>Se você aceita, o Google Analytics e o Google Ads podem utilizar cookies para estatísticas de uso e medição de campanhas, com Consent Mode v2 (só após consentimento). Isso inclui cookies de analytics e de publicidade (armazenamento de anúncios, dados de usuário para anúncios e personalização de anúncios). Se recusa, os scripts do Google não são carregados. Nenhum dado digitado nos formulários do site é enviado ao Google.</p>
-    <p>Você pode gerenciar ou limpar cookies e dados locais nas configurações do seu navegador.</p>
+<h2>3. Finalidades e bases legais</h2>
+<ul>
+  <li><strong>Atendimento, cotação e planejamento:</strong> responder ao pedido e realizar procedimentos preliminares relacionados a uma contratação, quando solicitados pela pessoa;</li>
+  <li><strong>Execução da viagem:</strong> usar dados necessários para organizar serviços, reservas e comunicação com fornecedores, quando a pessoa prosseguir com a contratação;</li>
+  <li><strong>Obrigações e defesa de direitos:</strong> conservar ou utilizar informações quando houver obrigação legal ou necessidade de exercício regular de direitos;</li>
+  <li><strong>Analytics e publicidade:</strong> medir navegação e conversões somente após o consentimento registrado no navegador.</li>
+</ul>
+<p>A base legal adequada para cada tratamento depende do contexto concreto. Esta página não transforma uma hipótese legal em autorização genérica para qualquer finalidade.</p>
 
-    <h2>7. Seus direitos</h2>
-    <p>Você pode solicitar acesso, correção, exclusão ou portabilidade dos seus dados, além de revogar consentimentos, pelo e-mail ou WhatsApp acima.</p>
+<h2>4. Compartilhamento</h2>
+<p>Quando necessário para a cotação ou execução de uma viagem, dados podem ser compartilhados com operadoras, companhias aéreas, hotéis, seguradoras e demais fornecedores da solução escolhida. O WhatsApp, o e-mail, o Google Analytics e o Google Ads também tratam dados conforme seus próprios serviços quando o visitante utiliza esses canais ou concede consentimento.</p>
 
-    <h2>8. Retenção</h2>
-    <p>Os dados são mantidos pelo tempo necessário para atendimento comercial e obrigações legais, e depois eliminados ou anonimizados quando possível.</p>
+<h2>5. Cookies e consentimento</h2>
+<p>O site usa <code>localStorage</code> para registrar a preferência em <code>vcb_consent_analytics</code>. Com preferência não definida ou negada, o código mantém sinais de consentimento Google negados e não carrega as tags remotas do Google. Com aceite, as tags configuradas podem tratar informações de analytics e publicidade. Consulte a <a href="cookies.html">Política de Cookies</a> para detalhes e para revogar a escolha.</p>
 
-    <h2>9. Segurança</h2>
-    <p>Adotamos medidas razoáveis para proteger suas informações. O envio de dados pelo WhatsApp segue as políticas da plataforma Meta.</p>
+<h2>6. Retenção</h2>
+<p>O código público não define um prazo único para mensagens recebidas no WhatsApp, e-mail ou por fornecedores. A retenção deve ocorrer somente pelo tempo necessário à finalidade, às obrigações legais e à defesa de direitos, conforme o contexto. A definição operacional de prazos por categoria é uma pendência de governança da empresa.</p>
 
-    <nav aria-label="Informações legais" style="margin-top:32px;">
-      <a href="cookies.html">Cookies</a> · <a href="termos-de-uso.html">Termos de uso</a> · <a href="condicoes-comerciais.html">Condições comerciais</a> · <a href="cancelamento-reembolso.html">Cancelamento e reembolso</a> · <a href="contato-lgpd.html">Contato LGPD</a>
-    </nav>
-    <p><a href="/">Voltar para viajandocomababi.com.br</a></p>
+<h2>7. Direitos do titular</h2>
+<p>Você pode solicitar confirmação, acesso, correção, informações sobre compartilhamento, anonimização, bloqueio ou eliminação quando aplicável, portabilidade e revogação de consentimento, além de outros direitos previstos na LGPD. Os pedidos são tratados conforme as hipóteses legais, a proteção de terceiros e a necessidade de confirmação de identidade.</p>
+
+<h2>8. Segurança</h2>
+<p>O site utiliza HTTPS quando publicado, não solicita dados de cartão no formulário e envia a mensagem escolhida para o WhatsApp em nova aba. Nenhuma transmissão pela internet ou por serviço de terceiro é isenta de riscos; não compartilhe senhas ou dados desnecessários.</p>
+
+<h2>9. Atualizações e contato</h2>
+<p>Esta política pode ser atualizada quando o site, os serviços, os fornecedores ou a legislação mudarem. A data da versão publicada aparece abaixo do título. Para exercer direitos, acesse <a href="contato-lgpd.html">Contato LGPD</a>.</p>
+
+      <p class="legal-page__updated"><strong>Última atualização:</strong> 14 de outubro de 2026</p>
+      <nav class="legal-page__related" aria-label="Documentos relacionados">
+        <a href="privacidade.html">Privacidade</a>
+        <a href="cookies.html">Cookies</a>
+        <a href="termos-de-uso.html">Termos de uso</a>
+        <a href="condicoes-comerciais.html">Condições comerciais</a>
+        <a href="cancelamento-reembolso.html">Cancelamento e reembolso</a>
+        <a href="contato-lgpd.html">Contato LGPD</a>
+      </nav>
+    </article>
   </main>
+
+  <footer id="contato" class="footer">
+    <div class="container">
+      <div class="footer__grid">
+
+        <div class="footer__brand">
+           <picture><source srcset="assets/logo-vcb.webp" type="image/webp" /><img src="assets/logo-vcb.png"
+               alt="Viajando com a Babi" class="footer__logo" width="280" height="150" ></picture>
+          <p>Pacotes e Roteiros personalizados para destinos que você sempre sonhou. Do planejamento ao embarque, cuidamos de tudo por você.</p>
+        </div>
+
+        <div class="footer__links">
+          <p class="footer__col-title">Navegação</p>
+          <ul>
+            <li><a href="/">Início</a></li>
+            <li><a href="sobre.html">Sobre a Babi</a></li>
+            <li><a href="como-funciona.html">Como funciona</a></li>
+            <li><a href="pacotes.html">Pacotes de viagem</a></li>
+            <li><a href="promo-voos.html">Promo de Voos</a></li>
+            <li><a href="campanhas.html">Campanhas</a></li>
+            <li><a href="servicos.html">Serviços</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="/#depoimentos">Depoimentos</a></li>
+            <li><a href="/#pagamento">Pagamento</a></li>
+             <li><a href="privacidade.html">Privacidade</a></li>
+             <li><a href="cookies.html">Cookies</a></li>
+             <li><a href="termos-de-uso.html">Termos de uso</a></li>
+             <li><a href="condicoes-comerciais.html">Condições comerciais</a></li>
+             <li><a href="cancelamento-reembolso.html">Cancelamento e reembolso</a></li>
+             <li><a href="contato-lgpd.html">Contato LGPD</a></li>
+            <li>
+              <button class="footer__cadastur-btn" id="btnCadasturFooter" type="button">
+                <i class="fas fa-certificate"></i> Certificado Cadastur
+              </button>
+            </li>
+          </ul>
+        </div>
+
+        <div class="footer__contato">
+          <p class="footer__col-title">Fale comigo</p>
+           <a href="https://wa.me/5521920064617?text=Ol%C3%A1%20Babi%21%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20os%20pacotes%20de%20viagem"
+             target="_blank" rel="noopener noreferrer"
+             class="footer__social-link footer__social-link--wa">
+            <i class="fab fa-whatsapp"></i>
+             <span>+55 21 92006-4617</span>
+          </a>
+           <a href="https://www.instagram.com/viajandocomababi_/"
+             target="_blank" rel="noopener noreferrer"
+             class="footer__social-link footer__social-link--ig">
+            <i class="fab fa-instagram"></i>
+            <span>@viajandocomababi_</span>
+          </a>
+           <a href="mailto:contato@viajandocomababi.com.br"
+             class="footer__social-link footer__social-link--email">
+            <i class="fas fa-envelope"></i>
+             <span>contato@viajandocomababi.com.br</span>
+          </a>
+          <div class="footer__ctas">
+             <a href="https://wa.me/5521920064617?text=Ol%C3%A1%20Babi%21%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20os%20pacotes%20de%20viagem"
+               target="_blank" rel="noopener noreferrer"
+               class="btn btn--whatsapp btn--md">
+              <i class="fab fa-whatsapp"></i> WhatsApp
+            </a>
+             <a href="https://www.instagram.com/viajandocomababi_/"
+               target="_blank" rel="noopener noreferrer"
+               class="btn btn--instagram btn--md">
+              <i class="fab fa-instagram"></i> Instagram
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="footer__bottom">
+        <p>&copy; <span id="year"></span> Viajando com a Babi | Todos os direitos reservados.</p>
+        <p>CNPJ 60.536.280/0001-89</p>
+        <p>Site desenvolvido por <a href="https://cybershieldgroup.com.br/" target="_blank" rel="noopener noreferrer">Cyber Shield Group</a></p>
+        <p><a href="privacidade.html">Política de privacidade</a></p>
+        <p>Feito com <i class="fas fa-heart" style="color:#e74c3c"></i> para quem ama viajar.</p>
+      </div>
+    </div>
+  </footer>
+
+  <div class="modal-overlay" id="modalCadastur" role="dialog" aria-modal="true" aria-label="Certificado Cadastur">
+    <div class="modal">
+      <button class="modal__close" id="modalClose" aria-label="Fechar" type="button">
+        <i class="fas fa-times"></i>
+      </button>
+      <div class="modal__header">
+        <i class="fas fa-award"></i>
+        <div>
+          <h3>Certificado Cadastur</h3>
+          <p>Agência de turismo regularizada pelo Ministério do Turismo</p>
+        </div>
+      </div>
+      <picture>
+        <source srcset="assets/cadastur.webp" type="image/webp" />
+        <img data-src="assets/cadastur.jpg" alt="Certificado Cadastur | Viajando com a Babi" class="modal__img" width="430" height="304" decoding="async" />
+      </picture>
+      <div class="modal__info">
+        <div class="modal__info-item">
+          <span>Cadastrado</span>
+          <strong>Bárbara Cristina Machado Valente Costa de Abreu</strong>
+        </div>
+        <div class="modal__info-item">
+          <span>Nº de Cadastro</span>
+          <strong>60.536.280/0001-89</strong>
+        </div>
+        <div class="modal__info-item">
+          <span>Validade</span>
+          <strong>25/04/2025 a 25/04/2027</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+
+   <a href="https://wa.me/5521920064617?text=Ol%C3%A1%20Babi%21%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20os%20pacotes%20de%20viagem"
+     target="_blank" rel="noopener noreferrer"
+     class="fab-whatsapp" aria-label="Falar no WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+    <span class="fab-whatsapp__tooltip">Falar no WhatsApp</span>
+  </a>
 
   <div id="cookieBanner" class="cookie-banner" role="dialog" aria-label="Cookies e privacidade" aria-live="polite" hidden>
     <div class="cookie-banner__inner container">
@@ -235,6 +402,10 @@
       });
     })();
   </script>
+
+  <script src="api-catalog.js?v=1"></script>
   <script src="analytics.js?v=18"></script>
+  <script src="script.js?v=29"></script>
 </body>
 </html>
+

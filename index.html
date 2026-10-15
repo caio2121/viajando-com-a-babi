@@ -1658,7 +1658,8 @@
           <p>Preencha e enviaremos seu roteiro pelo WhatsApp</p>
         </div>
       </div>
-      <form id="formViagem" class="modal__form" novalidate>
+      <form id="formViagem" class="modal__form" aria-describedby="formViagemHint">
+        <p id="formViagemHint" class="sr-only">Campos marcados com asterisco são obrigatórios. Ao enviar, uma mensagem será aberta no WhatsApp.</p>
         <div class="form__group">
           <label for="fDestino">✈️ Destino desejado *</label>
           <input type="text" id="fDestino" required placeholder="Ex: Itália, Cancún, Nordeste…" />
