@@ -527,19 +527,19 @@
       "last_modified": "Tue, 08 Sep 2026 13:12:10 GMT",
       "sha256": "c21b5d815b76cde36c568fe8c28e4c86353c20b12c9cb356442730ff6bc1a3f2"
     },
-    "pacote-costaricarotaentrevulcoe": {
-      "stem": "pacote-costaricarotaentrevulcoe",
-      "source_url": "https://viajandocomdesconto.com/img/8623cff7ace3cac1.png",
-      "etag": "\"46daec-6a6cfbf4-101d3f9e9b93b925;;;\"",
-      "last_modified": "Fri, 31 Jul 2026 19:48:04 GMT",
-      "sha256": "0711e0d88788b97d845f8ee0a50ef6a0bcaede30ba593988cb0c8d8311d475e2"
-    },
     "pacote-costeirapalacebeachresor": {
       "stem": "pacote-costeirapalacebeachresor",
       "source_url": "https://viajandocomdesconto.com/img/1b43143a1504f233.png",
       "etag": "\"3809ad-6abbbca9-b258fabcc6108a5b;;;\"",
       "last_modified": "Tue, 29 Sep 2026 13:27:05 GMT",
       "sha256": "fc53b53e8051d6496fa163808825ca0fec5d73f32397db62267f0c2dc748001f"
+    },
+    "pacote-cruzeiroparaisodoadriati": {
+      "stem": "pacote-cruzeiroparaisodoadriati",
+      "source_url": "https://viajandocomdesconto.com/img/ef36dc1f28451b87.png",
+      "etag": "\"3e4e83-6ad0b9c7-9f66cdd32c1e8e89;;;\"",
+      "last_modified": "Thu, 15 Oct 2026 11:32:23 GMT",
+      "sha256": "0ad994e1092f4541d57389af7974be0484850ef8fa741f6497624404dc079716"
     },
     "pacote-cruzeiropelonilonovogran": {
       "stem": "pacote-cruzeiropelonilonovogran",
@@ -701,6 +701,13 @@
       "etag": "\"29bf66-6aa017e1-a1b2f1dee074b6f2;;;\"",
       "last_modified": "Tue, 08 Sep 2026 14:12:49 GMT",
       "sha256": "32fa2b56a62ba6a5c4b3f4ee1382e4e683ef79889543fcd203186f0e175cdd53"
+    },
+    "pacote-encantosdaeuropa": {
+      "stem": "pacote-encantosdaeuropa",
+      "source_url": "https://viajandocomdesconto.com/img/d6badd2d5a8c0d3b.png",
+      "etag": "\"408515-6ad0b96f-7a66002f54b5c1f8;;;\"",
+      "last_modified": "Thu, 15 Oct 2026 11:30:55 GMT",
+      "sha256": "3c901491534f7c449163d71eb2079a580ecec77778db7fdabc0f1346709fa5bb"
     },
     "pacote-encantosdoorientemarroco": {
       "stem": "pacote-encantosdoorientemarroco",
@@ -1912,6 +1919,13 @@
       "etag": "\"38ce48-6a6d10c9-887b75a04ed20b5b;;;\"",
       "last_modified": "Fri, 31 Jul 2026 21:16:57 GMT",
       "sha256": "32397953ea784dda03f789c9c27daca709abd9a5b944a6f3b44946e304b613b2"
+    },
+    "pacote-panoramadoseuaecanadacom": {
+      "stem": "pacote-panoramadoseuaecanadacom",
+      "source_url": "https://viajandocomdesconto.com/img/be8a4a4e325dd585.png",
+      "etag": "\"2c7e6a-6ad0b8db-d9cb0465de23f489;;;\"",
+      "last_modified": "Thu, 15 Oct 2026 11:28:27 GMT",
+      "sha256": "aabb1b30c67c429deb18e8ccbdeb9e54b030abe406cb8b37857c0cd0b4b3be79"
     },
     "pacote-parisalpeseitalia": {
       "stem": "pacote-parisalpeseitalia",
