@@ -67,17 +67,84 @@ def slugify(text: str, prefix: str = "") -> str:
     return f"{prefix}{base}"[:80].strip("-")
 
 
-def fetch_html() -> str:
-    req = urllib.request.Request(SOURCE_URL, headers={"User-Agent": USER_AGENT})
+def fetch_text(url: str) -> str:
+    req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
     with urllib.request.urlopen(req, timeout=90) as resp:
+        requested = urllib.parse.urlsplit(url)
+        final = urllib.parse.urlsplit(resp.geturl())
+        if (final.scheme.lower(), final.netloc.lower()) != (
+            requested.scheme.lower(),
+            requested.netloc.lower(),
+        ):
+            raise RuntimeError(f"Redirecionamento para origem externa bloqueado: {resp.geturl()}")
         return resp.read().decode("utf-8", "replace")
 
 
-def extract_json_array(html: str, name: str) -> list:
-    match = re.search(rf"{name}\s*=\s*(\[.*?\]);", html, re.S)
+def fetch_html() -> str:
+    return fetch_text(SOURCE_URL)
+
+
+def extract_json_array(source: str, name: str) -> list:
+    match = re.search(rf"\b(?:const|let|var)?\s*{re.escape(name)}\s*=\s*", source)
     if not match:
         raise RuntimeError(f"Array {name} não encontrado na fonte")
-    return json.loads(match.group(1))
+    try:
+        value, _ = json.JSONDecoder().raw_decode(source[match.end() :].lstrip())
+    except json.JSONDecodeError as exc:
+        raise RuntimeError(f"Array {name} inválido na fonte: {exc.msg}") from exc
+    if not isinstance(value, list):
+        raise RuntimeError(f"Array {name} inválido na fonte")
+    return value
+
+
+def same_origin_script_urls(source_html: str) -> list[str]:
+    source_origin = urllib.parse.urlsplit(SOURCE_URL)
+    script_urls = re.findall(r"<script\b[^>]*\bsrc=[\"']([^\"']+)[\"']", source_html, re.I)
+    seen: set[str] = set()
+    urls: list[str] = []
+    for source in script_urls:
+        script_url = urllib.parse.urljoin(SOURCE_URL, html.unescape(source))
+        parsed = urllib.parse.urlsplit(script_url)
+        if parsed.scheme not in {"http", "https"} or parsed.netloc != source_origin.netloc:
+            continue
+        if script_url in seen:
+            continue
+        seen.add(script_url)
+        urls.append(script_url)
+    return urls
+
+
+def extract_from_same_origin_scripts(
+    source_html: str,
+    extractor,
+    label: str,
+    script_fetcher=fetch_text,
+    legacy_error: Exception | None = None,
+):
+    for script_url in same_origin_script_urls(source_html):
+        try:
+            script = script_fetcher(script_url)
+            return extractor(script)
+        except (OSError, RuntimeError, ValueError):
+            continue
+
+    raise RuntimeError(
+        f"{label} não encontrado no HTML nem nos scripts da fonte"
+    ) from legacy_error
+
+
+def extract_pacotes(source_html: str, script_fetcher=fetch_text) -> list:
+    """Extrai pacotes do HTML legado ou do bundle JS atual da operadora."""
+    try:
+        return extract_json_array(source_html, "PACOTES")
+    except RuntimeError as exc:
+        return extract_from_same_origin_scripts(
+            source_html,
+            lambda script: extract_json_array(script, "PACOTES"),
+            "Array PACOTES",
+            script_fetcher,
+            exc,
+        )
 
 
 def extract_js_object(html: str, needle: str) -> dict:
@@ -117,8 +184,17 @@ def extract_dados(html: str) -> dict:
     return json.loads(match.group(1))
 
 
-def extract_pvoo_payload(html: str) -> dict:
-    return extract_js_object(html, "window.__PVOO_PAYLOAD = ")
+def extract_pvoo_payload(source_html: str, script_fetcher=fetch_text) -> dict:
+    try:
+        return extract_js_object(source_html, "window.__PVOO_PAYLOAD = ")
+    except RuntimeError as exc:
+        return extract_from_same_origin_scripts(
+            source_html,
+            lambda script: extract_js_object(script, "window.__PVOO_PAYLOAD = "),
+            "window.__PVOO_PAYLOAD",
+            script_fetcher,
+            exc,
+        )
 
 
 def as_text(value) -> str:
@@ -1451,6 +1527,7 @@ def main() -> None:
     parser.add_argument("--download-images", action="store_true", help="Baixa imagens ausentes dos pacotes")
     parser.add_argument("--from-json", action="store_true", help="Regenera fragments a partir de data/operator-sync.json, sem coletar a fonte")
     parser.add_argument("--persist-local", action="store_true", help="Faz upsert do snapshot no SQLite local depois de gerar os arquivos")
+    parser.add_argument("--check", action="store_true", help="Coleta e valida a fonte sem escrever arquivos")
     args = parser.parse_args()
 
     if args.from_json:
@@ -1478,8 +1555,15 @@ def main() -> None:
     print("Coletando fonte…")
     html = fetch_html()
     dados = extract_dados(html)
-    pacotes_raw = extract_json_array(html, "PACOTES")
-    pvoo_payload = extract_pvoo_payload(html)
+    script_cache: dict[str, str] = {}
+
+    def cached_script_fetcher(url: str) -> str:
+        if url not in script_cache:
+            script_cache[url] = fetch_text(url)
+        return script_cache[url]
+
+    pacotes_raw = extract_pacotes(html, cached_script_fetcher)
+    pvoo_payload = extract_pvoo_payload(html, cached_script_fetcher)
     promos_raw = dados.get("promos") or []
     cotado_em = dados.get("cotado_em") or pvoo_payload.get("ger") or ""
 
@@ -1504,9 +1588,20 @@ def main() -> None:
             if record:
                 active_image_manifest[stem] = record
 
-    write_fragments(pacotes, voos, campanhas)
     checks = validate_voos(voos)
     price_audit = validate_pacotes(pacotes)
+
+    if args.check:
+        if not pacotes:
+            raise RuntimeError("Nenhum pacote válido encontrado na fonte")
+        if not voos:
+            raise RuntimeError("Nenhuma promoção de voo válida encontrada na fonte")
+        print(f"CHECK OK: {len(pacotes)} pacotes, {len(voos)} voos, {len(campanhas)} campanhas")
+        print(f"Cotado em: {cotado_em}")
+        print_report(voos, voo_stats, pacotes, campanhas, checks, price_audit)
+        return
+
+    write_fragments(pacotes, voos, campanhas)
 
     index_ids = existing_card_ids((ROOT / "index.html").read_text(encoding="utf-8"))
     matched = sum(1 for o in pacotes if match_offer_to_card(o, index_ids))

@@ -31,6 +31,9 @@ jobs:
       - name: Instalar dependência de imagens
         run: python -m pip install --disable-pip-version-check -r requirements-dev.txt
 
+      - name: Validar fonte da operadora sem escrever arquivos
+        run: python _sync_operator.py --check
+
       - name: Sincronizar e regenerar o site
         run: |
           python _sync_operator.py --download-images --apply
@@ -39,8 +42,25 @@ jobs:
 
       - name: Validar o catálogo gerado
         run: |
+          python -m unittest discover -s tests -v
           python _validate_prices.py
           python _validate_groups.py
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          payload = json.loads(Path("data/operator-sync.json").read_text(encoding="utf-8"))
+          offers = payload.get("offers") or {}
+          if not payload.get("last_sync"):
+              raise SystemExit("snapshot sem last_sync")
+          for key in ("pacotes", "promo_voos", "campanhas"):
+              count = len(offers.get(key) or [])
+              if count == 0:
+                  raise SystemExit(f"snapshot sem ofertas em {key}")
+              print(f"{key}: {count}")
+          print(f"last_sync: {payload['last_sync']}")
+          print(f"cotado_em: {payload.get('cotado_em', '')}")
+          PY
 
       - name: Publicar alterações
         shell: bash
