@@ -1,5 +1,5 @@
 {
-  "last_sync": "2026-10-20T13:27:19",
+  "last_sync": "2026-10-20T13:58:25",
   "source": "https://viajandocomdesconto.com/",
   "cotado_em": "20/10/2026",
   "stats": {
@@ -12,11 +12,12 @@
       "total": 474,
       "rio": 115,
       "sp": 199,
-      "sem_aereo": 137,
+      "sem_aereo": 136,
       "ignored_origin": 47,
       "ignored_expired": 0,
       "ignored_internal": 2,
-      "ignored_destination": 68
+      "ignored_destination": 68,
+      "ignored_image": 1
     },
     "filtro_voos": {
       "total": 10745,
@@ -35,7 +36,7 @@
       "ignored_expired": 0
     },
     "publicados": {
-      "pacotes": 451,
+      "pacotes": 450,
       "promo_voos": 3393,
       "campanhas": 49
     },
@@ -52,8 +53,8 @@
       "com_aeroporto_destino": 3393
     },
     "validacao_precos_pacotes": {
-      "analisados": 451,
-      "com_preco_total": 449,
+      "analisados": 450,
+      "com_preco_total": 448,
       "sem_preco_total": 2,
       "inconsistencias": 0,
       "aereo_como_total": 0
@@ -16657,7 +16658,7 @@
         ],
         "flight_included": true,
         "categoria_site": "completo",
-        "capa": "",
+        "capa": "img/39daaad9b464a86c.png",
         "inclui": [
           "Passagem aérea",
           "Transfer in/out GRÁTIS (exclusivo para hotéis selecionados, não incluso taxa ambiental ou nenhuma outra taxa)",
@@ -26725,66 +26726,6 @@
         "tipo": "cruzeiro"
       },
       {
-        "id": "pacote:30399c3315tailandiaejapa:sem_aereo",
-        "fingerprint": "e560ad2efec111f7",
-        "category": "pacote",
-        "source_slug": "30399c3315tailandiaejapa",
-        "title": "30399-C3315-Tailândia e Japão - Cat. Primeira",
-        "destination": "Bangkok",
-        "origin_city": "",
-        "origin_airport": "",
-        "origin_bucket": "sem_aereo",
-        "departure_date": "26/01/2027 a 08/02/2027",
-        "additional_dates": "",
-        "departure_dates": [
-          "2027-01-26"
-        ],
-        "flight_included": false,
-        "categoria_site": "sem-aereo",
-        "capa": "",
-        "inclui": [
-          "Hospedagem: 13 noites",
-          "Roteiro: Bangkok → Ayutthaya → Ang Thong → Phitsanulok → Sukhothai → Chiang → Chiang Rai → Chiang Mai → Tóquio → Hakone → Quioto → Nara → Osaka → Cidade → Seguro",
-          "Hospedagem (13 noites)",
-          "Guia acompanhante",
-          "Transporte terrestre",
-          "Traslados",
-          "Alimentação: meia pensão",
-          "Passeios e visitas panorâmicas",
-          "Entradas/ingressos inclusos",
-          "Seguro viagem",
-          "Taxas: R$ 784,00"
-        ],
-        "hoteis": [
-          {
-            "nome": "Roteiro completo",
-            "preco": "R$ 27.020,00",
-            "taxas": "R$ 784,00",
-            "regime": "Meia pensão",
-            "promo": "",
-            "parcela": "10x de R$ 2.702"
-          }
-        ],
-        "taxas": "R$ 784,00",
-        "fees": 784.0,
-        "de": "",
-        "por": "",
-        "airfare_original_price": null,
-        "airfare_sale_price": null,
-        "installments": "10x de R$ 2.702",
-        "installment_count": 10,
-        "installment_value": 2702.0,
-        "total_price": "R$ 27.020",
-        "package_total_price": 27020.0,
-        "price_source": "explicit_total",
-        "currency": "BRL",
-        "evento": false,
-        "pacote_categoria": "Internacional",
-        "sort_date": "2027-01-26",
-        "sort_price": 27020.0,
-        "tipo": "sem-aereo"
-      },
-      {
         "id": "pacote:pariseitalia:sem_aereo",
         "fingerprint": "416ba7b2c758a1aa",
         "category": "pacote",
@@ -27553,7 +27494,7 @@
         "departure_dates": [],
         "flight_included": false,
         "categoria_site": "sem-aereo",
-        "capa": "",
+        "capa": "img/1b8b77fcde4ed709.webp",
         "inclui": [],
         "hoteis": [],
         "taxas": "",
@@ -27592,7 +27533,7 @@
         ],
         "flight_included": false,
         "categoria_site": "sem-aereo",
-        "capa": "",
+        "capa": "img/3df1d0fb6eb09555.png",
         "inclui": [
           "Hospedagem: 5 noites",
           "Roteiro: Istambul → Ancara → Capadócia Possibilidade de voo de Istambul para a Capadócia → consulte → Capadócia → País de Origem",
@@ -28273,7 +28214,7 @@
         "departure_dates": [],
         "flight_included": false,
         "categoria_site": "sem-aereo",
-        "capa": "",
+        "capa": "img/3df1d0fb6eb09555.png",
         "inclui": [],
         "hoteis": [],
         "taxas": "",
@@ -29049,7 +28990,7 @@
         ],
         "flight_included": false,
         "categoria_site": "sem-aereo",
-        "capa": "",
+        "capa": "img/de42e131f87baaea.png",
         "inclui": [
           "Hospedagem: 8 noites",
           "Roteiro: Roma → Florença → Costa → Veneza",
@@ -29111,7 +29052,7 @@
         ],
         "flight_included": true,
         "categoria_site": "completo",
-        "capa": "",
+        "capa": "img/5368204502ac54ac.webp",
         "inclui": [
           "Passagem aérea ida e volta",
           "Noites de Hospedagem (consulte regime de alimentação)",
@@ -29188,7 +29129,7 @@
         ],
         "flight_included": true,
         "categoria_site": "completo",
-        "capa": "",
+        "capa": "img/5368204502ac54ac.webp",
         "inclui": [
           "Passagem aérea ida e volta",
           "Noites de Hospedagem (consulte regime de alimentação)",
@@ -29260,7 +29201,7 @@
         ],
         "flight_included": false,
         "categoria_site": "sem-aereo",
-        "capa": "",
+        "capa": "img/62fe58c83aed6d1b.png",
         "inclui": [
           "Hospedagem: 8 noites",
           "Passagens aéreas Ida e volta;",
