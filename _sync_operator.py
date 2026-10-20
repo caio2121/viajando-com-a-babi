@@ -350,6 +350,17 @@ def has_publishable_destination(package: dict) -> bool:
     return sum(char.isalpha() for char in destination) >= 3
 
 
+def destination_image_sources(raw: list[dict]) -> dict[str, str]:
+    sources: dict[str, str] = {}
+    for package in raw:
+        if is_internal_package(package) or not has_publishable_destination(package):
+            continue
+        capa = str(package.get("capa") or "").strip()
+        if capa:
+            sources.setdefault(destmod.slugify(str(package.get("destino") or "")), capa)
+    return sources
+
+
 def local_image_stem(slug: str, destino: str) -> str:
     if slug and len(slug) > 4:
         # A imagem pertence à oferta, não apenas ao destino. Usar o destino
@@ -566,6 +577,7 @@ def prune_operator_images(previous: dict[str, dict], active: dict[str, dict]) ->
 
 def filter_pacotes(raw: list[dict]) -> tuple[list[dict], dict]:
     selected: list[dict] = []
+    image_sources = destination_image_sources(raw)
     stats = {
         "total": len(raw),
         "rio": 0,
@@ -575,6 +587,7 @@ def filter_pacotes(raw: list[dict]) -> tuple[list[dict], dict]:
         "ignored_expired": 0,
         "ignored_internal": 0,
         "ignored_destination": 0,
+        "ignored_image": 0,
     }
 
     for pkg in raw:
@@ -583,6 +596,12 @@ def filter_pacotes(raw: list[dict]) -> tuple[list[dict], dict]:
             continue
         if not has_publishable_destination(pkg):
             stats["ignored_destination"] += 1
+            continue
+        capa = str(pkg.get("capa") or "").strip()
+        if not capa:
+            capa = image_sources.get(destmod.slugify(str(pkg.get("destino") or "")), "")
+        if not capa:
+            stats["ignored_image"] += 1
             continue
         slug = pkg.get("slug") or slugify(pkg.get("nome", ""))
         origens = pkg.get("origens") or []
@@ -650,7 +669,7 @@ def filter_pacotes(raw: list[dict]) -> tuple[list[dict], dict]:
                 "departure_dates": departure_dates,
                 "flight_included": flight,
                 "categoria_site": "sem-aereo" if not flight else "completo",
-                "capa": pkg.get("capa") or "",
+                "capa": capa,
                 "inclui": inclui,
                 "hoteis": hoteis,
                 "taxas": fees_text,
@@ -1645,6 +1664,7 @@ def main() -> None:
         print(f"Cotado em: {cotado_em}")
         print(f"Pacotes internos ignorados: {pacote_stats['ignored_internal']}")
         print(f"Pacotes com destino inválido ignorados: {pacote_stats['ignored_destination']}")
+        print(f"Pacotes sem imagem utilizável ignorados: {pacote_stats['ignored_image']}")
         print_report(voos, voo_stats, pacotes, campanhas, checks, price_audit)
         return
 

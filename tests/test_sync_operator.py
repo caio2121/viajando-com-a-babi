@@ -93,6 +93,7 @@ class SyncSourceExtractionTests(unittest.TestCase):
             "slug": "pacote-valido",
             "nome": "Roteiro válido",
             "destino": "Islândia",
+            "capa": "img/islandia.png",
             "origens": [{
                 "iata": "",
                 "cidade": "",
@@ -112,6 +113,27 @@ class SyncSourceExtractionTests(unittest.TestCase):
         self.assertEqual(len(selected), 1)
         self.assertEqual(stats["ignored_internal"], 1)
         self.assertEqual(stats["ignored_destination"], 1)
+
+    def test_ignores_packages_without_image_or_reuses_destination_image(self) -> None:
+        no_image = {
+            "slug": "sem-imagem",
+            "nome": "Roteiro sem imagem",
+            "destino": "Bangkok",
+            "origens": [],
+        }
+        selected, stats = filter_pacotes([no_image])
+        self.assertEqual(selected, [])
+        self.assertEqual(stats["ignored_image"], 1)
+
+        sibling = {
+            **no_image,
+            "slug": "com-imagem",
+            "capa": "img/bangkok.png",
+        }
+        selected, stats = filter_pacotes([no_image, sibling])
+        self.assertEqual(len(selected), 2)
+        self.assertEqual({offer["capa"] for offer in selected}, {"img/bangkok.png"})
+        self.assertEqual(stats["ignored_image"], 0)
 
 
 if __name__ == "__main__":
