@@ -4,7 +4,14 @@ import json
 import unittest
 from unittest.mock import patch
 
-from _sync_operator import extract_pacotes, extract_pvoo_payload, fetch_text
+from _sync_operator import (
+    extract_pacotes,
+    extract_pvoo_payload,
+    fetch_text,
+    filter_pacotes,
+    has_publishable_destination,
+    is_internal_package,
+)
 
 
 PACKAGE = {
@@ -71,6 +78,40 @@ class SyncSourceExtractionTests(unittest.TestCase):
         with patch("_sync_operator.urllib.request.urlopen", return_value=Response()):
             with self.assertRaisesRegex(RuntimeError, "origem externa bloqueado"):
                 fetch_text("https://viajandocomdesconto.com/_s/pacotes.js")
+
+    def test_rejects_internal_and_incomplete_packages(self) -> None:
+        internal = {"nome": "Pacote Especial para a Cativa Operadora", "destino": "RECEPÇÃO"}
+        self.assertTrue(is_internal_package(internal))
+        self.assertFalse(has_publishable_destination(internal))
+        self.assertFalse(has_publishable_destination({"destino": "Os"}))
+        self.assertFalse(has_publishable_destination({"destino": "Buenos"}))
+        self.assertFalse(has_publishable_destination({"destino": ""}))
+        self.assertTrue(has_publishable_destination({"destino": "Islândia"}))
+
+    def test_filter_reports_and_ignores_invalid_source_records(self) -> None:
+        base = {
+            "slug": "pacote-valido",
+            "nome": "Roteiro válido",
+            "destino": "Islândia",
+            "origens": [{
+                "iata": "",
+                "cidade": "",
+                "data": "10/01/2027 a 14/01/2027",
+                "inclui": [],
+                "hoteis": [{"nome": "Hotel", "preco": "R$ 1.000,00", "parcela": "10x de R$ 100"}],
+            }],
+        }
+        records = [
+            base,
+            {**base, "slug": "interno", "nome": "Pacote Especial para a Cativa Operadora"},
+            {**base, "slug": "truncado", "destino": "Buenos"},
+        ]
+
+        selected, stats = filter_pacotes(records)
+
+        self.assertEqual(len(selected), 1)
+        self.assertEqual(stats["ignored_internal"], 1)
+        self.assertEqual(stats["ignored_destination"], 1)
 
 
 if __name__ == "__main__":

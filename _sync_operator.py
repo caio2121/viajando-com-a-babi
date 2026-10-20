@@ -51,6 +51,19 @@ HOME_LIMIT = 30
 HOME_PACOTES_MARKER = '<div class="pacotes__category" id="pacotes-completos">'
 HOME_CTA_MARKER = '<div class="pacotes__cta-extra">'
 JS_LEAK_RE = re.compile(r"GMT[+-]|Horário Padrão|Invalid Date|\bNaN\b|\bundefined\b|\bnull\b", re.I)
+INTERNAL_PACKAGE_MARKERS = (
+    "pacote especial para a cativa operadora",
+    "uso interno",
+    "teste interno",
+)
+INCOMPLETE_DESTINATION_KEYS = {
+    "bem",
+    "buenos",
+    "dia",
+    "los",
+    "os",
+    "passeio",
+}
 
 USER_AGENT = "ViajandoComABabi-Sync/1.0 (+https://viajandocomababi.com.br/)"
 
@@ -320,6 +333,23 @@ def fingerprint(*parts: str) -> str:
     return hashlib.sha1(raw.encode("utf-8")).hexdigest()[:16]
 
 
+def is_internal_package(package: dict) -> bool:
+    if any(package.get(key) for key in ("interno", "internal", "is_internal")):
+        return True
+    searchable = normalize(" ".join(str(package.get(key) or "") for key in ("nome", "destino", "src")))
+    return any(marker in searchable for marker in INTERNAL_PACKAGE_MARKERS)
+
+
+def has_publishable_destination(package: dict) -> bool:
+    destination = str(package.get("destino") or "").strip()
+    if not destination or destmod.is_junk_destination(destination):
+        return False
+    key = destmod.slugify(destination)
+    if key in INCOMPLETE_DESTINATION_KEYS:
+        return False
+    return sum(char.isalpha() for char in destination) >= 3
+
+
 def local_image_stem(slug: str, destino: str) -> str:
     if slug and len(slug) > 4:
         # A imagem pertence à oferta, não apenas ao destino. Usar o destino
@@ -536,9 +566,24 @@ def prune_operator_images(previous: dict[str, dict], active: dict[str, dict]) ->
 
 def filter_pacotes(raw: list[dict]) -> tuple[list[dict], dict]:
     selected: list[dict] = []
-    stats = {"total": len(raw), "rio": 0, "sp": 0, "sem_aereo": 0, "ignored_origin": 0, "ignored_expired": 0}
+    stats = {
+        "total": len(raw),
+        "rio": 0,
+        "sp": 0,
+        "sem_aereo": 0,
+        "ignored_origin": 0,
+        "ignored_expired": 0,
+        "ignored_internal": 0,
+        "ignored_destination": 0,
+    }
 
     for pkg in raw:
+        if is_internal_package(pkg):
+            stats["ignored_internal"] += 1
+            continue
+        if not has_publishable_destination(pkg):
+            stats["ignored_destination"] += 1
+            continue
         slug = pkg.get("slug") or slugify(pkg.get("nome", ""))
         origens = pkg.get("origens") or []
         flight = any(has_flight(o.get("inclui")) for o in origens) if origens else False
@@ -1598,6 +1643,8 @@ def main() -> None:
             raise RuntimeError("Nenhuma promoção de voo válida encontrada na fonte")
         print(f"CHECK OK: {len(pacotes)} pacotes, {len(voos)} voos, {len(campanhas)} campanhas")
         print(f"Cotado em: {cotado_em}")
+        print(f"Pacotes internos ignorados: {pacote_stats['ignored_internal']}")
+        print(f"Pacotes com destino inválido ignorados: {pacote_stats['ignored_destination']}")
         print_report(voos, voo_stats, pacotes, campanhas, checks, price_audit)
         return
 
