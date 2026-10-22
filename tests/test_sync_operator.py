@@ -2,13 +2,16 @@ from __future__ import annotations
 
 import json
 import unittest
+from datetime import date, datetime
 from unittest.mock import patch
 
 from _sync_operator import (
     extract_pacotes,
     extract_pvoo_payload,
     fetch_text,
+    filter_promo_voos,
     filter_pacotes,
+    has_minimum_flight_sale_lead,
     has_publishable_destination,
     is_internal_package,
 )
@@ -60,6 +63,30 @@ class SyncSourceExtractionTests(unittest.TestCase):
         script = f"window.__PVOO_PAYLOAD = {json.dumps(payload)};"
 
         self.assertEqual(extract_pvoo_payload(source, lambda _: script), payload)
+
+    def test_requires_48_hours_before_flight_departure(self) -> None:
+        now = datetime(2099, 1, 1, 12, 0)
+        departure = date(2099, 1, 3)
+
+        self.assertTrue(has_minimum_flight_sale_lead(departure, "12:00", now=now))
+        self.assertFalse(has_minimum_flight_sale_lead(departure, "11:59", now=now))
+        self.assertFalse(has_minimum_flight_sale_lead(departure, None, now=now))
+
+    def test_filters_flights_with_insufficient_sale_lead_time(self) -> None:
+        def row(departure_time: str) -> str:
+            return "|".join([
+                "GIG", "FOR", "990103", "990104", "1", "1", "1000", "0", "", departure_time,
+                "", "1200", "", "0", "1", "Companhia",
+            ])
+
+        selected, stats = filter_promo_voos(
+            {"blob": "\n".join([row("1200"), row("1159")]), "mapa": {}},
+            now=datetime(2099, 1, 1, 12, 0),
+        )
+
+        self.assertEqual(len(selected), 1)
+        self.assertEqual(selected[0]["departure_time"], "12:00")
+        self.assertEqual(stats["ignored_insufficient_lead_time"], 1)
 
     def test_blocks_external_redirects(self) -> None:
         class Response:

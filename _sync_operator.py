@@ -26,7 +26,7 @@ import unicodedata
 import urllib.error
 import urllib.parse
 import urllib.request
-from datetime import date, datetime
+from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 
 import _dates as dates
@@ -43,6 +43,9 @@ IMAGE_MANIFEST = DATA / "operator-images.json"
 SOURCE_URL = PUBLIC_CONFIG["provider_source_url"]
 WA_NUMBER = PUBLIC_CONFIG["whatsapp_number"]
 TODAY = dates.TODAY
+BRASILIA_TZ = timezone(timedelta(hours=-3))
+MIN_FLIGHT_SALE_LEAD_HOURS = 48
+MIN_FLIGHT_SALE_LEAD = timedelta(hours=MIN_FLIGHT_SALE_LEAD_HOURS)
 
 RIO_IATA = {"GIG", "SDU", "RIO"}
 SP_IATA = {"GRU", "CGH", "VCP", "SAO"}
@@ -289,6 +292,22 @@ def mapa_names(mapa: dict, iata: str) -> tuple[str, str]:
     origin_name = entry[0] if len(entry) > 0 else iata
     dest_name = entry[1] if len(entry) > 1 else (entry[0] if entry else iata)
     return origin_name, dest_name
+
+
+def has_minimum_flight_sale_lead(
+    departure: date | None,
+    departure_time: str | None,
+    *,
+    now: datetime | None = None,
+) -> bool:
+    """Exige pelo menos 48h entre a consulta e a partida do voo."""
+    departure_at = dates.combine_datetime(departure, departure_time)
+    if departure_at is None:
+        return False
+    current = now or datetime.now(BRASILIA_TZ)
+    if current.tzinfo is not None:
+        current = current.astimezone(BRASILIA_TZ).replace(tzinfo=None)
+    return departure_at - current >= MIN_FLIGHT_SALE_LEAD
 
 
 def tipo_from_offer(offer: dict) -> str:
@@ -756,7 +775,7 @@ def parse_pvoo_row(fields: list[str], mapa: dict, usd_rate: float | None) -> dic
     }
 
 
-def filter_promo_voos(payload: dict) -> tuple[list[dict], dict]:
+def filter_promo_voos(payload: dict, *, now: datetime | None = None) -> tuple[list[dict], dict]:
     blob = payload.get("blob") or ""
     mapa = payload.get("mapa") or {}
     usd_rate = payload.get("usd")
@@ -776,6 +795,7 @@ def filter_promo_voos(payload: dict) -> tuple[list[dict], dict]:
         "internacional": 0,
         "ignored_origin": 0,
         "ignored_expired": 0,
+        "ignored_insufficient_lead_time": 0,
         "ignored_invalid_date": 0,
         "duplicates_removed": 0,
     }
@@ -798,6 +818,9 @@ def filter_promo_voos(payload: dict) -> tuple[list[dict], dict]:
             continue
         if dep < TODAY:
             stats["ignored_expired"] += 1
+            continue
+        if not has_minimum_flight_sale_lead(dep, parsed["departure_time"], now=now):
+            stats["ignored_insufficient_lead_time"] += 1
             continue
         if not dates.itinerary_valid(dep, ret, parsed["departure_time"], parsed["return_time"]):
             stats["ignored_invalid_date"] += 1
@@ -1530,6 +1553,7 @@ def print_report(voos: list[dict], voo_stats: dict, pacotes: list[dict], campanh
     print(f"Nacionais: {voo_stats.get('nacional', 0)}")
     print(f"Internacionais: {voo_stats.get('internacional', 0)}")
     print(f"Descartados por data inválida: {voo_stats.get('ignored_invalid_date', 0)}")
+    print(f"Descartados por menos de {MIN_FLIGHT_SALE_LEAD_HOURS}h de antecedência: {voo_stats.get('ignored_insufficient_lead_time', 0)}")
     print(f"Duplicatas removidas: {voo_stats.get('duplicates_removed', 0)}")
     print(f"Itens publicados: {len(voos)}")
     print("\nVALIDAÇÃO")
