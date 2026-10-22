@@ -5,9 +5,9 @@
     "pacote-202stsuperturquiaeindia": {
       "stem": "pacote-202stsuperturquiaeindia",
       "source_url": "https://viajandocomdesconto.com/img/59420456af31cc93.png",
-      "etag": "\"59420456af31cc93-w\"",
+      "etag": "\"59420456af31cc93\"",
       "last_modified": "Thu, 15 Oct 2026 11:47:00 GMT",
-      "sha256": "eaf8a5f82523ad420cbb14cbd0481fa85c620cb51c3ca317c66717902253741b"
+      "sha256": "6ab3ed236826d9917f65ef287c91a87d37f4672e0402b486f6b35e7aa608b476"
     },
     "pacote-2x1admiravelturquia10dia": {
       "stem": "pacote-2x1admiravelturquia10dia",
@@ -26,9 +26,9 @@
     "pacote-2x1superpromoturquiaedub": {
       "stem": "pacote-2x1superpromoturquiaedub",
       "source_url": "https://viajandocomdesconto.com/img/d71886c0e7f5e670.png",
-      "etag": "\"d71886c0e7f5e670-w\"",
+      "etag": "\"d71886c0e7f5e670\"",
       "last_modified": "Mon, 28 Sep 2026 15:39:24 GMT",
-      "sha256": "d9b1d2cfd7e30e2373cecd3efd55810db3abbd5a38f63a1e801a0c65ca9230ac"
+      "sha256": "68c8f02b28498918eed622cdde13c53c522dfdb7561fc9a6496c64094c8ff946"
     },
     "pacote-2x1superpromoturquiaeind": {
       "stem": "pacote-2x1superpromoturquiaeind",
@@ -47,9 +47,9 @@
     "pacote-30232e4262brmercadosdena": {
       "stem": "pacote-30232e4262brmercadosdena",
       "source_url": "https://viajandocomdesconto.com/img/861ab615d7bc8f59.png",
-      "etag": "\"861ab615d7bc8f59-w\"",
+      "etag": "\"861ab615d7bc8f59\"",
       "last_modified": "Thu, 15 Oct 2026 14:41:57 GMT",
-      "sha256": "8882819287b3c03faae830b02f55a9e72f174e4c46638dfd234a62f95d0c44d2"
+      "sha256": "1a255bb74174652155eade652d09b3612b8cb818e5b09ac6d012c63027a8f04f"
     },
     "pacote-6076atenasycrucero4diasc": {
       "stem": "pacote-6076atenasycrucero4diasc",
@@ -68,9 +68,9 @@
     "pacote-adriaticosublimepromocao": {
       "stem": "pacote-adriaticosublimepromocao",
       "source_url": "https://viajandocomdesconto.com/img/1a8ceba93d9b0912.png",
-      "etag": "\"1a8ceba93d9b0912-w\"",
+      "etag": "\"1a8ceba93d9b0912\"",
       "last_modified": "Thu, 15 Oct 2026 13:32:09 GMT",
-      "sha256": "8a0e150410c9449e6b5a6290a7d651de1e693ab37c50e74dcaa51431b2c5fb4a"
+      "sha256": "fbad61173f040a16dc0d53be750fbb8e8d7c99010856b14a7cb601adca5e0a15"
     },
     "pacote-africadosulimprescindive": {
       "stem": "pacote-africadosulimprescindive",
@@ -124,9 +124,9 @@
     "pacote-aracajucomcitytourpassei-2": {
       "stem": "pacote-aracajucomcitytourpassei-2",
       "source_url": "https://viajandocomdesconto.com/img/0e5ed755776b8ec2.png",
-      "etag": "\"0e5ed755776b8ec2-w\"",
+      "etag": "\"0e5ed755776b8ec2\"",
       "last_modified": "Fri, 14 Aug 2026 13:26:02 GMT",
-      "sha256": "482c03b1d49ec30a5e80a8e78467ba4158dafd8571017bc97254174773b221f9"
+      "sha256": "fc11428132e999746e63312ae82945fcdba3960e8b56ecfc9ce9ad5ccf15abc4"
     },
     "pacote-aracajucompletose": {
       "stem": "pacote-aracajucompletose",
@@ -180,16 +180,16 @@
     "pacote-balneariocamboriupassapo": {
       "stem": "pacote-balneariocamboriupassapo",
       "source_url": "https://viajandocomdesconto.com/img/16484d4d6ac330f7.png",
-      "etag": "\"16484d4d6ac330f7\"",
+      "etag": "\"16484d4d6ac330f7-w\"",
       "last_modified": "Thu, 30 Jul 2026 14:04:31 GMT",
-      "sha256": "03636e66165c5a14dbcee6be76fbb6d2c3b45d7e17881fc097b1d2631942d975"
+      "sha256": "ad22931261d6e570d58cca0b96338614cb92127735b49342aca368eea0244f51"
     },
     "pacote-balneariocamboriupassapo-2": {
       "stem": "pacote-balneariocamboriupassapo-2",
       "source_url": "https://viajandocomdesconto.com/img/16484d4d6ac330f7.png",
-      "etag": "\"16484d4d6ac330f7\"",
+      "etag": "\"16484d4d6ac330f7-w\"",
       "last_modified": "Thu, 30 Jul 2026 14:04:31 GMT",
-      "sha256": "03636e66165c5a14dbcee6be76fbb6d2c3b45d7e17881fc097b1d2631942d975"
+      "sha256": "ad22931261d6e570d58cca0b96338614cb92127735b49342aca368eea0244f51"
     },
     "pacote-balneariocamboriupassapo-4": {
       "stem": "pacote-balneariocamboriupassapo-4",
@@ -303,19 +303,12 @@
       "last_modified": "Mon, 27 Jul 2026 13:51:55 GMT",
       "sha256": "744543923ba5cf7b59b5ae62cd77abd8676ad7f29632f49cdddfa02791c779f8"
     },
-    "pacote-bonitocomgrutacatedral": {
-      "stem": "pacote-bonitocomgrutacatedral",
-      "source_url": "https://viajandocomdesconto.com/img/ba0ae9ad333b1cd5.png",
-      "etag": "\"ba0ae9ad333b1cd5\"",
-      "last_modified": "Tue, 11 Aug 2026 20:16:40 GMT",
-      "sha256": "9fd702766a30d460cc3c6e23d11952f0f6a4e9b9ef7aedaa3e3518bb688cc53a"
-    },
     "pacote-bonitocomgrutacatedralna": {
       "stem": "pacote-bonitocomgrutacatedralna",
       "source_url": "https://viajandocomdesconto.com/img/46883b811aabdcbf.png",
-      "etag": "\"46883b811aabdcbf-w\"",
+      "etag": "\"46883b811aabdcbf\"",
       "last_modified": "",
-      "sha256": "2c3701ab5cfa372c1b8431fe2f1f8785ac7a82f0a6ea112162b5a3976146dc87"
+      "sha256": "a278e24b36fa6174cf56d064de9569ddb92854714c2f231be1a6fdefedb177a9"
     },
     "pacote-bonitocomgrutacatedralpa": {
       "stem": "pacote-bonitocomgrutacatedralpa",
@@ -397,9 +390,9 @@
     "pacote-caldasnovasviaaeroportoc": {
       "stem": "pacote-caldasnovasviaaeroportoc",
       "source_url": "https://viajandocomdesconto.com/img/e5a04f025c1852f3.png",
-      "etag": "\"e5a04f025c1852f3\"",
+      "etag": "\"e5a04f025c1852f3-w\"",
       "last_modified": "Thu, 06 Aug 2026 19:39:30 GMT",
-      "sha256": "1410a4b03f9c24ae20112be7107356310897ef4c5dad6d9347b397fa73bc5a74"
+      "sha256": "8065fb1567f8cb25814ca9f7f014f3fe2aaa059eaefaf8e412afc721bf62a115"
     },
     "pacote-caminhosdovalebentogonca": {
       "stem": "pacote-caminhosdovalebentogonca",
@@ -506,13 +499,6 @@
       "last_modified": "",
       "sha256": "7fb1e41fbb3da2b2346457191fd7a6bf89a70af5edd3f94249f59d3e09b87dd8"
     },
-    "pacote-circulodinamarques": {
-      "stem": "pacote-circulodinamarques",
-      "source_url": "https://viajandocomdesconto.com/img/b44a1e3c3aca9417.png",
-      "etag": "\"b44a1e3c3aca9417\"",
-      "last_modified": "Fri, 14 Aug 2026 13:26:02 GMT",
-      "sha256": "d8d8533aeda640b581152a5ef53a383d3ac2140fdf32d10de693157eb3ce46e8"
-    },
     "pacote-costaodosantinhoviafln": {
       "stem": "pacote-costaodosantinhoviafln",
       "source_url": "https://viajandocomdesconto.com/img/44f2c6cff1645b3c.png",
@@ -558,9 +544,9 @@
     "pacote-demadriamarraquechcommad": {
       "stem": "pacote-demadriamarraquechcommad",
       "source_url": "https://viajandocomdesconto.com/img/14c000ffab0d14c4.png",
-      "etag": "\"14c000ffab0d14c4-w\"",
+      "etag": "\"14c000ffab0d14c4\"",
       "last_modified": "Thu, 15 Oct 2026 13:26:31 GMT",
-      "sha256": "a74a26383996950eb26cdd35ffa5509a4be1a95c2287f43f6de109473b37d419"
+      "sha256": "9667385c46f0d685d0d7b9008f0bd071bc90e7da8b0c60e52700c869580975e0"
     },
     "pacote-demontrealawashington": {
       "stem": "pacote-demontrealawashington",
@@ -642,9 +628,9 @@
     "pacote-egitocomcruzeiropelonilo-13": {
       "stem": "pacote-egitocomcruzeiropelonilo-13",
       "source_url": "https://viajandocomdesconto.com/img/6e634650164a8018.png",
-      "etag": "\"6e634650164a8018-w\"",
+      "etag": "\"6e634650164a8018\"",
       "last_modified": "Thu, 15 Oct 2026 11:36:46 GMT",
-      "sha256": "09d5293fb12e000fe70fc664a05470ac61b1f7411f2aeed15587887c4d7dd099"
+      "sha256": "6e75b6ab1db0c8f6a1d38c620d77a05b90e0f28a0cec7935c0cf932f7eb90513"
     },
     "pacote-egitocomcruzeiropelonilo-2": {
       "stem": "pacote-egitocomcruzeiropelonilo-2",
@@ -894,9 +880,9 @@
     "pacote-fortalezacomcitytourcumb": {
       "stem": "pacote-fortalezacomcitytourcumb",
       "source_url": "https://viajandocomdesconto.com/img/f27d68f5efc8f084.png",
-      "etag": "\"f27d68f5efc8f084\"",
+      "etag": "\"f27d68f5efc8f084-w\"",
       "last_modified": "",
-      "sha256": "0bf80209570f9d58df165a4e8d58b86cc4ec48a85219fa5ad0fbe7d3b2439921"
+      "sha256": "763e7c4a97057e6875ca05f9cbda8aea94aeebdb143100e1f23d0f36e048c7a9"
     },
     "pacote-fortalezacomcitytourprai-2": {
       "stem": "pacote-fortalezacomcitytourprai-2",
@@ -950,9 +936,9 @@
     "pacote-fozdoiguacucomcataratasp": {
       "stem": "pacote-fozdoiguacucomcataratasp",
       "source_url": "https://viajandocomdesconto.com/img/12000247ee0c2235.png",
-      "etag": "\"12000247ee0c2235-w\"",
+      "etag": "\"12000247ee0c2235\"",
       "last_modified": "Tue, 29 Sep 2026 13:12:30 GMT",
-      "sha256": "eb7dbc15bb3222e6efab620d1f8d202cead406570e2ff7c09115aaa3fbdcbc8b"
+      "sha256": "00bbb70f84599ecba14ba0826a921c18bf3591f795865ccbed0e047edb126eaa"
     },
     "pacote-fozdoiguacucompasseiosca": {
       "stem": "pacote-fozdoiguacucompasseiosca",
@@ -1027,9 +1013,9 @@
     "pacote-gramadocomvinicolajolimo-2": {
       "stem": "pacote-gramadocomvinicolajolimo-2",
       "source_url": "https://viajandocomdesconto.com/img/e53af310d61c1fa1.png",
-      "etag": "\"e53af310d61c1fa1-w\"",
+      "etag": "\"e53af310d61c1fa1\"",
       "last_modified": "Mon, 24 Aug 2026 13:15:41 GMT",
-      "sha256": "1c1400360582f027cbe0ea06fdda533f45f15cd9549cceb67569e80745c72409"
+      "sha256": "5a20dee32d684369f6f5b4edff487b0c322aa4aeac2af4a4331f106322e59311"
     },
     "pacote-gramadoexperiencianocast": {
       "stem": "pacote-gramadoexperiencianocast",
@@ -1181,9 +1167,9 @@
     "pacote-inglaterraessencial": {
       "stem": "pacote-inglaterraessencial",
       "source_url": "https://viajandocomdesconto.com/img/790633707a1cb53e.png",
-      "etag": "\"790633707a1cb53e-w\"",
+      "etag": "\"790633707a1cb53e\"",
       "last_modified": "Thu, 15 Oct 2026 15:00:53 GMT",
-      "sha256": "5db87e61f8c671cd3245c33f9c6ac167d43e3c6104ed782fe922ff5f99303186"
+      "sha256": "01d8347c8e7c95ce5151a99394444e283f522396f4c3732f1c4a2592f81584fc"
     },
     "pacote-istambulechinaimperialde": {
       "stem": "pacote-istambulechinaimperialde",
@@ -1209,9 +1195,9 @@
     "pacote-itacarecomilheus6dias": {
       "stem": "pacote-itacarecomilheus6dias",
       "source_url": "https://viajandocomdesconto.com/img/171eba16e17d1f49.png",
-      "etag": "\"171eba16e17d1f49\"",
+      "etag": "\"171eba16e17d1f49-w\"",
       "last_modified": "Mon, 27 Jul 2026 14:00:03 GMT",
-      "sha256": "fe4a9b294c006b13b18e70e6debc862c974cc945dd66414d8d285a514f3f8dcc"
+      "sha256": "e8acc60b72fa380cd1b0664545f1e166c7108bfd665c3fe5ece70ddaf202c7fd"
     },
     "pacote-italia": {
       "stem": "pacote-italia",
@@ -1321,9 +1307,9 @@
     "pacote-joaopessoacompraiaspordo": {
       "stem": "pacote-joaopessoacompraiaspordo",
       "source_url": "https://viajandocomdesconto.com/img/e7a63a116971a770.png",
-      "etag": "\"e7a63a116971a770\"",
+      "etag": "\"e7a63a116971a770-w\"",
       "last_modified": "Mon, 05 Oct 2026 14:23:38 GMT",
-      "sha256": "f411b8612c5c11a99d40dbd15b9db00466131734cfa041c176845133e9f0db1a"
+      "sha256": "a8572e33662c32427a3f743179f159c8fca32c3e4127827a545e605ac7eb99d1"
     },
     "pacote-lisboaeporto": {
       "stem": "pacote-lisboaeporto",
@@ -1356,9 +1342,9 @@
     "pacote-maceiocompraiadogungamar": {
       "stem": "pacote-maceiocompraiadogungamar",
       "source_url": "https://viajandocomdesconto.com/img/67cc2b4bd58ecf86.png",
-      "etag": "\"67cc2b4bd58ecf86\"",
+      "etag": "\"67cc2b4bd58ecf86-w\"",
       "last_modified": "Mon, 27 Jul 2026 13:23:53 GMT",
-      "sha256": "70586f387e70dccf8e64f97b0dd82129b5e0c347d8a3fd37be151889a8ba05c8"
+      "sha256": "e2802e99db86a532b6a1153d8ee0fc765c78c455e26a9d510cc612542cea47f0"
     },
     "pacote-maceiocompraiasdogungafr": {
       "stem": "pacote-maceiocompraiasdogungafr",
@@ -1377,9 +1363,9 @@
     "pacote-madriparisvenezaeroma": {
       "stem": "pacote-madriparisvenezaeroma",
       "source_url": "https://viajandocomdesconto.com/img/a321d49467f0c16e.png",
-      "etag": "\"a321d49467f0c16e-w\"",
+      "etag": "\"a321d49467f0c16e\"",
       "last_modified": "Thu, 15 Oct 2026 12:07:50 GMT",
-      "sha256": "1d1c1c11123abe80cddfb861cbcf80190088b782864273f1b8b7fecd4590d4d8"
+      "sha256": "da91785335f6702e82769c01a7afa19fcbcac5a5e979b432160397e805b8ad59"
     },
     "pacote-makaiaracajutransfergrat": {
       "stem": "pacote-makaiaracajutransfergrat",
@@ -1524,9 +1510,9 @@
     "pacote-minitourflorencepisaveni": {
       "stem": "pacote-minitourflorencepisaveni",
       "source_url": "https://viajandocomdesconto.com/img/dee7d018aca5e7c7.png",
-      "etag": "\"dee7d018aca5e7c7-w\"",
+      "etag": "\"dee7d018aca5e7c7\"",
       "last_modified": "Thu, 15 Oct 2026 14:44:09 GMT",
-      "sha256": "a7461d2d67b274e5d8ed76bd70fbd99db785c50f71e219f88d6091c6344f470c"
+      "sha256": "b1272716f8bd484fafe35bae3c4f55e4495bd040d21c309c08902cbea96322ec"
     },
     "pacote-montegobayjamaicaocaribe": {
       "stem": "pacote-montegobayjamaicaocaribe",
@@ -1538,9 +1524,9 @@
     "pacote-montevideu2noitesbuenosa": {
       "stem": "pacote-montevideu2noitesbuenosa",
       "source_url": "https://viajandocomdesconto.com/img/abc445eed6c54cfe.png",
-      "etag": "\"abc445eed6c54cfe\"",
+      "etag": "\"abc445eed6c54cfe-w\"",
       "last_modified": "Tue, 08 Sep 2026 14:32:17 GMT",
-      "sha256": "59987bdaa5c5378bf58367f92154971e9b0e54532e22c432976587fe7b250d05"
+      "sha256": "9a95559175df6c0fd6a718301e4565eb99a9ca37b837e0a37feac99dfe222df4"
     },
     "pacote-natalcomcitytourcumurupi": {
       "stem": "pacote-natalcomcitytourcumurupi",
@@ -1671,9 +1657,9 @@
     "pacote-odysseuspromocaoverao202": {
       "stem": "pacote-odysseuspromocaoverao202",
       "source_url": "https://viajandocomdesconto.com/img/e43038a4805cc2b4.png",
-      "etag": "\"e43038a4805cc2b4-w\"",
+      "etag": "\"e43038a4805cc2b4\"",
       "last_modified": "Thu, 15 Oct 2026 13:34:20 GMT",
-      "sha256": "88ee7e5923a28a5493d71e4814c798fca6f0375c4279343f45dab2f9f2fecf54"
+      "sha256": "e6839e2f969acef7ac941a2aed448335e561753535f63fd71add1ab72804aa36"
     },
     "pacote-oktoberfest2026comingres": {
       "stem": "pacote-oktoberfest2026comingres",
@@ -1783,9 +1769,9 @@
     "pacote-parisitaliaepraga": {
       "stem": "pacote-parisitaliaepraga",
       "source_url": "https://viajandocomdesconto.com/img/f67d4e0fe6e69352.png",
-      "etag": "\"f67d4e0fe6e69352-w\"",
+      "etag": "\"f67d4e0fe6e69352\"",
       "last_modified": "Thu, 15 Oct 2026 11:39:05 GMT",
-      "sha256": "86a552e30130d312a4c0abd17cffb2260ba331ff0929d1741c603435050324a4"
+      "sha256": "3fdc11544b2aa4951d9517fdcf294039e18313f489a96e9661d314e92c4f5541"
     },
     "pacote-parisvienaeveneza": {
       "stem": "pacote-parisvienaeveneza",
@@ -1860,9 +1846,9 @@
     "pacote-portodegalinhascommarago-2": {
       "stem": "pacote-portodegalinhascommarago-2",
       "source_url": "https://viajandocomdesconto.com/img/7f8b9d364672396e.png",
-      "etag": "\"7f8b9d364672396e\"",
+      "etag": "\"7f8b9d364672396e-w\"",
       "last_modified": "Mon, 27 Jul 2026 11:37:46 GMT",
-      "sha256": "f7752afe9bcad92a6b6fb5f6813cfa318fe94d6489f5261a70a1f9430053a084"
+      "sha256": "9f4b1f1c3ed51bb3334b054dab41848af17b976dd61d52aa549c5de196e09eac"
     },
     "pacote-portodegalinhascompraiad": {
       "stem": "pacote-portodegalinhascompraiad",
@@ -2067,13 +2053,6 @@
       "last_modified": "Fri, 07 Aug 2026 19:37:29 GMT",
       "sha256": "b640120d803035bcd2202a35450257cbec5559c6a0c9479c378016977e05b762"
     },
-    "pacote-saltacomcafayatequebrada": {
-      "stem": "pacote-saltacomcafayatequebrada",
-      "source_url": "https://viajandocomdesconto.com/img/62fe58c83aed6d1b.png",
-      "etag": "\"62fe58c83aed6d1b\"",
-      "last_modified": "",
-      "sha256": "8319562902c16b52a11cebd6b7985305b3619255694d283c09fb5f1e549e67c0"
-    },
     "pacote-saltaomelhordonortedaarg": {
       "stem": "pacote-saltaomelhordonortedaarg",
       "source_url": "https://viajandocomdesconto.com/img/4ec78aff35e063e0.png",
@@ -2112,9 +2091,9 @@
     "pacote-salvadorimperdivelba": {
       "stem": "pacote-salvadorimperdivelba",
       "source_url": "https://viajandocomdesconto.com/img/2012b88bfa1b8942.png",
-      "etag": "\"2012b88bfa1b8942-w\"",
+      "etag": "\"2012b88bfa1b8942\"",
       "last_modified": "Fri, 31 Jul 2026 20:12:39 GMT",
-      "sha256": "6b513bb6320ca3b709767f9dbf3aaaaffd65b0adc51d221c6d39618ab89a4f4b"
+      "sha256": "b995c2ae346196492cc69454399ea0c9f01aeeac9dae6f689f87c6b8a3e09764"
     },
     "pacote-sanandresessencial": {
       "stem": "pacote-sanandresessencial",
@@ -2217,9 +2196,9 @@
     "pacote-suicacompleta": {
       "stem": "pacote-suicacompleta",
       "source_url": "https://viajandocomdesconto.com/img/79cba73ce3b88dc2.png",
-      "etag": "\"79cba73ce3b88dc2-w\"",
+      "etag": "\"79cba73ce3b88dc2\"",
       "last_modified": "Tue, 11 Aug 2026 14:03:39 GMT",
-      "sha256": "faa8b4c612e0ff56a09407bf03b548ba3e4358a900990ef1a1c7fad1e34c824e"
+      "sha256": "07daed462c84554ca0011d748a21ef602e4b43d70c18d0176238d564b5bb8d64"
     },
     "pacote-superdubaitailandiaeindi": {
       "stem": "pacote-superdubaitailandiaeindi",
@@ -2392,9 +2371,9 @@
     "pacote-uruguayescapadaamontevid": {
       "stem": "pacote-uruguayescapadaamontevid",
       "source_url": "https://viajandocomdesconto.com/img/2d11f7c689eb2fdc.png",
-      "etag": "\"2d11f7c689eb2fdc-w\"",
+      "etag": "\"2d11f7c689eb2fdc\"",
       "last_modified": "Fri, 07 Aug 2026 20:01:59 GMT",
-      "sha256": "a3100465ea269d241f666602312f05a712e0bb752a420c6c09a6a60e7588147f"
+      "sha256": "f90cf0e3d6abe22fe3429bcf6062c93728e5ab1211f253a541edf853289e215c"
     },
     "pacote-uruguayescapadaamontevid-2": {
       "stem": "pacote-uruguayescapadaamontevid-2",
@@ -2413,9 +2392,9 @@
     "pacote-valedoloirecomparis": {
       "stem": "pacote-valedoloirecomparis",
       "source_url": "https://viajandocomdesconto.com/img/020f35f1cd6a4f41.png",
-      "etag": "\"020f35f1cd6a4f41-w\"",
+      "etag": "\"020f35f1cd6a4f41\"",
       "last_modified": "Thu, 15 Oct 2026 14:57:02 GMT",
-      "sha256": "70df47aad458b47eee8d4ec489be1a4397a1b427bd895c9f6d17298c80c9b20e"
+      "sha256": "a060c5cd54ab6a84e52371a950acc6f6d76605fff0cb1a1707ef0f1c3155e82f"
     },
     "pacote-vinhedosequebradas5dias4": {
       "stem": "pacote-vinhedosequebradas5dias4",
