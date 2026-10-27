@@ -892,6 +892,75 @@ ul  { list-style: none; }
 }
 
 /* ──────────────────────────────────────────────────
+   GRUPO VIP
+   ────────────────────────────────────────────────── */
+.grupo-vip {
+  padding: 40px 0;
+  background: var(--clr-white);
+}
+
+.grupo-vip__banner {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 22px;
+  padding: 24px clamp(20px, 4vw, 36px);
+  border: 1px solid rgba(58, 175, 169, 0.28);
+  border-radius: var(--radius-lg);
+  background: linear-gradient(135deg, var(--clr-primary-l), var(--clr-white));
+  box-shadow: var(--shadow-sm);
+}
+
+.grupo-vip__icon {
+  width: 58px;
+  height: 58px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--clr-wa);
+  color: var(--clr-white);
+  font-size: 1.8rem;
+}
+
+.grupo-vip__content .label {
+  margin-bottom: 6px;
+}
+
+.grupo-vip__content h2 {
+  margin-bottom: 6px;
+  color: var(--clr-dark);
+  font-size: clamp(1.2rem, 2.5vw, 1.7rem);
+  line-height: 1.25;
+}
+
+.grupo-vip__content p {
+  max-width: 680px;
+  color: var(--clr-text);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.grupo-vip__free {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 8px;
+  color: var(--clr-muted);
+  font-size: 0.82rem;
+}
+
+.grupo-vip__free i {
+  color: var(--clr-primary-d);
+  font-size: 0.75rem;
+}
+
+.grupo-vip__cta {
+  justify-self: end;
+}
+
+/* ──────────────────────────────────────────────────
    DEPOIMENTOS
 ────────────────────────────────────────────────── */
 .depoimentos {
@@ -1352,6 +1421,22 @@ ul  { list-style: none; }
   .pacotes,
   .como-funciona {
     padding: 56px 0;
+  }
+
+  .grupo-vip {
+    padding: 48px 0;
+  }
+
+  .grupo-vip__banner {
+    grid-template-columns: auto 1fr;
+    gap: 16px;
+    padding: 22px 18px;
+  }
+
+  .grupo-vip__cta {
+    grid-column: 1 / -1;
+    justify-self: stretch;
+    width: 100%;
   }
 
   .card__img-wrap img,
