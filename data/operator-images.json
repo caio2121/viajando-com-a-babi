@@ -250,9 +250,9 @@
     "pacote-betocarrero1transferparq-2-2": {
       "stem": "pacote-betocarrero1transferparq-2-2",
       "source_url": "https://viajandocomdesconto.com/img/467535c16920087c.png",
-      "etag": "\"467535c16920087c\"",
+      "etag": "\"467535c16920087c-w\"",
       "last_modified": "",
-      "sha256": "33505bd1d9b0ad09f8b02db02dc5bbba9ce6f1664b711285bde0624d0c57eab2"
+      "sha256": "34c1e35716dd721a0489dd1c61a940310f83d1d6922fed09e81fd16002fd872f"
     },
     "pacote-betocarrero2diasdetransf": {
       "stem": "pacote-betocarrero2diasdetransf",
@@ -278,9 +278,9 @@
     "pacote-betocarrero2transferparq-2": {
       "stem": "pacote-betocarrero2transferparq-2",
       "source_url": "https://viajandocomdesconto.com/img/467535c16920087c.png",
-      "etag": "\"467535c16920087c\"",
+      "etag": "\"467535c16920087c-w\"",
       "last_modified": "Thu, 20 Aug 2026 17:32:15 GMT",
-      "sha256": "33505bd1d9b0ad09f8b02db02dc5bbba9ce6f1664b711285bde0624d0c57eab2"
+      "sha256": "34c1e35716dd721a0489dd1c61a940310f83d1d6922fed09e81fd16002fd872f"
     },
     "pacote-bogota2noitescartagena3n": {
       "stem": "pacote-bogota2noitescartagena3n",
@@ -1436,6 +1436,13 @@
       "etag": "\"00c1fad50c7f141d\"",
       "last_modified": "Mon, 28 Sep 2026 15:39:24 GMT",
       "sha256": "03a49edfb4f50fad5fbaf9fcc8ca4a3ef821621fae3b21177c0722dc596b4919"
+    },
+    "pacote-maravilhasdaitaliaeparis": {
+      "stem": "pacote-maravilhasdaitaliaeparis",
+      "source_url": "https://viajandocomdesconto.com/img/a987f46fca5fa6aa.png",
+      "etag": "\"a987f46fca5fa6aa\"",
+      "last_modified": "",
+      "sha256": "a9f60273a752bf012e01a1b0419ccde3fb3ed81c84d8e4a8951b79fc90ab4a01"
     },
     "pacote-marrocoscomcidadesimperi": {
       "stem": "pacote-marrocoscomcidadesimperi",
