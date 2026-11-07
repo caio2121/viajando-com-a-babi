@@ -9,13 +9,6 @@
       "last_modified": "Thu, 15 Oct 2026 11:47:00 GMT",
       "sha256": "6ab3ed236826d9917f65ef287c91a87d37f4672e0402b486f6b35e7aa608b476"
     },
-    "pacote-2x1admiravelturquia10dia": {
-      "stem": "pacote-2x1admiravelturquia10dia",
-      "source_url": "https://viajandocomdesconto.com/img/f93aa2e52de38745.png",
-      "etag": "\"f93aa2e52de38745\"",
-      "last_modified": "Sat, 01 Aug 2026 00:39:01 GMT",
-      "sha256": "7f5db741715cdedd86d9e089ab78aff61980d42d7eb64b41ed332caa2c0cd262"
-    },
     "pacote-2x1admiravelturquiadever": {
       "stem": "pacote-2x1admiravelturquiadever",
       "source_url": "https://viajandocomdesconto.com/img/3df1d0fb6eb09555.png",
@@ -1642,10 +1635,10 @@
     },
     "pacote-natalcomcitytourpraiadec": {
       "stem": "pacote-natalcomcitytourpraiadec",
-      "source_url": "https://viajandocomdesconto.com/img/5368204502ac54ac.webp",
-      "etag": "\"5368204502ac54ac\"",
+      "source_url": "https://viajandocomdesconto.com/img/f9e359b1b6a15ba0.png",
+      "etag": "\"f9e359b1b6a15ba0\"",
       "last_modified": "",
-      "sha256": "37cc33fc86db29e77e9b3a8920c26fa99e822a975a58aee251903f10ac7c7cce"
+      "sha256": "e9211d01e2275fc571880f1026bee62297b60db3e158c92cc8fd3e512373f179"
     },
     "pacote-natalcompiparn6noites": {
       "stem": "pacote-natalcompiparn6noites",
@@ -1688,13 +1681,6 @@
       "etag": "\"f2e66064e57dc57b\"",
       "last_modified": "Mon, 27 Jul 2026 13:58:14 GMT",
       "sha256": "6cce1a653d9004d534b34e7652a28510e4fb0b992f6990b3e576f32bcbb92f8c"
-    },
-    "pacote-natalimperdivelrn": {
-      "stem": "pacote-natalimperdivelrn",
-      "source_url": "https://viajandocomdesconto.com/img/5368204502ac54ac.webp",
-      "etag": "\"5368204502ac54ac\"",
-      "last_modified": "Sun, 19 Jul 2026 23:57:53 GMT",
-      "sha256": "37cc33fc86db29e77e9b3a8920c26fa99e822a975a58aee251903f10ac7c7cce"
     },
     "pacote-natalluzdegramadocombust": {
       "stem": "pacote-natalluzdegramadocombust",
