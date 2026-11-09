@@ -716,6 +716,13 @@
       "last_modified": "Thu, 15 Oct 2026 13:30:24 GMT",
       "sha256": "903ace8297cc336537fbc2bef704d76945e84bc0aa3d62916f1c33bc966d1e8d"
     },
+    "pacote-espetaculograndedesfiled-2": {
+      "stem": "pacote-espetaculograndedesfiled-2",
+      "source_url": "https://viajandocomdesconto.com/img/7e9a08ef14cbbac0.png",
+      "etag": "\"7e9a08ef14cbbac0\"",
+      "last_modified": "",
+      "sha256": "e7d874fd5eee786e03a6d8755bf209703de22bf61ab7b96ceaee9f762fe07f9c"
+    },
     "pacote-espetaculograndedesfiled-3": {
       "stem": "pacote-espetaculograndedesfiled-3",
       "source_url": "https://viajandocomdesconto.com/img/761195677d577bd1.png",
@@ -1520,6 +1527,13 @@
       "etag": "\"a987f46fca5fa6aa\"",
       "last_modified": "",
       "sha256": "a9f60273a752bf012e01a1b0419ccde3fb3ed81c84d8e4a8951b79fc90ab4a01"
+    },
+    "pacote-maravilhosaspraiasdatail": {
+      "stem": "pacote-maravilhosaspraiasdatail",
+      "source_url": "https://viajandocomdesconto.com/img/a073c01e37ca0e46.webp",
+      "etag": "\"a073c01e37ca0e46\"",
+      "last_modified": "",
+      "sha256": "33d9ed6c74432cec1a757ab2d94d69cfa204c5212b048bed974e1c6065199728"
     },
     "pacote-marrocoscomcidadesimperi": {
       "stem": "pacote-marrocoscomcidadesimperi",
