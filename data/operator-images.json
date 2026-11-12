@@ -499,13 +499,6 @@
       "last_modified": "Sat, 01 Aug 2026 00:29:03 GMT",
       "sha256": "ee374d0d8db930ad314cf51bc3048e93133758734c1beb41d62d6657301db7f5"
     },
-    "pacote-cidadedomexicoessencial": {
-      "stem": "pacote-cidadedomexicoessencial",
-      "source_url": "https://viajandocomdesconto.com/img/29d33d10a0425ce9.png",
-      "etag": "\"29d33d10a0425ce9\"",
-      "last_modified": "Mon, 10 Aug 2026 12:08:33 GMT",
-      "sha256": "098a6fd4ee3efb1878e69653dec538c9fa914a50e085cb0533808cd347f0debd"
-    },
     "pacote-cidadedopanamacomcitytou": {
       "stem": "pacote-cidadedopanamacomcitytou",
       "source_url": "https://viajandocomdesconto.com/img/8c8f83add7d726e0.png",
@@ -1535,27 +1528,6 @@
       "last_modified": "Thu, 06 Aug 2026 19:48:56 GMT",
       "sha256": "9852406eab6f2b8a9db9ce74f5b7fdd221ac9fccc2b9a5a7778e4c797a1b62e8"
     },
-    "pacote-mendozabasico": {
-      "stem": "pacote-mendozabasico",
-      "source_url": "https://viajandocomdesconto.com/img/41b3491dd3c21bba.png",
-      "etag": "\"41b3491dd3c21bba\"",
-      "last_modified": "Mon, 10 Aug 2026 12:11:03 GMT",
-      "sha256": "119ddf0c9693b7083a054f1437579c3cc82d88f8c514905a60a980ef04aff8f0"
-    },
-    "pacote-mendozacitytourvinicolas": {
-      "stem": "pacote-mendozacitytourvinicolas",
-      "source_url": "https://viajandocomdesconto.com/img/59a49046841090cc.png",
-      "etag": "\"59a49046841090cc\"",
-      "last_modified": "Mon, 10 Aug 2026 12:12:47 GMT",
-      "sha256": "133f21952787b45bb49538c023f4ca94cf6f18ddaa0264b0f33e457ef68a5143"
-    },
-    "pacote-mendozaclassicacitytourv": {
-      "stem": "pacote-mendozaclassicacitytourv",
-      "source_url": "https://viajandocomdesconto.com/img/74fd244210316fa2.png",
-      "etag": "\"74fd244210316fa2\"",
-      "last_modified": "Fri, 31 Jul 2026 18:54:26 GMT",
-      "sha256": "7c9dcda612f7584ce423bf07c2841bd5df00cf87b4f0accc5552f1e748073502"
-    },
     "pacote-mercadillosdenavidadence": {
       "stem": "pacote-mercadillosdenavidadence",
       "source_url": "https://viajandocomdesconto.com/img/b4860e1879938c24.png",
@@ -1583,13 +1555,6 @@
       "etag": "\"2bd17fe664c58572\"",
       "last_modified": "Tue, 04 Aug 2026 17:39:26 GMT",
       "sha256": "7c60b6219419a6f9b381f53f5975fd80c63e8b1ce343b6af0303e6001e526244"
-    },
-    "pacote-miches3noitesepuntacana4": {
-      "stem": "pacote-miches3noitesepuntacana4",
-      "source_url": "https://viajandocomdesconto.com/img/f0f0af5bb0852e18.png",
-      "etag": "\"f0f0af5bb0852e18\"",
-      "last_modified": "Mon, 27 Jul 2026 14:58:49 GMT",
-      "sha256": "a5d9b59adde43298f690a02eb83be519ea5398ddab54948cd49e11f52456a102"
     },
     "pacote-minitourflorencepisaveni": {
       "stem": "pacote-minitourflorencepisaveni",
@@ -1709,13 +1674,6 @@
       "etag": "\"d48e881030b060b9\"",
       "last_modified": "Mon, 24 Aug 2026 14:08:26 GMT",
       "sha256": "8ae07e791eb9343233661c532331e11a00cd28f840e205d21488648581d6c2ed"
-    },
-    "pacote-novazelandiatradicional": {
-      "stem": "pacote-novazelandiatradicional",
-      "source_url": "https://viajandocomdesconto.com/img/021110fabe50fe55.png",
-      "etag": "\"021110fabe50fe55\"",
-      "last_modified": "Sat, 01 Aug 2026 00:25:24 GMT",
-      "sha256": "2a49c0e4a24182feb3352925380c57aa2bf6c0ce213369e34bf274b10699ba09"
     },
     "pacote-odysseuspromocaoverao202": {
       "stem": "pacote-odysseuspromocaoverao202",
