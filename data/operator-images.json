@@ -555,13 +555,6 @@
       "last_modified": "Tue, 11 Aug 2026 13:31:25 GMT",
       "sha256": "4e5a495337c2442979fba39ad82f91cd28a373e1d3f0a951f05addfe40e166f4"
     },
-    "pacote-descobrindocaboverde": {
-      "stem": "pacote-descobrindocaboverde",
-      "source_url": "https://viajandocomdesconto.com/img/cf46823c73334710.png",
-      "etag": "\"cf46823c73334710\"",
-      "last_modified": "Wed, 12 Aug 2026 13:57:28 GMT",
-      "sha256": "7e36173b51e769c8dfc15659df27424b62f10c9c0e712e19843e2729960bc7f8"
-    },
     "pacote-disneycelebraemcuritiba": {
       "stem": "pacote-disneycelebraemcuritiba",
       "source_url": "https://viajandocomdesconto.com/img/4424e7ad1460974f.webp",
@@ -1017,13 +1010,6 @@
       "last_modified": "Sun, 19 Jul 2026 23:57:53 GMT",
       "sha256": "beff51c66b2284fa9f6f348f477e701bec5d60b4047c07bbea53bfe74226d6e7"
     },
-    "pacote-fozdoiguacucompras": {
-      "stem": "pacote-fozdoiguacucompras",
-      "source_url": "https://viajandocomdesconto.com/img/cc488043d79ffa45.webp",
-      "etag": "\"cc488043d79ffa45\"",
-      "last_modified": "",
-      "sha256": "beff51c66b2284fa9f6f348f477e701bec5d60b4047c07bbea53bfe74226d6e7"
-    },
     "pacote-fozdoiguacucultural": {
       "stem": "pacote-fozdoiguacucultural",
       "source_url": "https://viajandocomdesconto.com/img/de22a5c5f4643ecf.png",
@@ -1261,13 +1247,6 @@
       "etag": "\"93f9449f83a2b2f0\"",
       "last_modified": "Fri, 31 Jul 2026 21:30:44 GMT",
       "sha256": "699398fbade806f635ec97c2e16399e025ebb67599299b1c5c2579f45d6bc596"
-    },
-    "pacote-inglaterraeescocia": {
-      "stem": "pacote-inglaterraeescocia",
-      "source_url": "https://viajandocomdesconto.com/img/7061b7929d4e8d49.png",
-      "etag": "\"7061b7929d4e8d49\"",
-      "last_modified": "Fri, 07 Aug 2026 20:29:11 GMT",
-      "sha256": "d6d9579f4c0069be07e6dd89d849a254812ddc3b52f9e5919571a67f2d8f2cb6"
     },
     "pacote-inglaterraessencial": {
       "stem": "pacote-inglaterraessencial",
@@ -1772,13 +1751,6 @@
       "etag": "\"6606d2fe6d352d5f\"",
       "last_modified": "Mon, 14 Sep 2026 20:57:59 GMT",
       "sha256": "5a4ee6e65bc295c082ab1e0b204df46b19669f2aa76f648765ac9a45384b9c58"
-    },
-    "pacote-omelhordarota66dechicago": {
-      "stem": "pacote-omelhordarota66dechicago",
-      "source_url": "https://viajandocomdesconto.com/img/37365a611f61f12d.png",
-      "etag": "\"37365a611f61f12d\"",
-      "last_modified": "Mon, 10 Aug 2026 12:16:10 GMT",
-      "sha256": "31762a36f085f96fa3a6e6e7c2b22667f82ed96def6cf018eb7588b47391a19c"
     },
     "pacote-orlando2universalem2dias": {
       "stem": "pacote-orlando2universalem2dias",
