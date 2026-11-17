@@ -380,6 +380,13 @@
       "last_modified": "",
       "sha256": "882463ae9b3526b5aceda17aa71706e8cb7208946743eac8840fc1cfc2704751"
     },
+    "pacote-buenosairescomcitytourti": {
+      "stem": "pacote-buenosairescomcitytourti",
+      "source_url": "https://viajandocomdesconto.com/img/ed9ca3f7d167ee02.webp",
+      "etag": "\"ed9ca3f7d167ee02\"",
+      "last_modified": "",
+      "sha256": "86c8faf179283224ac9a78b0c16b2ec64e507b26e31c4baeb1f1351f2a1b553b"
+    },
     "pacote-buenosairesessencial-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2": {
       "stem": "pacote-buenosairesessencial-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2",
       "source_url": "https://viajandocomdesconto.com/img/62fe58c83aed6d1b.png",
@@ -1381,6 +1388,13 @@
       "last_modified": "Mon, 28 Sep 2026 15:39:24 GMT",
       "sha256": "61fba7340d9acdee95fa3d284d0ac9ae0520e687d78c725abe642b3330f3f4ea"
     },
+    "pacote-joaopessoacom2passeiosae": {
+      "stem": "pacote-joaopessoacom2passeiosae",
+      "source_url": "https://viajandocomdesconto.com/img/082cff4e7060ca34.webp",
+      "etag": "\"082cff4e7060ca34\"",
+      "last_modified": "",
+      "sha256": "17624b7b5e2908c17df7caeabf58b46fe3babd99279eef19d325e1ef8f0ff4ac"
+    },
     "pacote-joaopessoacomcitytourpra": {
       "stem": "pacote-joaopessoacomcitytourpra",
       "source_url": "https://viajandocomdesconto.com/img/72ac28ad76f503b8.png",
@@ -2200,6 +2214,13 @@
       "last_modified": "Fri, 31 Jul 2026 18:57:02 GMT",
       "sha256": "82cd667f83c0576b97d582ea687ba896b832a8d7744751b692e5e1f04af67002"
     },
+    "pacote-santiagocitytourparquefa": {
+      "stem": "pacote-santiagocitytourparquefa",
+      "source_url": "https://viajandocomdesconto.com/img/4fcf3d68fad7bb95.webp",
+      "etag": "\"4fcf3d68fad7bb95\"",
+      "last_modified": "",
+      "sha256": "b7827899f827d4dca277ed717052c9e4cd184a7142e478ed3bbbaebea1f297f0"
+    },
     "pacote-santiagoessencial": {
       "stem": "pacote-santiagoessencial",
       "source_url": "https://viajandocomdesconto.com/img/b796774c08742158.png",
@@ -2305,13 +2326,6 @@
       "last_modified": "Fri, 14 Aug 2026 13:26:02 GMT",
       "sha256": "901498c16b8396cb209b9f4331f3f4dccb831719b4bfc1724b4832f05b4d9a37"
     },
-    "pacote-srilankalalagrimadelaind": {
-      "stem": "pacote-srilankalalagrimadelaind",
-      "source_url": "https://viajandocomdesconto.com/img/900e3cbfb87ec400.png",
-      "etag": "\"900e3cbfb87ec400\"",
-      "last_modified": "Thu, 20 Aug 2026 14:55:09 GMT",
-      "sha256": "857f31532bc12bd4fb812c6ea738f9e04bfede9da675cf685cca7e29c04ab728"
-    },
     "pacote-stn2617mercadillosdenavi": {
       "stem": "pacote-stn2617mercadillosdenavi",
       "source_url": "https://viajandocomdesconto.com/img/d7ff57b8c55ab67e.png",
@@ -2332,20 +2346,6 @@
       "etag": "\"4f67a8e2fa80a23b\"",
       "last_modified": "Fri, 31 Jul 2026 21:33:12 GMT",
       "sha256": "d36727047672329dcce69bd1bdbe29925163529de8e6a26dc2e2929db109e8ed"
-    },
-    "pacote-superindiaenepal": {
-      "stem": "pacote-superindiaenepal",
-      "source_url": "https://viajandocomdesconto.com/img/ee695eed24899efc.png",
-      "etag": "\"ee695eed24899efc\"",
-      "last_modified": "Wed, 12 Aug 2026 14:22:42 GMT",
-      "sha256": "a6da7daea8909bcadcaabc5eb9422b38fdaabfda1205a54c295eca142f0b874d"
-    },
-    "pacote-superindiatriangulodoura": {
-      "stem": "pacote-superindiatriangulodoura",
-      "source_url": "https://viajandocomdesconto.com/img/759294d6afea182b.png",
-      "etag": "\"759294d6afea182b\"",
-      "last_modified": "Tue, 11 Aug 2026 13:45:13 GMT",
-      "sha256": "f05b97f0ecc6acba4867cd7d292d8a3afcddac475cfb8cd87e76550e89c0efab"
     },
     "pacote-superpromoturquiaparatod": {
       "stem": "pacote-superpromoturquiaparatod",
