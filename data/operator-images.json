@@ -72,6 +72,13 @@
       "last_modified": "Mon, 28 Sep 2026 13:52:11 GMT",
       "sha256": "97806f2b231b6bee4cf051a46689f018e7420f25ae7d42692da53c65f5209f29"
     },
+    "pacote-alemanharomanticaoktober": {
+      "stem": "pacote-alemanharomanticaoktober",
+      "source_url": "https://viajandocomdesconto.com/img/1235dd7a1147cba6.webp",
+      "etag": "\"1235dd7a1147cba6\"",
+      "last_modified": "",
+      "sha256": "a1de6d6bd185e0b71dad6a1f6dd7ac648fc9ee2efa364d086fbc47a415caedc4"
+    },
     "pacote-amsterdaealemanha": {
       "stem": "pacote-amsterdaealemanha",
       "source_url": "https://viajandocomdesconto.com/img/5dcb8eff5f552426.png",
@@ -127,6 +134,13 @@
       "etag": "\"17ecff91d229a0c4\"",
       "last_modified": "Mon, 27 Jul 2026 13:14:44 GMT",
       "sha256": "3803f32e6f18ee6e4a34cc94e9c13815a7bc962482e2ff28385f79650c72067e"
+    },
+    "pacote-ariadnegrecia": {
+      "stem": "pacote-ariadnegrecia",
+      "source_url": "https://viajandocomdesconto.com/img/a515455387884714.webp",
+      "etag": "\"a515455387884714\"",
+      "last_modified": "",
+      "sha256": "44c9bd4fef2eaa330a3e279af6b729af9a27be66b27bb51541c6580eadc3cf7c"
     },
     "pacote-arraialdajudaba": {
       "stem": "pacote-arraialdajudaba",
@@ -197,6 +211,20 @@
       "etag": "\"d98bcd5f294dad75\"",
       "last_modified": "Wed, 14 Oct 2026 19:19:22 GMT",
       "sha256": "1df88bffd264184e58b37663836a79978536abe0fb22d5973b1cc090bff72b6f"
+    },
+    "pacote-balneariocamboriupassapo-5": {
+      "stem": "pacote-balneariocamboriupassapo-5",
+      "source_url": "https://viajandocomdesconto.com/img/2db6623db9df9740.webp",
+      "etag": "\"2db6623db9df9740\"",
+      "last_modified": "",
+      "sha256": "2d0d5399af73758d2ca5e1258226e56970208f09631505eb55ab17cc05de7dbd"
+    },
+    "pacote-balneariocamboriupassapo-6": {
+      "stem": "pacote-balneariocamboriupassapo-6",
+      "source_url": "https://viajandocomdesconto.com/img/2db6623db9df9740.webp",
+      "etag": "\"2db6623db9df9740\"",
+      "last_modified": "",
+      "sha256": "2d0d5399af73758d2ca5e1258226e56970208f09631505eb55ab17cc05de7dbd"
     },
     "pacote-barcelonasuicaeparis": {
       "stem": "pacote-barcelonasuicaeparis",
@@ -380,12 +408,33 @@
       "last_modified": "",
       "sha256": "882463ae9b3526b5aceda17aa71706e8cb7208946743eac8840fc1cfc2704751"
     },
+    "pacote-buenosairescomcitytourja-2": {
+      "stem": "pacote-buenosairescomcitytourja-2",
+      "source_url": "https://viajandocomdesconto.com/img/633a48941e259276.webp",
+      "etag": "\"633a48941e259276\"",
+      "last_modified": "",
+      "sha256": "4c5165c5a95947c3a3b502b37b43b52d6827c22c9ab58e73b2f8242ed75a2b8c"
+    },
     "pacote-buenosairescomcitytourti": {
       "stem": "pacote-buenosairescomcitytourti",
       "source_url": "https://viajandocomdesconto.com/img/ed9ca3f7d167ee02.webp",
       "etag": "\"ed9ca3f7d167ee02\"",
       "last_modified": "",
       "sha256": "86c8faf179283224ac9a78b0c16b2ec64e507b26e31c4baeb1f1351f2a1b553b"
+    },
+    "pacote-buenosairescommaderotang": {
+      "stem": "pacote-buenosairescommaderotang",
+      "source_url": "https://viajandocomdesconto.com/img/beb51d6e808d1b87.webp",
+      "etag": "\"beb51d6e808d1b87\"",
+      "last_modified": "",
+      "sha256": "87c0b49964cfca47614a8df424bfe04dcc764eee5b7c18b37cf95f4dc9f08223"
+    },
+    "pacote-buenosairescomsenortango": {
+      "stem": "pacote-buenosairescomsenortango",
+      "source_url": "https://viajandocomdesconto.com/img/7bafde88bd916272.webp",
+      "etag": "\"7bafde88bd916272\"",
+      "last_modified": "",
+      "sha256": "70c43ef50673c2bfa8812c31a63ba26b0421ba4421eed118ae75b13b58146ba3"
     },
     "pacote-buenosairesessencial-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2": {
       "stem": "pacote-buenosairesessencial-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2",
@@ -407,6 +456,13 @@
       "etag": "\"219ab732121e4a7e\"",
       "last_modified": "Fri, 07 Aug 2026 19:56:29 GMT",
       "sha256": "e014dc25e491ad79e82c193e9e72d34f096c20a25560b1f6d527ffb1b33f1731"
+    },
+    "pacote-cabofrio": {
+      "stem": "pacote-cabofrio",
+      "source_url": "https://viajandocomdesconto.com/img/541c763b6193a751.webp",
+      "etag": "\"541c763b6193a751\"",
+      "last_modified": "",
+      "sha256": "b096a96d8af213a2480ee1bfa1c7662964e3f5448cedf6f18ac2df749d1b792b"
     },
     "pacote-caldasnovasviaaeroportoc": {
       "stem": "pacote-caldasnovasviaaeroportoc",
@@ -540,13 +596,6 @@
       "etag": "\"e41f442b6de4d798\"",
       "last_modified": "Mon, 10 Aug 2026 12:04:13 GMT",
       "sha256": "022171b62720f41002ee34b00823581244b1ce70020462677b2fba083cbcacf4"
-    },
-    "pacote-curacaoessencialcomcityt": {
-      "stem": "pacote-curacaoessencialcomcityt",
-      "source_url": "https://viajandocomdesconto.com/img/06a170101b79c9d4.png",
-      "etag": "\"06a170101b79c9d4\"",
-      "last_modified": "Mon, 10 Aug 2026 12:37:08 GMT",
-      "sha256": "e1cf5706f853ef6f260604679bac50729b7be5c7dc3e29fdad3ab2e5438bffd1"
     },
     "pacote-demadriamarraquechcommad": {
       "stem": "pacote-demadriamarraquechcommad",
@@ -884,6 +933,41 @@
       "last_modified": "",
       "sha256": "810c9a37eaf8e2211881152e529c1bc32362a0a4e751e16205ff508dd90aa2e5"
     },
+    "pacote-experiencerundisney20271": {
+      "stem": "pacote-experiencerundisney20271",
+      "source_url": "https://viajandocomdesconto.com/img/f1d882c658420173.webp",
+      "etag": "\"f1d882c658420173\"",
+      "last_modified": "",
+      "sha256": "8169d4479ad6f18eaf14f587a6f1b9df46a9805c2c049a388c2ff68aee855fcb"
+    },
+    "pacote-experiencerundisney20272": {
+      "stem": "pacote-experiencerundisney20272",
+      "source_url": "https://viajandocomdesconto.com/img/f1d882c658420173.webp",
+      "etag": "\"f1d882c658420173\"",
+      "last_modified": "",
+      "sha256": "8169d4479ad6f18eaf14f587a6f1b9df46a9805c2c049a388c2ff68aee855fcb"
+    },
+    "pacote-experiencerundisney20272-2": {
+      "stem": "pacote-experiencerundisney20272-2",
+      "source_url": "https://viajandocomdesconto.com/img/f1d882c658420173.webp",
+      "etag": "\"f1d882c658420173\"",
+      "last_modified": "",
+      "sha256": "8169d4479ad6f18eaf14f587a6f1b9df46a9805c2c049a388c2ff68aee855fcb"
+    },
+    "pacote-experiencerundisney20274": {
+      "stem": "pacote-experiencerundisney20274",
+      "source_url": "https://viajandocomdesconto.com/img/f1d882c658420173.webp",
+      "etag": "\"f1d882c658420173\"",
+      "last_modified": "",
+      "sha256": "8169d4479ad6f18eaf14f587a6f1b9df46a9805c2c049a388c2ff68aee855fcb"
+    },
+    "pacote-experiencerundisney20275": {
+      "stem": "pacote-experiencerundisney20275",
+      "source_url": "https://viajandocomdesconto.com/img/f1d882c658420173.webp",
+      "etag": "\"f1d882c658420173\"",
+      "last_modified": "",
+      "sha256": "8169d4479ad6f18eaf14f587a6f1b9df46a9805c2c049a388c2ff68aee855fcb"
+    },
     "pacote-explorandoanovazelandia": {
       "stem": "pacote-explorandoanovazelandia",
       "source_url": "https://viajandocomdesconto.com/img/2ba016819f6483da.png",
@@ -1044,6 +1128,13 @@
       "etag": "\"86d95c6d16941ae5\"",
       "last_modified": "",
       "sha256": "83f5642ef68fb7d8007bc01389d763b55a515df8d126d0c577148cc30d73a66b"
+    },
+    "pacote-gramadocastelodesaintand": {
+      "stem": "pacote-gramadocastelodesaintand",
+      "source_url": "https://viajandocomdesconto.com/img/5fbaa27bd27f7f51.webp",
+      "etag": "\"5fbaa27bd27f7f51\"",
+      "last_modified": "",
+      "sha256": "378013eafbe6793da9b62235e03301bd30acecce90bca0a176863784abc53f40"
     },
     "pacote-gramadocomexpressonatali": {
       "stem": "pacote-gramadocomexpressonatali",
@@ -1591,6 +1682,20 @@
       "last_modified": "Thu, 06 Aug 2026 19:48:56 GMT",
       "sha256": "9852406eab6f2b8a9db9ce74f5b7fdd221ac9fccc2b9a5a7778e4c797a1b62e8"
     },
+    "pacote-mendozaclassicacitytourv-2": {
+      "stem": "pacote-mendozaclassicacitytourv-2",
+      "source_url": "https://viajandocomdesconto.com/img/b7a309bba861adb4.webp",
+      "etag": "\"b7a309bba861adb4\"",
+      "last_modified": "",
+      "sha256": "d6e654b80d53e14af3b5e7b30e0e0087282df5f2f706d84226f56a5bdc0947fb"
+    },
+    "pacote-mendozacomaltamontanhaci": {
+      "stem": "pacote-mendozacomaltamontanhaci",
+      "source_url": "https://viajandocomdesconto.com/img/b7a309bba861adb4.webp",
+      "etag": "\"b7a309bba861adb4\"",
+      "last_modified": "",
+      "sha256": "d6e654b80d53e14af3b5e7b30e0e0087282df5f2f706d84226f56a5bdc0947fb"
+    },
     "pacote-mercadillosdenavidadence": {
       "stem": "pacote-mercadillosdenavidadence",
       "source_url": "https://viajandocomdesconto.com/img/b4860e1879938c24.png",
@@ -1800,13 +1905,6 @@
       "etag": "\"d0f8220f8a0584a7\"",
       "last_modified": "",
       "sha256": "dbd01fb7c853f2bcab17d62f1e59a90ad96f533096f690cd59fca57242bb43af"
-    },
-    "pacote-parisalpeseitalia": {
-      "stem": "pacote-parisalpeseitalia",
-      "source_url": "https://viajandocomdesconto.com/img/d6f1afe33a9635a1.png",
-      "etag": "\"d6f1afe33a9635a1\"",
-      "last_modified": "Tue, 04 Aug 2026 17:18:14 GMT",
-      "sha256": "c4f4d381987b80a1499208a573cf21c9c0ca7d310e77fe7883339d472a4b1952"
     },
     "pacote-pariscomdisneyincluindoo": {
       "stem": "pacote-pariscomdisneyincluindoo",
@@ -2221,12 +2319,40 @@
       "last_modified": "",
       "sha256": "b7827899f827d4dca277ed717052c9e4cd184a7142e478ed3bbbaebea1f297f0"
     },
+    "pacote-santiagocomcordilheirasc": {
+      "stem": "pacote-santiagocomcordilheirasc",
+      "source_url": "https://viajandocomdesconto.com/img/cdab75f8b6b5a6a2.webp",
+      "etag": "\"cdab75f8b6b5a6a2\"",
+      "last_modified": "",
+      "sha256": "9e586d2b9063eece782c91733e1065d88d8847914ff1b9a086d2759a997564a2"
+    },
+    "pacote-santiagocomvinadelmarval": {
+      "stem": "pacote-santiagocomvinadelmarval",
+      "source_url": "https://viajandocomdesconto.com/img/9acc1d87586fc6ad.webp",
+      "etag": "\"9acc1d87586fc6ad\"",
+      "last_modified": "",
+      "sha256": "7d8c943a315182967913854b21cf050747e137f4ff427f1c96ceaf576086d685"
+    },
+    "pacote-santiagocomvinhedoscityt": {
+      "stem": "pacote-santiagocomvinhedoscityt",
+      "source_url": "https://viajandocomdesconto.com/img/6271788d9fa55546.webp",
+      "etag": "\"6271788d9fa55546\"",
+      "last_modified": "",
+      "sha256": "48bb0909feb5c47421ba4d9f18bc66099dffcb7148e9b81e7df078dab8863043"
+    },
     "pacote-santiagoessencial": {
       "stem": "pacote-santiagoessencial",
       "source_url": "https://viajandocomdesconto.com/img/b796774c08742158.png",
       "etag": "\"b796774c08742158\"",
       "last_modified": "",
       "sha256": "d8c00014e9981081920f2c1010e92d9930295e38f809534d7abcff6fa8caf846"
+    },
+    "pacote-santiagonasalturascityto": {
+      "stem": "pacote-santiagonasalturascityto",
+      "source_url": "https://viajandocomdesconto.com/img/f538bd07390cd77e.webp",
+      "etag": "\"f538bd07390cd77e\"",
+      "last_modified": "",
+      "sha256": "17a6129b8398f9e6c8d785762cc3812003d044956222e31d16b2c4fbbbdde376"
     },
     "pacote-saomigueldogostosocomnat": {
       "stem": "pacote-saomigueldogostosocomnat",
@@ -2326,6 +2452,13 @@
       "last_modified": "Fri, 14 Aug 2026 13:26:02 GMT",
       "sha256": "901498c16b8396cb209b9f4331f3f4dccb831719b4bfc1724b4832f05b4d9a37"
     },
+    "pacote-st27909ptencantosdatosca": {
+      "stem": "pacote-st27909ptencantosdatosca",
+      "source_url": "https://viajandocomdesconto.com/img/48c5d3a2ba42e899.webp",
+      "etag": "\"48c5d3a2ba42e899\"",
+      "last_modified": "",
+      "sha256": "dbec170d4e0ecc8a5992322beafc0761bd9329bd3e7613b36de9271ef7816106"
+    },
     "pacote-stn2617mercadillosdenavi": {
       "stem": "pacote-stn2617mercadillosdenavi",
       "source_url": "https://viajandocomdesconto.com/img/d7ff57b8c55ab67e.png",
@@ -2339,6 +2472,13 @@
       "etag": "\"79cba73ce3b88dc2\"",
       "last_modified": "Tue, 11 Aug 2026 14:03:39 GMT",
       "sha256": "07daed462c84554ca0011d748a21ef602e4b43d70c18d0176238d564b5bb8d64"
+    },
+    "pacote-superchinaimperialcomhon": {
+      "stem": "pacote-superchinaimperialcomhon",
+      "source_url": "https://viajandocomdesconto.com/img/e1e3f2ed8197c5a8.webp",
+      "etag": "\"e1e3f2ed8197c5a8\"",
+      "last_modified": "",
+      "sha256": "d37c8b68ebd56d77f3ea32f158e565b6c1f340eaa82167ed0c770ecccc179823"
     },
     "pacote-superdubaitailandiaeindi": {
       "stem": "pacote-superdubaitailandiaeindi",
