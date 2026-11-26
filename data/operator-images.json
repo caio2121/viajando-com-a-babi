@@ -786,20 +786,6 @@
       "last_modified": "Mon, 24 Aug 2026 13:49:14 GMT",
       "sha256": "3a33d1acbb0fa79f9c1424531bc6f88b2f0c121f1c22c67ba75e7e1447ee532a"
     },
-    "pacote-euacomprasemmiamicomaere": {
-      "stem": "pacote-euacomprasemmiamicomaere",
-      "source_url": "https://viajandocomdesconto.com/img/e93f21ad59533c44.png",
-      "etag": "\"e93f21ad59533c44\"",
-      "last_modified": "Tue, 04 Aug 2026 17:41:22 GMT",
-      "sha256": "5942b702db5b06f2b3093ff9818ea8ebcd3e9c9407667ab050e7feef0b96ad5d"
-    },
-    "pacote-euacomprasemnovayorkcoma": {
-      "stem": "pacote-euacomprasemnovayorkcoma",
-      "source_url": "https://viajandocomdesconto.com/img/83bd0154b46f5826.png",
-      "etag": "\"83bd0154b46f5826\"",
-      "last_modified": "Tue, 04 Aug 2026 18:54:27 GMT",
-      "sha256": "ee98ecdae253840c69e548667fa0960516e14139f7e17767d143f42a8c2443dc"
-    },
     "pacote-euanatalemnycomaereo": {
       "stem": "pacote-euanatalemnycomaereo",
       "source_url": "https://viajandocomdesconto.com/img/18b4260a0fd705b4.png",
@@ -862,13 +848,6 @@
       "etag": "\"d2f5c1bc21d7acf8\"",
       "last_modified": "",
       "sha256": "4f38d866917e893b7a5bc4ede5fe570ec386a46470d1637f5a90f1ca82037cf3"
-    },
-    "pacote-europacomprasemmilaocoma": {
-      "stem": "pacote-europacomprasemmilaocoma",
-      "source_url": "https://viajandocomdesconto.com/img/59fa4f28a341b6ec.png",
-      "etag": "\"59fa4f28a341b6ec\"",
-      "last_modified": "Tue, 04 Aug 2026 18:55:29 GMT",
-      "sha256": "ef2b8243e3f63b7f6dab3bb49b38ca23cdc372a0e07823cb024edae2592a86b7"
     },
     "pacote-europadeouro": {
       "stem": "pacote-europadeouro",
@@ -1100,6 +1079,13 @@
       "etag": "\"12000247ee0c2235\"",
       "last_modified": "Tue, 29 Sep 2026 13:12:30 GMT",
       "sha256": "00bbb70f84599ecba14ba0826a921c18bf3591f795865ccbed0e047edb126eaa"
+    },
+    "pacote-fozdoiguacucommarcodas3f": {
+      "stem": "pacote-fozdoiguacucommarcodas3f",
+      "source_url": "https://viajandocomdesconto.com/img/bacd97687535c222.webp",
+      "etag": "\"bacd97687535c222\"",
+      "last_modified": "",
+      "sha256": "645a8ef43a857bf857d3f2118d6be013144478b02c85c4bae6567033c2e34bce"
     },
     "pacote-fozdoiguacucompasseiosca": {
       "stem": "pacote-fozdoiguacucompasseiosca",
